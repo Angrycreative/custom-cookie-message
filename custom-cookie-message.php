@@ -5,7 +5,7 @@
  * Plugin URI: https://angrycreative.se/
  * Description: A customizable cookie message.
  * Version: 1.0
- * Author: Johan Sylvan
+ * Author: Johan Sylvan, angrycreative
  * Author URI: https://angrycreative.se/
  **/
 

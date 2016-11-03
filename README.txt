@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: johansylvan
+Contributors: johansylvan, angrycreative
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites
 Requires at least: 1.0
 Tested up to: 1.0
