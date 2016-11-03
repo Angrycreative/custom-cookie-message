@@ -1,0 +1,101 @@
+/*
+    Author: Johan Sylvan
+*/
+
+.cookie-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+@media (max-width: 1200px) {
+    .cookie-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cookie-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .cookie-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+
+.container-cookies
+{
+    position: fixed;
+    //top: 0;
+    //transition: top 0.2s ease-in-out;
+    width: 100%;
+    z-index: 10000000;
+    display: none;
+    height: auto;
+    opacity: 0.95;
+    padding: 10px 0 10px 0;
+}
+
+.warning-text{
+    font-size: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.warning-text p{
+    font-family: sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 0;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.warning-text a:link{
+    text-decoration: underline;
+
+}
+.warning-text a:hover {
+    text-decoration: none;
+}
+
+.button-container{
+    //text-align: center;
+    //float: right;
+}
+
+.cookies-button-ok {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cookies-button-ok:hover {
+    -webkit-box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+}
