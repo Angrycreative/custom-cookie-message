@@ -71,11 +71,11 @@ class AC_Custom_Cookie_Message
     //Register and enqueue style sheet.
     public function register_plugin_styles(){
         wp_register_style('product_variation', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css');
+
         wp_enqueue_style('product_variation');
     }
 
     public function register_plugin_scripts(){
-        //wp_enqueue_script('variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/js/ac-custom-cookie-message-frontend.js', ['jquery']);
 
         // embed the javascript file that makes the AJAX request
         wp_enqueue_script( 'my-ajax-request', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . 'js/ac-custom-cookie-message-frontend.js', array( 'jquery' ) );
@@ -85,6 +85,9 @@ class AC_Custom_Cookie_Message
     }
 
     public function register_backend_plugin_styles(){
+        wp_enqueue_style('jquery-   style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
+        wp_register_style('product_variation', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css');
+        wp_enqueue_style('product_variation');
         wp_enqueue_style( 'wp-color-picker' );
     }
 
@@ -150,8 +153,8 @@ class AC_Custom_Cookie_Message
     }
 
     public function cookie_setcookie() {
-        setcookie( 'cookie-warning-message', 15, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
-        wp_send_json( 1 );
+       // setcookie( 'cookie-warning-message', 15, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+        //wp_send_json( 1 );
     }
 
 
@@ -229,6 +232,7 @@ class AC_Custom_Cookie_Message
         $defaults = array(
             'message_color_picker' => '#3E3E3B',
             'button_color_picker' => '#EBECED',
+            'button_hover_color_picker' => '#CBC5C1',
             'button_text_color_picker' => '#3E3E3B',
             'text_color_picker' => '#EBECED',
             'link_color_picker' => '#CBC5C1'
@@ -329,17 +333,17 @@ class AC_Custom_Cookie_Message
             'cookies_styling_options',
             'styling_options_section' );
 
-        /*add_settings_field(
-            'Opacity Slider',
-            __('Opacity Slider', 'cookie-message'),
-            array( $this, 'cookies_opacity_slider_callback' ),
-            'cookies_styling_options',
-            'styling_options_section' );*/
-
         add_settings_field(
             'Button Color',
             __('Button Color', 'cookie-message'),
             array( $this, 'cookies_button_color_picker_callback' ),
+            'cookies_styling_options',
+            'styling_options_section' );
+
+        add_settings_field(
+            'Button Hover Color',
+            __('Button Hover Color', 'cookie-message'),
+            array( $this, 'cookies_button_hover_color_picker_callback' ),
             'cookies_styling_options',
             'styling_options_section' );
 
@@ -363,6 +367,27 @@ class AC_Custom_Cookie_Message
             array( $this, 'cookies_link_color_picker_callback' ),
             'cookies_styling_options',
             'styling_options_section' );
+
+        /*add_settings_field(
+            'Opacity',
+            __('Opacity', 'cookie-message'),
+            array( $this, 'cookies_opacity_slider_callback' ),
+            'cookies_styling_options',
+            'styling_options_section' );
+
+        add_settings_field(
+            'Message Size',
+            __('Message Size', 'cookie-message'),
+            array( $this, 'cookies_message_size_slider_callback' ),
+            'cookies_styling_options',
+            'styling_options_section' );
+
+        add_settings_field(
+            'button_size_',
+            __('Button Size', 'cookie-message'),
+            array( $this, 'cookies_button_size_slider_callback' ),
+            'cookies_styling_options',
+            'styling_options_section' );*/
 
         register_setting(
             'cookies_styling_options',
@@ -403,14 +428,9 @@ class AC_Custom_Cookie_Message
 
     function cookies_page_link_callback(){
         $options = get_option('cookies_general_options');
+        //echo ($options['cookies_page_link']);
 
-        // Get the element set in the options.
-        $url = '';
-        if (isset($options['cookies_page_link'])) {
-            $url = esc_url($options['cookies_page_link']);
-        }
-
-        echo '<input type="text" id="cookies_page_link" name="cookies_general_options[cookies_page_link]" value="' . $url . '" />';
+        echo '<input type="text" id="cookies_page_link" name="cookies_general_options[cookies_page_link]" value="' . $options['cookies_page_link'] . '" />';
     }
 
     function cookies_input_button_text_callback(){
@@ -438,14 +458,6 @@ class AC_Custom_Cookie_Message
         echo '<input type="text" id="message_color_picker" name="cookies_styling_options[message_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
     }
 
-    /*function cookies_opacity_slider_callback() {
-        $options = get_option('cookies_styling_options');
-
-        $val = ( isset( $options['opacity_slider_amount'] ) ) ? $options['opacity_slider_amount'] : '';
-        echo '<input type="text" id="opacity_slider_amount" name="cookies_styling_options[opacity_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
-        echo '<div id="opacity_slider"></div>';
-    }*/
-
     function cookies_button_color_picker_callback() {
         $options = get_option('cookies_styling_options');
 
@@ -453,10 +465,18 @@ class AC_Custom_Cookie_Message
         echo '<input type="text" id="button_color_picker" name="cookies_styling_options[button_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
     }
 
+    function cookies_button_hover_color_picker_callback() {
+        $options = get_option('cookies_styling_options');
+
+        $val = ( isset( $options['button_hover_color_picker'] ) ) ? $options['button_hover_color_picker'] : '';
+        echo '<input type="text" id="button_hover_color_picker" name="cookies_styling_options[button_hover_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+    }
+
     function cookies_button_text_color_picker_callback() {
         $options = get_option('cookies_styling_options');
 
-        $val = ( isset( $options['button_text_color_picker'] ) ) ? $options['button_text_color_picker'] : '';
+        //$val = ( isset( $options['button_text_color_picker'] ) ) ? $options['button_text_color_picker'] : '';
+        $val = $options['button_text_color_picker'];
         echo '<input type="text" id="button_text_color_picker" name="cookies_styling_options[button_text_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
     }
 
@@ -473,6 +493,32 @@ class AC_Custom_Cookie_Message
         $val = ( isset( $options['link_color_picker'] ) ) ? $options['link_color_picker'] : '';
         echo '<input type="text" id="link_color_picker" name="cookies_styling_options[link_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
     }
+
+    /*function cookies_opacity_slider_callback() {
+        $options = get_option('cookies_styling_options');
+
+        $val = ( isset( $options['opacity_slider_amount'] ) ) ? $options['opacity_slider_amount'] : '95';
+        echo '<input type="text" id="opacity_slider_amount" name="cookies_styling_options[opacity_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
+        echo '<div id="opacity_slider"></div>';
+    }
+
+    function cookies_message_size_slider_callback() {
+        $options = get_option('cookies_styling_options');
+
+        //print_r($options);
+        $val = ( isset( $options['message_size_slider_amount'] ) ) ? $options['message_size_slider_amount'] : '90';
+        //var_dump($val);
+        echo '<input type="text" id="message_size_slider_amount" name="cookies_styling_options[message_size_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
+        echo '<div id="message_size_slider"></div>';
+    }
+
+    function cookies_button_size_slider_callback() {
+        $options = get_option('cookies_styling_options');
+
+        $val = ( isset( $options['button_size_slider_amount'] ) ) ? $options['button_size_slider_amount'] : '90';
+        echo '<input type="text" id="button_size_slider_amount" name="cookies_styling_options[button_size_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
+        echo '<div id="button_size_slider"></div>';
+    }*/
 
     // Iterates through every part of the input string and sanitizes it
     function cookies_sanitize_options($input){
