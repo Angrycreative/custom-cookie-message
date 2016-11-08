@@ -81,7 +81,7 @@ $styling_options = get_option('cookies_styling_options');
 <div id="custom-cookie-message-container" class="container-cookies container-cookies-visible">
     <div class="cookie-container">
     <div class="warning-text"><p><?php echo $content_options['textarea_warning_text'] ; ?> <a href=" <?php echo $general_options['cookies_page_link']; ?>" ><?php _e( $content_options['input_link_text'], 'cookie-message'); ?></a></p>
-        <a id="cookies-button-ok" class="cookies-button-ok">
+        <a id="cookies-button-ok" class="cookies-button-ok <?php echo $styling_options['add_button_class'];?>">
             <?php _e( $content_options['input_button_text'], 'cookie-message' ); ?>
         </a>
     </div>

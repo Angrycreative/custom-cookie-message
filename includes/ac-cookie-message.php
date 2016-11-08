@@ -235,7 +235,8 @@ class AC_Custom_Cookie_Message
             'button_hover_color_picker' => '#CBC5C1',
             'button_text_color_picker' => '#3E3E3B',
             'text_color_picker' => '#EBECED',
-            'link_color_picker' => '#CBC5C1'
+            'link_color_picker' => '#CBC5C1',
+            'add_button_class' => ''
         );
 
         return apply_filters('cookies_default_styling_options', $defaults);
@@ -368,6 +369,14 @@ class AC_Custom_Cookie_Message
             'cookies_styling_options',
             'styling_options_section' );
 
+        add_settings_field(
+            'add_button_class',
+            __('Add Classes to Button separated with WS', 'cookie-message'),
+            array( $this, 'cookies_add_button_class_callback' ),
+            'cookies_styling_options',
+            'styling_options_section' );
+
+
         /*add_settings_field(
             'Opacity',
             __('Opacity', 'cookie-message'),
@@ -493,6 +502,14 @@ class AC_Custom_Cookie_Message
         $val = ( isset( $options['link_color_picker'] ) ) ? $options['link_color_picker'] : '';
         echo '<input type="text" id="link_color_picker" name="cookies_styling_options[link_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
     }
+
+    function cookies_add_button_class_callback(){
+        $options = get_option('cookies_styling_options');
+
+        echo '<input type="text" id="add_button_class" name="cookies_styling_options[add_button_class]" value="' . $options['add_button_class'] . '" />';
+    }
+
+
 
     /*function cookies_opacity_slider_callback() {
         $options = get_option('cookies_styling_options');
