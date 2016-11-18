@@ -52,8 +52,10 @@ $styling_options = get_option('cookies_styling_options');
 <style>
     .container-cookies {
         background-color: <?php echo $styling_options['message_color_picker'];?>;
-        color: <?php echo $styling_options['text_color_picker'];?>;
         //opacity: <?php echo $styling_options['opacity_amount']/100;?>;
+    }
+    .container-cookies p {
+        color: <?php echo $styling_options['text_color_picker'];?>;
     }
 
     .warning-text a:link{
