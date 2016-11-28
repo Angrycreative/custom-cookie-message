@@ -50,18 +50,24 @@
 .container-cookies
 {
     position: fixed;
-    //top: 0;
     //transition: top 0.2s ease-in-out;
     width: 100%;
-    z-index: 10000000;
+    z-index: 1000;
     display: none;
     height: auto;
     padding: 10px 0 10px 0;
 }
+.admin-bar .top-static{
+    top: 32px;
+}
+
+.admin-bar .top-fixed{
+    top: 32px;
+}
 
 .warning-text{
     font-size: 12px;
-    margin: 0 20px;
+    margin: 0 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -99,7 +105,7 @@
     //float: right;
 }
 
-.cookies-button-ok {
+.default-cookie-button-style {
     font-size: 14px;
     font-style: normal;
     font-variant: normal;
@@ -109,9 +115,11 @@
     border-radius: 3px;
     padding: 5px 10px;
     cursor: pointer;
+    -webkit-transition: background-color .5s;
+    transition: background-color .5s;
 }
 
-.cookies-button-ok:hover {
+.default-cookie-button-style:hover {
     -webkit-transition: background-color .5s;
     transition: background-color .5s;
 }

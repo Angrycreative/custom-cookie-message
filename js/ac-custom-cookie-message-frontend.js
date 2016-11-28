@@ -25,8 +25,11 @@ jQuery(document).ready(function($) {
     var didScroll;
     var lastScrollTop = 0;
     var lastScrollBot = 0;
-    var delta = 5;
+    var scrollPosition = $(this).scrollTop();
+    var delta = 50;
     var navbarHeight = $('#custom-cookie-message-container').outerHeight();
+    var cookieContainer = $('#custom-cookie-message-container');
+    var slideAnimation = 400;
 
     var storage = (function() {
         var uid = new Date;
@@ -40,26 +43,36 @@ jQuery(document).ready(function($) {
         } catch (exception) {}
     }());
 
-    $(window).on('scroll', debounce( function () {
-        hasScrolled();
-    }, 250));
-
     setTimeout(function() {
-        if(storage) {
-            var fallback = storage.getItem("ac-cookie-fallback");
-            if(fallback !== "fallback") {
+        $(window).scroll(debounce(function () {
 
-                $('#custom-cookie-message-container').slideToggle(400, function () {
-                    $(this).find('.form-control').focus();
-                });
-            }
+            hasScrolled();
 
-        } else {
-            $('#custom-cookie-message-container').slideToggle(400, function () {
+        }, 100));
+    }, 10);
+
+
+    if( cookieContainer.hasClass('top-static') ) {
+        slideAnimation = 0;
+    }
+
+    if(storage) {
+        var fallback = storage.getItem("ac-cookie-fallback");
+        if(fallback !== "fallback") {
+            $('#custom-cookie-message-container').slideDown(slideAnimation, function () {
                 $(this).find('.form-control').focus();
+
+                setBodyMargin();
             });
         }
-    },10);
+    }
+    else {
+        $('#custom-cookie-message-container').slideDown(slideAnimation, function () {
+            $(this).find('.form-control').focus();
+
+            setBodyMargin();
+        });
+    }
 
     $('#cookies-button-ok').click(function(e){
         e.preventDefault();
@@ -73,14 +86,28 @@ jQuery(document).ready(function($) {
             },
         })
         .done(function( data ) {
-            storage.setItem("ac-cookie-fallback", "fallback")
+            storage.setItem("ac-cookie-fallback", "fallback");
             $('#custom-cookie-message-container').hide();
+            if( cookieContainer.hasClass('top-static') ) {
+                $('body').css("margin-top", 0);
+            }
         })
         .fail(function() {
         })
         .always(function() {
         });
     });
+
+    $(window).on('resize', function() {
+
+        setBodyMargin();
+    });
+
+    function setBodyMargin() {
+        if( cookieContainer.hasClass('top-static') ) {
+            $('body').css("margin-top", $('#custom-cookie-message-container').outerHeight());
+        }
+    }
    
     function hasScrolled() {
         var st = $(this).scrollTop();
@@ -89,11 +116,16 @@ jQuery(document).ready(function($) {
         // Make sure they scroll more than delta
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
-
+        if(scrollPosition + 50 <= st) {
+            scrollPosition = st;
+        }
+        //console.log(navbarHeight );
+        //console.log(st);
         if (st > lastScrollTop && st > navbarHeight){
             // Scroll Down
             $('#custom-cookie-message-container').removeClass('container-cookies-visible').addClass('container-cookies-up');
         } else {
+
             // Scroll Up
             if(st + $(window).height() < $(document).height()) {
                 $('#custom-cookie-message-container').removeClass('container-cookies-up').addClass('container-cookies-visible');
@@ -101,6 +133,8 @@ jQuery(document).ready(function($) {
         }
         lastScrollTop = st;
 
+        //console.log(navbarHeight );
+        //console.log(sb);
         if(Math.abs(lastScrollBot - sb) <= delta)
             return;
 
@@ -108,6 +142,7 @@ jQuery(document).ready(function($) {
             // Scroll Down
             $('#custom-cookie-message-container').removeClass('container-cookies-down').addClass('container-cookies-visible2');
         } else {
+
             // Scroll Up
             if(st + $(window).height() < $(document).height()) {
                 $('#custom-cookie-message-container').removeClass('container-cookies-visible2').addClass('container-cookies-down');

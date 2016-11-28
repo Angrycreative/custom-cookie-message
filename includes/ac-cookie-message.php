@@ -20,7 +20,7 @@ class AC_Custom_Cookie_Message
 
     function init(){
 
-        add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
+        add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'), 100);
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 
         add_action('admin_enqueue_scripts', array($this, 'register_backend_plugin_styles'));
@@ -33,12 +33,10 @@ class AC_Custom_Cookie_Message
             $this->admin_init();
         }
 
-        $location = get_option('cookies_general_options');
-        if(isset($location['location_options']) && $location['location_options'] == 'bottom-fixed') {
-            add_action('wp_footer', array($this, 'display_frontend_notice'));
-        } else {
-            add_action('wp_head', array($this, 'display_frontend_notice'));
-        }
+        //$location = get_option('cookies_general_options');
+
+        add_action('wp_footer', array($this, 'display_frontend_notice'));
+
     }
 
     function admin_init(){
@@ -153,8 +151,8 @@ class AC_Custom_Cookie_Message
     }
 
     public function cookie_setcookie() {
-       // setcookie( 'cookie-warning-message', 15, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
-        //wp_send_json( 1 );
+        setcookie( 'cookie-warning-message', 15, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+        wp_send_json( 1 );
     }
 
 
@@ -235,8 +233,7 @@ class AC_Custom_Cookie_Message
             'button_hover_color_picker' => '#CBC5C1',
             'button_text_color_picker' => '#3E3E3B',
             'text_color_picker' => '#EBECED',
-            'link_color_picker' => '#CBC5C1',
-            'add_button_class' => ''
+            'link_color_picker' => '#CBC5C1'
         );
 
         return apply_filters('cookies_default_styling_options', $defaults);
@@ -371,7 +368,7 @@ class AC_Custom_Cookie_Message
 
         add_settings_field(
             'add_button_class',
-            __('Add Classes to Button separated with WS', 'cookie-message'),
+            __('Enter button classes from theme. Separate several classes with whitespace.', 'cookie-message'),
             array( $this, 'cookies_add_button_class_callback' ),
             'cookies_styling_options',
             'styling_options_section' );
