@@ -15,6 +15,8 @@ $styling_options = get_option('cookies_styling_options');
         .container-cookies {
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             transition: top 0.2s ease-in-out;
         }
         .container-cookies-up {
@@ -26,7 +28,9 @@ $styling_options = get_option('cookies_styling_options');
     <style>
         .container-cookies {
             position: absolute;
-            top: 0 ;
+            top: 0;
+            left: 0;
+            right: 0;
         }
 
     </style>
@@ -36,6 +40,8 @@ $styling_options = get_option('cookies_styling_options');
         .container-cookies {
             position: fixed;
             bottom: 0;
+            left: 0;
+            right: 0;
             transition: bottom 0.2s ease-in-out;
         }
         .container-cookies-down {

@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: johansylvan, angrycreative
+Contributors: johansylvan, angrycreative, kylegard
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 1.0
-Tested up to: 1.5
-Stable tag: 1.5
+Tested up to: 1.5.1
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
