@@ -71,7 +71,7 @@ $styling_options = get_option('cookies_styling_options');
     <?php } ?>
     <?php if(!empty( $styling_options['link_color_picker'] )){ ?>
         #custom-cookie-message-container.warning-text a:link{
-            color: <?php echo $styling_options['link_color_picker'];?>;
+            color: <?php echo $styling_options['link_color_picker'];?> !important;
         }
     <?php } ?>
     <?php if(!empty( $styling_options['link_color_picker'] )){ ?>

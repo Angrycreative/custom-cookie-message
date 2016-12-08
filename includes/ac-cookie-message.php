@@ -90,7 +90,7 @@ class AC_Custom_Cookie_Message
     }
 
     public function register_backend_plugin_scripts(){
-        wp_enqueue_script('variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/js/ac-custom-cookie-message-backend.js', ['jquery', 'jquery-ui-slider', 'wp-color-picker']);
+        wp_enqueue_script('variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/js/ac-custom-cookie-message-backend.js', array( 'jquery', 'jquery-ui-slider', 'wp-color-picker'));
         add_action('admin_enqueue_scripts', array( $this, 'enqueue_admin_js' ) );
     }
 

@@ -86,7 +86,10 @@ jQuery(document).ready(function($) {
             },
         })
         .done(function( data ) {
-            storage.setItem("ac-cookie-fallback", "fallback");
+            if(storage){
+                storage.setItem("ac-cookie-fallback", "fallback");
+            }
+
             $('#custom-cookie-message-container').hide();
             if( cookieContainer.hasClass('top-static') ) {
                 $('body').css("margin-top", 0);
