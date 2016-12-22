@@ -103,7 +103,7 @@ $styling_options = get_option('cookies_styling_options');
 </style>
 <div id="custom-cookie-message-container" class="container-cookies <?php echo $general_options['location_options']; ?>">
     <div class="cookie-container">
-    <div class="warning-text"><p><?php echo $content_options['textarea_warning_text'] ; ?> <a href=" <?php echo $general_options['cookies_page_link']; ?>" ><?php _e( $content_options['input_link_text'], 'cookie-message'); ?></a></p>
+    <div class="warning-text"><p><?php echo $content_options['textarea_warning_text'] ; ?> <a style="color: <?php echo $styling_options['link_color_picker'];?>" href=" <?php echo $general_options['cookies_page_link']; ?>" ><?php _e( $content_options['input_link_text'], 'cookie-message'); ?></a></p>
         <a id="cookies-button-ok" class="cookies-button-ok <?php echo ( !empty($styling_options['add_button_class']) ? $styling_options['add_button_class'] : 'default-cookie-button-style' ); ?>">
             <?php _e( $content_options['input_button_text'], 'cookie-message' ); ?>
         </a>
