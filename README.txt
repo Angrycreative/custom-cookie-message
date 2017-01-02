@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.6.1
 Tested up to: 4.7
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -47,3 +47,6 @@ Custom cookie message is also compatible with multisites. The location of the me
 
 = 1.5.2 =
 * Look over code to work for older versions of php.
+
+= 1.5.3 =
+* Small css change to link.

@@ -122,8 +122,6 @@ jQuery(document).ready(function($) {
         if(scrollPosition + 50 <= st) {
             scrollPosition = st;
         }
-        //console.log(navbarHeight );
-        //console.log(st);
         if (st > lastScrollTop && st > navbarHeight){
             // Scroll Down
             $('#custom-cookie-message-container').removeClass('container-cookies-visible').addClass('container-cookies-up');
@@ -136,8 +134,6 @@ jQuery(document).ready(function($) {
         }
         lastScrollTop = st;
 
-        //console.log(navbarHeight );
-        //console.log(sb);
         if(Math.abs(lastScrollBot - sb) <= delta)
             return;
 

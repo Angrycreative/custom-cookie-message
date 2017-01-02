@@ -2,47 +2,37 @@
     Author: Johan Sylvan
 */
 
-.cookie-container {
+.cookie-block{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.cookie-content {
     max-width: 1170px;
     margin: 0 auto;
 }
 @media (max-width: 1200px) {
-    .cookie-container {
+    .cookie-content {
         max-width: 970px;
         margin: 0 auto;
     }
 }
 
 @media (max-width: 992px) {
-    .cookie-container {
+    .cookie-content {
         max-width: 750px;
         margin: 0 auto;
     }
 }
 
-#opacity_slider {
+#opacity_slider, #message_height_slider, #button_height_slider, #button_width_slider {
     width: 180px;
 }
 
-#opacity_slider_amount {
-    width: 180px;
-    color: #555 !important;
-}
-
-#message_size_slider {
-    width: 180px;
-}
-
-#message_size_slider_amount {
-    width: 180px;
-    color: #555 !important;
-}
-
-#button_size_slider {
-    width: 180px;
-}
-
-#button_size_slider_amount {
+#opacity_slider_amount, #message_height_slider_amount, #button_height_slider_amount, #button_width_slider_amount {
     width: 180px;
     color: #555 !important;
 }

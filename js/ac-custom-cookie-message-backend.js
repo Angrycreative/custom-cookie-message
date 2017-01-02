@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
         // Add Color Picker to all inputs that have 'color-field' class
         $( '.cpa-color-picker' ).wpColorPicker();
 
-        /*$( "#opacity_slider" ).slider({
+        $( "#opacity_slider" ).slider({
             range: "min",
             value: parseInt($("#opacity_slider_amount").val()),
             min: 50,
@@ -20,26 +20,34 @@ jQuery(document).ready(function($) {
             }
         });
 
-        $( "#message_size_slider" ).slider({
+        $( "#message_height_slider" ).slider({
             range: "min",
-            //value:  parseInt(message_slider_value),
-            value: parseInt($("#message_size_slider_amount").val()),
-            min: 50,
-            max: 100,
+            value: parseInt($("#message_height_slider_amount").val()),
+            min: 5,
+            max: 40,
             slide: function( event, ui ) {
-                $( "#message_size_slider_amount" ).val( ui.value );
+                $( "#message_height_slider_amount" ).val( ui.value );
             }
         });
 
-        $( "#button_size_slider" ).slider({
+        $( "#button_height_slider" ).slider({
             range: "min",
-            value: parseInt($("#button_size_slider_amount").val()),
-            //value: 78,
-            min: 50,
-            max: 100,
+            value: parseInt($("#button_height_slider_amount").val()),
+            min: 5,
+            max: 40,
             slide: function( event, ui ) {
-                $( "#button_size_slider_amount" ).val( ui.value );
+                $( "#button_height_slider_amount" ).val( ui.value );
             }
-        });*/
+        });
+
+        $( "#button_width_slider" ).slider({
+            range: "min",
+            value: parseInt($("#button_width_slider_amount").val()),
+            min: 5,
+            max: 40,
+            slide: function( event, ui ) {
+                $( "#button_width_slider_amount" ).val( ui.value );
+            }
+        });
     });
 });
