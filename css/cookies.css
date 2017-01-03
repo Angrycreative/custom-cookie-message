@@ -40,7 +40,6 @@
 .container-cookies
 {
     position: fixed;
-    //transition: top 0.2s ease-in-out;
     width: 100%;
     z-index: 1000;
     display: none;
@@ -90,16 +89,10 @@
     text-decoration: none;
 }
 
-.button-container{
-    //text-align: center;
-    //float: right;
-}
-
 .default-cookie-button-style {
     font-size: 14px;
     font-style: normal;
     font-variant: normal;
-    //font-weight: 400;
     line-height: 20px;
     border: none;
     border-radius: 3px;

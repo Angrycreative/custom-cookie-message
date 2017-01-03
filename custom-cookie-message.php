@@ -7,6 +7,7 @@
  * Version: 1.5.3
  * Author: Johan Sylvan, angrycreative
  * Author URI: https://angrycreative.se/
+ * Domain: cookie-message
  **/
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

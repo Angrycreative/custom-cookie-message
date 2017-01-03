@@ -31,7 +31,6 @@ $styling_options = get_option('cookies_styling_options');
             left: 0;
             right: 0;
         }
-
     </style>
 <?php } ?>
 <?php if($general_options['location_options'] == 'bottom-fixed') { ?>
@@ -57,16 +56,19 @@ $styling_options = get_option('cookies_styling_options');
 <?php } ?>
 
 <style>
-    <?php if(!empty($styling_options['message_color_picker'])) { ?>
-        .cookie-block {
+
+    .cookie-block {
+        <?php if(!empty($styling_options['message_color_picker'])) { ?>
             background-color: <?php echo $styling_options['message_color_picker'];?>;
-            opacity: <?php echo $styling_options['opacity_slider_amount']/100;?>;
-        }
-    <?php } ?>
-    <?php if(!empty($styling_options['message_height_slider_amount'])) { ?>
-    #custom-cookie-message-container.container-cookies {
-        padding: <?php echo $styling_options['message_height_slider_amount'];?>px 0 <?php echo $styling_options['message_height_slider_amount'];?>px 0;
+        <?php } ?>
+        <?php if(!empty($styling_options['opacity_slider_amount']) && absint($styling_options['opacity_slider_amount']) > 0) { ?>
+            opacity: <?php echo absint($styling_options['opacity_slider_amount'])/100;?>;
+        <?php } ?>
     }
+    <?php if(!empty($styling_options['message_height_slider_amount'])) { ?>
+        #custom-cookie-message-container.container-cookies {
+            padding: <?php echo $styling_options['message_height_slider_amount'];?>px 0 <?php echo $styling_options['message_height_slider_amount'];?>px 0;
+        }
     <?php } ?>
     <?php if(!empty( $styling_options['text_color_picker'] )){ ?>
         #custom-cookie-message-container.container-cookies p {
@@ -98,7 +100,6 @@ $styling_options = get_option('cookies_styling_options');
             padding-left: <?php echo $styling_options['button_width_slider_amount'];?>px;
             padding-right: <?php echo $styling_options['button_width_slider_amount'];?>px;
         <?php } ?>
-
     }
     <?php if(!empty( $styling_options['button_text_color_picker'] )){ ?>
         #cookies-button-ok.cookies-button-ok a:visited {
