@@ -21,7 +21,7 @@ function debounce(func, wait, immediate) {
 
 
 jQuery(document).ready(function($) {
-    // Hide Header on on scroll 
+    // Hide Header on on scroll
     var didScroll;
     var lastScrollTop = 0;
     var lastScrollBot = 0;
@@ -107,11 +107,11 @@ jQuery(document).ready(function($) {
     });
 
     function setBodyMargin() {
-        if( cookieContainer.hasClass('top-static') ) {
-            $('body').css("margin-top", $('#custom-cookie-message-container').outerHeight());
+        if( cookieContainer.hasClass('top-static') && $('#custom-cookie-message-container').is(':visible') ) {
+             $('body').css("margin-top", $('#custom-cookie-message-container').outerHeight());
         }
     }
-   
+
     function hasScrolled() {
         var st = $(this).scrollTop();
         var sb = $(this).scrollTop() + $(window).height();
