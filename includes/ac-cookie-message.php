@@ -71,7 +71,7 @@ class AC_Custom_Cookie_Message
         wp_register_style('product_variation', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css');
 
         wp_enqueue_style('product_variation');
-        
+
     }
 
 
@@ -95,7 +95,7 @@ class AC_Custom_Cookie_Message
     public function register_backend_plugin_scripts(){
         wp_enqueue_script('variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/js/ac-custom-cookie-message-backend.js', array( 'jquery', 'jquery-ui-slider', 'wp-color-picker'));
         add_action('admin_enqueue_scripts', array( $this, 'enqueue_admin_js' ) );
-        
+
     }
 
     function cookies_menu(){
@@ -161,6 +161,15 @@ class AC_Custom_Cookie_Message
 
 
     function cookies_options_display(){
+
+    	$allow_edition = false;
+
+    	$current_roles = wp_get_current_user()->roles;
+
+    	if ( !!array_intersect( ['administrator', 'editor'], $current_roles ) ) {
+    		$allow_edition = true;
+    	}
+
         ?>
         <!-- Create a header in the default WordPress 'wrap' container -->
         <div class="wrap">
@@ -177,8 +186,10 @@ class AC_Custom_Cookie_Message
                    class="nav-tab <?php echo $active_tab == 'general_options' ? 'nav-tab-active' : ''; ?>"><?php _e('General Options', 'cookies'); ?></a>
                 <a href="?page=cookies_options&tab=content_options"
                    class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>"><?php _e('Content Options', 'cookies'); ?></a>
+	            <?php if ( $allow_edition ): ?>
                 <a href="?page=cookies_options&tab=styling_options"
                    class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e('Styling Options', 'cookies'); ?></a>
+		        <?php endif; ?>
             </h2>
 
             <form method="post" action="options.php">
@@ -195,7 +206,7 @@ class AC_Custom_Cookie_Message
                     settings_fields('cookies_styling_options');
                     do_settings_sections('cookies_styling_options');
                 }
-                
+
                 submit_button(); ?>
             </form>
         </div>
