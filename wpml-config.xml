@@ -1,9 +1,9 @@
 <wpml-config>
-    <admin-texts>
-        <key name="cookies_content_options">
-            <key name="input_button_text"/>
-            <key name="input_link_text"/>
-            <key name="textarea_warning_text"/>
-        </key>
-    </admin-texts>
+	<admin-texts>
+		<key name="cookies_content_options">
+			<key name="input_button_text"/>
+			<key name="input_link_text"/>
+			<key name="textarea_warning_text"/>
+		</key>
+	</admin-texts>
 </wpml-config>
