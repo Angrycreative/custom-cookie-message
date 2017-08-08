@@ -2,8 +2,8 @@
 Contributors: johansylvan, angrycreative, kylegard
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.6.1
-Tested up to: 4.7
-Stable tag: 1.6.3
+Tested up to: 4.8
+Stable tag: 1.6.4
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
