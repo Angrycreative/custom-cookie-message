@@ -21,7 +21,7 @@ function debounce(func, wait, immediate) {
 
 
 jQuery(document).ready(function($) {
-    // Hide Header on on scroll 
+    // Hide Header on on scroll
     var didScroll;
     var lastScrollTop = 0;
     var lastScrollBot = 0;
@@ -42,15 +42,6 @@ jQuery(document).ready(function($) {
             return result && storage;
         } catch (exception) {}
     }());
-
-    setTimeout(function() {
-        $(window).scroll(debounce(function () {
-
-            hasScrolled();
-
-        }, 100));
-    }, 10);
-
 
     if( cookieContainer.hasClass('top-static') ) {
         slideAnimation = 0;
@@ -110,43 +101,5 @@ jQuery(document).ready(function($) {
         if( cookieContainer.hasClass('top-static') && $('#custom-cookie-message-container').is(':visible') ) {
             $('body').css("margin-top", $('#custom-cookie-message-container').outerHeight());
         }
-    }
-   
-    function hasScrolled() {
-        var st = $(this).scrollTop();
-        var sb = $(this).scrollTop() + $(window).height();
-
-        // Make sure they scroll more than delta
-        if(Math.abs(lastScrollTop - st) <= delta)
-            return;
-        if(scrollPosition + 50 <= st) {
-            scrollPosition = st;
-        }
-        if (st > lastScrollTop && st > navbarHeight){
-            // Scroll Down
-            $('#custom-cookie-message-container').removeClass('container-cookies-visible').addClass('container-cookies-up');
-        } else {
-
-            // Scroll Up
-            if(st + $(window).height() < $(document).height()) {
-                $('#custom-cookie-message-container').removeClass('container-cookies-up').addClass('container-cookies-visible');
-            }
-        }
-        lastScrollTop = st;
-
-        if(Math.abs(lastScrollBot - sb) <= delta)
-            return;
-
-        if (sb > lastScrollBot && sb > navbarHeight){
-            // Scroll Down
-            $('#custom-cookie-message-container').removeClass('container-cookies-down').addClass('container-cookies-visible2');
-        } else {
-
-            // Scroll Up
-            if(st + $(window).height() < $(document).height()) {
-                $('#custom-cookie-message-container').removeClass('container-cookies-visible2').addClass('container-cookies-down');
-            }
-        }
-        lastScrollBot = sb;
     }
 });
