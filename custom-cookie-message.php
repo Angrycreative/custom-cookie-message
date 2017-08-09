@@ -10,6 +10,8 @@
  * Domain: cookie-message
  **/
 
+use CustomCookieMessage\Main;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -23,6 +25,6 @@ define( 'CUSTOM_COOKIE_MESSAGE_DIR', dirname( CUSTOM_COOKIE_MESSAGE_FILE ) );
 
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_SLUG', 'custom-cookie-message-list' );
 
-include_once( CUSTOM_COOKIE_MESSAGE_DIR . '/includes/class-main.php' );
+include_once CUSTOM_COOKIE_MESSAGE_DIR . '/includes/class-main.php';
 
-Main::instance();
+new Main();
