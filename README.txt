@@ -24,44 +24,44 @@ Custom cookie message is also compatible with multisites. The location of the me
 
 == Changelog ==
 
-= 1.0 =
-* Initial commit.
-
-= 1.1 =
-* Add debounce for scroll events.
-
-= 1.2 =
-* Add localstorage.
-
-= 1.3 =
-* Add possibility to use styling from theme.
-
-= 1.4 =
-* Redefine styling.
-
-= 1.5 =
-* Improved the functionality of adding styling from theme.
-
-= 1.5.1 =
-* Add minor styling fix.
-
-= 1.5.2 =
-* Look over code to work for older versions of php.
-
-= 1.5.3 =
-* Small css change to link.
-
-= 1.6 =
-* Add more styling options.
-
-= 1.6.1 =
-* Add check to see if opacity is set.
-
-= 1.6.2 =
-* Update readme
+= 1.6.4 =
+* Changed on scroll behavior and added roles restriction to change styles in settings
 
 = 1.6.3 =
 * Fixed margin bug
 
-= 1.6.4 =
-* Changed on scroll behavior and added roles restriction to change styles in settings
+= 1.6.2 =
+* Update readme
+
+= 1.6.1 =
+* Add check to see if opacity is set.
+
+= 1.6 =
+* Add more styling options.
+
+= 1.5.3 =
+* Small css change to link.
+
+= 1.5.2 =
+* Look over code to work for older versions of php.
+
+= 1.5.1 =
+* Add minor styling fix.
+
+= 1.5 =
+* Improved the functionality of adding styling from theme.
+
+= 1.4 =
+* Redefine styling.
+
+= 1.3 =
+* Add possibility to use styling from theme.
+
+= 1.2 =
+* Add localstorage.
+
+= 1.1 =
+* Add debounce for scroll events.
+
+= 1.0 =
+* Initial commit.
