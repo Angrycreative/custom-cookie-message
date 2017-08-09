@@ -52,10 +52,6 @@ jQuery( document ).ready( function ( $ ) {
 		}()
 	);
 
-	if ( cookieContainer.hasClass( 'top-static' ) ) {
-		slideAnimation = 0;
-	}
-
 	if ( storage ) {
 		var fallback = storage.getItem( "ac-cookie-fallback" );
 		if ( fallback !== "fallback" ) {
@@ -91,9 +87,6 @@ jQuery( document ).ready( function ( $ ) {
 			 }
 
 			 $( '#custom-cookie-message-container' ).hide();
-			 if ( cookieContainer.hasClass( 'top-static' ) ) {
-				 $( 'body' ).css( "margin-top", 0 );
-			 }
 		 } )
 		 .fail( function () {
 		 } )
@@ -106,9 +99,5 @@ jQuery( document ).ready( function ( $ ) {
 		setBodyMargin();
 	} );
 
-	function setBodyMargin() {
-		if ( cookieContainer.hasClass( 'top-static' ) && $( '#custom-cookie-message-container' ).is( ':visible' ) ) {
-			$( 'body' ).css( "margin-top", $( '#custom-cookie-message-container' ).outerHeight() );
-		}
-	}
+
 } );

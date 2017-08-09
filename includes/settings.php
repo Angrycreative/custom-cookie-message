@@ -86,7 +86,7 @@ class AC_Custom_Cookie_Message_Admin_Settings {
     </div>
     <?php
   }
-  
+
   function cookies_initialize_general_options() {
 
     // First, we register a section.
@@ -329,7 +329,6 @@ class AC_Custom_Cookie_Message_Admin_Settings {
 
         $html = '<select id="location_options" name="cookies_general_options[location_options]">';
         $html .= '<option value="top-fixed"' . selected( $options['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
-        $html .= '<option value="top-static"' . selected( $options['location_options'], 'top-static', false ) . '>' . __( 'Top in content', 'cookie-message' ) . '</option>';
         $html .= '<option value="bottom-fixed"' . selected( $options['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
         $html .= '</select>';
 
