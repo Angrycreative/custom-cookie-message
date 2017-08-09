@@ -33,13 +33,13 @@ class Admin {
 
 	public function register_backend_plugin_styles() {
 		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
-		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
+		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
 		wp_enqueue_style( 'cookie_style' );
 		wp_enqueue_style( 'wp-color-picker' );
 	}
 
 	public function register_backend_plugin_scripts() {
-		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/js/ac-custom-cookie-message-backend.js', array(
+		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', array(
 			'jquery',
 			'jquery-ui-slider',
 			'wp-color-picker'

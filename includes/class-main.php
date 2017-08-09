@@ -89,7 +89,7 @@ class Main {
 
 	//Register and enqueue style sheet.
 	public function register_plugin_styles() {
-		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
+		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
 
 		wp_enqueue_style( 'cookie_style' );
 
@@ -99,7 +99,7 @@ class Main {
 	public function register_plugin_scripts() {
 
 		// embed the javascript file that makes the AJAX request
-		wp_enqueue_script( 'my-ajax-request', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . 'js/ac-custom-cookie-message-frontend.js', array( 'jquery' ) );
+		wp_enqueue_script( 'my-ajax-request', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-frontend.js', array( 'jquery' ) );
 
 		// declare the URL to the file that handles the AJAX request (wp-admin/admin-ajax.php)
 		wp_localize_script( 'my-ajax-request', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
@@ -119,7 +119,7 @@ class Main {
 	}
 
 	function display_frontend_notice() {
-		AC_Custom_Cookie_Message::get_template( 'cookie-notice.php' );
+		$this->get_template( 'cookie-notice.php' );
 	}
 
 	static function get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
