@@ -1,4 +1,4 @@
-# Custom Cookie Message (https://travis-ci.org/angrycreative/custom-cookie-message)
+# Custom Cookie Message [![Build Status](https://travis-ci.org/angrycreative/custom-cookie-message)]
 
 Installing and activating the plugin will automatically make it appear with the default content and styling.
 
