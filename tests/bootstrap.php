@@ -1,30 +1,4 @@
 <?php
-/**
- * PHPUnit bootstrap file
- *
- * @package CustomCookieMessage
- */
-
-$_tests_dir = getenv( 'WP_TESTS_DIR' );
-
-if ( ! $_tests_dir ) {
-	$_tests_dir = '/tmp/wordpress-tests-lib';
-}
-
-// Give access to tests_add_filter() function.
-require_once $_tests_dir . '/includes/functions.php';
-
-/**
- * Manually load the plugin being tested.
- */
-function _manually_load_plugin() {
-	require dirname( dirname( __FILE__ ) ) . '/ac-private-files.php';
-}
-
-tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
-
-// Start up the WP testing environment.
-require $_tests_dir . '/includes/bootstrap.php';
 
 /**
  * Custom Cookie Message Unit Test Bootstrap.
@@ -82,4 +56,19 @@ class CCM_Unit_Bootstrap {
 		require_once $this->plugin_dir . '/custom-cookie-message.php';
 	}
 
+	/**
+	 * Access to the single instance of the class.
+	 *
+	 * @return CCM_Unit_Bootstrap
+	 */
+	static public function instance() {
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
 }
+
+CCM_Unit_Bootstrap::instance();
