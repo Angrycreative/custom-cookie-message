@@ -67,9 +67,9 @@ if ( ! class_exists( 'AC_Custom_Cookie_Message' ) ) {
 
 		//Register and enqueue style sheet.
 		public function register_plugin_styles() {
-			wp_register_style( 'product_variation', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
+			wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
 
-			wp_enqueue_style( 'product_variation' );
+			wp_enqueue_style( 'cookie_style' );
 
 		}
 
@@ -84,9 +84,9 @@ if ( ! class_exists( 'AC_Custom_Cookie_Message' ) ) {
 		}
 
 		public function register_backend_plugin_styles() {
-			wp_enqueue_style( 'jquery-   style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
-			wp_register_style( 'product_variation', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
-			wp_enqueue_style( 'product_variation' );
+			wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+			wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/css/cookies.css' );
+			wp_enqueue_style( 'cookie_style' );
 			wp_enqueue_style( 'wp-color-picker' );
 
 		}
