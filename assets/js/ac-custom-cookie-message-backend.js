@@ -5,11 +5,33 @@
 
 jQuery( function ( $ ) {
 
-	function getCookies () {
-		var pairs = document.cookie.split(";");
+	'use stric';
 
+	var cookies = [];
 
+	/**
+	 * Retrieve a list of cookies.
+	 *
+	 * @returns {Array|*}
+	 */
+	function getCookies() {
+		var pairs = document.cookie.split( ";" );
+		var cookies;
+
+		cookies = pairs.map( function ( cookie ) {
+			return cookie.split( '=' )[0];
+		} );
+
+		return cookies;
 	}
+
+	$.get( '/' )
+	 .done( function ( data, status, xhr ) {
+		 cookies = getCookies();
+
+		 console.log( cookies )
+	 } );
+
 
 	// Add Color Picker to all inputs that have 'color-field' class
 	$( '.cpa-color-picker' ).wpColorPicker();
