@@ -6,8 +6,24 @@ class Admin {
 
 	static protected $instance;
 
+	/**
+	 * @var AdminGenralOptions
+	 */
+	private $general_options;
+
+	/**
+	 * @var AdminContentOptions
+	 */
+	private $content_options;
+
+	/**
+	 * @var AdminStylingOptions
+	 */
 	private $styling_options;
 
+	/**
+	 * @var AdminCookieListOptions
+	 */
 	private $cookie_list;
 
 	public function __construct() {
@@ -15,8 +31,10 @@ class Admin {
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
 		// add_action( 'admin_init', [ $this, 'cookies_initialize_content_options' ] );
 
-		$this->styling_options = StylingOptions::instance();
-		$this->cookie_list     = CookieList::instance();
+		$this->general_options = AdminGenralOptions::instance();
+		$this->content_options = AdminContentOptions::instance();
+		$this->styling_options = AdminStylingOptions::instance();
+		$this->cookie_list     = AdminCookieListOptions::instance();
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_backend_plugin_styles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_backend_plugin_scripts' ] );

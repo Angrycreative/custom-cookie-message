@@ -7,7 +7,7 @@ namespace CustomCookieMessage\Forms;
  *
  * @package CustomCookieMessage\Forms
  */
-class CookieList {
+class AdminCookieListOptions {
 
 	static protected $instance;
 

@@ -2,7 +2,7 @@
 
 namespace CustomCookieMessage\Forms;
 
-class StylingOptions {
+class AdminStylingOptions {
 
 	static protected $instance;
 
@@ -18,7 +18,7 @@ class StylingOptions {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return StylingOptions
+	 * @return AdminStylingOptions
 	 */
 	static public function instance() {
 		if ( empty( self::$instance ) ) {
