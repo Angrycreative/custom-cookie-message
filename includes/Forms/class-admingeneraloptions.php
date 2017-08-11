@@ -2,7 +2,7 @@
 
 namespace CustomCookieMessage\Forms;
 
-class AdminGeneralOptions {
+class AdminGeneralOptions extends AdminBase {
 
 	static protected $instance;
 
@@ -42,20 +42,14 @@ class AdminGeneralOptions {
 		add_settings_section(
 			'general_options_section',
 			esc_html__( 'General Options', 'cookie-message' ),
-			[
-				$this,
-				'cookies_general_options_callback'
-			],
+			[ $this, 'cookies_general_options_callback' ],
 			'cookies_general_options'
 		);
 
 		add_settings_field(
 			'Location Options',
 			__( 'Select location of message:', 'cookie-message' ),
-			[
-				$this,
-				'cookies_select_position_callback'
-			],
+			[ $this, 'cookies_select_position_callback' ],
 			'cookies_general_options',
 			'general_options_section'
 		);
@@ -71,7 +65,7 @@ class AdminGeneralOptions {
 		register_setting(
 			'cookies_general_options',
 			'cookies_general_options',
-			[ AdminBase::instance(), 'cookies_validate_options' ]
+			[ $this, 'cookies_validate_options' ]
 		);
 	}
 

@@ -2,7 +2,7 @@
 
 namespace CustomCookieMessage\Forms;
 
-class AdminStylingOptions {
+class AdminStylingOptions extends AdminBase {
 
 	static protected $instance;
 
@@ -47,56 +47,64 @@ class AdminStylingOptions {
 			__( 'Message container background', 'cookie-message' ),
 			[ $this, 'cookies_message_color_picker_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Message Size',
 			__( 'Message container padding top and bottom', 'cookie-message' ),
 			[ $this, 'cookies_message_height_slider_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Opacity',
 			__( 'Message container opacity', 'cookie-message' ),
 			[ $this, 'cookies_opacity_slider_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'text_font',
 			__( 'Text font', 'cookie-message' ),
 			[ $this, 'cookies_text_font_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Text Color',
 			__( 'Text Color', 'cookie-message' ),
 			[ $this, 'cookies_text_color_picker_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Link Color',
 			__( 'Link Color', 'cookie-message' ),
 			[ $this, 'cookies_link_color_picker_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'add_button_class',
 			__( 'Button classes', 'cookie-message' ),
 			[ $this, 'cookies_add_button_class_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Button Color',
 			__( 'Button Color', 'cookie-message' ),
 			[ $this, 'cookies_button_color_picker_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Button Hover Color',
@@ -110,26 +118,29 @@ class AdminStylingOptions {
 			__( 'Button Text Color', 'cookie-message' ),
 			[ $this, 'cookies_button_text_color_picker_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'Button_height',
 			__( 'Button Height', 'cookie-message' ),
 			[ $this, 'cookies_button_height_slider_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		add_settings_field(
 			'button_width',
 			__( 'Button Width', 'cookie-message' ),
 			[ $this, 'cookies_button_width_slider_callback' ],
 			'cookies_styling_options',
-			'styling_options_section' );
+			'styling_options_section'
+		);
 
 		register_setting(
 			'cookies_styling_options',
 			'cookies_styling_options',
-			[ AdminBase::instance(), 'cookies_validate_options' ]
+			[ $this, 'cookies_validate_options' ]
 		);
 	}
 

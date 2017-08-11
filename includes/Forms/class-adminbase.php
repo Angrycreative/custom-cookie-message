@@ -69,6 +69,9 @@ class AdminBase {
 		);
 	}
 
+	/**
+	 * Enqueue styles.
+	 */
 	public function register_backend_plugin_styles() {
 		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
 		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
@@ -76,6 +79,9 @@ class AdminBase {
 		wp_enqueue_style( 'wp-color-picker' );
 	}
 
+	/**
+	 * Enqueue scripts.
+	 */
 	public function register_backend_plugin_scripts() {
 		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', array(
 			'jquery',
@@ -85,6 +91,9 @@ class AdminBase {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_js' ) );
 	}
 
+	/**
+	 * Markup output.
+	 */
 	public function cookies_options_display() {
 
 		$allow_edition = false;
@@ -115,7 +124,7 @@ class AdminBase {
 					<a href="?page=cookies_options&tab=styling_options"
 					   class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>
 					<a href="?page=cookies_options&tab=cookie_list"
-					   class="nav-tab" <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>><?php _e( 'Cookie List', 'cookies' ); ?></a>
+					   class="nav-tab <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Cookie List', 'cookies' ); ?></a>
 				<?php endif; ?>
 			</h2>
 
