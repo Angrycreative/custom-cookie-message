@@ -1,4 +1,4 @@
-# Custom Cookie Message [![Build Status](https://travis-ci.org/angrycreative/custom-cookie-message)]
+# Custom Cookie Message [![Build Status](https://travis-ci.org/Angrycreative/custom-cookie-message.svg?branch=master)](https://travis-ci.org/Angrycreative/custom-cookie-message)
 
 Installing and activating the plugin will automatically make it appear with the default content and styling.
 
@@ -10,4 +10,3 @@ Custom cookie message is also compatible with multisites. The location of the me
 * Add the plugin custom cookie message to your plugins map.
 * Activate the plugin through the 'Plugins' menu in WordPress.
 * Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
-.
