@@ -6,11 +6,17 @@ class Admin {
 
 	static protected $instance;
 
+	private $styling_options;
+
+	private $cookie_list;
+
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'cookies_menu' ] );
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
-		add_action( 'admin_init', [ $this, 'cookies_initialize_content_options' ] );
-		add_action( 'admin_init', [ $this, 'cookies_initialize_styling_options' ] );
+		// add_action( 'admin_init', [ $this, 'cookies_initialize_content_options' ] );
+
+		$this->styling_options = StylingOptions::instance();
+		$this->cookie_list     = CookieList::instance();
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_backend_plugin_styles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_backend_plugin_scripts' ] );
@@ -56,7 +62,6 @@ class Admin {
 		if ( ! ! array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
 			$allow_edition = true;
 		}
-
 		?>
 		<!-- Create a header in the default WordPress 'wrap' container -->
 		<div class="wrap">
@@ -77,21 +82,23 @@ class Admin {
 				<?php if ( $allow_edition ): ?>
 					<a href="?page=cookies_options&tab=styling_options"
 					   class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>
+					<a href="?page=cookies_options&tab=cookie_list"
+					   class="nav-tab" <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>><?php _e( 'Cookie List', 'cookies' ); ?></a>
 				<?php endif; ?>
 			</h2>
 
 			<form method="post" action="options.php">
 
-				<?php if ( $active_tab == 'general_options' ) {
+				<?php
+				if ( $active_tab == 'general_options' ) {
 					settings_fields( 'cookies_general_options' );
 					do_settings_sections( 'cookies_general_options' );
 				} elseif ( $active_tab == 'content_options' ) {
 					settings_fields( 'cookies_content_options' );
 					do_settings_sections( 'cookies_content_options' );
-				} else {
-					settings_fields( 'cookies_styling_options' );
-					do_settings_sections( 'cookies_styling_options' );
 				}
+
+				$this->{$active_tab}->getSection();
 
 				submit_button(); ?>
 			</form>
@@ -441,7 +448,7 @@ class Admin {
 		echo '<div><p>Replace your standard paragraph font-family. Leave empty for the standard font-family</p></div>';
 	}
 
-	function cookies_validate_options( $input ) {
+	public function cookies_validate_options( $input ) {
 
 		// Create our array for storing the validated options
 		$output = array();
