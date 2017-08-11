@@ -34,7 +34,7 @@ jQuery( function ( $ ) {
 			 html = '<div class="cookie">';
 			 html = html + 'Cookie machine name: ' + cookie;
 			 html = html + '<label for="' + cookie + '-label">Label: '
-			 html = html + '<input type="text" name="cookie_list[' + cookie + '][label]" id="' + cookie + '-label">';
+			 html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
 			 html = html + '</label>';
 			 html = html + '</div>';
 

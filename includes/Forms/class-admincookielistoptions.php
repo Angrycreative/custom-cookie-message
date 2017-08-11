@@ -71,7 +71,7 @@ class AdminCookieListOptions extends AdminBase {
 	}
 
 	public function cookie_message_height_slider_callback() {
-		$options = get_option( 'cookie_list' );
+		$cookie_list = get_option( 'cookie_list' );
 
 		$options_priority = [
 			__( 'Necesary Cookies', 'cookie-message' ),
@@ -81,6 +81,8 @@ class AdminCookieListOptions extends AdminBase {
 
 		// TODO: Map $options.
 
+		var_dump( $cookie_list );
+
 		$output = '<div class="cookie_list_wrapper">';
 		$output .= '</div>';
 
@@ -88,7 +90,7 @@ class AdminCookieListOptions extends AdminBase {
 	}
 
 	private function settings_save() {
-		if ( empty( $_POST['permalink_structure'] ) ) {
+		if ( empty( $_POST['cookie_list'] ) ) {
 			return;
 		}
 
