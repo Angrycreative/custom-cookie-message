@@ -28,6 +28,19 @@ jQuery( function ( $ ) {
 	$.get( '/' )
 	 .done( function ( data, status, xhr ) {
 		 cookies = getCookies();
+		 var html;
+
+		 cookies.map( function ( cookie ) {
+			 html = '<div class="cookie">';
+			 html = html + 'Cookie machine name: ' + cookie;
+			 html = html + '<label for="' + cookie + '-label">Label: '
+			 html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
+			 html = html + '</label>';
+			 html = html + '</div>';
+
+
+			 $( '.cookie_list_wrapper' ).append( html ).fadeIn();
+		 } );
 
 		 console.log( cookies )
 	 } );

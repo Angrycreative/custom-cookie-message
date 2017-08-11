@@ -7,7 +7,7 @@
 
 namespace CustomCookieMessage;
 
-use CustomCookieMessage\Forms\Admin;
+use CustomCookieMessage\Forms\AdminBase;
 
 /**
  * Custom Cookie Message.
@@ -61,7 +61,7 @@ class Main {
 		add_action( 'wp_ajax_setcookie', array( $this, 'cookie_setcookie' ) );
 
 		if ( is_admin() ) {
-			Admin::instance();
+			AdminBase::instance();
 		}
 
 		//$location = get_option('cookies_general_options');
