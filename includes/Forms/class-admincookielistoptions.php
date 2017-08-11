@@ -16,6 +16,7 @@ class AdminCookieListOptions extends AdminBase {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', [ $this, 'cookies_initialize_list_options' ] );
+		$this->settings_save();
 	}
 
 	/**
@@ -33,40 +34,70 @@ class AdminCookieListOptions extends AdminBase {
 		return self::$instance;
 	}
 
+	/**
+	 * Callback section.
+	 */
 	public function getSection() {
-		settings_fields( 'cookie_list_section' );
+		settings_fields( 'cookie_list_options' );
 		do_settings_sections( 'cookie_list_options' );
 	}
 
 	public function cookies_initialize_list_options() {
+
 		add_settings_section(
 			'cookie_list_section',
 			__( 'Cookie List Options', 'cookie-message' ),
-			[ $this, 'cookies_list_options_callback' ],
+			[ $this, 'cookie_list_options_callback' ],
 			'cookie_list_options'
 		);
 
 		add_settings_field(
-			'cookie-list',
+			'cookie_list',
 			__( 'Cookie we found:', 'cookie-message' ),
-			[ $this, 'cookies_message_height_slider_callback' ],
+			[ $this, 'cookie_message_height_slider_callback' ],
 			'cookie_list_options',
 			'cookie_list_section'
 		);
 
 		register_setting(
-			'cookies_content_options',
-			'cookies_content_options',
+			'cookie_list_options',
+			'cookie_list_options',
 			[ $this, 'cookies_validate_options' ]
 		);
 	}
 
-	public function cookies_message_height_slider_callback() {
-		echo '<input type="text" name="something" class="something" >';
+	public function cookie_list_options_callback() {
+		echo '<p>' . esc_html_e( 'Label and select priority.', 'cookie-message' ) . '</p>';
 	}
 
-	public function cookies_list_options_callback() {
-		echo '<p>' . esc_html_e( 'Label and select priority.', 'cookie-message' ) . '</p>';
+	public function cookie_message_height_slider_callback() {
+		$options = get_option( 'cookie_list' );
+
+		$options_priority = [
+			__( 'Necesary Cookies', 'cookie-message' ),
+			__( 'Performance Cookies', 'cookie-message' ),
+			__( 'Commercial Cookies', 'cookie-message' ),
+		];
+
+		// TODO: Map $options.
+
+		$output = '<div class="cookie_list_wrapper">';
+		$output .= '</div>';
+
+		echo $output;
+	}
+
+	private function settings_save() {
+		if ( empty( $_POST['permalink_structure'] ) ) {
+			return;
+		}
+
+		$cookie_list = get_option( 'cookie_list', [] );
+
+		// TODO: Map $cookie_list.
+
+
+		update_option( 'cookie_list', $cookie_list );
 	}
 
 }

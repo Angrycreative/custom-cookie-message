@@ -47,7 +47,7 @@ class AdminGeneralOptions extends AdminBase {
 		);
 
 		add_settings_field(
-			'Location Options',
+			'location_options',
 			__( 'Select location of message:', 'cookie-message' ),
 			[ $this, 'cookies_select_position_callback' ],
 			'cookies_general_options',
@@ -79,7 +79,6 @@ class AdminGeneralOptions extends AdminBase {
 
 		$html = '<select id="location_options" name="cookies_general_options[location_options]">';
 		$html .= '<option value="top-fixed"' . selected( $options['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
-		$html .= '<option value="top-static"' . selected( $options['location_options'], 'top-static', false ) . '>' . __( 'Top in content', 'cookie-message' ) . '</option>';
 		$html .= '<option value="bottom-fixed"' . selected( $options['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
 		$html .= '</select>';
 

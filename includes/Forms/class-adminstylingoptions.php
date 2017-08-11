@@ -29,7 +29,7 @@ class AdminStylingOptions extends AdminBase {
 	}
 
 	public function getSection() {
-		settings_fields( 'styling_options_section' );
+		settings_fields( 'cookies_styling_options' );
 		do_settings_sections( 'cookies_styling_options' );
 	}
 
@@ -43,7 +43,7 @@ class AdminStylingOptions extends AdminBase {
 		);
 
 		add_settings_field(
-			'Background Color',
+			'cookies_styling_options',
 			__( 'Message container background', 'cookie-message' ),
 			[ $this, 'cookies_message_color_picker_callback' ],
 			'cookies_styling_options',
@@ -114,7 +114,7 @@ class AdminStylingOptions extends AdminBase {
 			'styling_options_section' );
 
 		add_settings_field(
-			'Button Text Color',
+			'cookies_styling_options',
 			__( 'Button Text Color', 'cookie-message' ),
 			[ $this, 'cookies_button_text_color_picker_callback' ],
 			'cookies_styling_options',
