@@ -10,3 +10,4 @@ Custom cookie message is also compatible with multisites. The location of the me
 * Add the plugin custom cookie message to your plugins map.
 * Activate the plugin through the 'Plugins' menu in WordPress.
 * Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
+.
