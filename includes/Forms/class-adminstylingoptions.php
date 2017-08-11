@@ -129,7 +129,7 @@ class AdminStylingOptions {
 		register_setting(
 			'cookies_styling_options',
 			'cookies_styling_options',
-			[ Admin::instance(), 'cookies_validate_options' ]
+			[ AdminBase::instance(), 'cookies_validate_options' ]
 		);
 	}
 
