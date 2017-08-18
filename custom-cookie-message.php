@@ -4,7 +4,7 @@
  * Plugin Name: Custom Cookie Message
  * Plugin URI: https://angrycreative.se/
  * Description: A customizable cookie message.
- * Version: 2.0.0
+ * Version: 1.7
  * Author: Johan Sylvan, angrycreative
  * Author URI: https://angrycreative.se/
  * Domain: cookie-message
@@ -28,4 +28,3 @@ define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_SLUG', 'custom-cookie-message-list' );
 include_once CUSTOM_COOKIE_MESSAGE_DIR . '/includes/class-main.php';
 
 new Main();
-
