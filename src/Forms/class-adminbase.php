@@ -4,6 +4,11 @@ namespace CustomCookieMessage\Forms;
 
 class AdminBase {
 
+	/**
+	 * Singlenton.
+	 *
+	 * @var AdminBase
+	 */
 	static protected $instance;
 
 	/**
@@ -45,7 +50,7 @@ class AdminBase {
 	 *
 	 * @return object
 	 */
-	static public function instance() {
+	public static function instance() {
 		if ( empty( self::$instance ) ) {
 			self::$instance = new self();
 		}
@@ -57,16 +62,10 @@ class AdminBase {
 	 * WP Menu.
 	 */
 	public function cookies_menu() {
-		add_options_page(
-			'Cookies',
-			'Cookies',
-			'administrator',
-			'cookies_options',
-			[
-				$this,
-				'cookies_options_display'
-			]
-		);
+		add_options_page( 'Cookies', 'Cookies', 'administrator', 'cookies_options', [
+			$this,
+			'cookies_options_display',
+		] );
 	}
 
 	/**
@@ -83,12 +82,12 @@ class AdminBase {
 	 * Enqueue scripts.
 	 */
 	public function register_backend_plugin_scripts() {
-		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', array(
+		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', [
 			'jquery',
 			'jquery-ui-slider',
-			'wp-color-picker'
-		) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_js' ) );
+			'wp-color-picker',
+		] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_js' ] );
 	}
 
 	/**
@@ -116,15 +115,9 @@ class AdminBase {
 
 			<!-- Tabs -->
 			<h2 class="nav-tab-wrapper">
-				<a href="?page=cookies_options&tab=general_options"
-				   class="nav-tab <?php echo $active_tab == 'general_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'General Options', 'cookies' ); ?></a>
-				<a href="?page=cookies_options&tab=content_options"
-				   class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Content Options', 'cookies' ); ?></a>
+				<a href="?page=cookies_options&tab=general_options" class="nav-tab <?php echo $active_tab == 'general_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'General Options', 'cookies' ); ?></a> <a href="?page=cookies_options&tab=content_options" class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Content Options', 'cookies' ); ?></a>
 				<?php if ( $allow_edition ): ?>
-					<a href="?page=cookies_options&tab=styling_options"
-					   class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>
-					<a href="?page=cookies_options&tab=cookie_list"
-					   class="nav-tab <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Cookie List', 'cookies' ); ?></a>
+					<a href="?page=cookies_options&tab=styling_options" class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>                    <a href="?page=cookies_options&tab=cookie_list" class="nav-tab <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Cookie List', 'cookies' ); ?></a>
 				<?php endif; ?>
 			</h2>
 
@@ -140,7 +133,6 @@ class AdminBase {
 		<?php
 	}
 
-
 	/**
 	 * @param $input
 	 *
@@ -149,7 +141,7 @@ class AdminBase {
 	public function cookies_validate_options( $input ) {
 
 		// Create our array for storing the validated options
-		$output = array();
+		$output = [];
 
 		// Loop through each of the incoming options
 		foreach ( $input as $key => $value ) {

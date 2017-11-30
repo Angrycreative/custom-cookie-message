@@ -1,14 +1,24 @@
 <?php
-
 /**
- * Plugin Name: Custom Cookie Message
- * Plugin URI: https://angrycreative.se/
- * Description: A customizable cookie message.
- * Version: 2.0.0
- * Author: Johan Sylvan, angrycreative
- * Author URI: https://angrycreative.se/
- * Domain: cookie-message
- **/
+ * Custom Cookie Message.
+ *
+ * @author            Luigi Guevara @killua99 & Angry Creative AB
+ * @link              https://git.synotio.se/ac-components/ac-private-files.git
+ * @since             2.0.0
+ * @package           CustomCookieMessage
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Custom Cookie Message
+ * Plugin URI:        https://git.synotio.se/ac-components/ac-private-files.git
+ * Description:       A customizable cookie message supported with GDPR.
+ * Text Domain:       cookie-message
+ * Version:           2.0.0
+ * Tested up to:      4.9
+ * Author:            Luigi Guevara @killua99 & Angry Creative AB
+ * Author URI:        https://angrycreative.se/
+ * License:           GPL-2.0+
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
+ */
 
 use CustomCookieMessage\Main;
 
@@ -25,7 +35,6 @@ define( 'CUSTOM_COOKIE_MESSAGE_DIR', dirname( CUSTOM_COOKIE_MESSAGE_FILE ) );
 
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_SLUG', 'custom-cookie-message-list' );
 
-include_once CUSTOM_COOKIE_MESSAGE_DIR . '/includes/class-main.php';
+include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/class-main.php';
 
-new Main();
-
+Main::single();

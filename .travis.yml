@@ -25,7 +25,7 @@ matrix:
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - bash tests/bin/install.sh ac_test root '' localhost $WP_VERSION
+  - bash tests/bin/install.sh custom-cookie-message root '' localhost $WP_VERSION
   - bash tests/bin/travis.sh before
 
 script:

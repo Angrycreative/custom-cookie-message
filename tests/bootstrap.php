@@ -1,29 +1,30 @@
 <?php
 
 /**
- * Custom Cookie Message Unit Test Bootstrap.
+ * Class CCM_Unit_Bootstrap.
  *
  * @since 2.0.0
  */
 class CCM_Unit_Bootstrap {
 
 	/**
-	 * @var string directory where wordpress-tests-lib is installed.
-	 */
-	public $wp_tests_dir;
-
-	/**
-	 * @var string testing directory.
+	 * WordPress Tests Directory.
+	 *
+	 * @var string
 	 */
 	public $tests_dir;
 
 	/**
-	 * @var string plugin directory.
+	 * Plugin Dir
+	 *
+	 * @var string
 	 */
 	public $plugin_dir;
 
 	/**
-	 * @var CCM_Unit_Bootstrap instance.
+	 * Singlenton
+	 *
+	 * @var CCM_Unit_Bootstrap
 	 */
 	protected static $instance;
 
@@ -31,22 +32,28 @@ class CCM_Unit_Bootstrap {
 	 * CCM_Unit_Bootstrap constructor.
 	 */
 	public function __construct() {
-		ini_set( 'display_errors', 'on' );
-		error_reporting( E_ALL );
 
-		// Ensure server variable is set for WP email functions.
-		if ( ! isset( $_SERVER['SERVER_NAME'] ) ) {
-			$_SERVER['SERVER_NAME'] = 'localhost';
+		$this->tests_dir = getenv( 'WP_TESTS_DIR' );
+
+		if ( ! $this->tests_dir ) {
+			$this->tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 		}
 
-		$this->tests_dir    = dirname( __FILE__ );
-		$this->plugin_dir   = dirname( $this->tests_dir );
-		$this->wp_tests_dir = getenv( 'WP_TESTS_DIR' ) ? getenv( 'WP_TESTS_DIR' ) : '/tmp/wordpress-tests-lib';
+		if ( ! file_exists( $this->tests_dir . '/includes/functions.php' ) ) {
+			echo "Could not find $this->tests_dir/includes/functions.php, have you run bin/install.sh ?"; // WPCS: XSS ok.
+			exit( 1 );
+		}
 
-		// load test function so tests_add_filter() is available
-		require_once( $this->wp_tests_dir . '/includes/functions.php' );
+		// Give access to tests_add_filter() function.
+		require_once $this->tests_dir . '/includes/functions.php';
+
+		$this->plugin_dir = dirname( dirname( __FILE__ ) );
 
 		tests_add_filter( 'muplugins_loaded', [ $this, 'load' ] );
+
+		// Start up the WP testing environment.
+		require_once $this->tests_dir . '/includes/bootstrap.php';
+
 	}
 
 	/**
@@ -61,7 +68,7 @@ class CCM_Unit_Bootstrap {
 	 *
 	 * @return CCM_Unit_Bootstrap
 	 */
-	static public function instance() {
+	public static function instance() {
 		if ( empty( self::$instance ) ) {
 			self::$instance = new self();
 		}
