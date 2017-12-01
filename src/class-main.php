@@ -116,7 +116,7 @@ class Main {
 		load_plugin_textdomain( 'cookie-message' );
 
 		if ( is_admin() ) {
-			AdminForm::instance();
+			AdminForm::single();
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
