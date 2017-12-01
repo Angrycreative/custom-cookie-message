@@ -11,7 +11,7 @@
  * Plugin Name:       Custom Cookie Message
  * Plugin URI:        https://git.synotio.se/ac-components/ac-private-files.git
  * Description:       A customizable cookie message supported with GDPR.
- * Text Domain:       cookie-message
+ * Text Domain:       custom-cookie-message
  * Version:           2.0.0
  * Tested up to:      4.9
  * Author:            Luigi Guevara @killua99 & Angry Creative AB
