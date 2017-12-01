@@ -2,9 +2,11 @@
 
 namespace CustomCookieMessage\Forms;
 
-class AdminContentOptions extends AdminBase {
+class AdminContentOptions {
 
-	static protected $instance;
+	use AdminTrait;
+
+	static protected $single;
 
 	/**
 	 * CookieList constructor.
@@ -21,11 +23,11 @@ class AdminContentOptions extends AdminBase {
 	 * @return AdminStylingOptions
 	 */
 	static public function instance() {
-		if ( empty( self::$instance ) ) {
-			self::$instance = new self();
+		if ( empty( self::$single ) ) {
+			self::$single = new self();
 		}
 
-		return self::$instance;
+		return self::$single;
 	}
 
 	public function getSection() {
@@ -33,48 +35,20 @@ class AdminContentOptions extends AdminBase {
 		do_settings_sections( 'cookies_content_options' );
 	}
 
-
 	/**
 	 *
 	 */
 	public function cookies_initialize_content_options() {
 
-		add_settings_section(
-			'content_options_section',
-			__( 'Content Options', 'cookie-message' ),
-			[ $this, 'cookies_content_options_callback' ],
-			'cookies_content_options'
-		);
+		add_settings_section( 'content_options_section', __( 'Content Options', 'cookie-message' ), [ $this, 'cookies_content_options_callback' ], 'cookies_content_options' );
 
-		add_settings_field(
-			'Textarea Warning Text',
-			__( 'Enter warning text:', 'cookie-message' ),
-			[ $this, 'cookies_textarea_warning_text_callback' ],
-			'cookies_content_options',
-			'content_options_section'
-		);
+		add_settings_field( 'Textarea Warning Text', __( 'Enter warning text:', 'cookie-message' ), [ $this, 'cookies_textarea_warning_text_callback' ], 'cookies_content_options', 'content_options_section' );
 
-		add_settings_field(
-			'Input Link Text',
-			__( 'Enter link text:', 'cookie-message' ),
-			[ $this, 'cookies_input_link_text_callback' ],
-			'cookies_content_options',
-			'content_options_section'
-		);
+		add_settings_field( 'Input Link Text', __( 'Enter link text:', 'cookie-message' ), [ $this, 'cookies_input_link_text_callback' ], 'cookies_content_options', 'content_options_section' );
 
-		add_settings_field(
-			'Input Button Text',
-			__( 'Enter button text:', 'cookie-message' ),
-			[ $this, 'cookies_input_button_text_callback' ],
-			'cookies_content_options',
-			'content_options_section'
-		);
+		add_settings_field( 'Input Button Text', __( 'Enter button text:', 'cookie-message' ), [ $this, 'cookies_input_button_text_callback' ], 'cookies_content_options', 'content_options_section' );
 
-		register_setting(
-			'cookies_content_options',
-			'cookies_content_options',
-			[ $this, 'cookies_validate_options' ]
-		);
+		register_setting( 'cookies_content_options', 'cookies_content_options', [ $this, 'cookies_validate_options' ] );
 	}
 
 	public function cookies_content_options_callback() {

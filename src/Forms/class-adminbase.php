@@ -1,7 +1,17 @@
 <?php
+/**
+ * AdminGeneralOptions
+ *
+ * @package CustomCookieMessage
+ */
 
 namespace CustomCookieMessage\Forms;
 
+/**
+ * Class AdminBase
+ *
+ * @package CustomCookieMessage\Forms
+ */
 class AdminBase {
 
 	/**
@@ -9,27 +19,35 @@ class AdminBase {
 	 *
 	 * @var AdminBase
 	 */
-	static protected $instance;
+	static protected $single;
 
 	/**
+	 * General Options
+	 *
 	 * @var AdminGenralOptions
 	 */
 	private $general_options;
 
 	/**
+	 * Content Options
+	 *
 	 * @var AdminContentOptions
 	 */
 	private $content_options;
 
 	/**
+	 * Styling Options
+	 *
 	 * @var AdminStylingOptions
 	 */
 	private $styling_options;
 
 	/**
+	 * Cookie Settings
+	 *
 	 * @var AdminCookieListOptions
 	 */
-	private $cookie_list;
+	private $cookie_settings;
 
 	/**
 	 * AdminBase constructor.
@@ -37,12 +55,15 @@ class AdminBase {
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'cookies_menu' ] );
 
-		$this->general_options = AdminGeneralOptions::instance();
+		$this->general_options = AdminGeneralOptions::single();
 		$this->content_options = AdminContentOptions::instance();
 		$this->styling_options = AdminStylingOptions::instance();
-		$this->cookie_list     = AdminCookieListOptions::instance();
+		$this->cookie_settings = AdminCookieSettings::single();
+
+		register_setting( 'custom_cookie_message_group', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'ccm_admin_enqueue_scripts' ] );
+
 	}
 
 	/**
@@ -53,11 +74,11 @@ class AdminBase {
 	 * @return object
 	 */
 	public static function instance() {
-		if ( empty( self::$instance ) ) {
-			self::$instance = new self();
+		if ( empty( self::$single ) ) {
+			self::$single = new self();
 		}
 
-		return self::$instance;
+		return self::$single;
 	}
 
 	/**
@@ -95,65 +116,34 @@ class AdminBase {
 
 		$current_roles = wp_get_current_user()->roles;
 
-		if ( ! ! array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
+		if ( array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
 			$allow_edition = true;
 		}
 		?>
-		<!-- Create a header in the default WordPress 'wrap' container -->
+
 		<div class="wrap">
 
-			<h2><?php _e( 'Cookies Theme Options', 'cookies-message' ); ?></h2>
-			<!-- Give user feeback that a setting has been saved-->
-			<?php //settings_errors();
-			?>
-			<!-- isset works as an "onclick" for the tabs to set active tab-->
+			<h2><?php esc_html_e( 'Cookies Theme Options', 'custom-cookie-message' ); ?></h2>
+
 			<?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_options'; ?>
 
-			<!-- Tabs -->
 			<h2 class="nav-tab-wrapper">
-				<a href="?page=cookies_options&tab=general_options" class="nav-tab <?php echo $active_tab == 'general_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'General Options', 'cookies' ); ?></a> <a href="?page=cookies_options&tab=content_options" class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Content Options', 'cookies' ); ?></a>
-				<?php if ( $allow_edition ): ?>
-					<a href="?page=cookies_options&tab=styling_options" class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>                    <a href="?page=cookies_options&tab=cookie_list" class="nav-tab <?php echo $active_tab == 'cookie_list' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Cookie List', 'cookies' ); ?></a>
+				<a href="?page=cookies_options&tab=general_options" class="nav-tab <?php echo 'general_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'General Options', 'custom-cookie-message' ); ?></a> <a href="?page=cookies_options&tab=content_options" class="nav-tab <?php echo 'content_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Content Options', 'custom-cookie-message' ); ?></a>
+				<?php if ( $allow_edition ) : ?>
+					<a href="?page=cookies_options&tab=styling_options" class="nav-tab <?php echo 'styling_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Styling Options', 'custom-cookie-message' ); ?></a>                    <a href="?page=cookies_options&tab=cookie_settings" class="nav-tab <?php echo 'cookie_settings' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Cookie Settings', 'custom-cookie-message' ); ?></a>
 				<?php endif; ?>
 			</h2>
 
 			<form method="post" action="options.php">
 				<?php
 
-				$this->{$active_tab}->getSection();
+				$this->{$active_tab}->get_section();
 
 				submit_button();
 				?>
 			</form>
 		</div>
 		<?php
-	}
-
-	/**
-	 * @param $input
-	 *
-	 * @return mixed|void
-	 */
-	public function cookies_validate_options( $input ) {
-
-		// Create our array for storing the validated options
-		$output = [];
-
-		// Loop through each of the incoming options
-		foreach ( $input as $key => $value ) {
-
-			// Check to see if the current option has a value. If so, process it.
-			if ( isset( $input[ $key ] ) ) {
-
-				// Strip all HTML and PHP tags and properly handle quoted strings
-				$output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
-
-			} // end if
-
-		} // end foreach
-
-		// Return the array processing any additional functions filtered by this action
-		return apply_filters( 'cookies_validate_styling_options', $output, $input );
 	}
 
 }

@@ -7,15 +7,29 @@ namespace CustomCookieMessage\Forms;
  *
  * @package CustomCookieMessage\Forms
  */
-class AdminCookieListOptions extends AdminBase {
+class AdminCookieSettings {
 
-	static protected $instance;
+	use AdminTrait;
+
+	/**
+	 * Class AdminCookieOptions
+	 *
+	 * @var AdminCookieSettings
+	 */
+	static protected $single;
+
+	/**
+	 * Settings Sections.
+	 *
+	 * @var string
+	 */
+	protected $settings_sections = 'cookie_options';
 
 	/**
 	 * CookieList constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_init', [ $this, 'cookies_initialize_list_options' ] );
+		add_action( 'admin_init', [ $this, 'cookies_initialize_cookie_options' ] );
 		$this->settings_save();
 	}
 
@@ -26,44 +40,21 @@ class AdminCookieListOptions extends AdminBase {
 	 *
 	 * @return object
 	 */
-	static public function instance() {
-		if ( empty( self::$instance ) ) {
-			self::$instance = new self();
+	public static function single() {
+		if ( empty( self::$single ) ) {
+			self::$single = new self();
 		}
 
-		return self::$instance;
+		return self::$single;
 	}
 
-	/**
-	 * Callback section.
-	 */
-	public function getSection() {
-		settings_fields( 'cookie_list_options' );
-		do_settings_sections( 'cookie_list_options' );
-	}
+	public function cookies_initialize_cookie_options() {
 
-	public function cookies_initialize_list_options() {
+		add_settings_section( 'cookie_list_section', __( 'Cookie List Options', 'cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->settings_sections );
 
-		add_settings_section(
-			'cookie_list_section',
-			__( 'Cookie List Options', 'cookie-message' ),
-			[ $this, 'cookie_list_options_callback' ],
-			'cookie_list_options'
-		);
+		add_settings_field( 'cookie_list', __( 'Cookie we found:', 'cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->settings_sections, 'cookie_list_section' );
 
-		add_settings_field(
-			'cookie_list',
-			__( 'Cookie we found:', 'cookie-message' ),
-			[ $this, 'cookie_message_height_slider_callback' ],
-			'cookie_list_options',
-			'cookie_list_section'
-		);
-
-		register_setting(
-			'cookie_list_options',
-			'cookie_list_options',
-			[ $this, 'cookies_validate_options' ]
-		);
+		register_setting( 'custom_cookie_message', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 	}
 
 	public function cookie_list_options_callback() {
@@ -97,7 +88,6 @@ class AdminCookieListOptions extends AdminBase {
 		$cookie_list = get_option( 'cookie_list', [] );
 
 		// TODO: Map $cookie_list.
-
 
 		update_option( 'cookie_list', $cookie_list );
 	}

@@ -1,13 +1,44 @@
 <?php
+/**
+ * AdminGeneralOptions
+ *
+ * @package CustomCookieMessage\Forms
+ */
 
 namespace CustomCookieMessage\Forms;
 
-class AdminGeneralOptions extends AdminBase {
+/**
+ * Class AdminGeneralOptions
+ *
+ * @package CustomCookieMessage
+ */
+class AdminGeneralOptions {
 
-	static protected $instance;
+	use AdminTrait;
 
 	/**
-	 * CookieList constructor.
+	 * Singlenton.
+	 *
+	 * @var AdminGeneralOptions
+	 */
+	static protected $single;
+
+	/**
+	 * Option Group.
+	 *
+	 * @var string
+	 */
+	protected $option_group = 'custom_cookie_message';
+
+	/**
+	 * Settings Sections.
+	 *
+	 * @var string
+	 */
+	protected $section_page = 'general_options';
+
+	/**
+	 * AdminGeneralOptions constructor.
 	 */
 	public function __construct() {
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
@@ -18,78 +49,58 @@ class AdminGeneralOptions extends AdminBase {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return AdminStylingOptions
+	 * @return AdminGeneralOptions
 	 */
-	static public function instance() {
-		if ( empty( self::$instance ) ) {
-			self::$instance = new self();
+	public static function single() {
+		if ( empty( self::$single ) ) {
+			self::$single = new self();
 		}
 
-		return self::$instance;
+		return self::$single;
 	}
-
-	public function getSection() {
-		settings_fields( 'cookies_general_options' );
-		do_settings_sections( 'cookies_general_options' );
-	}
-
 
 	/**
 	 * Define settings.
 	 */
 	public function cookies_initialize_general_options() {
 
-		add_settings_section(
-			'general_options_section',
-			esc_html__( 'General Options', 'cookie-message' ),
-			[ $this, 'cookies_general_options_callback' ],
-			'cookies_general_options'
-		);
+		add_settings_section( 'general', esc_html__( 'General Options', 'custom-cookie-message' ), [ $this, 'cookies_general_options_callback' ], $this->section_page );
 
-		add_settings_field(
-			'location_options',
-			__( 'Select location of message:', 'cookie-message' ),
-			[ $this, 'cookies_select_position_callback' ],
-			'cookies_general_options',
-			'general_options_section'
-		);
+		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
 
-		add_settings_field(
-			'cookies_page_link',
-			__( 'Enter url to the page about cookies:', 'cookie-message' ),
-			[ $this, 'cookies_page_link_callback' ],
-			'cookies_general_options',
-			'general_options_section'
-		);
+		add_settings_field( 'cookies_page_link', esc_html__( 'Enter url to the page about cookies:', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
 
-		register_setting(
-			'cookies_general_options',
-			'cookies_general_options',
-			[ $this, 'cookies_validate_options' ]
-		);
 	}
 
+	/**
+	 * Description Page
+	 */
 	public function cookies_general_options_callback() {
-		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'custom-cookie-message' ) . '</p>';
 	}
 
+	/**
+	 * Location message field.
+	 */
 	public function cookies_select_position_callback() {
-		// Get the options for which this setting is in
-		$options = get_option( 'cookies_general_options' );
 
-		$html = '<select id="location_options" name="cookies_general_options[location_options]">';
-		$html .= '<option value="top-fixed"' . selected( $options['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
-		$html .= '<option value="bottom-fixed"' . selected( $options['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
+		$options = get_option( 'custom_cookie_message' );
+
+		$html = '<select id="location_options" name="custom_cookie_message[general][location_options]">';
+		$html .= '<option value="top-fixed"' . selected( $options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
+		$html .= '<option value="bottom-fixed"' . selected( $options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
 		$html .= '</select>';
 
-		echo $html;
+		echo $html; // WPCS: XSS ok.
 	}
 
+	/**
+	 * Link page field.
+	 */
 	public function cookies_page_link_callback() {
-		$options = get_option( 'cookies_general_options' );
-		//echo ($options['cookies_page_link']);
+		$options = get_option( 'custom_cookie_message' );
 
-		echo '<input type="text" id="cookies_page_link" name="cookies_general_options[cookies_page_link]" value="' . $options['cookies_page_link'] . '" />';
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $options['general']['cookies_page_link'] . '" />'; // WPCS: XSS ok.
 	}
 
 }
