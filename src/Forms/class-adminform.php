@@ -60,7 +60,7 @@ class AdminForm extends AdminBase {
 
 		$this->general_options = AdminGeneralOptions::single();
 		$this->content_options = AdminContentOptions::single();
-		$this->styling_options = AdminStylingOptions::instance();
+		$this->styling_options = AdminStylingOptions::single();
 		$this->cookie_settings = AdminCookieSettings::single();
 
 		register_setting( 'custom_cookie_message_group', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
@@ -76,7 +76,7 @@ class AdminForm extends AdminBase {
 	 *
 	 * @return object
 	 */
-	public static function instance() {
+	public static function single() {
 		if ( empty( self::$single ) ) {
 			self::$single = new self();
 		}
