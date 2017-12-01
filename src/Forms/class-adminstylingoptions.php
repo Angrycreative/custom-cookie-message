@@ -2,7 +2,7 @@
 
 namespace CustomCookieMessage\Forms;
 
-class AdminStylingOptions extends AdminBase {
+class AdminStylingOptions extends AdminForm {
 
 	static protected $single;
 

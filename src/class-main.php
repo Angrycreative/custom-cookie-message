@@ -7,7 +7,7 @@
 
 namespace CustomCookieMessage;
 
-use CustomCookieMessage\Forms\AdminBase;
+use CustomCookieMessage\Forms\AdminForm;
 
 /**
  * Custom Cookie Message.
@@ -116,7 +116,7 @@ class Main {
 		load_plugin_textdomain( 'cookie-message' );
 
 		if ( is_admin() ) {
-			AdminBase::instance();
+			AdminForm::instance();
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );

@@ -44,6 +44,8 @@ trait AdminTrait {
 			}
 		}
 
+		$output = wp_parse_args( $output, $this->options );
+
 		return apply_filters( 'ccm_validate_options', $output, $input );
 	}
 

@@ -12,7 +12,7 @@ namespace CustomCookieMessage\Forms;
  *
  * @package CustomCookieMessage
  */
-class AdminGeneralOptions {
+class AdminGeneralOptions extends AdminBase {
 
 	use AdminTrait;
 
@@ -41,6 +41,7 @@ class AdminGeneralOptions {
 	 * AdminGeneralOptions constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
 	}
 
@@ -84,11 +85,9 @@ class AdminGeneralOptions {
 	 */
 	public function cookies_select_position_callback() {
 
-		$options = get_option( 'custom_cookie_message' );
-
 		$html = '<select id="location_options" name="custom_cookie_message[general][location_options]">';
-		$html .= '<option value="top-fixed"' . selected( $options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
-		$html .= '<option value="bottom-fixed"' . selected( $options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
+		$html .= '<option value="top-fixed"' . selected( $this->options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
+		$html .= '<option value="bottom-fixed"' . selected( $this->options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
 		$html .= '</select>';
 
 		echo $html; // WPCS: XSS ok.
@@ -98,9 +97,7 @@ class AdminGeneralOptions {
 	 * Link page field.
 	 */
 	public function cookies_page_link_callback() {
-		$options = get_option( 'custom_cookie_message' );
-
-		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $options['general']['cookies_page_link'] . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" />'; // WPCS: XSS ok.
 	}
 
 }
