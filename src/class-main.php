@@ -84,12 +84,31 @@ class Main {
 	}
 
 	/**
+	 * Get the static version.
+	 *
+	 * @return string Version number.
+	 */
+	public static function version() {
+		$self = new self();
+
+		return $self->version();
+	}
+
+	/**
+	 * Get version.
+	 *
+	 * @return string Version.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
 	 * Default trigger.
 	 */
 	public function init() {
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_plugin_styles' ], 100 );
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_plugin_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'ccm_enqueue_scripts' ], 100 );
 
 		add_action( 'wp_ajax_nopriv_setcookie', [ $this, 'cookie_setcookie' ] );
 		add_action( 'wp_ajax_setcookie', [ $this, 'cookie_setcookie' ] );
@@ -108,67 +127,68 @@ class Main {
 	 * Enable plugin cookie.
 	 */
 	public static function plugin_activation() {
-		if ( false == get_option( 'cookies_general_options' ) ) {
-			add_option( 'cookies_general_options', static::cookies_default_general_options() );
+
+		if ( false === get_option( 'custom_cookie_message' ) ) {
+			add_option( 'custom_cookie_message', self::ccm_set_default_options() );
 		}
-		if ( false == get_option( 'cookies_content_options' ) ) {
-			add_option( 'cookies_content_options', static::cookies_default_content_options() );
-		}
-		if ( false == get_option( 'cookies_styling_options' ) ) {
-			add_option( 'cookies_styling_options', static::cookies_default_styling_options() );
-		}
+
 	}
 
-	//Register and enqueue style sheet.
-	public function register_plugin_styles() {
+	/**
+	 * Enqueue scripts needed for coockies.
+	 */
+	public function ccm_enqueue_scripts() {
+
 		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
 
 		wp_enqueue_style( 'cookie_style' );
 
-	}
-
-	public function register_plugin_scripts() {
-
-		// embed the javascript file that makes the AJAX request
 		wp_enqueue_script( 'my-ajax-request', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-frontend.js', [ 'jquery' ] );
 
-		// declare the URL to the file that handles the AJAX request (wp-admin/admin-ajax.php)
-		wp_localize_script( 'my-ajax-request', 'MyAjax', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
+		wp_localize_script( 'my-ajax-request', 'MyAjax', [
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		] );
+
 	}
 
-	function cookies_menu() {
-		add_options_page( 'Cookies',                              // The title to be displayed in the browser window for this page.
-			'Cookies',                              // The text to be displayed for this menu item
-			'administrator',                        // Which type of users can see this menu item
-			'cookies_options',                      // The unique ID - that is, the slug - for this menu item
-			[
-				$this,
-				'cookies_options_display',
-			] // The name of the function to call when rendering this menu's page
-		);
-	}
-
-	function display_frontend_notice() {
+	/**
+	 * Template notice.
+	 */
+	public function display_frontend_notice() {
 		$this->get_template( 'cookie-notice.php' );
 	}
 
-	static function get_template( $template_name, $args = [], $template_path = '', $default_path = '' ) {
-		if ( ! empty( $args ) && is_array( $args ) ) {
-			extract( $args );
-		}
+	/**
+	 * Include template if we could locate it.
+	 *
+	 * @param string $template_name Template name.
+	 * @param array  $args Args.
+	 * @param string $template_path Path to it.
+	 * @param string $default_path Default path.
+	 */
+	public static function get_template( $template_name, $args = [], $template_path = '', $default_path = '' ) {
 
 		$located = static::locate_template( $template_name, $template_path, $default_path );
 
 		if ( ! file_exists( $located ) ) {
-			_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $located ), '2.1' );
+			_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', esc_html( $located ) ), esc_html( self::version() ) );
 
 			return;
 		}
 
-		include( $located );
+		include $located;
 	}
 
-	static function locate_template( $template_name, $template_path = '', $default_path = '' ) {
+	/**
+	 * Helper to locate templates.
+	 *
+	 * @param string $template_name Template name.
+	 * @param string $template_path Template Path.
+	 * @param string $default_path Default path.
+	 *
+	 * @return string
+	 */
+	public static function locate_template( $template_name, $template_path = '', $default_path = '' ) {
 		if ( ! $template_path ) {
 			$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/';
 		}
@@ -177,114 +197,55 @@ class Main {
 			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
 		}
 
-		// Look within passed path within the theme - this is priority.
 		$template = locate_template( [
 			trailingslashit( $template_path ) . $template_name,
 			$template_name,
 		] );
 
-		// Get default template/
 		if ( ! $template ) {
 			$template = $default_path . $template_name;
 		}
 
-		// Return what we found.
 		return $template;
 	}
 
+	/**
+	 * TODO: Move this away form here.
+	 */
 	public function cookie_setcookie() {
-		// TODO: Create option with life span.
+		// TODO: Create option with life span. Also move it to REST API.
 		setcookie( 'cookie-warning-message', 15, 30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
 		wp_send_json( 1 );
 	}
 
-	function cookies_options_display() {
-
-		$allow_edition = false;
-
-		$current_roles = wp_get_current_user()->roles;
-
-		if ( ! ! array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
-			$allow_edition = true;
-		}
-
-		?>
-		<!-- Create a header in the default WordPress 'wrap' container -->
-		<div class="wrap">
-
-			<h2><?php _e( 'Cookies Theme Options', 'cookies-message' ); ?></h2>
-			<!-- Give user feeback that a setting has been saved-->
-			<?php //settings_errors();
-			?>
-			<!-- isset works as an "onclick" for the tabs to set active tab-->
-			<?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_options'; ?>
-
-			<!-- Tabs -->
-			<h2 class="nav-tab-wrapper">
-				<a href="?page=cookies_options&tab=general_options" class="nav-tab <?php echo $active_tab == 'general_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'General Options', 'cookies' ); ?></a> <a href="?page=cookies_options&tab=content_options" class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Content Options', 'cookies' ); ?></a>
-				<?php if ( $allow_edition ): ?>
-					<a href="?page=cookies_options&tab=styling_options" class="nav-tab <?php echo $active_tab == 'styling_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Styling Options', 'cookies' ); ?></a>
-				<?php endif; ?>
-			</h2>
-
-			<form method="post" action="options.php">
-
-				<?php if ( $active_tab == 'general_options' ) {
-					settings_fields( 'cookies_general_options' );
-					do_settings_sections( 'cookies_general_options' );
-				} elseif ( $active_tab == 'content_options' ) {
-					settings_fields( 'cookies_content_options' );
-					do_settings_sections( 'cookies_content_options' );
-				} else {
-					settings_fields( 'cookies_styling_options' );
-					do_settings_sections( 'cookies_styling_options' );
-				}
-
-				submit_button(); ?>
-			</form>
-		</div>
-		<?php
-	}
-	/* ------------------------------------------------------------------------ *
-	 * Setting Registration
-	 * ------------------------------------------------------------------------ */
-
-	//Provides default values for the General Options.
-	static function cookies_default_general_options() {
+	/**
+	 * Default Options.
+	 *
+	 * @return mixed|void
+	 */
+	public static function ccm_set_default_options() {
 
 		$defaults = [
-			'location_options'  => 'top-fixed',
-			'cookies_page_link' => '',
+			'general' => [
+				'location_options'  => 'top-fixed',
+				'cookies_page_link' => '',
+			],
+			'content' => [
+				'input_button_text'     => 'I understand',
+				'input_link_text'       => 'Read more',
+				'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
+			],
+			'styles'  => [
+				'messages_color_picker'     => '#3E3E3B',
+				'button_color_picker'       => '#EBECED',
+				'button_hover_color_picker' => '#CBC5C1',
+				'button_text_color_picker'  => '#3E3E3B',
+				'text_color_picker'         => '#EBECED',
+				'link_color_picker'         => '#CBC5C1',
+			],
 		];
 
-		return apply_filters( 'cookies_default_general_options', $defaults );
-	}
-
-	//Provides default values for the Content Options.
-	static function cookies_default_content_options() {
-
-		$defaults = [
-			'input_button_text'     => 'I understand',
-			'input_link_text'       => 'Read more',
-			'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
-		];
-
-		return apply_filters( 'cookies_default_content_options', $defaults );
-	}
-
-	//Provides default values for the Styling Options.
-	static function cookies_default_styling_options() {
-
-		$defaults = [
-			'message_color_picker'      => '#3E3E3B',
-			'button_color_picker'       => '#EBECED',
-			'button_hover_color_picker' => '#CBC5C1',
-			'button_text_color_picker'  => '#3E3E3B',
-			'text_color_picker'         => '#EBECED',
-			'link_color_picker'         => '#CBC5C1',
-		];
-
-		return apply_filters( 'cookies_default_styling_options', $defaults );
+		return apply_filters( 'custom_cookie_message_set_options', $defaults );
 	}
 
 }

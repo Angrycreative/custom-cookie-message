@@ -10,11 +10,19 @@
  */
 class OptionsTests extends WP_UnitTestCase {
 
-	public function test_options() {
+	/**
+	 * Setup Unit.
+	 */
+	public function setUp() {
+		parent::setUp();
+
 		\CustomCookieMessage\Main::single();
+	}
 
-		$options = get_option( 'custom_cookies_message', [] );
+	public function test_options() {
 
-		$this->assertNotEmpty( $options );
+		$options = get_option( 'custom_cookie_message', [] );
+
+		$this->assertNotEmpty( $options, 'We should have content' );
 	}
 }
