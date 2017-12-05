@@ -1,15 +1,33 @@
 <?php
+/**
+ * AdminStylingOptions
+ *
+ * @package CustomCookieMessage\Forms
+ */
 
 namespace CustomCookieMessage\Forms;
 
-class AdminStylingOptions extends AdminForm {
+/**
+ * Class AdminStylingOptions
+ *
+ * @package CustomCookieMessage\Forms
+ */
+class AdminStylingOptions extends AdminBase {
 
+	use AdminTrait;
+
+	/**
+	 * Singlenton.
+	 *
+	 * @var AdminStylingOptions
+	 */
 	static protected $single;
 
 	/**
 	 * CookieList constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
 		add_action( 'admin_init', [ $this, 'cookies_initialize_styling_options' ] );
 	}
 
@@ -20,7 +38,7 @@ class AdminStylingOptions extends AdminForm {
 	 *
 	 * @return AdminStylingOptions
 	 */
-	static public function instance() {
+	public static function single() {
 		if ( empty( self::$single ) ) {
 			self::$single = new self();
 		}
