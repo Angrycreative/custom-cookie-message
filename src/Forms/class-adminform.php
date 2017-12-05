@@ -98,16 +98,15 @@ class AdminForm extends AdminBase {
 	 * Enqueue Scripts.
 	 */
 	public function ccm_admin_enqueue_scripts() {
-		wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+		// wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
 		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
 		wp_enqueue_style( 'cookie_style' );
 		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_script( 'variation-custom-cookie-script', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', [
+		wp_enqueue_script( 'custom-cookie-message-backend', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-backend.js', [
 			'jquery',
 			'jquery-ui-slider',
 			'wp-color-picker',
-		] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_js' ] );
+		], CUSTOM_COOKIE_MESSAGE_VERSION );
 	}
 
 	/**

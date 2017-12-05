@@ -35,6 +35,8 @@ define( 'CUSTOM_COOKIE_MESSAGE_DIR', dirname( CUSTOM_COOKIE_MESSAGE_FILE ) );
 
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_SLUG', 'custom-cookie-message-list' );
 
+define( 'CUSTOM_COOKIE_MESSAGE_VERSION', '2.0.0' );
+
 include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/class-main.php';
 
 Main::single();

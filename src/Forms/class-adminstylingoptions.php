@@ -58,33 +58,31 @@ class AdminStylingOptions extends AdminBase {
 	 */
 	public function cookies_initialize_styling_options() {
 
-		add_settings_section( 'styling', __( 'Styling Options', 'cookie-message' ), [ $this, 'cookies_styling_options_callback' ], $this->section_page );
+		add_settings_section( 'styling', esc_html__( 'Styling Options', 'custom-cookie-message' ), [ $this, 'cookies_styling_options_callback' ], $this->section_page );
 
-		add_settings_field( 'cookies_styling_options', __( 'Message container background', 'cookie-message' ), [ $this, 'cookies_message_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'cookies_styling_options', esc_html__( 'Message container background', 'custom-cookie-message' ), [ $this, 'cookies_message_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Message Size', __( 'Message container padding top and bottom', 'cookie-message' ), [ $this, 'cookies_message_height_slider_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Message Size', esc_html__( 'Message container padding top and bottom', 'custom-cookie-message' ), [ $this, 'cookies_message_height_slider_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Opacity', __( 'Message container opacity', 'cookie-message' ), [ $this, 'cookies_opacity_slider_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Opacity', esc_html__( 'Message container opacity', 'custom-cookie-message' ), [ $this, 'cookies_opacity_slider_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'text_font', __( 'Text font', 'cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'text_font', esc_html__( 'Text font', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Text Color', __( 'Text Color', 'cookie-message' ), [ $this, 'cookies_text_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Text Color', esc_html__( 'Text Color', 'custom-cookie-message' ), [ $this, 'cookies_text_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Link Color', __( 'Link Color', 'cookie-message' ), [ $this, 'cookies_link_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Link Color', esc_html__( 'Link Color', 'custom-cookie-message' ), [ $this, 'cookies_link_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'add_button_class', __( 'Button classes', 'cookie-message' ), [ $this, 'cookies_add_button_class_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'add_button_class', esc_html__( 'Button classes', 'custom-cookie-message' ), [ $this, 'cookies_add_button_class_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Button Color', __( 'Button Color', 'cookie-message' ), [ $this, 'cookies_button_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Button Color', esc_html__( 'Button Color', 'custom-cookie-message' ), [ $this, 'cookies_button_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Button Hover Color', __( 'Button Hover Color', 'cookie-message' ), [ $this, 'cookies_button_hover_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Button Hover Color', esc_html__( 'Button Hover Color', 'custom-cookie-message' ), [ $this, 'cookies_button_hover_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'cookies_styling_options', __( 'Button Text Color', 'cookie-message' ), [ $this, 'cookies_button_text_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'cookies_styling_options', esc_html__( 'Button Text Color', 'custom-cookie-message' ), [ $this, 'cookies_button_text_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'Button_height', __( 'Button Height', 'cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Button_height', esc_html__( 'Button Height', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'button_width', __( 'Button Width', 'cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'styling' );
-
-		register_setting( 'cookies_styling_options', 'cookies_styling_options', [ $this, 'cookies_validate_options' ] );
+		add_settings_field( 'button_width', esc_html__( 'Button Width', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'styling' );
 	}
 
 	public function cookies_message_color_picker_callback() {

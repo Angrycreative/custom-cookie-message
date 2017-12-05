@@ -1,4 +1,9 @@
 <?php
+/**
+ * AdminCookieSettings
+ *
+ * @package CustomCookieMessage\Forms
+ */
 
 namespace CustomCookieMessage\Forms;
 
@@ -7,7 +12,7 @@ namespace CustomCookieMessage\Forms;
  *
  * @package CustomCookieMessage\Forms
  */
-class AdminCookieSettings {
+class AdminCookieSettings extends AdminBase {
 
 	use AdminTrait;
 
@@ -23,14 +28,14 @@ class AdminCookieSettings {
 	 *
 	 * @var string
 	 */
-	protected $settings_sections = 'cookie_options';
+	protected $section_page = 'cookie_settings';
 
 	/**
 	 * CookieList constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
 		add_action( 'admin_init', [ $this, 'cookies_initialize_cookie_options' ] );
-		$this->settings_save();
 	}
 
 	/**
@@ -38,7 +43,7 @@ class AdminCookieSettings {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return object
+	 * @return AdminCookieSettings
 	 */
 	public static function single() {
 		if ( empty( self::$single ) ) {
@@ -48,13 +53,14 @@ class AdminCookieSettings {
 		return self::$single;
 	}
 
+	/**
+	 * Define settings.
+	 */
 	public function cookies_initialize_cookie_options() {
 
-		add_settings_section( 'cookie_list_section', __( 'Cookie List Options', 'cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->settings_sections );
+		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie List Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
 
-		add_settings_field( 'cookie_list', __( 'Cookie we found:', 'cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->settings_sections, 'cookie_list_section' );
-
-		register_setting( 'custom_cookie_message', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
+		add_settings_field( 'cookie_list', esc_html__( 'Cookie we found:', 'custom-cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->section_page, 'cookie_settings_section' );
 	}
 
 	public function cookie_list_options_callback() {
@@ -72,7 +78,7 @@ class AdminCookieSettings {
 
 		// TODO: Map $options.
 
-		var_dump( $cookie_list );
+		//var_dump( $cookie_list );
 
 		$output = '<div class="cookie_list_wrapper">';
 		$output .= '</div>';
