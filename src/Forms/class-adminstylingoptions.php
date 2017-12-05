@@ -53,6 +53,9 @@ class AdminStylingOptions extends AdminBase {
 		return self::$single;
 	}
 
+	/**
+	 * Define settings.
+	 */
 	public function cookies_initialize_styling_options() {
 
 		add_settings_section( 'styling', __( 'Styling Options', 'cookie-message' ), [ $this, 'cookies_styling_options_callback' ], $this->section_page );
