@@ -24,13 +24,6 @@ class AdminGeneralOptions extends AdminBase {
 	static protected $single;
 
 	/**
-	 * Option Group.
-	 *
-	 * @var string
-	 */
-	protected $option_group = 'custom_cookie_message';
-
-	/**
 	 * Settings Sections.
 	 *
 	 * @var string
