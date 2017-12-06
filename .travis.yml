@@ -1,0 +1,43 @@
+language: php
+
+sudo: false
+
+# Test main supported versions of PHP and HHVM against latest WP.
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+
+# Additional tests against stable PHP (min recommended version is 5.6) and past supported versions of WP.
+matrix:
+  fast_finish: true
+  include:
+  - php: 5.6
+    env: WP_VERSION=latest WP_MULTISITE=0
+    dist: precise
+  - php: 7.0
+    env: WP_VERSION=latest WP_MULTISITE=0
+  - php: 7.1
+    env: WP_VERSION=latest WP_MULTISITE=0
+  allow_failures:
+  - env: WP_VERSION=latest WP_MULTISITE=0
+
+before_script:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - bash tests/bin/install.sh custom-cookie-message-tests root '' localhost $WP_VERSION
+  - bash tests/bin/travis.sh before
+
+script:
+  - phpunit -c phpunit.xml
+
+after_script:
+  - bash tests/bin/travis.sh after
+
+branches:
+  only:
+    - master
+    - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+    - /^feature\//

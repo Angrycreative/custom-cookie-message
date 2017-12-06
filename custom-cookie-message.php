@@ -1,14 +1,26 @@
 <?php
-
 /**
- * Plugin Name: Custom Cookie Message
- * Plugin URI: https://angrycreative.se/
- * Description: A customizable cookie message.
- * Version: 1.6.4
- * Author: Johan Sylvan, angrycreative
- * Author URI: https://angrycreative.se/
- * Domain: cookie-message
- **/
+ * Custom Cookie Message.
+ *
+ * @author            Luigi Guevara @killua99 & Angry Creative AB
+ * @link              https://git.synotio.se/ac-components/ac-private-files.git
+ * @since             2.0.0
+ * @package           CustomCookieMessage
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Custom Cookie Message
+ * Plugin URI:        https://git.synotio.se/ac-components/ac-private-files.git
+ * Description:       A customizable cookie message supported with GDPR.
+ * Text Domain:       custom-cookie-message
+ * Version:           2.0.0
+ * Tested up to:      4.9
+ * Author:            Luigi Guevara @killua99 & Angry Creative AB
+ * Author URI:        https://angrycreative.se/
+ * License:           GPL-2.0+
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
+ */
+
+use CustomCookieMessage\Main;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -17,15 +29,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_URL', plugins_url( '', __FILE__ ) . '/' );
 
+define( 'CUSTOM_COOKIE_MESSAGE_FILE', __FILE__ );
+define( 'CUSTOM_COOKIE_MESSAGE_BASENAME', plugin_basename( CUSTOM_COOKIE_MESSAGE_FILE ) );
+define( 'CUSTOM_COOKIE_MESSAGE_DIR', dirname( CUSTOM_COOKIE_MESSAGE_FILE ) );
+
 define( 'CUSTOM_COOKIE_MESSAGE_PLUGIN_SLUG', 'custom-cookie-message-list' );
 
-require_once( 'includes/ac-cookie-message.php' );
-require_once( 'includes/settings.php' );
+define( 'CUSTOM_COOKIE_MESSAGE_VERSION', '2.0.0' );
 
-add_action( 'plugins_loaded', function () {
-	$GLOBALS['CustomCookie'] = new AC_Custom_Cookie_Message();
-	$GLOBALS['Settings'] = new AC_Custom_Cookie_Message_Admin_Settings();
+include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/class-main.php';
 
-} );
-
-register_activation_hook( __FILE__, array( 'AC_Custom_Cookie_Message', 'plugin_activation' ) );
+Main::single();
