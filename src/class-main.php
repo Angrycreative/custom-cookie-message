@@ -7,6 +7,7 @@
 
 namespace CustomCookieMessage;
 
+use CustomCookieMessage\Controller\Controller;
 use CustomCookieMessage\Forms\AdminForm;
 
 /**
@@ -100,8 +101,7 @@ class Main {
 	 */
 	public function init() {
 
-		add_action( 'wp_ajax_nopriv_setcookie', [ $this, 'cookie_setcookie' ] );
-		add_action( 'wp_ajax_setcookie', [ $this, 'cookie_setcookie' ] );
+		Controller::single();
 
 		load_plugin_textdomain( 'custom-cookie-message' );
 

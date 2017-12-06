@@ -90,8 +90,18 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		$this->assertArrayHasKey( $this->route, $routes, 'Route is not register' );
 	}
 
+	/**
+	 * Test if update process is reliable.
+	 */
 	public function test_rest_api_update() {
+		$_POST = [
+			'_ccm_nonce' => wp_create_nonce( 'custom_cookie_message_upgrade' ),
+		];
 
+		$request  = new WP_REST_Request( 'POST', $this->route . '/upgrade' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
 	}
 
 	/**
