@@ -39,7 +39,7 @@ class Main {
 
 		add_action( 'init', [ $this, 'init' ], 30 );
 
-		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ 'CustomCookieMessage\Main', 'plugin_activation' ] );
+		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ __CLASS__, 'plugin_activation' ] );
 
 	}
 
@@ -60,7 +60,7 @@ class Main {
 		$file_path = str_replace( 'CustomCookieMessage/', '', $class ) . '.php';
 
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
-			include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path;
+			include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path );
 		}
 	}
 
@@ -107,6 +107,11 @@ class Main {
 
 		if ( is_admin() ) {
 			AdminForm::single();
+
+			add_action( 'upgrader_process_complete', [ __CLASS__, 'update' ] );
+
+			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
+
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
@@ -131,14 +136,50 @@ class Main {
 	 */
 	public static function update() {
 
-		// From the old version of it.
 		$current_installed_version = str_replace( '.', '', get_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_version           = str_replace( '.', '', self::version() );
 
-		$current_version = str_replace( '.', '', self::single()->version );
-
-		if ( '200' >= $current_installed_version ) {
-
+		$update_queue = [];
+		while ( $current_version >= $current_installed_version ) {
+			if ( method_exists( '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ) ) {
+				$update_queue[] = [ '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ];
+			}
+			$current_installed_version ++;
 		}
+
+		// Is empty, who trigger it?
+		if ( empty( $update_queue ) ) {
+			return;
+		}
+
+		foreach ( $update_queue as $update_function ) {
+			$update_function();
+		}
+
+	}
+
+	/**
+	 * Handle all admin notices.
+	 */
+	public static function admin_notices() {
+
+		$current_installed_version = str_replace( '.', '', get_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_version           = str_replace( '.', '', self::version() );
+		$output                    = '';
+
+		if ( $current_installed_version < $current_version ) {
+			$output .= '<div class="notice notice-info">';
+			$output .= '<h2 class="notice-title">';
+			$output .= esc_html( 'Custom Cookie Message' );
+			$output .= '</h2>';
+			$output .= '<p>';
+			$output .= esc_html__( 'An update is available.', 'custom-cookie-message' );
+			$output .= '</p>';
+			$output .= '</div>';
+		}
+
+		echo $output; // WPCS: XSS ok.
+
 	}
 
 	/**
