@@ -1,8 +1,3 @@
-/**
- * Author: Johan Sylvan
- * Date: 2016-10-10.
- */
-
 jQuery(function ($) {
 
 	'use stric'
