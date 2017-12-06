@@ -11,6 +11,36 @@
 class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 	/**
+	 * Test REST Server
+	 *
+	 * @var WP_REST_Server
+	 */
+	protected $server;
+
+	/**
+	 * Custom Cookie Message RESTfull resource.
+	 *
+	 * @var string
+	 */
+	protected $route = '/custom-cm';
+
+	public function setUp() {
+		parent::setUp();
+
+		/**
+		 * WP REST Server.
+		 *
+		 * @var WP_REST_Server $wp_rest_server
+		 */
+		global $wp_rest_server;
+
+		$wp_rest_server = new \WP_REST_Server();
+		$this->server   = $wp_rest_server;
+
+		do_action( 'rest_api_init' );
+	}
+
+	/**
 	 * Test update plugin from old version 1.6.* to 2.0.0
 	 */
 	public function test_update_plugin_from_165_200() {
@@ -49,6 +79,18 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		$this->assertEquals( 'Updated Color Picker', $options['styles']['messages_color_picker'] );
 
 		$this->assertEquals( \CustomCookieMessage\Main::version(), get_site_option( 'custom_cookie_message_version' ) );
+
+	}
+
+	/**
+	 * Test route is register.
+	 */
+	public function test_route_is_register() {
+		$routes = $this->server->get_routes();
+		$this->assertArrayHasKey( $this->route, $routes, 'Route is not register' );
+	}
+
+	public function test_rest_api_update() {
 
 	}
 
