@@ -48,6 +48,8 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		$this->assertEquals( 'Updated Read more', $options['content']['input_link_text'] );
 		$this->assertEquals( 'Updated Color Picker', $options['styles']['messages_color_picker'] );
 
+		$this->assertEquals( \CustomCookieMessage\Main::version(), get_site_option( 'custom_cookie_message_version' ) );
+
 	}
 
 	/**

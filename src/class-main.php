@@ -111,7 +111,6 @@ class Main {
 			add_action( 'upgrader_process_complete', [ __CLASS__, 'update' ] );
 
 			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
-
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
@@ -136,7 +135,7 @@ class Main {
 	 */
 	public static function update() {
 
-		$current_installed_version = str_replace( '.', '', get_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_installed_version = str_replace( '.', '', get_site_option( 'custom_cookie_message_version', '1.6.4' ) );
 		$current_version           = str_replace( '.', '', self::version() );
 
 		$update_queue = [];
@@ -163,7 +162,7 @@ class Main {
 	 */
 	public static function admin_notices() {
 
-		$current_installed_version = str_replace( '.', '', get_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_installed_version = str_replace( '.', '', get_site_option( 'custom_cookie_message_version', '1.6.4' ) );
 		$current_version           = str_replace( '.', '', self::version() );
 		$output                    = '';
 
@@ -249,7 +248,7 @@ class Main {
 		}
 
 		if ( ! $default_path ) {
-			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / templates';
+			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
 		}
 
 		$template = locate_template( [
