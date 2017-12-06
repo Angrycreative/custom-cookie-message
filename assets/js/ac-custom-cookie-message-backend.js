@@ -29,7 +29,7 @@ jQuery(function ($) {
 		url: '/',
 		crossDomain: true,
 		beforeSend: function (xhr) {
-			xhr.setRequestHeader('withCredentials', true);
+			xhr.setRequestHeader('withCredentials', true)
 		}
 	})
 		.done(function () {
@@ -37,7 +37,6 @@ jQuery(function ($) {
 			var html
 
 			cookies.map(function (cookie) {
-				console.log(cookie)
 				html = '<div class="cookie">'
 				html = html + 'Cookie machine name: ' + cookie
 				html = html + '<label for="' + cookie + '-label">Label: '

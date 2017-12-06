@@ -63,39 +63,32 @@ class AdminCookieSettings extends AdminBase {
 		add_settings_field( 'cookie_list', esc_html__( 'Cookie we found:', 'custom-cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->section_page, 'cookie_settings_section' );
 	}
 
+	/**
+	 * List options.
+	 */
 	public function cookie_list_options_callback() {
 		echo '<p>' . esc_html_e( 'Label and select priority.', 'cookie-message' ) . '</p>';
 	}
 
+	/**
+	 * Options.
+	 */
 	public function cookie_message_height_slider_callback() {
-		$cookie_list = get_option( 'cookie_list' );
 
 		$options_priority = [
-			__( 'Necesary Cookies', 'cookie-message' ),
-			__( 'Performance Cookies', 'cookie-message' ),
-			__( 'Commercial Cookies', 'cookie-message' ),
+			esc_html__( 'Necesary Cookies', 'custom-cookie-message' ),
+			esc_html__( 'Performance Cookies', 'custom-cookie-message' ),
+			esc_html__( 'Commercial Cookies', 'custom-cookie-message' ),
 		];
 
-		// TODO: Map $options.
+		setrawcookie( 'fr', '', 0, '/', '.facebook.com', true, true );
 
-		//var_dump( $cookie_list );
+		// TODO: Map $options.
 
 		$output = '<div class="cookie_list_wrapper">';
 		$output .= '</div>';
 
 		echo $output;
-	}
-
-	private function settings_save() {
-		if ( empty( $_POST['cookie_list'] ) ) {
-			return;
-		}
-
-		$cookie_list = get_option( 'cookie_list', [] );
-
-		// TODO: Map $cookie_list.
-
-		update_option( 'cookie_list', $cookie_list );
 	}
 
 }
