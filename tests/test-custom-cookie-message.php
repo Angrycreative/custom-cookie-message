@@ -98,10 +98,16 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 			'_ccm_nonce' => wp_create_nonce( 'custom_cookie_message_upgrade' ),
 		];
 
+		$user = wp_get_current_user();
+		$user->remove_all_caps();
+		$user->add_cap( 'update_plugins' );
+		$user->set_role( 'administrator' );
+
 		$request  = new WP_REST_Request( 'POST', $this->route . '/upgrade' );
 		$response = $this->server->dispatch( $request );
 
 		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
+		$this->assertEquals( \CustomCookieMessage\Main::version(), get_site_option( 'custom_cookie_message_version' ) );
 	}
 
 	/**
