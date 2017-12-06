@@ -11,9 +11,9 @@
 class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 	/**
-	 * Test update plugin from old version 1.6.5
+	 * Test update plugin from old version 1.6.* to 2.0.0
 	 */
-	public function test_update_plugin() {
+	public function test_update_plugin_from_165_200() {
 
 		add_option( 'cookies_general_options', [
 			'location_options'  => 'top-fixed',
