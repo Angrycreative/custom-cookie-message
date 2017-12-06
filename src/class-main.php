@@ -113,7 +113,7 @@ class Main {
 		add_action( 'wp_ajax_nopriv_setcookie', [ $this, 'cookie_setcookie' ] );
 		add_action( 'wp_ajax_setcookie', [ $this, 'cookie_setcookie' ] );
 
-		load_plugin_textdomain( 'cookie-message' );
+		load_plugin_textdomain( 'custom-cookie-message' );
 
 		if ( is_admin() ) {
 			AdminForm::single();
@@ -128,7 +128,7 @@ class Main {
 	 */
 	public static function plugin_activation() {
 
-		if ( false === get_option( 'custom_cookie_message' ) ) {
+		if ( empty( get_option( 'custom_cookie_message', [] ) ) ) {
 			add_option( 'custom_cookie_message', self::ccm_set_default_options() );
 		}
 

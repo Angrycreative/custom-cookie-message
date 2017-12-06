@@ -25,12 +25,19 @@ jQuery(function ($) {
 		return cookies
 	}
 
-	$.get('/')
+	$.get({
+		url: '/',
+		crossDomain: true,
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader('withCredentials', true);
+		}
+	})
 		.done(function () {
 			cookies = getCookies()
 			var html
 
 			cookies.map(function (cookie) {
+				console.log(cookie)
 				html = '<div class="cookie">'
 				html = html + 'Cookie machine name: ' + cookie
 				html = html + '<label for="' + cookie + '-label">Label: '
