@@ -17,21 +17,14 @@ use CustomCookieMessage\Forms\AdminForm;
 class Main {
 
 	/**
-	 * Options.
-	 *
-	 * @var string
-	 */
-	protected $options;
-
-	/**
-	 * Version plugin.
+	 * Current version.
 	 *
 	 * @var string
 	 */
 	protected $version = '2.0.0';
 
 	/**
-	 * Class singlenton.
+	 * Store singlenton CustomCookieMessage\Main.
 	 *
 	 * @var Main
 	 */
@@ -46,7 +39,8 @@ class Main {
 
 		add_action( 'init', [ $this, 'init' ], 30 );
 
-		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ $this, 'plugin_activation' ] );
+		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ 'CustomCookieMessage\Main', 'plugin_activation' ] );
+
 	}
 
 	/**
@@ -86,18 +80,16 @@ class Main {
 	/**
 	 * Get the static version.
 	 *
-	 * @return string Version number.
+	 * @return string Version self::$version.
 	 */
 	public static function version() {
-		$self = new self();
-
-		return $self->version();
+		return self::single()->get_version();
 	}
 
 	/**
 	 * Get version.
 	 *
-	 * @return string Version.
+	 * @return string Version CUSTOM_COOKIE_MESSAGE_VERSION.
 	 */
 	public function get_version() {
 		return $this->version;
@@ -107,8 +99,6 @@ class Main {
 	 * Default trigger.
 	 */
 	public function init() {
-
-		add_action( 'wp_enqueue_scripts', [ $this, 'ccm_enqueue_scripts' ], 100 );
 
 		add_action( 'wp_ajax_nopriv_setcookie', [ $this, 'cookie_setcookie' ] );
 		add_action( 'wp_ajax_setcookie', [ $this, 'cookie_setcookie' ] );
@@ -135,11 +125,28 @@ class Main {
 	}
 
 	/**
+	 * Were updates in options and code are written.
+	 *
+	 * @since 2.0.0
+	 */
+	public static function update() {
+
+		// From the old version of it.
+		$current_installed_version = str_replace( '.', '', get_option( 'custom_cookie_message_version', '1.6.4' ) );
+
+		$current_version = str_replace( '.', '', self::single()->version );
+
+		if ( '200' >= $current_installed_version ) {
+
+		}
+	}
+
+	/**
 	 * Enqueue scripts needed for coockies.
 	 */
 	public function ccm_enqueue_scripts() {
 
-		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
+		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css' );
 
 		wp_enqueue_style( 'cookie_style' );
 
@@ -155,7 +162,14 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
-		$this->get_template( 'cookie-notice.php' );
+
+		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
+
+		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
+		wp_localize_script( 'custom-cookie-message-popup', 'customCookieMessageLocalize', [
+			'options' => get_option( 'custom_cookie_message' ),
+		] );
+
 	}
 
 	/**
@@ -171,7 +185,7 @@ class Main {
 		$located = static::locate_template( $template_name, $template_path, $default_path );
 
 		if ( ! file_exists( $located ) ) {
-			_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', esc_html( $located ) ), esc_html( self::version() ) );
+			_doing_it_wrong( __FUNCTION__, sprintf( ' < code>%s </code > does not exist . ', esc_html( $located ) ), esc_html( self::version() ) );
 
 			return;
 		}
@@ -190,11 +204,11 @@ class Main {
 	 */
 	public static function locate_template( $template_name, $template_path = '', $default_path = '' ) {
 		if ( ! $template_path ) {
-			$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/';
+			$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / ';
 		}
 
 		if ( ! $default_path ) {
-			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
+			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / templates';
 		}
 
 		$template = locate_template( [
@@ -231,9 +245,9 @@ class Main {
 				'cookies_page_link' => '',
 			],
 			'content' => [
-				'input_button_text'     => 'I understand',
-				'input_link_text'       => 'Read more',
-				'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
+				'input_button_text'     => esc_html__( 'I understand', 'custom-cookie-message' ),
+				'input_link_text'       => esc_html__( 'Read more', 'custom-cookie-message' ),
+				'textarea_warning_text' => esc_html__( 'This website uses cookies . By using our website you accept our use of cookies . ', 'custom-cookie-message' ),
 			],
 			'styles'  => [
 				'messages_color_picker'     => '#3E3E3B',

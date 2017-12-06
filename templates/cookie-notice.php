@@ -8,7 +8,7 @@
 $options = get_option( 'custom_cookie_message' );
 ?>
 <?php
-if ( $options['general']['location_options'] === 'top-fixed' ) {
+if ( 'top-fixed' === $options['general']['location_options'] ) {
 	?>
 	<style>
 		.container-cookies {

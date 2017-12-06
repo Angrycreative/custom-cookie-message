@@ -15,6 +15,13 @@ class CCM_Unit_Bootstrap {
 	public $tests_dir;
 
 	/**
+	 * WordPress Core Directory.
+	 *
+	 * @var string
+	 */
+	public $core_dir;
+
+	/**
 	 * Plugin Dir
 	 *
 	 * @var string
@@ -33,11 +40,7 @@ class CCM_Unit_Bootstrap {
 	 */
 	public function __construct() {
 
-		$this->tests_dir = getenv( 'WP_TESTS_DIR' );
-
-		if ( ! $this->tests_dir ) {
-			$this->tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
-		}
+		$this->tests_dir = ! empty( getenv( 'WP_TESTS_DIR' ) ) ? getenv( 'WP_TESTS_DIR' ) : rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 
 		if ( ! file_exists( $this->tests_dir . '/includes/functions.php' ) ) {
 			echo "Could not find $this->tests_dir/includes/functions.php, have you run bin/install.sh ?"; // WPCS: XSS ok.
@@ -47,7 +50,7 @@ class CCM_Unit_Bootstrap {
 		// Give access to tests_add_filter() function.
 		require_once $this->tests_dir . '/includes/functions.php';
 
-		$this->plugin_dir = dirname( dirname( __FILE__ ) );
+		$this->plugin_dir = dirname( __DIR__ );
 
 		tests_add_filter( 'muplugins_loaded', [ $this, 'load' ] );
 
