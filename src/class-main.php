@@ -139,11 +139,11 @@ class Main {
 		$current_version           = str_replace( '.', '', self::version() );
 
 		$update_queue = [];
-		while ( $current_version >= $current_installed_version ) {
+		while ( $current_version > $current_installed_version ) {
+			++ $current_installed_version;
 			if ( method_exists( '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ) ) {
 				$update_queue[] = [ '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ];
 			}
-			$current_installed_version ++;
 		}
 
 		// Is empty, who trigger it?
@@ -173,6 +173,7 @@ class Main {
 			$output .= '</h2>';
 			$output .= '<p>';
 			$output .= esc_html__( 'An update is available.', 'custom-cookie-message' );
+			$output .= ' <a href="#ccm-upgrade" class="custom-cookie-message-upgrade">' . esc_html__( 'Upgrade now', 'custom-cookie-message' ) . '</a>';
 			$output .= '</p>';
 			$output .= '</div>';
 		}
