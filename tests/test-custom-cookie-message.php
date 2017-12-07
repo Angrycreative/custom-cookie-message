@@ -111,6 +111,17 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test get banner.
+	 */
+	public function test_rest_api_get_banner() {
+		$request  = new WP_REST_Request( 'GET', $this->route . '/banner' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
+		$this->assertArrayHasKey( 'template', $response->get_status(), 'Template was not included.' );
+	}
+
+	/**
 	 * Test Plugin Activation from scratch.
 	 */
 	public function test_installation_plugin() {

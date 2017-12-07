@@ -24,8 +24,6 @@ jQuery( function ( $ ) {
       let options = customCookieMessageLocalize.options;
       let blockMainClass = '';
 
-      console.log( options );
-
       // blockMainClass = options.general;
 
       html += '<div class="custom-cookie-message">';
