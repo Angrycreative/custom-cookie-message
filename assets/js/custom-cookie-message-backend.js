@@ -52,8 +52,12 @@ jQuery( function ( $ ) {
     value: parseInt( $( '#opacity_slider_amount' ).val() ),
     min: 50,
     max: 100,
+    create: function () {
+      $( '#opacity_slider_handle' ).text( $( '#opacity_slider_amount' ).val() + '%' );
+    },
     slide: function ( event, ui ) {
-      $( '#opacity_slider_amount' ).val( ui.value + '%' );
+      $( '#opacity_slider_handle' ).text( ui.value + '%' );
+      $( '#opacity_slider_amount' ).val( ui.value );
     },
   } );
 
@@ -62,7 +66,11 @@ jQuery( function ( $ ) {
     value: parseInt( $( '#message_height_slider_amount' ).val() ),
     min: 5,
     max: 40,
+    create: function () {
+      $( '#message_height_custom_handle' ).text( $( '#message_height_slider_amount' ).val() + ' px' );
+    },
     slide: function ( event, ui ) {
+      $( '#message_height_custom_handle' ).text( ui.value + ' px' );
       $( '#message_height_slider_amount' ).val( ui.value );
     },
   } );
@@ -72,7 +80,11 @@ jQuery( function ( $ ) {
     value: parseInt( $( '#button_height_slider_amount' ).val() ),
     min: 5,
     max: 40,
+    create: function () {
+      $( '#button_height_handle' ).text( $( '#button_height_slider_amount' ).val() + ' px' );
+    },
     slide: function ( event, ui ) {
+      $( '#button_height_handle' ).text( ui.value + ' px' );
       $( '#button_height_slider_amount' ).val( ui.value );
     },
   } );
@@ -82,7 +94,11 @@ jQuery( function ( $ ) {
     value: parseInt( $( '#button_width_slider_amount' ).val() ),
     min: 5,
     max: 40,
+    create: function () {
+      $( '#button_width_handle' ).text( $( '#button_width_slider_amount' ).val() + ' px' );
+    },
     slide: function ( event, ui ) {
+      $( '#button_width_handle' ).text( ui.value + ' px' );
       $( '#button_width_slider_amount' ).val( ui.value );
     },
   } );

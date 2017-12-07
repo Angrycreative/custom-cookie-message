@@ -100,6 +100,8 @@ class AdminForm extends AdminBase {
 	 * Enqueue Scripts.
 	 */
 	public function ccm_admin_enqueue_scripts() {
+		wp_enqueue_style( 'jquery-style', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+		wp_enqueue_style( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-admin-style.css' );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-backend.js', [
 			'jquery',

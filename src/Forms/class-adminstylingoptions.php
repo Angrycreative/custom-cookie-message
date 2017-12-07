@@ -96,69 +96,75 @@ class AdminStylingOptions extends AdminBase {
 	 * Color Picker field.
 	 */
 	public function cookies_message_color_picker_callback() {
-		$val = isset( $this->options['styling']['message_color_picker'] ) ? $this->options['styling']['message_color_picker'] : '';
-		echo '<input type="text" id="message_color_picker" name="custom_cookie_message[styling][message_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = isset( $this->options['styles']['message_color_picker'] ) ? $this->options['styles']['message_color_picker'] : '';
+		echo '<input type="text" id="message_color_picker" name="custom_cookie_message[styles][message_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Container Padding.
+	 */
+	public function cookies_message_height_slider_callback() {
+		$val = isset( $this->options['styles']['message_height_slider_amount'] ) ? $this->options['styles']['message_height_slider_amount'] : '10';
+		echo '<input type="text" id="message_height_slider_amount" name="custom_cookie_message[styles][message_height_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<div id="message_height_slider" class="slider"><div id="message_height_custom_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
+	}
+
+	/**
+	 * Opacity.
+	 */
+	public function cookies_opacity_slider_callback() {
+		$val = isset( $this->options['styles']['opacity_slider_amount'] ) ? $this->options['styles']['opacity_slider_amount'] : '100';
+		echo '<input type="text" id="opacity_slider_amount" name="custom_cookie_message[styles][opacity_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<div id="opacity_slider" class="slider"><div id="opacity_slider_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
 	public function cookies_button_color_picker_callback() {
-		$val = isset( $this->options['styling']['button_color_picker'] ) ? $this->options['styling']['button_color_picker'] : '';
-		echo '<input type="text" id="button_color_picker" name="custom_cookie_message[styling][button_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = isset( $this->options['styles']['button_color_picker'] ) ? $this->options['styles']['button_color_picker'] : '';
+		echo '<input type="text" id="button_color_picker" name="custom_cookie_message[styles][button_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	public function cookies_button_hover_color_picker_callback() {
-		$val = isset( $this->options['styling']['button_hover_color_picker'] ) ? $this->options['styling']['button_hover_color_picker'] : '';
-		echo '<input type="text" id="button_hover_color_picker" name="custom_cookie_message[styling][button_hover_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = isset( $this->options['styles']['button_hover_color_picker'] ) ? $this->options['styles']['button_hover_color_picker'] : '';
+		echo '<input type="text" id="button_hover_color_picker" name="custom_cookie_message[styles][button_hover_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	public function cookies_button_text_color_picker_callback() {
-		$val = $this->options['styling']['button_text_color_picker'];
-		echo '<input type="text" id="button_text_color_picker" name="custom_cookie_message[styling][button_text_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = $this->options['styles']['button_text_color_picker'];
+		echo '<input type="text" id="button_text_color_picker" name="custom_cookie_message[styles][button_text_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	public function cookies_text_color_picker_callback() {
-		$val = isset( $this->options['styling']['text_color_picker'] ) ? $this->options['styling']['text_color_picker'] : '';
-		echo '<input type="text" id="text_color_picker" name="custom_cookie_message[styling][text_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = isset( $this->options['styles']['text_color_picker'] ) ? $this->options['styles']['text_color_picker'] : '';
+		echo '<input type="text" id="text_color_picker" name="custom_cookie_message[styles][text_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	public function cookies_link_color_picker_callback() {
-		$val = isset( $this->options['styling']['link_color_picker'] ) ? $this->options['styling']['link_color_picker'] : '';
-		echo '<input type="text" id="link_color_picker" name="custom_cookie_message[styling][link_color_picker]" value="' . $val . '" class="cpa-color-picker" >';
+		$val = isset( $this->options['styles']['link_color_picker'] ) ? $this->options['styles']['link_color_picker'] : '';
+		echo '<input type="text" id="link_color_picker" name="custom_cookie_message[styles][link_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	public function cookies_text_font_callback() {
-		$val = isset( $this->options['styling']['text_font'] ) ? $this->options['styling']['text_font'] : '';
-		echo '<input type="text" id="text_font" name="custom_cookie_message[styling][text_font]" value="' . $val . '" />';
+		$val = isset( $this->options['styles']['text_font'] ) ? $this->options['styles']['text_font'] : '';
+		echo '<input type="text" id="text_font" name="custom_cookie_message[styles][text_font]" value="' . $val . '" />'; // WPCS: XSS ok.
 		echo '<div><p>Replace your standard paragraph font-family. Leave empty for the standard font-family</p></div>';
 	}
 
 	public function cookies_add_button_class_callback() {
-		$val = isset( $this->options['styling']['add_button_class'] ) ? $this->options['styling']['add_button_class'] : '';
-		echo '<input type="text" id="add_button_class" name="custom_cookie_message[styling][add_button_class]" value="' . $val . '" />';
+		$val = isset( $this->options['styles']['add_button_class'] ) ? $this->options['styles']['add_button_class'] : '';
+		echo '<input type="text" id="add_button_class" name="custom_cookie_message[styles][add_button_class]" value="' . $val . '" />'; // WPCS: XSS ok.
 		echo '<div><p>Replace the standard styling of the button by specifying your own class. If several classes, separate with space. Leave empty to keep the standard styling.</p></div>';
 	}
 
-	public function cookies_opacity_slider_callback() {
-		$val = isset( $this->options['styling']['opacity_slider_amount'] ) ? $this->options['styling']['opacity_slider_amount'] : '100';
-		echo '<input type="text" id="opacity_slider_amount" name="custom_cookie_message[styling][opacity_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
-		echo '<div id="opacity_slider"></div>';
-	}
-
-	public function cookies_message_height_slider_callback() {
-		$val = isset( $this->options['styling']['message_height_slider_amount'] ) ? $this->options['styling']['message_height_slider_amount'] : '10';
-		echo '<input type="text" id="message_height_slider_amount" name="custom_cookie_message[styling][message_height_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
-		echo '<div id="message_height_slider"></div>';
-	}
-
 	public function cookies_button_height_slider_callback() {
-		$val = isset( $this->options['styling']['button_height_slider_amount'] ) ? $this->options['styling']['button_height_slider_amount'] : '5';
-		echo '<input type="text" id="button_height_slider_amount" name="custom_cookie_message[styling][button_height_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
-		echo '<div id="button_height_slider"></div>';
+		$val = isset( $this->options['styles']['button_height_slider_amount'] ) ? $this->options['styles']['button_height_slider_amount'] : '5';
+		echo '<input type="text" id="button_height_slider_amount" name="custom_cookie_message[styles][button_height_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<div id="button_height_slider" class="slider"><div id="button_height_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
 	public function cookies_button_width_slider_callback() {
-		$val = isset( $this->options['styling']['button_width_slider_amount'] ) ? $this->options['styling']['button_width_slider_amount'] : '10';
-		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styling][button_width_slider_amount]" value="' . $val . '" readonly style="border:0; color:#f6931f; font-weight:bold;">';
-		echo '<div id="button_width_slider"></div>';
+		$val = isset( $this->options['styles']['button_width_slider_amount'] ) ? $this->options['styles']['button_width_slider_amount'] : '10';
+		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styles][button_width_slider_amount]" value="' . $val . '" readonly class="hidden">';
+		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
 }
