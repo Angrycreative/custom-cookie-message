@@ -217,13 +217,10 @@ class Main {
 	 * Include template if we could locate it.
 	 *
 	 * @param string $template_name Template name.
-	 * @param array  $args Args.
-	 * @param string $template_path Path to it.
-	 * @param string $default_path Default path.
 	 */
-	public static function get_template( $template_name, $args = [], $template_path = '', $default_path = '' ) {
+	public static function get_template( $template_name = 'cookie-notice.php' ) {
 
-		$located = static::locate_template( $template_name, $template_path, $default_path );
+		$located = static::locate_template( $template_name );
 
 		if ( ! file_exists( $located ) ) {
 			_doing_it_wrong( __FUNCTION__, sprintf( ' < code>%s </code > does not exist . ', esc_html( $located ) ), esc_html( self::version() ) );
@@ -231,26 +228,20 @@ class Main {
 			return;
 		}
 
-		include $located;
+		include_once $located;
 	}
 
 	/**
 	 * Helper to locate templates.
 	 *
 	 * @param string $template_name Template name.
-	 * @param string $template_path Template Path.
-	 * @param string $default_path Default path.
 	 *
 	 * @return string
 	 */
-	public static function locate_template( $template_name, $template_path = '', $default_path = '' ) {
-		if ( ! $template_path ) {
-			$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / ';
-		}
+	public static function locate_template( $template_name ) {
+		$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / ';
 
-		if ( ! $default_path ) {
-			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
-		}
+		$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
 
 		$template = locate_template( [
 			trailingslashit( $template_path ) . $template_name,
@@ -258,10 +249,10 @@ class Main {
 		] );
 
 		if ( ! $template ) {
-			$template = $default_path . $template_name;
+			$template = $default_path . '/' . $template_name;
 		}
 
-		return $template;
+		return apply_filters( 'ccm_locate_template', $template, $template_name, $template_path );
 	}
 
 	/**

@@ -118,7 +118,7 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		$response = $this->server->dispatch( $request );
 
 		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
-		$this->assertArrayHasKey( 'template', $response->get_status(), 'Template was not included.' );
+		$this->assertNotEmpty( $response->get_data()['template'], 'Template was not included.' );
 	}
 
 	/**

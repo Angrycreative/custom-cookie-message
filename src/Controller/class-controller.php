@@ -65,6 +65,10 @@ class Controller {
 				'permission_callback' => [ $this, 'upgrade_permissions' ],
 			],
 		] );
+		register_rest_route( $namespace_route, '/banner', [
+			'methods'  => \WP_REST_Server::READABLE,
+			'callback' => [ $this, 'redeable_popup_banner' ],
+		] );
 	}
 
 	/**
@@ -89,6 +93,7 @@ class Controller {
 	 */
 	public function upgrade( \WP_REST_Request $request ) {
 
+		// WP_REST_Request has its own nonce, I just include a second one to confirm was an UI trigger.
 		if ( wp_verify_nonce( $request->get_param( '_ccm_nonce' ), 'custom_cookie_message_upgrade' ) ) {
 			return new \WP_REST_Response( esc_html__( 'Sorry, who are you?', 'custom-cookie-message' ), 400 );
 		}
@@ -96,6 +101,27 @@ class Controller {
 		Main::update();
 
 		return new \WP_REST_Response();
+	}
+
+	/**
+	 * Get popup Banner.
+	 */
+	public function redeable_popup_banner() {
+
+		ob_start();
+		Main::get_template();
+
+		$template_content = ob_get_contents();
+
+		ob_end_clean();
+
+		if ( empty( $template_content ) ) {
+			return new \WP_REST_Response( esc_html__( 'Please double check your template files.' ), 404 );
+		}
+
+		return new \WP_REST_Response( [
+			'template' => $template_content,
+		], 200 );
 	}
 
 }
