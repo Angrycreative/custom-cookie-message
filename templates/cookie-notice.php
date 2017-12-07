@@ -1,7 +1,7 @@
 <?php
 $options = get_option( 'custom_cookie_message' );
 ?>
-<div id="custom-cookie-message-container" class="container-cookies <?php echo esc_attr( $options['general']['location_options'] ); ?>">
+<div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>">
 	<div class="cookie-block"></div>
 	<div class="cookie-content">
 		<div class="warning-text">
@@ -13,4 +13,7 @@ $options = get_option( 'custom_cookie_message' );
 			</a>
 		</div>
 	</div>
+</div>
+<div id="custom-cookie-message-modal">
+
 </div>

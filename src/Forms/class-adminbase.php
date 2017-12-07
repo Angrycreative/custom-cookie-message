@@ -19,7 +19,7 @@ class AdminBase {
 	 *
 	 * @var string
 	 */
-	protected $option_group = 'custom_cookie_message';
+	protected $option_group = 'custom_cookie_message_options';
 
 	/**
 	 * Custom Cookie Message options.

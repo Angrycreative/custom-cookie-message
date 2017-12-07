@@ -208,7 +208,9 @@ class Main {
 
 		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
 		wp_localize_script( 'custom-cookie-message-popup', 'customCookieMessageLocalize', [
-			'options' => get_option( 'custom_cookie_message' ),
+			'options'         => get_option( 'custom_cookie_message' ),
+			'wp_rest'         => wp_create_nonce( 'wp_rest' ),
+			'rest_url_banner' => rest_url( 'custom-cm/banner' ),
 		] );
 
 	}

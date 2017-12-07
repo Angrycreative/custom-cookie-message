@@ -1,92 +1,16 @@
-.cookie-block {
-  z-index:  -1;
-  position: absolute;
-  top:      0;
-  left:     0;
-  height:   100%;
-  width:    100%;
+.custom-cookie-message-banner {
+  width:           100vw;
+  position:        -webkit-sticky;
+  position:        sticky;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  transform:       translateZ(0);
+  will-change:     transform;
 }
-.cookie-content {
-  max-width: 1170px;
-  margin:    0 auto;
+.custom-cookie-message-banner--bottom-fixed {
+  bottom: 0;
 }
-@media (max-width: 1200px) {
-  .cookie-content {
-    max-width: 970px;
-    margin:    0 auto;
-  }
-}
-@media (max-width: 992px) {
-  .cookie-content {
-    max-width: 750px;
-    margin:    0 auto;
-  }
-}
-#opacity_slider, #message_height_slider, #button_height_slider, #button_width_slider {
-  width: 180px;
-}
-#opacity_slider_amount, #message_height_slider_amount, #button_height_slider_amount, #button_width_slider_amount {
-  width: 180px;
-  color: #555 !important;
-}
-.container-cookies {
-  position: fixed;
-  width:    100%;
-  z-index:  1000;
-  display:  none;
-  height:   auto;
-  padding:  10px 0 10px 0;
-}
-.admin-bar .top-static {
-  top: 32px;
-}
-.admin-bar .top-fixed {
-  top: 32px;
-}
-.warning-text {
-  font-size:             12px;
-  margin:                0 10px;
-  display:               -webkit-box;
-  display:               -ms-flexbox;
-  display:               flex;
-  -webkit-box-orient:    horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction:    row;
-  flex-direction:        row;
-  -webkit-box-align:     center;
-  -ms-flex-align:        center;
-  align-items:           center;
-}
-.warning-text p {
-  font-size:        12px;
-  font-style:       normal;
-  font-variant:     normal;
-  font-weight:      400;
-  line-height:      20px;
-  margin-bottom:    0;
-  -webkit-box-flex: 1;
-  -ms-flex:         1;
-  flex:             1;
-}
-.warning-text a:link {
-  text-decoration: underline;
-}
-.warning-text a:hover {
-  text-decoration: none;
-}
-.default-cookie-button-style {
-  font-size:          14px;
-  font-style:         normal;
-  font-variant:       normal;
-  line-height:        20px;
-  border:             none;
-  border-radius:      3px;
-  padding:            5px 10px;
-  cursor:             pointer;
-  -webkit-transition: background-color .5s;
-  transition:         background-color .5s;
-}
-.default-cookie-button-style:hover {
-  -webkit-transition: background-color .5s;
-  transition:         background-color .5s;
+.custom-cookie-message-banner--top-fixed {
+  top: 0;
 }

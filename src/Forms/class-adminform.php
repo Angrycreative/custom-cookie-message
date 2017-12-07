@@ -65,7 +65,7 @@ class AdminForm extends AdminBase {
 		$this->styling_options = AdminStylingOptions::single();
 		$this->cookie_settings = AdminCookieSettings::single();
 
-		register_setting( 'custom_cookie_message_group', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
+		register_setting( 'custom_cookie_message_options', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'ccm_admin_enqueue_scripts' ] );
 
@@ -100,7 +100,6 @@ class AdminForm extends AdminBase {
 	 * Enqueue Scripts.
 	 */
 	public function ccm_admin_enqueue_scripts() {
-		wp_enqueue_style( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message.admin.css', '', Main::version() );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-backend.js', [
 			'jquery',
@@ -123,6 +122,8 @@ class AdminForm extends AdminBase {
 
 		$current_roles = wp_get_current_user()->roles;
 
+		$page_title = get_admin_page_title();
+
 		if ( array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
 			$allow_edition = true;
 		}
@@ -130,7 +131,7 @@ class AdminForm extends AdminBase {
 
 		<div class="wrap">
 
-			<h2><?php esc_html_e( 'Cookies Theme Options', 'custom-cookie-message' ); ?></h2>
+			<h2><?php echo $page_title; // WPCS: XSS ok. ?></h2>
 
 			<?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_options'; ?>
 

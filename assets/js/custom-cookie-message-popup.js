@@ -7,11 +7,12 @@ jQuery( function ( $ ) {
   let customCookieMessage = {
     states: null, init: function () {
       if ( null === cookie ) {
-        $( 'body' ).after( this.template );
+        this.showCookieNotice();
+
       }
 
       $( 'body' )
-        .on( 'click', '.ccmAccept', this.acceptTerms );
+        .on( 'click', '#custom-cookie-message .ccmAccept', this.acceptTerms );
 
     },
 
@@ -19,18 +20,26 @@ jQuery( function ( $ ) {
 
     },
 
-    template: function () {
-      let html = '';
-      let options = customCookieMessageLocalize.options;
-      let blockMainClass = '';
-
-      // blockMainClass = options.general;
-
-      html += '<div class="custom-cookie-message">';
-      html += '';
-      html += '</div>';
-
-      return html;
+    showCookieNotice: function () {
+      $.ajax( {
+        url: customCookieMessageLocalize.rest_url_banner,
+        method: 'GET',
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function ( xhr ) {
+          xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
+        },
+      } )
+       .done( function ( response ) {
+         if ( null !== response.template &&
+              'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+           $( 'body' ).append( response.template ).fadeIn();
+         }
+         else if ( null !== response.template ) {
+           $( 'body' ).prepend( response.template ).fadeIn();
+         }
+       } );
     },
   };
 
