@@ -26,7 +26,7 @@ $style_button_class = $options['styles']['add_button_class'];
 			<p><?php esc_html_e( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
 				<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php esc_html_e( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php esc_html_e( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
 			</p>
-			<a id="custom-cookie-message-preference" class="button <?php echo esc_attr( $style_button_class ); ?>">
+			<a id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
 				<?php esc_html_e( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
 			</a>
 		</div>

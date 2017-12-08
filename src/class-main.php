@@ -290,6 +290,7 @@ class Main {
 				'button_text_color_picker'  => '#3E3E3B',
 				'text_color_picker'         => '#EBECED',
 				'link_color_picker'         => '#CBC5C1',
+				'add_button_class'          => 'custom-cookie-message-banner__button',
 			],
 		];
 

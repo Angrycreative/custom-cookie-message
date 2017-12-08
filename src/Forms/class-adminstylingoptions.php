@@ -123,7 +123,7 @@ class AdminStylingOptions extends AdminBase {
 	 */
 	public function cookies_text_font_callback() {
 		$val = isset( $this->options['styles']['text_font'] ) ? $this->options['styles']['text_font'] : '';
-		echo '<input type="text" id="text_font" name="custom_cookie_message[styles][text_font]" value="' . $val . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="text_font" name="custom_cookie_message[styles][text_font]" value="' . $val . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 		echo '<div><p>Replace your standard paragraph font-family. Leave empty for the standard font-family</p></div>';
 	}
 
@@ -148,7 +148,7 @@ class AdminStylingOptions extends AdminBase {
 	 */
 	public function cookies_add_button_class_callback() {
 		$val = isset( $this->options['styles']['add_button_class'] ) ? $this->options['styles']['add_button_class'] : '';
-		echo '<input type="text" id="add_button_class" name="custom_cookie_message[styles][add_button_class]" value="' . $val . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="add_button_class" name="custom_cookie_message[styles][add_button_class]" value="' . $val . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 		echo '<div><p>Replace the standard styling of the button by specifying your own class. If several classes, separate with space. Leave empty to keep the standard styling.</p></div>';
 	}
 

@@ -1,5 +1,5 @@
 .custom-cookie-message-banner {
-  width:           100vw;
+  width:           100%;
   position:        -webkit-sticky;
   position:        sticky;
   display:         flex;
@@ -13,4 +13,8 @@
 }
 .custom-cookie-message-banner--top-fixed {
   top: 0;
+}
+.custom-cookie-message-banner__button {
+  margin:  0;
+  padding: 0;
 }
