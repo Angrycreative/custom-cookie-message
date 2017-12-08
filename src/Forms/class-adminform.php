@@ -112,6 +112,11 @@ class AdminForm extends AdminBase {
 			'rest_url'      => rest_url( 'custom-cm/upgrade' ),
 			'ccm_nonce'     => wp_create_nonce( 'custom_cookie_message_upgrade' ),
 			'wp_rest_nonce' => wp_create_nonce( 'wp_rest' ),
+			'life_time'     => [
+				'week_seconds'  => WEEK_IN_SECONDS,
+				'month_seconds' => MONTH_IN_SECONDS,
+				'year_seconds'  => YEAR_IN_SECONDS,
+			],
 		] );
 	}
 

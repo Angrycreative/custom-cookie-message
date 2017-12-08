@@ -275,13 +275,14 @@ class Main {
 
 		$defaults = [
 			'general' => [
+				'life_time'         => MONTH_IN_SECONDS,
 				'location_options'  => 'top-fixed',
 				'cookies_page_link' => '',
 			],
 			'content' => [
-				'input_button_text'     => esc_html__( 'I understand', 'custom-cookie-message' ),
-				'input_link_text'       => esc_html__( 'Read more', 'custom-cookie-message' ),
-				'textarea_warning_text' => esc_html__( 'This website uses cookies . By using our website you accept our use of cookies . ', 'custom-cookie-message' ),
+				'input_button_text'     => 'Change Settings',
+				'input_link_text'       => 'Read more',
+				'textarea_warning_text' => 'This website uses cookies . By using our website you accept our use of cookies . ',
 			],
 			'styles'  => [
 				'messages_color_picker'     => '#3E3E3B',
