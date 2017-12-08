@@ -78,8 +78,7 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_required_callback() {
-
-		wp_editor( esc_html( $this->options['cookie_granularity_settings']['required_cookies_message'] ), 'requiredCookies', [
+		wp_editor( $this->options['cookie_granularity_settings']['required_cookies_message'], 'required_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][required_cookies_message]',
 		] );
@@ -89,7 +88,7 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_functional_callback() {
-		wp_editor( esc_html( $this->options['cookie_granularity_settings']['functional_cookies_message'] ), 'functionalCookies', [
+		wp_editor( $this->options['cookie_granularity_settings']['functional_cookies_message'], 'functional_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][functional_cookies_message]',
 		] );
@@ -99,7 +98,7 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_advertising_callback() {
-		wp_editor( esc_html( $this->options['cookie_granularity_settings']['advertising_cookies_message'] ), 'advertisingCookies', [
+		wp_editor( $this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][advertising_cookies_message]',
 		] );
