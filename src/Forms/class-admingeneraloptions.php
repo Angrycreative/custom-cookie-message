@@ -81,7 +81,7 @@ class AdminGeneralOptions extends AdminBase {
 	public function cookies_life_time_callback() {
 		$val = isset( $this->options['general']['life_time'] ) ? $this->options['general']['life_time'] : '0';
 		echo '<input type="text" id="life_time_slider_amount" name="custom_cookie_message[general][life_time]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
-		echo '<div id="life_time_slider" class="slider"></div>';
+		echo '<span class="life_time_message"></span><div id="life_time_slider" class="slider"></div>';
 	}
 
 	/**

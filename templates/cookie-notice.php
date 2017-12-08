@@ -44,4 +44,11 @@ $style_button_class = $options['styles']['add_button_class'];
 		</div>
 	</div>
 </div>
-<div id="custom-cookie-message-modal"></div>
+<div id="custom-cookie-message-modal">
+	<div></div>
+	<div>
+		<div><?php echo apply_filters( 'the_content', $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?></div>
+		<div><?php echo apply_filters( 'the_content', $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?></div>
+		<div><?php echo apply_filters( 'the_content', $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?></div>
+	</div>
+</div>

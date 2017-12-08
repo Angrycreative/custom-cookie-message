@@ -274,17 +274,17 @@ class Main {
 	public static function ccm_set_default_options() {
 
 		$defaults = [
-			'general' => [
+			'general'                     => [
 				'life_time'         => MONTH_IN_SECONDS,
 				'location_options'  => 'top-fixed',
 				'cookies_page_link' => '',
 			],
-			'content' => [
+			'content'                     => [
 				'input_button_text'     => 'Change Settings',
 				'input_link_text'       => 'Read more',
 				'textarea_warning_text' => 'This website uses cookies . By using our website you accept our use of cookies . ',
 			],
-			'styles'  => [
+			'styles'                      => [
 				'messages_color_picker'     => '#3E3E3B',
 				'button_color_picker'       => '#EBECED',
 				'button_hover_color_picker' => '#CBC5C1',
@@ -292,6 +292,9 @@ class Main {
 				'text_color_picker'         => '#EBECED',
 				'link_color_picker'         => '#CBC5C1',
 				'add_button_class'          => 'custom-cookie-message-banner__button',
+			],
+			'cookie_granularity_settings' => [
+
 			],
 		];
 

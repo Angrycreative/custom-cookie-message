@@ -58,37 +58,51 @@ class AdminCookieSettings extends AdminBase {
 	 */
 	public function cookies_initialize_cookie_options() {
 
-		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie List Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
+		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Granilarity Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
 
-		add_settings_field( 'cookie_list', esc_html__( 'Cookie we found:', 'custom-cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->section_page, 'cookie_settings_section' );
+		add_settings_field( 'required_cookies', esc_html__( 'Required Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_required_callback' ], $this->section_page, 'cookie_settings_section' );
+
+		add_settings_field( 'functional_cookies', esc_html__( 'Functional Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_functional_callback' ], $this->section_page, 'cookie_settings_section' );
+
+		add_settings_field( 'advertising_cookies', esc_html__( 'Advertising Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_advertising_callback' ], $this->section_page, 'cookie_settings_section' );
 	}
 
 	/**
 	 * List options.
 	 */
 	public function cookie_list_options_callback() {
-		echo '<p>' . esc_html_e( 'Label and select priority.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Activate Cookies and granilarity.', 'cookie-message' ) . '</p>';
 	}
 
 	/**
-	 * Options.
+	 * Required Cookies Message.
 	 */
-	public function cookie_message_height_slider_callback() {
+	public function cookie_required_callback() {
 
-		$options_priority = [
-			esc_html__( 'Necesary Cookies', 'custom-cookie-message' ),
-			esc_html__( 'Performance Cookies', 'custom-cookie-message' ),
-			esc_html__( 'Commercial Cookies', 'custom-cookie-message' ),
-		];
+		wp_editor( esc_html( $this->options['cookie_granularity_settings']['required_cookies_message'] ), 'requiredCookies', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][required_cookies_message]',
+		] );
+	}
 
-		setrawcookie( 'fr', '', 0, '/', '.facebook.com', true, true );
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_functional_callback() {
+		wp_editor( esc_html( $this->options['cookie_granularity_settings']['functional_cookies_message'] ), 'functionalCookies', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][functional_cookies_message]',
+		] );
+	}
 
-		// TODO: Map $options.
-
-		$output = '<div class="cookie_list_wrapper">';
-		$output .= '</div>';
-
-		echo $output;
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_advertising_callback() {
+		wp_editor( esc_html( $this->options['cookie_granularity_settings']['advertising_cookies_message'] ), 'advertisingCookies', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][advertising_cookies_message]',
+		] );
 	}
 
 }

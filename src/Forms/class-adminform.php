@@ -109,13 +109,20 @@ class AdminForm extends AdminBase {
 			'wp-color-picker',
 		], Main::version() );
 		wp_localize_script( 'custom-cookie-message-admin-style', 'customCookieMessageAdminLocalize', [
-			'rest_url'      => rest_url( 'custom-cm/upgrade' ),
-			'ccm_nonce'     => wp_create_nonce( 'custom_cookie_message_upgrade' ),
-			'wp_rest_nonce' => wp_create_nonce( 'wp_rest' ),
-			'life_time'     => [
+			'rest_url'           => rest_url( 'custom-cm/upgrade' ),
+			'ccm_nonce'          => wp_create_nonce( 'custom_cookie_message_upgrade' ),
+			'wp_rest_nonce'      => wp_create_nonce( 'wp_rest' ),
+			'life_time'          => [
 				'week_seconds'  => WEEK_IN_SECONDS,
 				'month_seconds' => MONTH_IN_SECONDS,
 				'year_seconds'  => YEAR_IN_SECONDS,
+			],
+			'life_time_messages' => [
+				'no_life_time'       => esc_html__( 'Until session expires (closing browser)', 'custom-cookie-message' ),
+				'week_life_time'     => esc_html__( 'Weekly', 'custom-cookie-message' ),
+				'month_life_time'    => esc_html__( 'Montly', 'custom-cookie-message' ),
+				'year_life_time'     => esc_html__( 'Yearly', 'custom-cookie-message' ),
+				'end_less_life_time' => esc_html__( 'Until end of times', 'custom-cookie-message' ),
 			],
 		] );
 	}

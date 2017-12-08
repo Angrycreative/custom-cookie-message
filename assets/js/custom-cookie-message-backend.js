@@ -39,7 +39,8 @@ jQuery( function ( $ ) {
        html = html + '</label>';
        html = html + '</div>';
 
-       $( '.cookie_list_wrapper' ).append( html ).fadeIn();
+       // TODO: This code should be refactored.
+       // $( '.cookie_list_wrapper' ).append( html ).fadeIn();
      } );
 
    } );
@@ -47,63 +48,72 @@ jQuery( function ( $ ) {
   // Add Color Picker to all inputs that have 'color-field' class
   $( '.cpa-color-picker' ).wpColorPicker();
 
+  let life_time_value = 0;
+
+  switch ( parseInt( $( '#life_time_slider_amount' ).val() ) ) {
+    case 0:
+      life_time_value = 1;
+      break;
+    case customCookieMessageAdminLocalize.life_time.week_seconds:
+      life_time_value = 2;
+      break;
+    case customCookieMessageAdminLocalize.life_time.month_seconds:
+      life_time_value = 3;
+      break;
+    case customCookieMessageAdminLocalize.life_time.year_seconds:
+      life_time_value = 4;
+      break;
+    default:
+      life_time_value = 5;
+      break;
+  }
+
   $( '#life_time_slider' ).slider( {
     range: 'min',
-    value: function () {
-      switch ( $( '#life_time_slider_amount' ).val() ) {
-        case 0:
-          return 1;
-          break;
-        case customCookieMessageAdminLocalize.life_time.week_seconds:
-          return 2;
-          break;
-        case customCookieMessageAdminLocalize.life_time.month_seconds:
-          return 3;
-          break;
-        case customCookieMessageAdminLocalize.life_time.year_seconds:
-          return 4;
-          break;
-        default:
-          return 5;
-          break;
-      }
-    },
+    value: parseInt( life_time_value ),
     min: 1,
     max: 5,
     create: function () {
-      switch ( $( '#life_time_slider_amount' ).val() ) {
+      switch ( parseInt( $( '#life_time_slider_amount' ).val() ) ) {
         case 0:
-          return 1;
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.no_life_time );
           break;
         case customCookieMessageAdminLocalize.life_time.week_seconds:
-          return 2;
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.week_life_time );
           break;
         case customCookieMessageAdminLocalize.life_time.month_seconds:
-          return 3;
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.month_life_time );
           break;
         case customCookieMessageAdminLocalize.life_time.year_seconds:
-          return 4;
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.year_life_time );
           break;
         default:
-          return 5;
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.end_less_life_time );
           break;
       }
+
     },
     slide: function ( event, ui ) {
-      switch ( ui.value ) {
+      switch ( parseInt( ui.value ) ) {
         case 1:
-          $( '#life_time_slider_amount' ).val( 1 );
+          $( '#life_time_slider_amount' ).val( 0 );
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.no_life_time );
           break;
         case 2:
           $( '#life_time_slider_amount' ).val( customCookieMessageAdminLocalize.life_time.week_seconds );
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.week_life_time );
           break;
         case 3:
           $( '#life_time_slider_amount' ).val( customCookieMessageAdminLocalize.life_time.month_seconds );
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.month_life_time );
           break;
         case 4:
-          $( '#life_time_slider_amount' ).val( customCookieMessageAdminLocalize.life_time.week_seconds );
+          $( '#life_time_slider_amount' ).val( customCookieMessageAdminLocalize.life_time.year_seconds );
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.year_life_time );
           break;
         case 5:
+          $( '#life_time_slider_amount' ).val( 5 );
+          $( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.end_less_life_time );
           break;
       }
     },
