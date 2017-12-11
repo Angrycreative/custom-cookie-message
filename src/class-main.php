@@ -294,7 +294,10 @@ class Main {
 				'add_button_class'          => 'custom-cookie-message-banner__button',
 			],
 			'cookie_granularity_settings' => [
-
+				'headline'                    => 'Privacy Preferences',
+				'required_cookies_message'    => 'Required Cookies Message',
+				'functional_cookies_message'  => 'Functional Cookies Message',
+				'advertising_cookies_message' => 'Advertising Cookies Message',
 			],
 		];
 

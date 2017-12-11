@@ -60,6 +60,8 @@ class AdminCookieSettings extends AdminBase {
 
 		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Granilarity Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
 
+		add_settings_field( 'headline', esc_html__( 'Head Line Message:', 'custom-cookie-message' ), [ $this, 'cookie_headline_callback' ], $this->section_page, 'cookie_settings_section' );
+
 		add_settings_field( 'required_cookies', esc_html__( 'Required Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_required_callback' ], $this->section_page, 'cookie_settings_section' );
 
 		add_settings_field( 'functional_cookies', esc_html__( 'Functional Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_functional_callback' ], $this->section_page, 'cookie_settings_section' );
@@ -72,6 +74,13 @@ class AdminCookieSettings extends AdminBase {
 	 */
 	public function cookie_list_options_callback() {
 		echo '<p>' . esc_html_e( 'Activate Cookies and granilarity.', 'cookie-message' ) . '</p>';
+	}
+
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_headline_callback() {
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[cookie_granularity_settings][headline]" value="' . $this->options['cookie_granularity_settings']['headline'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 	}
 
 	/**

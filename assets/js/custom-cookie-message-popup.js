@@ -6,17 +6,21 @@ jQuery( function ( $ ) {
 
   let customCookieMessage = {
     states: null, init: function () {
+
       if ( null === cookie ) {
         this.showCookieNotice();
-
       }
 
       $( 'body' )
-        .on( 'click', '#custom-cookie-message .ccmAccept', this.acceptTerms );
-
+        .on( 'click', '#custom-cookie-message-preference', this.changeSettings );
     },
 
-    acceptTerms: function () {
+    changeSettings: function () {
+      let modalBlock = $( '#custom-cookie-message-modal' );
+
+      if ( modalBlock.hasClass( 'custom-cookie-message-modal--off' ) ) {
+        modalBlock.removeClass( 'custom-cookie-message-modal--off' ).addClass( 'custom-cookie-message-modal--on' );
+      }
 
     },
 

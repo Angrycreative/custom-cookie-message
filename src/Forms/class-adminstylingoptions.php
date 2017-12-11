@@ -83,6 +83,10 @@ class AdminStylingOptions extends AdminBase {
 		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Height', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Width', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'styling' );
+
+		add_settings_field( 'modal_background', esc_html__( 'Modal Background', 'custom-cookie-message' ), [ $this, 'cookies_modal_background_callback' ], $this->section_page, 'styling' );
+
+		add_settings_field( 'modal_background_opacity', esc_html__( 'Modal Background Opacity', 'custom-cookie-message' ), [ $this, 'cookies_modal_background_opacity_callback' ], $this->section_page, 'styling' );
 	}
 
 	/**
@@ -190,8 +194,25 @@ class AdminStylingOptions extends AdminBase {
 	 */
 	public function cookies_button_width_slider_callback() {
 		$val = isset( $this->options['styles']['button_width_slider_amount'] ) ? $this->options['styles']['button_width_slider_amount'] : '10';
-		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styles][button_width_slider_amount]" value="' . $val . '" readonly class="hidden">';
+		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styles][button_width_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
 		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
+	}
+
+	/**
+	 * Button hover color.
+	 */
+	public function cookies_modal_background_callback() {
+		$val = isset( $this->options['styles']['modal_bg'] ) ? $this->options['styles']['modal_bg'] : '';
+		echo '<input type="text" id="button_hover_color_picker" name="custom_cookie_message[styles][modal_bg]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Button width.
+	 */
+	public function cookies_modal_background_opacity_callback() {
+		$val = isset( $this->options['styles']['modal_bg_opacity'] ) ? $this->options['styles']['modal_bg_opacity'] : '100';
+		echo '<input type="text" id="modal_bg_opacity_amount" name="custom_cookie_message[styles][modal_bg_opacity]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<div id="modal_bg_opacity_slider" class="slider"><div id="modal_bg_opacity_slider_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
 }

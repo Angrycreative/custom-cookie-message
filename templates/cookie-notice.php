@@ -32,6 +32,10 @@ $style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';
 
 $style_button_class = $options['styles']['add_button_class'];
 
+list( $r, $g, $b ) = sscanf( $options['styles']['modal_bg'], '#%02x%02x%02x' );
+$modal_background_opacity = $options['styles']['modal_bg_opacity'] / 100;
+$modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_background_opacity});";
+
 ?>
 <div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>" style="<?php echo esc_attr( $style_notice_banner ); ?>">
 	<div class="custom-cookie-message-banner__content">
@@ -44,11 +48,21 @@ $style_button_class = $options['styles']['add_button_class'];
 		</div>
 	</div>
 </div>
-<div id="custom-cookie-message-modal custom-cookie-message-modal--off">
-	<div></div>
-	<div>
-		<div><?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?></div>
-		<div><?php echo apply_filters( 'the_content', $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?></div>
-		<div><?php echo apply_filters( 'the_content', $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?></div>
+<div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off" style="<?php echo esc_attr( $modal_style ); ?>">
+	<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
+	<div class="custom-cookie-message-modal__box">
+		<h2 class="custom-cookie-message-modal__title"><?php $esc_html( $options['cookie_granularity_settings']['headline'], 'custom-cookie-message' ); ?></h2>
+		<div class="custom-cookie-message-modal__tabs">
+			<ul class="custom-cookie-message-modal__list">
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--required_message custom-cookie-message-modal__item--active"><?php esc_html_e( 'Required', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php esc_html_e( 'Functional', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php esc_html_e( 'Advertising', 'custom-cookie-message' ); ?></li>
+			</ul>
+		</div>
+		<div class="custom-cookie-message-modal__content">
+			<div class="custom-cookie-message-modal__required_message"><?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?></div>
+			<div class="custom-cookie-message-modal__functional_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?></div>
+			<div class="custom-cookie-message-modal__advertising_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?></div>
+		</div>
 	</div>
 </div>

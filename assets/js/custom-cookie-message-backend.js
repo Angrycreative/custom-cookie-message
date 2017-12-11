@@ -133,6 +133,20 @@ jQuery( function ( $ ) {
     },
   } );
 
+  $( '#modal_bg_opacity_slider' ).slider( {
+    range: 'min',
+    value: parseInt( $( '#modal_bg_opacity_amount' ).val() ),
+    min: 50,
+    max: 100,
+    create: function () {
+      $( '#modal_bg_opacity_slider_handle' ).text( $( '#modal_bg_opacity_amount' ).val() + '%' );
+    },
+    slide: function ( event, ui ) {
+      $( '#modal_bg_opacity_slider_handle' ).text( ui.value + '%' );
+      $( '#modal_bg_opacity_amount' ).val( ui.value );
+    },
+  } );
+
   $( '#message_height_slider' ).slider( {
     range: 'min',
     value: parseInt( $( '#message_height_slider_amount' ).val() ),
