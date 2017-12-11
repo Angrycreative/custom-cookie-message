@@ -70,6 +70,11 @@
   flex:         1;
   padding-left: 20px;
 }
+.custom-cookie-message-modal__content div {
+  display:   flex;
+  flex-flow: column;
+  height:    100%;
+}
 .custom-cookie-message-modal__item {
   display:        block;
   width:          auto;
@@ -87,4 +92,12 @@
 .custom-cookie-message-modal__item--active {
   background: #555;
   color:      white;
+}
+.custom-cookie-message-modal__checkbox {
+  margin-left: auto;
+  margin-top:  auto;
+}
+.custom-cookie-message-modal__actions {
+  flex:       1 0 100%;
+  text-align: right;
 }

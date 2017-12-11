@@ -47,6 +47,7 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 				</a>
 			</p>
 		</div>
+		<div class="custom-cookie-message-banner__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
 	</div>
 </div>
 <div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off" style="<?php echo esc_attr( $modal_style ); ?>">
@@ -61,12 +62,22 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 			</ul>
 		</div>
 		<div class="custom-cookie-message-modal__content">
-			<div class="custom-cookie-message-modal__required_message"><?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?></div>
-			<div class="custom-cookie-message-modal__functional_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?></div>
-			<div class="custom-cookie-message-modal__advertising_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?></div>
+			<div class="custom-cookie-message-modal__required_message">
+				<?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?>
+			</div>
+			<div class="custom-cookie-message-modal__functional_message hide">
+				<?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?>
+			</div>
+			<div class="custom-cookie-message-modal__advertising_message hide">
+				<?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?>
+				<label class="custom-cookie-message-modal__checkbox">
+					<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+					<input type="checkbox" id="ccm-advertising" checked>
+				</label>
+			</div>
 		</div>
 		<div class="custom-cookie-message-modal__actions">
-			<a id="custom-cookie-message-preference" class="btn btn-default"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
+			<a id="cmm-save-preference" class="btn btn-default"><?php $esc_html( $options['content']['save_settings_button'], 'custom-cookie-message' ); ?></a>
 		</div>
 	</div>
 </div>

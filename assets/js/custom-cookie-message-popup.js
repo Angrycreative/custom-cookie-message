@@ -15,7 +15,8 @@ jQuery( function ( $ ) {
         .on( 'click', '#custom-cookie-message-preference', this.changeSettings )
         .on( 'click', '.custom-cookie-message-modal__close', this.killModal )
         .on( 'click', '#custom-cookie-message-modal', this.actionModal )
-        .on( 'click', '.custom-cookie-message-modal__item', this.actionTab );
+        .on( 'click', '.custom-cookie-message-modal__item', this.actionTab )
+        .on( 'click', '#cmm-save-preference', this.savePreferences );
     },
 
     changeSettings: function () {
@@ -61,6 +62,23 @@ jQuery( function ( $ ) {
           }
         }
       }
+    },
+
+    savePreferences: function () {
+      $.ajax( {
+        url: customCookieMessageLocalize.rest_url_preference,
+        method: 'POST',
+        cache: false,
+        data: {
+          'adsvertising': $( '#ccm-advertising' ).prop( 'checked' ),
+        },
+        beforeSend: function ( xhr ) {
+          xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
+        },
+      } )
+       .done( function ( response ) {
+
+       } );
     },
 
     showCookieNotice: function () {
