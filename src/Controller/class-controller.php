@@ -69,6 +69,10 @@ class Controller {
 			'methods'  => \WP_REST_Server::READABLE,
 			'callback' => [ $this, 'redeable_popup_banner' ],
 		] );
+		register_rest_route( $namespace_route, '/cookie-preference', [
+			'methods'  => \WP_REST_Server::CREATABLE,
+			'callback' => [ $this, 'creatable_cookie_preference' ],
+		] );
 	}
 
 	/**
@@ -122,6 +126,25 @@ class Controller {
 		return new \WP_REST_Response( [
 			'template' => $template_content,
 		], 200 );
+	}
+
+	/**
+	 * Save Cookie Preferences.
+	 *
+	 * @param \WP_REST_Request $request WP REST Request.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function creatable_cookie_preference( \WP_REST_Request $request ) {
+		$options = get_option( 'custom_cookie_message' );
+
+		if ( setcookie( 'custom-cookie-message', 1, $options['general']['life_time'], '/' ) ) {
+			return new \WP_REST_Response( [
+				'success' => 200,
+			], 200 );
+		}
+
+		return new \WP_REST_Response( [], 500 );
 	}
 
 }

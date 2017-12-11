@@ -76,8 +76,9 @@ jQuery( function ( $ ) {
           xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
         },
       } )
-       .done( function ( response ) {
-
+       .done( function () {
+         customCookieMessage.killModal();
+         $( '#custom-cookie-message-banner' ).remove();
        } );
     },
 
