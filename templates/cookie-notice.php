@@ -41,7 +41,8 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 	<div class="custom-cookie-message-banner__content">
 		<div class="warning-text" style="<?php echo esc_attr( $style_message ); ?>">
 			<p><?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
-				<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a> <a id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
+				<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+				<a id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
 					<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
 				</a>
 			</p>
@@ -49,8 +50,8 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 	</div>
 </div>
 <div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off" style="<?php echo esc_attr( $modal_style ); ?>">
-	<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
 	<div class="custom-cookie-message-modal__box">
+		<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
 		<h2 class="custom-cookie-message-modal__title"><?php $esc_html( $options['cookie_granularity_settings']['headline'], 'custom-cookie-message' ); ?></h2>
 		<div class="custom-cookie-message-modal__tabs">
 			<ul class="custom-cookie-message-modal__list">
@@ -63,6 +64,9 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 			<div class="custom-cookie-message-modal__required_message"><?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?></div>
 			<div class="custom-cookie-message-modal__functional_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?></div>
 			<div class="custom-cookie-message-modal__advertising_message hide"><?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?></div>
+		</div>
+		<div class="custom-cookie-message-modal__actions">
+			<a id="custom-cookie-message-preference" class="btn btn-default"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
 		</div>
 	</div>
 </div>

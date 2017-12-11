@@ -12,7 +12,10 @@ jQuery( function ( $ ) {
       }
 
       $( 'body' )
-        .on( 'click', '#custom-cookie-message-preference', this.changeSettings );
+        .on( 'click', '#custom-cookie-message-preference', this.changeSettings )
+        .on( 'click', '.custom-cookie-message-modal__close', this.killModal )
+        .on( 'click', '#custom-cookie-message-modal', this.actionModal )
+        .on( 'click', '.custom-cookie-message-modal__item', this.actionTab );
     },
 
     changeSettings: function () {
@@ -22,6 +25,42 @@ jQuery( function ( $ ) {
         modalBlock.removeClass( 'custom-cookie-message-modal--off' ).addClass( 'custom-cookie-message-modal--on' );
       }
 
+    },
+
+    killModal: function () {
+      let modal = $( '#custom-cookie-message-modal' );
+      if ( modal.hasClass( 'custom-cookie-message-modal--on' ) ) {
+        modal.removeClass( 'custom-cookie-message-modal--on' ).addClass( 'custom-cookie-message-modal--off' );
+      }
+    },
+
+    actionModal: function ( event ) {
+      if ( event.target !== event.currentTarget ) {
+        return;
+      }
+      customCookieMessage.killModal();
+    },
+
+    actionTab: function () {
+      let self = $( this );
+      let classList = self.attr( 'class' ).split( /\s+/ );
+      let re = /--(.*)_message$/g;
+
+      for ( let i = 0; i < classList.length; i++ ) {
+        if ( classList[ i ].match( re ) ) {
+          let contentBox = re.exec( classList[ i ] );
+          let baseTabClass = '.custom-cookie-message-modal__item--' + contentBox[ 1 ] + '_message';
+          let baseMessageClass = '.custom-cookie-message-modal__' + contentBox[ 1 ] + '_message';
+
+          if ( !$( baseTabClass ).hasClass( 'custom-cookie-message-modal__item--active' ) ) {
+            $( '.custom-cookie-message-modal__item.custom-cookie-message-modal__item--active' ).removeClass( 'custom-cookie-message-modal__item--active' );
+            $( baseTabClass ).addClass( 'custom-cookie-message-modal__item--active' );
+
+            $( '.custom-cookie-message-modal__content div' ).not( '.hide' ).addClass( 'hide' );
+            $( baseMessageClass ).removeClass( 'hide' );
+          }
+        }
+      }
     },
 
     showCookieNotice: function () {
