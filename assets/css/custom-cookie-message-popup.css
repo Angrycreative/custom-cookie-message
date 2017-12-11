@@ -17,3 +17,14 @@
 .custom-cookie-message-banner__button {
   margin: 0;
 }
+.custom-cookie-message-modal {
+  position: absolute;
+  top:      0;
+  left:     0;
+}
+.custom-cookie-message-modal--off {
+  display: none;
+}
+.custom-cookie-message-modal--on {
+  display: block;
+}

@@ -83,6 +83,18 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test Plugin Activation from scratch.
+	 */
+	public function test_installation_plugin() {
+		// We've to manually run activation functions.
+		\CustomCookieMessage\Main::plugin_activation();
+
+		$options = get_option( 'custom_cookie_message', [] );
+
+		$this->assertNotEmpty( $options, 'Installation could not be completed' );
+	}
+
+	/**
 	 * Test route is register.
 	 */
 	public function test_route_is_register() {
@@ -119,18 +131,6 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
 		$this->assertNotEmpty( $response->get_data()['template'], 'Template was not included.' );
-	}
-
-	/**
-	 * Test Plugin Activation from scratch.
-	 */
-	public function test_installation_plugin() {
-		// We've to manually run activation functions.
-		\CustomCookieMessage\Main::plugin_activation();
-
-		$options = get_option( 'custom_cookie_message', [] );
-
-		$this->assertNotEmpty( $options, 'Installation could not be completed' );
 	}
 
 }

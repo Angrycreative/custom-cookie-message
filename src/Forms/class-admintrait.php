@@ -31,22 +31,15 @@ trait AdminTrait {
 	 */
 	public function ccm_validate_options( array $input ) {
 
-		$output = [];
-
-		foreach ( $input as $key => $value ) {
-
-			if ( ! empty( $value ) && is_array( $value ) ) {
-				$output[ $key ] = $this->ccm_validate_options( $value );
-			}
-
-			if ( ! empty( $value ) && ! is_array( $value ) ) {
-				$output[ $key ] = sanitize_text_field( $value );
-			}
+		if ( empty( $input['cookie_granularity_settings'] ) ) {
+			array_walk_recursive( $input, function ( &$item, $key ) {
+				$item = sanitize_textarea_field( $item );
+			} );
 		}
 
-		$output = wp_parse_args( $output, $this->options );
+		$output = wp_parse_args( $input, $this->options );
 
-		return apply_filters( 'ccm_validate_options', $output, $input );
+		return apply_filters( 'ccm_validate_options', $output );
 	}
 
 }
