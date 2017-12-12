@@ -322,6 +322,8 @@ class Main {
 				'required_cookies_message'    => 'Required Cookies Message',
 				'functional_cookies_message'  => 'Functional Cookies Message',
 				'advertising_cookies_message' => 'Advertising Cookies Message',
+				'functional_list'             => '',
+				'advertising_list'            => '',
 			],
 		];
 
