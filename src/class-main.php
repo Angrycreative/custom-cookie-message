@@ -116,7 +116,7 @@ class Main {
 		if ( empty( $_COOKIE['custom-cookie-message'] ) ) {
 			add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
 		} else {
-			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ], 99 );
 		}
 
 	}
