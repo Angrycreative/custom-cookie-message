@@ -2,6 +2,6 @@
 .git
 .gitignore
 .travis.yml
-.phpunit.xml
-.phpcs.xml
+phpunit.xml
+phpcs.xml
 tests
