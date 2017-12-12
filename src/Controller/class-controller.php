@@ -139,7 +139,11 @@ class Controller {
 		$options = get_option( 'custom_cookie_message' );
 		$url     = parse_url( home_url() );
 
-		if ( setcookie( 'custom-cookie-message', 1, $options['general']['life_time'], '/', ".{$url['host']}" ) ) {
+		$settings['functional']  = $request->get_param( 'functional' );
+		$settings['advertising'] = $request->get_param( 'adsvertising' );
+		$cookie_value            = html_entity_decode( wp_json_encode( $settings, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK ) );
+
+		if ( setcookie( 'custom-cookie-message', $cookie_value, $options['general']['life_time'], '/', ".{$url['host']}" ) ) {
 			return new \WP_REST_Response( [
 				'success' => 200,
 			], 200 );

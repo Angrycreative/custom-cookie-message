@@ -113,7 +113,11 @@ class Main {
 			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
 		}
 
-		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
+		if ( empty( $_COOKIE['custom-cookie-message'] ) ) {
+			add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
+		} else {
+			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ] );
+		}
 
 	}
 
@@ -180,6 +184,25 @@ class Main {
 
 		echo $output; // WPCS: XSS ok.
 
+	}
+
+	/**
+	 * Dequeue cookies when user change settings.
+	 */
+	public function ccm_handle_scripts() {
+		global $wp_scripts;
+		$options = get_option( 'custom_cookie_message' );
+
+		$cookie_ccm = json_decode( stripslashes( $_COOKIE['custom-cookie-message'] ) );
+
+		foreach ( $wp_scripts->queue as $handle ) {
+			if ( $cookie_ccm->functional && in_array( $handle, explode( ',', $options['cookie_granularity_settings']['functional_list'] ), true ) ) {
+				wp_dequeue_script( $handle );
+			}
+			if ( $cookie_ccm->advertising && in_array( $handle, explode( ',', $options['cookie_granularity_settings']['advertising_list'] ), true ) ) {
+				wp_dequeue_script( $handle );
+			}
+		}
 	}
 
 	/**
