@@ -1,126 +1,83 @@
 <?php
 /**
- * Cookie message template.
+ * Template cookie notice.
  *
- * @package CustomCookieMessage\Templates
+ * @package CustomCookieMessage.
  */
 
+include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
 $options = get_option( 'custom_cookie_message' );
+
+/**
+ * To support polylang translations.
+ *
+ * @var esc_html_e()
+ */
+$esc_html = 'esc_html_e';
+
+if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' ) ) {
+	$esc_html = 'pll_e';
+}
+
+list( $r, $g, $b ) = sscanf( $options['styles']['message_color_picker'], '#%02x%02x%02x' );
+$background_opacity  = $options['styles']['opacity_slider_amount'] / 100;
+$style_notice_banner = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
+$style_notice_banner .= ' padding: ' . $options['styles']['message_height_slider_amount'] . 'px 0;';
+
+$style_message = 'color: ' . $options['styles']['text_color_picker'] . ';';
+$style_message .= empty( $options['styles']['text_font'] ) ? '' : 'font-family: ' . $options['styles']['text_font'] . ';';
+
+$style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';
+
+$style_button_class = $options['styles']['add_button_class'];
+
+list( $r, $g, $b ) = sscanf( $options['styles']['modal_bg'], '#%02x%02x%02x' );
+$modal_background_opacity = $options['styles']['modal_bg_opacity'] / 100;
+$modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_background_opacity});";
+
 ?>
-<?php
-if ( $options['general']['location_options'] === 'top-fixed' ) {
-	?>
-	<style>
-		.container-cookies {
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			transition: top 0.2s ease-in-out;
-		}
-
-		.container-cookies-up {
-			top: -100px !important;
-		}
-	</style>
-<?php } ?>
-<?php if ( $options['general']['location_options'] === 'top-static' ) { ?>
-	<style>
-		.container-cookies {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-		}
-	</style>
-<?php } ?>
-<?php if ( $options['general']['location_options'] === 'bottom-fixed' ) { ?>
-	<style>
-		.container-cookies {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			transition: bottom 0.2s ease-in-out;
-		}
-
-		.container-cookies-down {
-			bottom: -100px !important;
-		}
-	</style>
-<?php } ?>
-<?php if ( isset( $_COOKIE['cookie-warning-message'] ) ) { ?>
-	<style>
-		.container-cookies {
-			display: none !important;
-		}
-	</style>
-<?php } ?>
-
-<style>
-
-	.cookie-block {
-	<?php if (!empty($options['styling']['message_color_picker'])) { ?> background-color: <?php echo $options['styling']['message_color_picker'];?>;
-	<?php } ?><?php if(!empty($options['styling']['opacity_slider_amount']) && absint($options['styling']['opacity_slider_amount']) > 0) { ?> opacity: <?php echo absint($options['styling']['opacity_slider_amount'])/100;?>;
-	<?php } ?>
-	}
-
-	<?php if(!empty($options['styling']['message_height_slider_amount'])) { ?>
-	#custom-cookie-message-container.container-cookies {
-		padding: <?php echo $options['styling']['message_height_slider_amount'];?>px 0 <?php echo $options['styling']['message_height_slider_amount'];?>px 0;
-	}
-
-	<?php } ?>
-	<?php if(!empty( $options['styling']['text_color_picker'] )){ ?>
-	#custom-cookie-message-container.container-cookies p {
-		color: <?php echo $options['styling']['text_color_picker'];?>;
-	}
-
-	<?php } ?>
-	<?php if(!empty( $options['styling']['link_color_picker'] )){ ?>
-	#custom-cookie-message-container.warning-text a:link {
-		color: <?php echo $options['styling']['link_color_picker'];?> !important;
-	}
-
-	<?php } ?>
-	<?php if(!empty( $options['styling']['link_color_picker'] )){ ?>
-	#custom-cookie-message-container.warning-text a:visited {
-		color: <?php echo $options['styling']['link_color_picker'];?>;
-	}
-
-	<?php } ?>
-	#cookies-button-ok.cookies-button-ok {
-	<?php if(!empty( $options['styling']['button_color_picker'] )){ ?> background-color: <?php echo $options['styling']['button_color_picker'];?>;
-	<?php } ?><?php if(!empty( $options['styling']['button_text_color_picker'] )){ ?> color: <?php echo $options['styling']['button_text_color_picker'];?>;
-	<?php } ?><?php if(!empty( $options['styling']['button_height_slider_amount'] )){ ?> padding-top: <?php echo $options['styling']['button_height_slider_amount'];?>px;
-		padding-bottom: <?php echo $options['styling']['button_height_slider_amount'];?>px;
-	<?php } ?><?php if(!empty( $options['styling']['button_width_slider_amount'] )){ ?> padding-left: <?php echo $options['styling']['button_width_slider_amount'];?>px;
-		padding-right: <?php echo $options['styling']['button_width_slider_amount'];?>px;
-	<?php } ?>
-	}
-
-	<?php if(!empty( $options['styling']['button_text_color_picker'] )){ ?>
-	#cookies-button-ok.cookies-button-ok a:visited {
-		color: <?php echo $options['styling']['button_text_color_picker'];?>;
-	}
-
-	<?php } ?>
-	#cookies-button-ok.cookies-button-ok:hover {
-	<?php if(!empty( $options['styling']['button_text_color_picker'] )){ ?> color: <?php echo $options['styling']['button_text_color_picker'];?>;
-	<?php } ?><?php if(!empty( $options['styling']['button_hover_color_picker'] )){ ?> background-color: <?php echo $options['styling']['button_hover_color_picker'];?>;
-	<?php } ?>
-	}
-</style>
-<div id="custom-cookie-message-container" class="container-cookies <?php echo $options['general']['location_options']; ?>">
-	<div class="cookie-block"></div>
-	<div class="cookie-content">
-		<div class="warning-text">
-			<p <?php echo( empty( $options['styling']['text_font'] ) ? '' : 'style=”font-family: ' . $options['styling']['text_font'] . '“' ); ?> ><?php echo $options['conten']['textarea_warning_text']; ?>
-				<a style="color: <?php echo $styling_options['link_color_picker']; ?>" href=" <?php echo $options['general']['cookies_page_link']; ?>"><?php _e( $options['conten']['input_link_text'], 'cookie-message' ); ?></a>
+<div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>" style="<?php echo esc_attr( $style_notice_banner ); ?>">
+	<div class="custom-cookie-message-banner__content">
+		<div class="warning-text" style="<?php echo esc_attr( $style_message ); ?>">
+			<p><?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
+				<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+				<a id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
+					<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
+				</a>
 			</p>
-			<a id="cookies-button-ok" class="cookies-button-ok <?php echo( ! empty( $options['styling']['add_button_class'] ) ? $options['styling']['add_button_class'] : 'default-cookie-button-style' ); ?>">
-				<?php _e( $options['conten']['input_button_text'], 'cookie-message' ); ?>
-			</a>
+		</div>
+		<div class="custom-cookie-message-banner__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
+	</div>
+</div>
+<div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off" style="<?php echo esc_attr( $modal_style ); ?>">
+	<div class="custom-cookie-message-modal__box">
+		<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
+		<h2 class="custom-cookie-message-modal__title"><?php $esc_html( $options['cookie_granularity_settings']['headline'], 'custom-cookie-message' ); ?></h2>
+		<div class="custom-cookie-message-modal__tabs">
+			<ul class="custom-cookie-message-modal__list">
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--required_message custom-cookie-message-modal__item--active"><?php esc_html_e( 'Required', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php esc_html_e( 'Functional', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php esc_html_e( 'Advertising', 'custom-cookie-message' ); ?></li>
+			</ul>
+		</div>
+		<div class="custom-cookie-message-modal__content">
+			<div class="custom-cookie-message-modal__required_message">
+				<?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?>
+			</div>
+			<div class="custom-cookie-message-modal__functional_message hide">
+				<?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?>
+			</div>
+			<div class="custom-cookie-message-modal__advertising_message hide">
+				<?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?>
+				<label class="custom-cookie-message-modal__checkbox">
+					<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+					<input type="checkbox" id="ccm-advertising" checked>
+				</label>
+			</div>
+		</div>
+		<div class="custom-cookie-message-modal__actions">
+			<a id="cmm-save-preference" class="btn btn-default"><?php $esc_html( $options['content']['save_settings_button'], 'custom-cookie-message' ); ?></a>
 		</div>
 	</div>
 </div>

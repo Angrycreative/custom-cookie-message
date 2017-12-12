@@ -7,6 +7,7 @@
 
 namespace CustomCookieMessage;
 
+use CustomCookieMessage\Controller\Controller;
 use CustomCookieMessage\Forms\AdminForm;
 
 /**
@@ -17,21 +18,14 @@ use CustomCookieMessage\Forms\AdminForm;
 class Main {
 
 	/**
-	 * Options.
-	 *
-	 * @var string
-	 */
-	protected $options;
-
-	/**
-	 * Version plugin.
+	 * Current version.
 	 *
 	 * @var string
 	 */
 	protected $version = '2.0.0';
 
 	/**
-	 * Class singlenton.
+	 * Store singlenton CustomCookieMessage\Main.
 	 *
 	 * @var Main
 	 */
@@ -46,7 +40,8 @@ class Main {
 
 		add_action( 'init', [ $this, 'init' ], 30 );
 
-		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ $this, 'plugin_activation' ] );
+		register_activation_hook( CUSTOM_COOKIE_MESSAGE_FILE, [ __CLASS__, 'plugin_activation' ] );
+
 	}
 
 	/**
@@ -66,7 +61,7 @@ class Main {
 		$file_path = str_replace( 'CustomCookieMessage/', '', $class ) . '.php';
 
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
-			include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path;
+			include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path );
 		}
 	}
 
@@ -86,18 +81,16 @@ class Main {
 	/**
 	 * Get the static version.
 	 *
-	 * @return string Version number.
+	 * @return string Version self::$version.
 	 */
 	public static function version() {
-		$self = new self();
-
-		return $self->version();
+		return self::single()->get_version();
 	}
 
 	/**
 	 * Get version.
 	 *
-	 * @return string Version.
+	 * @return string Version CUSTOM_COOKIE_MESSAGE_VERSION.
 	 */
 	public function get_version() {
 		return $this->version;
@@ -108,18 +101,23 @@ class Main {
 	 */
 	public function init() {
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'ccm_enqueue_scripts' ], 100 );
-
-		add_action( 'wp_ajax_nopriv_setcookie', [ $this, 'cookie_setcookie' ] );
-		add_action( 'wp_ajax_setcookie', [ $this, 'cookie_setcookie' ] );
+		Controller::single();
 
 		load_plugin_textdomain( 'custom-cookie-message' );
 
 		if ( is_admin() ) {
 			AdminForm::single();
+
+			add_action( 'upgrader_process_complete', [ __CLASS__, 'update' ] );
+
+			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
 		}
 
-		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
+		if ( empty( $_COOKIE['custom-cookie-message'] ) ) {
+			add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
+		} else {
+			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ] );
+		}
 
 	}
 
@@ -135,11 +133,84 @@ class Main {
 	}
 
 	/**
+	 * Were updates in options and code are written.
+	 *
+	 * @since 2.0.0
+	 */
+	public static function update() {
+
+		$current_installed_version = str_replace( '.', '', get_site_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_version           = str_replace( '.', '', self::version() );
+
+		$update_queue = [];
+		while ( $current_version > $current_installed_version ) {
+			++ $current_installed_version;
+			if ( method_exists( '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ) ) {
+				$update_queue[] = [ '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ];
+			}
+		}
+
+		// Is empty, who trigger it?
+		if ( empty( $update_queue ) ) {
+			return;
+		}
+
+		foreach ( $update_queue as $update_function ) {
+			$update_function();
+		}
+
+	}
+
+	/**
+	 * Handle all admin notices.
+	 */
+	public static function admin_notices() {
+
+		$current_installed_version = str_replace( '.', '', get_site_option( 'custom_cookie_message_version', '1.6.4' ) );
+		$current_version           = str_replace( '.', '', self::version() );
+		$output                    = '';
+
+		if ( $current_installed_version < $current_version ) {
+			$output .= '<div class="notice notice-info">';
+			$output .= '<h2 class="notice-title">';
+			$output .= esc_html( 'Custom Cookie Message' );
+			$output .= '</h2>';
+			$output .= '<p>';
+			$output .= esc_html__( 'An update is available.', 'custom-cookie-message' );
+			$output .= ' <a href="#ccm-upgrade" class="custom-cookie-message-upgrade">' . esc_html__( 'Upgrade now', 'custom-cookie-message' ) . '</a>';
+			$output .= '</p>';
+			$output .= '</div>';
+		}
+
+		echo $output; // WPCS: XSS ok.
+
+	}
+
+	/**
+	 * Dequeue cookies when user change settings.
+	 */
+	public function ccm_handle_scripts() {
+		global $wp_scripts;
+		$options = get_option( 'custom_cookie_message' );
+
+		$cookie_ccm = json_decode( stripslashes( $_COOKIE['custom-cookie-message'] ) );
+
+		foreach ( $wp_scripts->queue as $handle ) {
+			if ( $cookie_ccm->functional && in_array( $handle, explode( ',', $options['cookie_granularity_settings']['functional_list'] ), true ) ) {
+				wp_dequeue_script( $handle );
+			}
+			if ( $cookie_ccm->advertising && in_array( $handle, explode( ',', $options['cookie_granularity_settings']['advertising_list'] ), true ) ) {
+				wp_dequeue_script( $handle );
+			}
+		}
+	}
+
+	/**
 	 * Enqueue scripts needed for coockies.
 	 */
 	public function ccm_enqueue_scripts() {
 
-		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/cookies.css' );
+		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css' );
 
 		wp_enqueue_style( 'cookie_style' );
 
@@ -155,47 +226,48 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
-		$this->get_template( 'cookie-notice.php' );
+
+		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
+
+		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
+		wp_localize_script( 'custom-cookie-message-popup', 'customCookieMessageLocalize', [
+			'options'             => get_option( 'custom_cookie_message' ),
+			'wp_rest'             => wp_create_nonce( 'wp_rest' ),
+			'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
+			'rest_url_preference' => rest_url( 'custom-cm/cookie-preference' ),
+		] );
+
 	}
 
 	/**
 	 * Include template if we could locate it.
 	 *
 	 * @param string $template_name Template name.
-	 * @param array  $args Args.
-	 * @param string $template_path Path to it.
-	 * @param string $default_path Default path.
 	 */
-	public static function get_template( $template_name, $args = [], $template_path = '', $default_path = '' ) {
+	public static function get_template( $template_name = 'cookie-notice.php' ) {
 
-		$located = static::locate_template( $template_name, $template_path, $default_path );
+		$located = static::locate_template( $template_name );
 
 		if ( ! file_exists( $located ) ) {
-			_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', esc_html( $located ) ), esc_html( self::version() ) );
+			_doing_it_wrong( __FUNCTION__, sprintf( ' < code>%s </code > does not exist . ', esc_html( $located ) ), esc_html( self::version() ) );
 
 			return;
 		}
 
-		include $located;
+		include_once $located;
 	}
 
 	/**
 	 * Helper to locate templates.
 	 *
 	 * @param string $template_name Template name.
-	 * @param string $template_path Template Path.
-	 * @param string $default_path Default path.
 	 *
 	 * @return string
 	 */
-	public static function locate_template( $template_name, $template_path = '', $default_path = '' ) {
-		if ( ! $template_path ) {
-			$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/';
-		}
+	public static function locate_template( $template_name ) {
+		$template_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . ' / ';
 
-		if ( ! $default_path ) {
-			$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
-		}
+		$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
 
 		$template = locate_template( [
 			trailingslashit( $template_path ) . $template_name,
@@ -203,10 +275,10 @@ class Main {
 		] );
 
 		if ( ! $template ) {
-			$template = $default_path . $template_name;
+			$template = $default_path . '/' . $template_name;
 		}
 
-		return $template;
+		return apply_filters( 'ccm_locate_template', $template, $template_name, $template_path );
 	}
 
 	/**
@@ -226,22 +298,32 @@ class Main {
 	public static function ccm_set_default_options() {
 
 		$defaults = [
-			'general' => [
+			'general'                     => [
+				'life_time'         => MONTH_IN_SECONDS,
 				'location_options'  => 'top-fixed',
 				'cookies_page_link' => '',
 			],
-			'content' => [
-				'input_button_text'     => 'I understand',
+			'content'                     => [
+				'input_button_text'     => 'Change Settings',
 				'input_link_text'       => 'Read more',
-				'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
+				'textarea_warning_text' => 'This website uses cookies . By using our website you accept our use of cookies . ',
 			],
-			'styles'  => [
+			'styles'                      => [
 				'messages_color_picker'     => '#3E3E3B',
 				'button_color_picker'       => '#EBECED',
 				'button_hover_color_picker' => '#CBC5C1',
 				'button_text_color_picker'  => '#3E3E3B',
 				'text_color_picker'         => '#EBECED',
 				'link_color_picker'         => '#CBC5C1',
+				'add_button_class'          => 'custom-cookie-message-banner__button',
+			],
+			'cookie_granularity_settings' => [
+				'headline'                    => 'Privacy Preferences',
+				'required_cookies_message'    => 'Required Cookies Message',
+				'functional_cookies_message'  => 'Functional Cookies Message',
+				'advertising_cookies_message' => 'Advertising Cookies Message',
+				'functional_list'             => '',
+				'advertising_list'            => '',
 			],
 		];
 

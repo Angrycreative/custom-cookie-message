@@ -60,6 +60,8 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_section( 'general', esc_html__( 'General Options', 'custom-cookie-message' ), [ $this, 'cookies_general_options_callback' ], $this->section_page );
 
+		add_settings_field( 'life_time', esc_html__( 'Life Time Cookie:', 'custom-cookie-message' ), [ $this, 'cookies_life_time_callback' ], $this->section_page, 'general' );
+
 		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
 
 		add_settings_field( 'cookies_page_link', esc_html__( 'Enter url to the page about cookies:', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
@@ -71,6 +73,15 @@ class AdminGeneralOptions extends AdminBase {
 	 */
 	public function cookies_general_options_callback() {
 		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'custom-cookie-message' ) . '</p>';
+	}
+
+	/**
+	 * Life Time Cookie.
+	 */
+	public function cookies_life_time_callback() {
+		$val = isset( $this->options['general']['life_time'] ) ? $this->options['general']['life_time'] : '0';
+		echo '<input type="text" id="life_time_slider_amount" name="custom_cookie_message[general][life_time]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<span class="life_time_message"></span><div id="life_time_slider" class="slider"></div>';
 	}
 
 	/**

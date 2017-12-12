@@ -58,37 +58,78 @@ class AdminCookieSettings extends AdminBase {
 	 */
 	public function cookies_initialize_cookie_options() {
 
-		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie List Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
+		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Granilarity Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
 
-		add_settings_field( 'cookie_list', esc_html__( 'Cookie we found:', 'custom-cookie-message' ), [ $this, 'cookie_message_height_slider_callback' ], $this->section_page, 'cookie_settings_section' );
+		add_settings_field( 'headline', esc_html__( 'Head Line Message:', 'custom-cookie-message' ), [ $this, 'cookie_headline_callback' ], $this->section_page, 'cookie_settings_section' );
+
+		add_settings_field( 'required_cookies', esc_html__( 'Required Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_required_callback' ], $this->section_page, 'cookie_settings_section' );
+
+		add_settings_field( 'functional_cookies', esc_html__( 'Functional Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_functional_callback' ], $this->section_page, 'cookie_settings_section' );
+
+		add_settings_field( 'advertising_cookies', esc_html__( 'Advertising Cookies Message:', 'custom-cookie-message' ), [ $this, 'cookie_advertising_callback' ], $this->section_page, 'cookie_settings_section' );
 	}
 
 	/**
 	 * List options.
 	 */
 	public function cookie_list_options_callback() {
-		echo '<p>' . esc_html_e( 'Label and select priority.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Activate Cookies and granilarity.', 'cookie-message' ) . '</p>';
 	}
 
 	/**
-	 * Options.
+	 * Required Cookies Message.
 	 */
-	public function cookie_message_height_slider_callback() {
+	public function cookie_headline_callback() {
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[cookie_granularity_settings][headline]" value="' . $this->options['cookie_granularity_settings']['headline'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
+	}
 
-		$options_priority = [
-			esc_html__( 'Necesary Cookies', 'custom-cookie-message' ),
-			esc_html__( 'Performance Cookies', 'custom-cookie-message' ),
-			esc_html__( 'Commercial Cookies', 'custom-cookie-message' ),
-		];
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_required_callback() {
+		$html = '<label>';
+		$html .= esc_html__( 'These cookies are required to enable core site functionality, we can not disable anything here.', 'custom-cookie-message' );
+		$html .= '</label>';
 
-		setrawcookie( 'fr', '', 0, '/', '.facebook.com', true, true );
+		echo $html; // WPCS: XSS ok.
+		wp_editor( $this->options['cookie_granularity_settings']['required_cookies_message'], 'required_cookies_message', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][required_cookies_message]',
+		] );
+	}
 
-		// TODO: Map $options.
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_functional_callback() {
+		$html = '<label>';
+		$html .= esc_html__( 'These cookies allow us to analyze site usage so we can measure and improve performance. Example, hotjar', 'custom-cookie-message' ) . '<br>';
+		$html .= '<input placeholder="hotjar, analytics" name="custom_cookie_message[cookie_granularity_settings][functional_list]" value="' . $this->options['cookie_granularity_settings']['functional_list'] . '" class="large-text ltr">';
+		$html .= '</label>';
 
-		$output = '<div class="cookie_list_wrapper">';
-		$output .= '</div>';
+		echo $html; // WPCS: XSS ok.
 
-		echo $output;
+		wp_editor( $this->options['cookie_granularity_settings']['functional_cookies_message'], 'functional_cookies_message', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][functional_cookies_message]',
+		] );
+	}
+
+	/**
+	 * Required Cookies Message.
+	 */
+	public function cookie_advertising_callback() {
+		$html = '<label>';
+		$html .= esc_html__( 'These cookies are used by advertising companies to serve ads that are relevant to your interests. Example, Doubleclick', 'custom-cookie-message' ) . '<br>';
+		$html .= '<input placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
+		$html .= '</label>';
+
+		echo $html; // WPCS: XSS ok.
+
+		wp_editor( $this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [
+			'teeny'         => true,
+			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][advertising_cookies_message]',
+		] );
 	}
 
 }
