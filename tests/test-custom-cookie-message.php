@@ -25,6 +25,7 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	protected $route = '/custom-cm';
 
 	public function setUp() {
+		@session_start();
 		parent::setUp();
 
 		/**
@@ -131,6 +132,25 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 		$this->assertEquals( 200, $response->get_status(), 'Upgrade went well.' );
 		$this->assertNotEmpty( $response->get_data()['template'], 'Template was not included.' );
+	}
+
+	/**
+	 * Test save cookies preferences.
+	 *
+	 * @runInSeparateProcess
+	 */
+	public function test_rest_api_post_preferences() {
+		update_option( 'custom_cookie_message', [
+			'general' => [
+				'life_time' => 0,
+			],
+		] );
+
+		$request  = new WP_REST_Request( 'POST', $this->route . '/cookie-preference' );
+		$response = $this->server->dispatch( $request );
+
+		// We just can assert the response code.
+		$this->assertEquals( 200, $response->get_status(), 'Cookie preferences were save.' );
 	}
 
 }

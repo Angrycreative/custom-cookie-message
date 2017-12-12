@@ -137,8 +137,9 @@ class Controller {
 	 */
 	public function creatable_cookie_preference( \WP_REST_Request $request ) {
 		$options = get_option( 'custom_cookie_message' );
+		$url     = parse_url( home_url() );
 
-		if ( setcookie( 'custom-cookie-message', 1, $options['general']['life_time'], '/' ) ) {
+		if ( setcookie( 'custom-cookie-message', 1, $options['general']['life_time'], '/', ".{$url['host']}" ) ) {
 			return new \WP_REST_Response( [
 				'success' => 200,
 			], 200 );
