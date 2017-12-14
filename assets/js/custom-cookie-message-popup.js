@@ -28,7 +28,7 @@ jQuery( function ( $ ) {
       setTimeout( function () {
         customCookieMessage.changeSettings();
         $( '#custom-cookie-message-banner' ).remove();
-      }, 300 );
+      }, 350 );
 
     },
 
