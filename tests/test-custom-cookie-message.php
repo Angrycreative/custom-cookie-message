@@ -41,10 +41,11 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		do_action( 'rest_api_init' );
 
 		wp_enqueue_script( 'google', 'http://www.example.com/google.js' );
-		wp_enqueue_script( 'facebook', 'http://www.example.com/google.js' );
 		wp_enqueue_script( 'twitter', 'http://www.example.com/google.js' );
-		wp_enqueue_script( 'doubleclick', 'http://www.example.com/google.js' );
 		wp_enqueue_script( 'hotjar', 'http://www.example.com/google.js' );
+
+		wp_enqueue_script( 'doubleclick', 'http://www.example.com/google.js' );
+		wp_enqueue_script( 'facebook', 'http://www.example.com/google.js' );
 
 	}
 
@@ -177,8 +178,12 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 		\CustomCookieMessage\Main::single()->ccm_handle_scripts();
 
-		$this->assertArrayNotHasKey( 'facebook', $wp_scripts->queue );
-		$this->assertArrayNotHasKey( 'doubleclick', $wp_scripts->queue );
+		$this->assertNotContains( 'facebook', $wp_scripts->queue );
+		$this->assertNotContains( 'doubleclick', $wp_scripts->queue );
+
+		$this->assertContains( 'google', $wp_scripts->queue );
+		$this->assertContains( 'hotjar', $wp_scripts->queue );
+		$this->assertContains( 'twitter', $wp_scripts->queue );
 
 	}
 
