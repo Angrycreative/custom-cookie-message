@@ -189,6 +189,16 @@ jQuery( function ( $ ) {
     },
   } );
 
+  $( '#cookies_page_link' ).ccm_suggest( {
+    url: customCookieMessageAdminLocalize.rest_post_link,
+    cache: false,
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageAdminLocalize.wp_rest_nonce );
+    },
+  }, {
+    multiple: false,
+  } );
+
   $( '.notice.custom-cookie-message' )
     .on( 'click', '.custom-cookie-message-upgrade', function ( e ) {
       e.preventDefault();
