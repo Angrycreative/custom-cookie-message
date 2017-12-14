@@ -114,6 +114,7 @@ class AdminForm extends AdminBase {
 		wp_localize_script( 'custom-cookie-message-admin-style', 'customCookieMessageAdminLocalize', [
 			'rest_url'           => rest_url( 'custom-cm/upgrade' ),
 			'rest_post_link'     => rest_url( 'custom-cm/post_link' ),
+			'rest_cookie_list'   => rest_url( 'custom-cm/cookie_list' ),
 			'ccm_nonce'          => wp_create_nonce( 'custom_cookie_message_upgrade' ),
 			'wp_rest_nonce'      => wp_create_nonce( 'wp_rest' ),
 			'life_time'          => [

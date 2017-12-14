@@ -65,6 +65,10 @@ class Controller {
 				'permission_callback' => [ $this, 'upgrade_permissions' ],
 			],
 		] );
+		register_rest_route( $namespace_route, '/cookie_list/(?P<category>.+)', [
+			'methods'  => \WP_REST_Server::READABLE,
+			'callback' => [ $this, 'redeable_cookie_list' ],
+		] );
 		register_rest_route( $namespace_route, '/post_link', [
 			'methods'  => \WP_REST_Server::READABLE,
 			'callback' => [ $this, 'redeable_post_link' ],
@@ -185,6 +189,53 @@ class Controller {
 		}
 
 		return new \WP_REST_Response( $result, 200 );
+	}
+
+	/**
+	 * Filter the default cookie list with search terms.
+	 *
+	 * @param \WP_REST_Request $request WordPress REST Request.
+	 *
+	 * @return array
+	 */
+	protected function filter_cookie_list( \WP_REST_Request $request ) {
+		$cookie_list = [];
+		$category    = sanitize_textarea_field( $request->get_param( 'category' ) );
+
+		if ( ! $request->get_param( 'category' ) && ! is_file( CUSTOM_COOKIE_MESSAGE_DIR . '/assets/data/' . $category . '-cookie-list.php' ) ) {
+			return $cookie_list;
+		}
+
+		$q               = sanitize_textarea_field( $request->get_param( 'q' ) );
+		$raw_cookie_list = include CUSTOM_COOKIE_MESSAGE_DIR . '/assets/data/' . $category . '-cookie-list.php';
+		$raw_cookie_list = apply_filters( 'ccm_' . $category . '_cookies_list', $raw_cookie_list );
+
+		foreach ( $raw_cookie_list as $cookie ) {
+			if ( preg_match( "@{$q}@", $cookie ) ) {
+				$cookie_list[] = $cookie;
+			}
+		}
+
+		return $cookie_list;
+
+	}
+
+	/**
+	 * Fetch cookie list.
+	 *
+	 * @param \WP_REST_Request $request WordPress REST Request.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function redeable_cookie_list( \WP_REST_Request $request ) {
+
+		$result = $this->filter_cookie_list( $request );
+
+		if ( ! empty( $result ) ) {
+			return new \WP_REST_Response( $result, 200 );
+		}
+
+		return new \WP_REST_Response( [], 404 );
 	}
 
 }
