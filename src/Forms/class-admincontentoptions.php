@@ -68,6 +68,10 @@ class AdminContentOptions extends AdminBase {
 
 		add_settings_field( 'save_settings_button', esc_html__( 'Save Settings button text:', 'custom-cookie-message' ), [ $this, 'cookies_save_settings_button_callback' ], $this->section_page, 'content' );
 
+		add_settings_field( 'shortcode_text', esc_html__( 'Shortcode Text:', 'custom-cookie-message' ), [ $this, 'cookies_shortcode_text_callback' ], $this->section_page, 'content' );
+
+		add_settings_field( 'cookies_shortcode', esc_html__( 'Shortcode:', 'custom-cookie-message' ), [ $this, 'cookies_shortcode_callback' ], $this->section_page, 'content' );
+
 	}
 
 	/**
@@ -103,6 +107,28 @@ class AdminContentOptions extends AdminBase {
 	 */
 	public function cookies_save_settings_button_callback() {
 		echo '<input type="text" id="input_button_text" name="custom_cookie_message[content][save_settings_button]" value="' . $this->options['content']['save_settings_button'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Shortcode
+	 */
+	public function cookies_shortcode_text_callback() {
+		echo '<input name="custom_cookie_message[content][shortcode_text]" value="' . $this->options['content']['shortcode_text'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Shortcode
+	 */
+	public function cookies_shortcode_callback() {
+		//  . ' ' . do_shortcode( '[ccm_preferences style="button"]' ) . '<br>'
+		echo '<div>';
+		echo do_shortcode( '[ccm_preferences]' );
+		echo '<input value="[ccm_preferences]">'; // WPCS: XSS ok.
+		echo '</div>';
+		echo '<div>';
+		echo do_shortcode( '[ccm_preferences style="button"]' );
+		echo '<input value=\'[ccm_preferences style="button"]\'>'; // WPCS: XSS ok.
+		echo '</div>';
 	}
 
 }

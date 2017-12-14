@@ -105,6 +105,8 @@ class Main {
 
 		load_plugin_textdomain( 'custom-cookie-message' );
 
+		add_shortcode( 'ccm_preferences', [ '\CustomCookieMessage\Shortcode', 'ccm_shortcode_preferences' ] );
+
 		if ( is_admin() ) {
 			AdminForm::single();
 
@@ -113,9 +115,9 @@ class Main {
 			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
 		}
 
-		if ( empty( $_COOKIE['custom-cookie-message'] ) ) {
-			add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
-		} else {
+		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
+
+		if ( ! empty( $_COOKIE['custom-cookie-message'] ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ], 99 );
 		}
 
@@ -150,7 +152,7 @@ class Main {
 			}
 		}
 
-		// Is empty, who trigger it?
+		// Is empty, nani?
 		if ( empty( $update_queue ) ) {
 			return;
 		}
@@ -203,23 +205,6 @@ class Main {
 				wp_dequeue_script( $handle );
 			}
 		}
-	}
-
-	/**
-	 * Enqueue scripts needed for coockies.
-	 */
-	public function ccm_enqueue_scripts() {
-
-		wp_register_style( 'cookie_style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css' );
-
-		wp_enqueue_style( 'cookie_style' );
-
-		wp_enqueue_script( 'my-ajax-request', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ac-custom-cookie-message-frontend.js', [ 'jquery' ] );
-
-		wp_localize_script( 'my-ajax-request', 'MyAjax', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		] );
-
 	}
 
 	/**
@@ -306,7 +291,8 @@ class Main {
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',
 				'input_link_text'       => 'Read more',
-				'textarea_warning_text' => 'This website uses cookies . By using our website you accept our use of cookies . ',
+				'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
+				'shortcode_text'        => 'Cookie Preferences',
 			],
 			'styles'                      => [
 				'messages_color_picker'     => '#3E3E3B',
