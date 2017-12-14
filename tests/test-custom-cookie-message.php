@@ -39,6 +39,13 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 		$this->server   = $wp_rest_server;
 
 		do_action( 'rest_api_init' );
+
+		wp_enqueue_script( 'google', 'http://www.example.com/google.js' );
+		wp_enqueue_script( 'facebook', 'http://www.example.com/google.js' );
+		wp_enqueue_script( 'twitter', 'http://www.example.com/google.js' );
+		wp_enqueue_script( 'doubleclick', 'http://www.example.com/google.js' );
+		wp_enqueue_script( 'hotjar', 'http://www.example.com/google.js' );
+
 	}
 
 	/**
@@ -151,6 +158,28 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 
 		// We just can assert the response code.
 		$this->assertEquals( 200, $response->get_status(), 'Cookie preferences were save.' );
+	}
+
+	public function test_dequeue_scripts() {
+		global $wp_scripts;
+
+		add_option( 'custom_cookie_message', [
+			'cookie_granularity_settings' => [
+				'functional_list'  => 'hotjar, google, twitter',
+				'advertising_list' => 'facebook, doubleclick',
+			],
+		] );
+
+		$_COOKIE['custom-cookie-message'] = wp_json_encode( [
+			'functional'  => true,
+			'advertising' => false,
+		], JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+
+		\CustomCookieMessage\Main::single()->ccm_handle_scripts();
+
+		$this->assertArrayNotHasKey( 'facebook', $wp_scripts->queue );
+		$this->assertArrayNotHasKey( 'doubleclick', $wp_scripts->queue );
+
 	}
 
 }

@@ -103,13 +103,18 @@ class AdminForm extends AdminBase {
 		wp_enqueue_style( 'jquery-style', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
 		wp_enqueue_style( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-admin-style.css' );
 		wp_enqueue_style( 'wp-color-picker' );
+		wp_register_script( 'ccm-suggest', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/ccm-suggest.js', [], Main::version() );
 		wp_enqueue_script( 'custom-cookie-message-admin-style', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-backend.js', [
 			'jquery',
 			'jquery-ui-slider',
+			'jquery-ui-autocomplete',
 			'wp-color-picker',
+			'ccm-suggest',
 		], Main::version() );
 		wp_localize_script( 'custom-cookie-message-admin-style', 'customCookieMessageAdminLocalize', [
 			'rest_url'           => rest_url( 'custom-cm/upgrade' ),
+			'rest_post_link'     => rest_url( 'custom-cm/post_link' ),
+			'rest_cookie_list'   => rest_url( 'custom-cm/cookie_list' ),
 			'ccm_nonce'          => wp_create_nonce( 'custom_cookie_message_upgrade' ),
 			'wp_rest_nonce'      => wp_create_nonce( 'wp_rest' ),
 			'life_time'          => [

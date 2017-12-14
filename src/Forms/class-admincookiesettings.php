@@ -87,49 +87,47 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_required_callback() {
-		$html = '<label>';
+		$html = '<br><label>';
 		$html .= esc_html__( 'These cookies are required to enable core site functionality, we can not disable anything here.', 'custom-cookie-message' );
 		$html .= '</label>';
 
-		echo $html; // WPCS: XSS ok.
 		wp_editor( $this->options['cookie_granularity_settings']['required_cookies_message'], 'required_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][required_cookies_message]',
 		] );
+		echo $html; // WPCS: XSS ok.
 	}
 
 	/**
 	 * Required Cookies Message.
 	 */
 	public function cookie_functional_callback() {
-		$html = '<label>';
+		$html = '<br><label>';
 		$html .= esc_html__( 'These cookies allow us to analyze site usage so we can measure and improve performance. Example, hotjar', 'custom-cookie-message' ) . '<br>';
-		$html .= '<input placeholder="hotjar, analytics" name="custom_cookie_message[cookie_granularity_settings][functional_list]" value="' . $this->options['cookie_granularity_settings']['functional_list'] . '" class="large-text ltr">';
+		$html .= '<input id="functional_cookies_ban" placeholder="hotjar, analytics" name="custom_cookie_message[cookie_granularity_settings][functional_list]" value="' . $this->options['cookie_granularity_settings']['functional_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
-
-		echo $html; // WPCS: XSS ok.
 
 		wp_editor( $this->options['cookie_granularity_settings']['functional_cookies_message'], 'functional_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][functional_cookies_message]',
 		] );
+		echo $html; // WPCS: XSS ok.
 	}
 
 	/**
 	 * Required Cookies Message.
 	 */
 	public function cookie_advertising_callback() {
-		$html = '<label>';
+		$html = '<br><label>';
 		$html .= esc_html__( 'These cookies are used by advertising companies to serve ads that are relevant to your interests. Example, Doubleclick', 'custom-cookie-message' ) . '<br>';
-		$html .= '<input placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
+		$html .= '<input id="advertising_cookies_ban" placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
-
-		echo $html; // WPCS: XSS ok.
 
 		wp_editor( $this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [
 			'teeny'         => true,
 			'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][advertising_cookies_message]',
 		] );
+		echo $html; // WPCS: XSS ok.
 	}
 
 }

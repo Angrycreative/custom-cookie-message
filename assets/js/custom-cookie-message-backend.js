@@ -189,6 +189,36 @@ jQuery( function ( $ ) {
     },
   } );
 
+  $( '#cookies_page_link' ).ccm_suggest( {
+    url: customCookieMessageAdminLocalize.rest_post_link,
+    cache: false,
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageAdminLocalize.wp_rest_nonce );
+    },
+  }, {
+    multiple: false,
+  } );
+
+  $( '#functional_cookies_ban' ).ccm_suggest( {
+    url: customCookieMessageAdminLocalize.rest_cookie_list + '/functional',
+    cache: false,
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageAdminLocalize.wp_rest_nonce );
+    },
+  }, {
+    multiple: true,
+  } );
+
+  $( '#advertising_cookies_ban' ).ccm_suggest( {
+    url: customCookieMessageAdminLocalize.rest_cookie_list + '/advertising',
+    cache: false,
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageAdminLocalize.wp_rest_nonce );
+    },
+  }, {
+    multiple: true,
+  } );
+
   $( '.notice.custom-cookie-message' )
     .on( 'click', '.custom-cookie-message-upgrade', function ( e ) {
       e.preventDefault();
