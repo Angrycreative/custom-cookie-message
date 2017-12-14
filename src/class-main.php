@@ -117,7 +117,7 @@ class Main {
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
 
-		if ( ! empty( $_COOKIE['custom-cookie-message'] ) ) {
+		if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ], 99 );
 		}
 
@@ -195,13 +195,14 @@ class Main {
 		global $wp_scripts;
 		$options = get_option( 'custom_cookie_message' );
 
-		$cookie_ccm = json_decode( stripslashes( $_COOKIE['custom-cookie-message'] ) );
+		$cookie_ccm = json_decode( stripslashes( $_COOKIE['custom_cookie_message'] ) );
 
 		foreach ( $wp_scripts->queue as $handle ) {
-			if ( ! $cookie_ccm->functional && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['functional_list'] ) ) ) {
+			// JSON Cookie values are strings.
+			if ( 'false' === $cookie_ccm->functional && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['functional_list'] ) ) ) {
 				wp_dequeue_script( $handle );
 			}
-			if ( ! $cookie_ccm->advertising && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['advertising_list'] ) ) ) {
+			if ( 'false' === $cookie_ccm->advertising && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['advertising_list'] ) ) ) {
 				wp_dequeue_script( $handle );
 			}
 		}
@@ -239,7 +240,7 @@ class Main {
 			return;
 		}
 
-		include_once $located;
+		include $located;
 	}
 
 	/**

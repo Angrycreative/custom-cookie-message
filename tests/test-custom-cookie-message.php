@@ -170,7 +170,7 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 			],
 		] );
 
-		$_COOKIE['custom-cookie-message'] = wp_json_encode( [
+		$_COOKIE['custom_cookie_message'] = wp_json_encode( [
 			'functional'  => true,
 			'advertising' => false,
 		], JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );

@@ -34,7 +34,7 @@ class Shortcode {
 		}
 
 		ob_start();
-		echo '<a href="#" id="ccm_cookie_preferences" class="' . $class . '">' . esc_html( $option['content']['shortcode_text'] ) . '</a>'; // WPCS: XSS ok.
+		echo '<a id="ccm_cookie_preferences" class="' . $class . '">' . esc_html( $option['content']['shortcode_text'] ) . '</a>'; // WPCS: XSS ok.
 
 		return ob_get_clean();
 
