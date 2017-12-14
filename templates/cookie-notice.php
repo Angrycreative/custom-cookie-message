@@ -67,6 +67,10 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 			</div>
 			<div class="custom-cookie-message-modal__functional_message hide">
 				<?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?>
+				<label class="custom-cookie-message-modal__checkbox">
+					<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+					<input type="checkbox" id="ccm-functional" checked>
+				</label>
 			</div>
 			<div class="custom-cookie-message-modal__advertising_message hide">
 				<?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?>

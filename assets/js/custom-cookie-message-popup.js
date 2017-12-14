@@ -16,7 +16,7 @@ jQuery( function ( $ ) {
         .on( 'click', '.custom-cookie-message-modal__close', this.killModal )
         .on( 'click', '#custom-cookie-message-modal', this.actionModal )
         .on( 'click', '.custom-cookie-message-modal__item', this.actionTab )
-        .on( 'click', '#cmm-save-preference', this.savePreferences );
+        .on( 'click', '#cmm-save-preference,.custom-cookie-message-banner__close', this.savePreferences );
     },
 
     changeSettings: function () {
@@ -70,6 +70,7 @@ jQuery( function ( $ ) {
         method: 'POST',
         cache: false,
         data: {
+          'functional': $( '#ccm-functional' ).prop( 'checked' ),
           'adsvertising': $( '#ccm-advertising' ).prop( 'checked' ),
         },
         beforeSend: function ( xhr ) {
