@@ -65,6 +65,10 @@ class Controller {
 				'permission_callback' => [ $this, 'upgrade_permissions' ],
 			],
 		] );
+		register_rest_route( $namespace_route, '/post_link', [
+			'methods'  => \WP_REST_Server::READABLE,
+			'callback' => [ $this, 'redeable_post_link' ],
+		] );
 		register_rest_route( $namespace_route, '/banner', [
 			'methods'  => \WP_REST_Server::READABLE,
 			'callback' => [ $this, 'redeable_popup_banner' ],
@@ -150,6 +154,37 @@ class Controller {
 		}
 
 		return new \WP_REST_Response( [], 500 );
+	}
+
+	/**
+	 * Return post link list.
+	 *
+	 * @param \WP_REST_Request $request WordPress REST request.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function redeable_post_link( \WP_REST_Request $request ) {
+
+		if ( ! $request->get_param( 'q' ) ) {
+			return new \WP_REST_Response( [], 404 );
+		}
+
+		$query = new \WP_Query( [
+			's'              => trim( $request->get_param( 'q' ) ),
+			'posts_per_page' => 5,
+		] );
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$result[] = get_permalink();
+			}
+			wp_reset_postdata();
+		} else {
+			return new \WP_REST_Response( [], 404 );
+		}
+
+		return new \WP_REST_Response( $result, 200 );
 	}
 
 }

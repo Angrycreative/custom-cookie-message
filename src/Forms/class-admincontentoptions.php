@@ -88,21 +88,21 @@ class AdminContentOptions extends AdminBase {
 	 * Link Text.
 	 */
 	public function cookies_input_link_text_callback() {
-		echo '<input type="text" id="input_link_text" name="custom_cookie_message[content][input_link_text]" value="' . $this->options['content']['input_link_text'] . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="input_link_text" name="custom_cookie_message[content][input_link_text]" value="' . $this->options['content']['input_link_text'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 	}
 
 	/**
 	 * Button text.
 	 */
 	public function cookies_input_button_text_callback() {
-		echo '<input type="text" id="input_button_text" name="custom_cookie_message[content][input_button_text]" value="' . $this->options['content']['input_button_text'] . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="input_button_text" name="custom_cookie_message[content][input_button_text]" value="' . $this->options['content']['input_button_text'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 	}
 
 	/**
 	 * Button text.
 	 */
 	public function cookies_save_settings_button_callback() {
-		echo '<input type="text" id="input_button_text" name="custom_cookie_message[content][save_settings_button]" value="' . $this->options['content']['save_settings_button'] . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="input_button_text" name="custom_cookie_message[content][save_settings_button]" value="' . $this->options['content']['save_settings_button'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 	}
 
 }

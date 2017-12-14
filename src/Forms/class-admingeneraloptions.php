@@ -80,7 +80,7 @@ class AdminGeneralOptions extends AdminBase {
 	 */
 	public function cookies_life_time_callback() {
 		$val = isset( $this->options['general']['life_time'] ) ? $this->options['general']['life_time'] : '0';
-		echo '<input type="text" id="life_time_slider_amount" name="custom_cookie_message[general][life_time]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<input type="text" id="life_time_slider_amount" name="custom_cookie_message[general][life_time]" value="' . $val . '" readonly class="hidden regular-text ltr">'; // WPCS: XSS ok.
 		echo '<span class="life_time_message"></span><div id="life_time_slider" class="slider"></div>';
 	}
 
@@ -101,7 +101,7 @@ class AdminGeneralOptions extends AdminBase {
 	 * Link page field.
 	 */
 	public function cookies_page_link_callback() {
-		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" placeholder="' . esc_html__( 'Paste URL or type to search', 'custom-cookie-message' ) . '" class="form-input-tip ui-autocomplete-input regular-text ltr" role="combobox" aria-autocomplete="list" aria-expanded="false" />'; // WPCS: XSS ok.
 	}
 
 }
