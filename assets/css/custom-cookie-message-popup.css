@@ -17,6 +17,29 @@
 .custom-cookie-message-banner__button {
   margin: 0;
 }
+.custom-cookie-message-banner__close {
+  position:        absolute;
+  top:             1rem;
+  right:           3rem;
+  display:         flex;
+  width:           3rem;
+  height:          3rem;
+  border:          2px solid #555;
+  border-radius:   1.5rem;
+  background:      white;
+  cursor:          pointer;
+  font-size:       0px;
+  line-height:     0px;
+  justify-content: center;
+  align-items:     center;
+}
+.custom-cookie-message-banner__close::after {
+  content:     "\f057";
+  font-family: "fontawesome";
+  font-size:   2rem;
+  line-height: 2rem;
+  display:     block;
+}
 .custom-cookie-message-modal {
   position:        sticky;
   display:         flex;
@@ -30,7 +53,7 @@
   height:          100vh;
   z-index:         999;
   justify-content: center;
-  align-items:     center;
+  align-items:     flex-start;
 }
 .custom-cookie-message-modal--off {
   display: none;
@@ -42,7 +65,7 @@
   width: 100%;
 }
 .custom-cookie-message-modal__box {
-  width:         500px;
+  width:         50%;
   background:    white;
   border:        2px solid #555;
   border-radius: 5px;
@@ -50,18 +73,30 @@
   flex-flow:     row wrap;
   padding:       20px;
   position:      relative;
+  margin-top:    15vh;
 }
 .custom-cookie-message-modal__close {
-  position:      absolute;
-  top:           -10px;
-  right:         -10px;
-  display:       block;
-  width:         40px;
-  height:        40px;
-  border:        2px solid #555;
-  border-radius: 20px;
-  background:    white;
-  cursor:        pointer;
+  position:        absolute;
+  top:             -10px;
+  right:           -10px;
+  display:         flex;
+  width:           40px;
+  height:          40px;
+  border:          2px solid #555;
+  border-radius:   20px;
+  background:      white;
+  cursor:          pointer;
+  font-size:       0px;
+  line-height:     0px;
+  justify-content: center;
+  align-items:     center;
+}
+.custom-cookie-message-modal__close::after {
+  content:     "\f057";
+  font-family: "fontawesome";
+  font-size:   2rem;
+  line-height: 2rem;
+  display:     block;
 }
 .custom-cookie-message-modal__tabs {
   width: 30%;

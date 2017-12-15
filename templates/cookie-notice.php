@@ -36,6 +36,18 @@ list( $r, $g, $b ) = sscanf( $options['styles']['modal_bg'], '#%02x%02x%02x' );
 $modal_background_opacity = $options['styles']['modal_bg_opacity'] / 100;
 $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_background_opacity});";
 
+$functional_check  = 'checked';
+$advertising_check = 'checked';
+
+if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
+	$cookie_preferences = json_decode( stripslashes( $_COOKIE['custom_cookie_message'] ) );
+
+	// JSON Cookie values are strings.
+	$functional_check  = 'false' === $cookie_preferences->functional ? '' : $functional_check;
+	$advertising_check = 'false' === $cookie_preferences->advertising ? '' : $advertising_check;
+
+}
+
 ?>
 <div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>" style="<?php echo esc_attr( $style_notice_banner ); ?>">
 	<div class="custom-cookie-message-banner__content">
@@ -67,12 +79,16 @@ $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_ba
 			</div>
 			<div class="custom-cookie-message-modal__functional_message hide">
 				<?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?>
+				<label class="custom-cookie-message-modal__checkbox">
+					<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+					<input type="checkbox" id="ccm-functional" <?php echo esc_attr( $functional_check ); ?>>
+				</label>
 			</div>
 			<div class="custom-cookie-message-modal__advertising_message hide">
 				<?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?>
 				<label class="custom-cookie-message-modal__checkbox">
 					<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
-					<input type="checkbox" id="ccm-advertising" checked>
+					<input type="checkbox" id="ccm-advertising" <?php echo esc_attr( $advertising_check ); ?>>
 				</label>
 			</div>
 		</div>

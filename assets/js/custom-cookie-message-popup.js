@@ -2,7 +2,7 @@ jQuery( function ( $ ) {
 
   'use stric';
 
-  let cookie = document.cookie.match( '(^|;) ?custom-cookie-message=([^;]*)(;|$)' );
+  let cookie = document.cookie.match( '(^|;) ?custom_cookie_message=([^;]*)(;|$)' );
 
   let customCookieMessage = {
     states: null, init: function () {
@@ -16,14 +16,27 @@ jQuery( function ( $ ) {
         .on( 'click', '.custom-cookie-message-modal__close', this.killModal )
         .on( 'click', '#custom-cookie-message-modal', this.actionModal )
         .on( 'click', '.custom-cookie-message-modal__item', this.actionTab )
-        .on( 'click', '#cmm-save-preference', this.savePreferences );
+        .on( 'click', '#ccm_cookie_preferences', this.cookiePreferences )
+        .on( 'click', '#cmm-save-preference,.custom-cookie-message-banner__close', this.savePreferences );
+    },
+
+    cookiePreferences: function ( event ) {
+      event.stopPropagation();
+
+      customCookieMessage.showCookieNotice();
+
+      setTimeout( function () {
+        customCookieMessage.changeSettings();
+        $( '#custom-cookie-message-banner' ).remove();
+      }, 350 );
+
     },
 
     changeSettings: function () {
       let modalBlock = $( '#custom-cookie-message-modal' );
-
       if ( modalBlock.hasClass( 'custom-cookie-message-modal--off' ) ) {
         modalBlock.removeClass( 'custom-cookie-message-modal--off' ).addClass( 'custom-cookie-message-modal--on' );
+        $( '#custom-cookie-message-banner' ).addClass( 'hide' );
       }
 
     },
@@ -32,6 +45,7 @@ jQuery( function ( $ ) {
       let modal = $( '#custom-cookie-message-modal' );
       if ( modal.hasClass( 'custom-cookie-message-modal--on' ) ) {
         modal.removeClass( 'custom-cookie-message-modal--on' ).addClass( 'custom-cookie-message-modal--off' );
+        $( '#custom-cookie-message-banner' ).removeClass( 'hide' );
       }
     },
 
@@ -70,6 +84,7 @@ jQuery( function ( $ ) {
         method: 'POST',
         cache: false,
         data: {
+          'functional': $( '#ccm-functional' ).prop( 'checked' ),
           'adsvertising': $( '#ccm-advertising' ).prop( 'checked' ),
         },
         beforeSend: function ( xhr ) {
@@ -77,7 +92,7 @@ jQuery( function ( $ ) {
         },
       } )
        .done( function () {
-         customCookieMessage.killModal();
+         $( '#custom-cookie-message-modal' ).remove();
          $( '#custom-cookie-message-banner' ).remove();
        } );
     },

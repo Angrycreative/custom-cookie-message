@@ -123,9 +123,7 @@ class Controller {
 		ob_start();
 		Main::get_template();
 
-		$template_content = ob_get_contents();
-
-		ob_end_clean();
+		$template_content = ob_get_clean();
 
 		if ( empty( $template_content ) ) {
 			return new \WP_REST_Response( esc_html__( 'Please double check your template files.' ), 404 );
@@ -151,7 +149,7 @@ class Controller {
 		$settings['advertising'] = $request->get_param( 'adsvertising' );
 		$cookie_value            = html_entity_decode( wp_json_encode( $settings, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK ) );
 
-		if ( setcookie( 'custom-cookie-message', $cookie_value, $options['general']['life_time'], '/', ".{$url['host']}" ) ) {
+		if ( setcookie( 'custom_cookie_message', $cookie_value, $options['general']['life_time'], '/' ) ) {
 			return new \WP_REST_Response( [
 				'success' => 200,
 			], 200 );
