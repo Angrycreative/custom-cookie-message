@@ -1,9 +1,15 @@
 <wpml-config>
-    <admin-texts>
-        <key name="custom_cookie_message">
-            <key name="input_button_text"/>
-            <key name="input_link_text"/>
-            <key name="textarea_warning_text"/>
-        </key>
-    </admin-texts>
+	<admin-texts>
+		<key name="custom_cookie_message">
+			<key name="textarea_warning_text"/>
+			<key name="input_link_text"/>
+			<key name="input_button_text"/>
+			<key name="save_settings_button"/>
+			<key name="shortcode_text"/>
+			<key name="headline"/>
+			<key name="required_cookies_message"/>
+			<key name="functional_cookies_message"/>
+			<key name="advertising_cookies_message"/>
+		</key>
+	</admin-texts>
 </wpml-config>
