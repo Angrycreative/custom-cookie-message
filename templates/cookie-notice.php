@@ -68,9 +68,9 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 		<h2 class="custom-cookie-message-modal__title"><?php $esc_html( $options['cookie_granularity_settings']['headline'], 'custom-cookie-message' ); ?></h2>
 		<div class="custom-cookie-message-modal__tabs">
 			<ul class="custom-cookie-message-modal__list">
-				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--required_message custom-cookie-message-modal__item--active"><?php esc_html_e( 'Required', 'custom-cookie-message' ); ?></li>
-				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php esc_html_e( 'Functional', 'custom-cookie-message' ); ?></li>
-				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php esc_html_e( 'Advertising', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--required_message custom-cookie-message-modal__item--active"><?php esc_html_e( 'Required Cookies', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php esc_html_e( 'Functional Cookies', 'custom-cookie-message' ); ?></li>
+				<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php esc_html_e( 'Advertising Cookies', 'custom-cookie-message' ); ?></li>
 			</ul>
 		</div>
 		<div class="custom-cookie-message-modal__content">

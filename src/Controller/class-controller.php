@@ -148,8 +148,11 @@ class Controller {
 		$settings['functional']  = $request->get_param( 'functional' );
 		$settings['advertising'] = $request->get_param( 'adsvertising' );
 		$cookie_value            = html_entity_decode( wp_json_encode( $settings, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK ) );
+		$expire = 0 === (int) $options['general']['life_time'] ? 0 : time() + (int) $options['general']['life_time'];
 
-		if ( setcookie( 'custom_cookie_message', $cookie_value, $options['general']['life_time'], '/', $url['host'] ) ) {
+		if ( setcookie( 'custom_cookie_message', $cookie_value, $expire, '/', $url['host'], is_ssl() ) ) {
+			wp_cache_flush();
+
 			return new \WP_REST_Response( [
 				'success' => 200,
 			], 200 );
