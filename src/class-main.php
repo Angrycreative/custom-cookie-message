@@ -130,6 +130,7 @@ class Main {
 
 		if ( empty( get_option( 'custom_cookie_message', [] ) ) ) {
 			add_option( 'custom_cookie_message', self::ccm_set_default_options() );
+			update_site_option( 'custom_cookie_message_version', self::version() );
 		}
 
 	}
@@ -160,6 +161,8 @@ class Main {
 		foreach ( $update_queue as $update_function ) {
 			$update_function();
 		}
+
+		update_site_option( 'custom_cookie_message_version', self::version() );
 
 	}
 

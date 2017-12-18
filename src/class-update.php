@@ -43,6 +43,5 @@ class Update {
 		delete_option( 'cookies_content_options' );
 		delete_option( 'cookies_styling_options' );
 
-		update_site_option( 'custom_cookie_message_version', Main::version() );
 	}
 }
