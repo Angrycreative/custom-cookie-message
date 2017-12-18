@@ -1,0 +1,24 @@
+{
+    "name": "angrycreative/custom-cookie-message",
+    "description": "A customizable cookie message, compatible with GDPR compliance.",
+    "homepage": "https://github.com/Angrycreative/custom-cookie-message",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Angry Creative AB",
+            "email": "hej@angrycreative.se",
+            "homepage": "https://angrycreative.se"
+        },
+        {
+            "name": "Luigi Guevara",
+            "email": "luigi.t.guevara@killua.me",
+            "homepage": "https://killua.me"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/Angrycreative/custom-cookie-message",
+        "issues": "https://github.com/Angrycreative/custom-cookie-message/issues"
+    },
+    "keywords": ["custom", "cookie", "message", "consent", "cookie bar", "cookie law", "cookie notice", "cookie gdpr", "gdpr", "gdpr law", "gdpr notice"]
+}
