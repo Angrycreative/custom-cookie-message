@@ -52,7 +52,7 @@ class Main {
 	 * @param string $class_name Class name loader.
 	 */
 	public function autoload( $class_name ) {
-		if ( false === strpos( $class_name, 'CustomCookieMessage' ) ) {
+		if ( false === preg_match( '@(CustomCookieMessage)@', $class_name ) ) {
 			return;
 		}
 
@@ -62,6 +62,8 @@ class Main {
 
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
 			include CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path );
+		} else {
+			wp_die( 'File does not exists ' . CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path ) );
 		}
 	}
 
