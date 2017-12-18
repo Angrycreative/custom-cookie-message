@@ -61,7 +61,7 @@ class Main {
 		$file_path = str_replace( 'CustomCookieMessage/', '', $class ) . '.php';
 
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
-			include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path );
+			include CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . strtolower( $file_path );
 		}
 	}
 
