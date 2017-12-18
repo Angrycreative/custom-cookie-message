@@ -152,7 +152,7 @@ class AdminForm extends AdminBase {
 
 			<h2><?php echo $page_title; // WPCS: XSS ok. ?></h2>
 
-			<?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_options'; ?>
+			<?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_options'; // WPCS: csrf ok. ?>
 
 			<h2 class="nav-tab-wrapper">
 				<a href="?page=custom_cookie_message_options&tab=general_options" class="nav-tab <?php echo 'general_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'General Options', 'custom-cookie-message' ); ?></a> <a href="?page=custom_cookie_message_options&tab=content_options" class="nav-tab <?php echo 'content_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Content Options', 'custom-cookie-message' ); ?></a>

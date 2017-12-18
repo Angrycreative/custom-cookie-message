@@ -120,7 +120,6 @@ class AdminContentOptions extends AdminBase {
 	 * Shortcode
 	 */
 	public function cookies_shortcode_callback() {
-		//  . ' ' . do_shortcode( '[ccm_preferences style="button"]' ) . '<br>'
 		echo '<div>';
 		echo do_shortcode( '[ccm_preferences]' );
 		echo '<input value="[ccm_preferences]">'; // WPCS: XSS ok.

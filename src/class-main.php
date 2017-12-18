@@ -189,6 +189,31 @@ class Main {
 	}
 
 	/**
+	 * Clean pattern list.
+	 *
+	 * @param array $patter_array List cookie pattern to block.
+	 *
+	 * @return string
+	 */
+	protected function ccm_patter_list( $patter_array ) {
+
+		if ( ! is_array( $patter_array ) ) {
+			return '';
+		}
+
+		$patter_array = array_filter( $patter_array, function ( $value ) {
+			return '' !== trim( $value );
+		} );
+
+		$patter_array = array_map( function ( $pattern ) {
+			return '(' . trim( $pattern ) . ')';
+		}, $patter_array );
+
+		return implode( '|', $patter_array );
+
+	}
+
+	/**
 	 * Dequeue cookies when user change settings.
 	 */
 	public function ccm_handle_scripts() {
@@ -197,11 +222,18 @@ class Main {
 
 		$cookie_ccm = json_decode( stripslashes( $_COOKIE['custom_cookie_message'] ) );
 
+		$functional_list  = explode( ',', $options['cookie_granularity_settings']['functional_list'] . ',' );
+		$advertising_list = explode( ',', $options['cookie_granularity_settings']['advertising_list'] . ',' );
+
+		$functional_list  = $this->ccm_patter_list( $functional_list );
+		$advertising_list = $this->ccm_patter_list( $advertising_list );
+
 		foreach ( $wp_scripts->queue as $handle ) {
-			if ( ! $cookie_ccm->functional && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['functional_list'] ) ) ) {
+
+			if ( 'false' === $cookie_ccm->functional && preg_match( "@{$functional_list}@", $handle ) ) {
 				wp_dequeue_script( $handle );
 			}
-			if ( ! $cookie_ccm->advertising && preg_grep( "@{$handle}@", explode( ',', $options['cookie_granularity_settings']['advertising_list'] ) ) ) {
+			if ( 'false' === $cookie_ccm->advertising && preg_match( "@{$advertising_list}@", $handle ) ) {
 				wp_dequeue_script( $handle );
 			}
 		}
