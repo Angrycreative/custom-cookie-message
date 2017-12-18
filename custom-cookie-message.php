@@ -12,6 +12,7 @@
  * Plugin URI:        https://github.com/Angrycreative/custom-cookie-message
  * Description:       A customizable cookie message, compatible with GDPR compliance.
  * Text Domain:       custom-cookie-message
+ * Domain Path:       /languages/
  * Version:           2.0.0
  * Tested up to:      4.9
  * Requires PHP:      5.6
