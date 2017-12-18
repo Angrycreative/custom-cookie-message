@@ -22,8 +22,6 @@ matrix:
     env: WP_VERSION=latest WP_MULTISITE=0
   - php: 7.1
     env: WP_VERSION=latest WP_MULTISITE=0
-  allow_failures:
-  - env: WP_VERSION=latest WP_MULTISITE=0
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
