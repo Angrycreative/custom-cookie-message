@@ -56,9 +56,16 @@ class Main {
 			return;
 		}
 
-		$class     = str_replace( '\\', DIRECTORY_SEPARATOR, str_replace( '_', '-', $class_name ) );
-		$class     = preg_replace( '#/([a-zA-Z]*)$#', strtolower( '/class-$1' ), $class );
-		$file_path = str_replace( 'CustomCookieMessage/', '', $class ) . '.php';
+		$class_normalize = str_replace( '\\', DIRECTORY_SEPARATOR, str_replace( '_', '-', $class_name ) );
+		$class_normalize = preg_replace( '#/([a-zA-Z]*)$#', '/class-$1', $class_normalize );
+		$class_normalize = explode( '/', $class_normalize );
+
+		array_shift( $class_normalize );
+		$class_file_name = array_pop( $class_normalize );
+
+		$class_path = implode( '/', $class_normalize );
+
+		$file_path = empty( $class_path ) ? strtolower( $class_file_name ) . '.php' : $class_path . '/' . strtolower( $class_file_name ) . '.php';
 
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
 			include CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path;
