@@ -139,11 +139,9 @@ class AdminForm extends AdminBase {
 
 		$allow_edition = false;
 
-		$current_roles = wp_get_current_user()->roles;
-
 		$page_title = get_admin_page_title();
 
-		if ( array_intersect( [ 'administrator', 'editor' ], $current_roles ) ) {
+		if ( current_user_can('manage_options') ) {
 			$allow_edition = true;
 		}
 		?>
