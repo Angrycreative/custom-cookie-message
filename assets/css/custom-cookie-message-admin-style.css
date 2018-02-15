@@ -1,0 +1,9 @@
+.slider {
+  max-width: 250px;
+}
+div.ui-slider-handle-custom {
+  padding-left:  7px;
+  padding-right: 7px;
+  text-align:    center;
+  min-width:     1.5em;
+}

@@ -1,5 +1,11 @@
 == changelog ==
 
+= 2.0.0 =
+* New Cookie structure
+* Support for Polylang
+* Support for GDPR
+* Better cookie life time spam (LTS)
+
 = 1.6.4 =
 * Changed on scroll behavior and added roles restriction to change styles in settings
 

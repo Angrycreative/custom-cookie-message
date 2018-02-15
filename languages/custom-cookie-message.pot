@@ -1,0 +1,261 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-18 13:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: tests/test-custom-cookie-message.php:63
+msgid "I understand"
+msgstr ""
+
+#: tests/test-custom-cookie-message.php:64
+msgid "Updated Read more"
+msgstr ""
+
+#: tests/test-custom-cookie-message.php:65
+msgid ""
+"This website uses cookies . By using our website you accept our use of "
+"cookies . "
+msgstr ""
+
+#: templates/cookie-notice.php:62 templates/cookie-notice.php:67
+msgid "Close"
+msgstr ""
+
+#: templates/cookie-notice.php:71
+msgid "Required Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:72
+msgid "Functional Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:73
+msgid "Advertising Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:83 templates/cookie-notice.php:90
+msgid "Active"
+msgstr ""
+
+#: src/class-main.php:184
+msgid "An update is available."
+msgstr ""
+
+#: src/class-main.php:185
+msgid "Upgrade now"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:61 src/Forms/class-adminform.php:160
+msgid "Styling Options"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:63
+msgid "Message container background"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:65
+msgid "Message container padding top and bottom"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:67
+msgid "Message container opacity"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:69
+msgid "Text font"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:71
+msgid "Text Color"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:73
+msgid "Link Color"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:75
+msgid "Button classes"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:77
+msgid "Button Color"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:79
+msgid "Button Hover Color"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:81
+msgid "Button Text Color"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:83
+msgid "Button Height"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:85
+msgid "Button Width"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:87
+msgid "Modal Background"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:89
+msgid "Modal Background Opacity"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:61
+msgid "Cookie Granilarity Options"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:63
+msgid "Head Line Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:65
+msgid "Required Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:67
+msgid "Functional Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:69
+msgid "Advertising Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:91
+msgid ""
+"These cookies are required to enable core site functionality, we can not "
+"disable anything here."
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:106
+msgid ""
+"These cookies allow us to analyze site usage so we can measure and improve "
+"performance. Example, hotjar"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:122
+msgid ""
+"These cookies are used by advertising companies to serve ads that are "
+"relevant to your interests. Example, Doubleclick"
+msgstr ""
+
+#: src/Forms/class-adminform.php:126
+msgid "Until session expires (closing browser)"
+msgstr ""
+
+#: src/Forms/class-adminform.php:127
+msgid "Weekly"
+msgstr ""
+
+#: src/Forms/class-adminform.php:128
+msgid "Montly"
+msgstr ""
+
+#: src/Forms/class-adminform.php:129
+msgid "Yearly"
+msgstr ""
+
+#: src/Forms/class-adminform.php:130
+msgid "Until end of times"
+msgstr ""
+
+#: src/Forms/class-adminform.php:158 src/Forms/class-admingeneraloptions.php:61
+msgid "General Options"
+msgstr ""
+
+#: src/Forms/class-adminform.php:158 src/Forms/class-admincontentoptions.php:61
+msgid "Content Options"
+msgstr ""
+
+#: src/Forms/class-adminform.php:160
+msgid "Cookie Settings"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:63
+msgid "Life Time Cookie:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:65
+msgid "Select location of message:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:67
+msgid "Enter url to the page about cookies:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:75
+msgid ""
+"Select where the cookie message should be displayed and enter the URL to the "
+"page about cookies."
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:104
+msgid "Paste URL or type to search"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:63
+msgid "Enter warning text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:65
+msgid "Enter link text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:67
+msgid "Enter button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:69
+msgid "Save Settings button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:71
+msgid "Shortcode Text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:73
+msgid "Shortcode:"
+msgstr ""
+
+#: src/Controller/class-controller.php:94
+msgid "What it is? No, thanks."
+msgstr ""
+
+#: src/Controller/class-controller.php:110
+msgid "Sorry, who are you?"
+msgstr ""
+
+#. Name of the plugin
+msgid "Custom Cookie Message"
+msgstr ""
+
+#. Description of the plugin
+msgid "A customizable cookie message, compatible with GDPR compliance."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/Angrycreative/custom-cookie-message"
+msgstr ""
+
+#. Author of the plugin
+msgid "Angry Creative AB"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://angrycreative.se/"
+msgstr ""
