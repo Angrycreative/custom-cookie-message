@@ -89,7 +89,7 @@ class AdminGeneralOptions extends AdminBase {
 	 */
 	public function cookies_select_position_callback() {
 
-		$html = '<select id="location_options" name="custom_cookie_message[general][location_options]">';
+		$html  = '<select id="location_options" name="custom_cookie_message[general][location_options]">';
 		$html .= '<option value="top-fixed"' . selected( $this->options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
 		$html .= '<option value="bottom-fixed"' . selected( $this->options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
 		$html .= '</select>';

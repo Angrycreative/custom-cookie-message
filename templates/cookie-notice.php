@@ -5,7 +5,7 @@
  * @package CustomCookieMessage.
  */
 
-include_once ABSPATH . 'wp-admin/includes/plugin.php';
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 $options = get_option( 'custom_cookie_message' );
 
@@ -21,11 +21,12 @@ if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-
 }
 
 list( $r, $g, $b ) = sscanf( $options['styles']['message_color_picker'], '#%02x%02x%02x' );
-$background_opacity  = $options['styles']['opacity_slider_amount'] / 100;
-$style_notice_banner = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
+
+$background_opacity   = $options['styles']['opacity_slider_amount'] / 100;
+$style_notice_banner  = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
 $style_notice_banner .= ' padding: ' . $options['styles']['message_height_slider_amount'] . 'px 0;';
 
-$style_message = 'color: ' . $options['styles']['text_color_picker'] . ';';
+$style_message  = 'color: ' . $options['styles']['text_color_picker'] . ';';
 $style_message .= empty( $options['styles']['text_font'] ) ? '' : 'font-family: ' . $options['styles']['text_font'] . ';';
 
 $style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';
@@ -33,6 +34,7 @@ $style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';
 $style_button_class = $options['styles']['add_button_class'];
 
 list( $r, $g, $b ) = sscanf( $options['styles']['modal_bg'], '#%02x%02x%02x' );
+
 $modal_background_opacity = $options['styles']['modal_bg_opacity'] / 100;
 $modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_background_opacity});";
 
@@ -53,10 +55,12 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 	<div class="custom-cookie-message-banner__content">
 		<div class="warning-text" style="<?php echo esc_attr( $style_message ); ?>">
 			<p><?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
-				<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
-				<a id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
+				<?php if ( $options['general']['cookies_page_link'] ) : ?>
+					<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+					<?php endif; ?>
+				<button id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
 					<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
-				</a>
+				</button>
 			</p>
 		</div>
 		<div class="custom-cookie-message-banner__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
