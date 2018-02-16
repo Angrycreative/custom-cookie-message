@@ -67,15 +67,15 @@ class Controller {
 		] );
 		register_rest_route( $namespace_route, '/cookie_list/(?P<category>.+)', [
 			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'redeable_cookie_list' ],
+			'callback' => [ $this, 'readeable_cookie_list' ],
 		] );
 		register_rest_route( $namespace_route, '/post_link', [
 			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'redeable_post_link' ],
+			'callback' => [ $this, 'readeable_post_link' ],
 		] );
 		register_rest_route( $namespace_route, '/banner', [
 			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'redeable_popup_banner' ],
+			'callback' => [ $this, 'readeable_popup_banner' ],
 		] );
 		register_rest_route( $namespace_route, '/cookie-preference', [
 			'methods'  => \WP_REST_Server::CREATABLE,
@@ -118,7 +118,7 @@ class Controller {
 	/**
 	 * Get popup Banner.
 	 */
-	public function redeable_popup_banner() {
+	public function readeable_popup_banner() {
 
 		ob_start();
 		Main::get_template();
@@ -168,7 +168,7 @@ class Controller {
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function redeable_post_link( \WP_REST_Request $request ) {
+	public function readeable_post_link( \WP_REST_Request $request ) {
 
 		if ( ! $request->get_param( 'q' ) ) {
 			return new \WP_REST_Response( [], 404 );
@@ -228,7 +228,7 @@ class Controller {
 	 *
 	 * @return \WP_REST_Response
 	 */
-	public function redeable_cookie_list( \WP_REST_Request $request ) {
+	public function readeable_cookie_list( \WP_REST_Request $request ) {
 
 		$result = $this->filter_cookie_list( $request );
 

@@ -100,7 +100,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Background color Picker field.
 	 */
 	public function cookies_message_color_picker_callback() {
-		$val = isset( $this->options['styles']['message_color_picker'] ) ? $this->options['styles']['message_color_picker'] : '';
+		$val = isset( $this->options['styles']['message_color_picker'] ) ? $this->options['styles']['message_color_picker'] : '#3d3d3d';
 		echo '<input type="text" id="message_color_picker" name="custom_cookie_message[styles][message_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
@@ -202,7 +202,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Button hover color.
 	 */
 	public function cookies_modal_background_callback() {
-		$val = isset( $this->options['styles']['modal_bg'] ) ? $this->options['styles']['modal_bg'] : '';
+		$val = isset( $this->options['styles']['modal_bg'] ) ? $this->options['styles']['modal_bg'] : '#3d3d3d';
 		echo '<input type="text" id="button_hover_color_picker" name="custom_cookie_message[styles][modal_bg]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
@@ -210,7 +210,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Button width.
 	 */
 	public function cookies_modal_background_opacity_callback() {
-		$val = isset( $this->options['styles']['modal_bg_opacity'] ) ? $this->options['styles']['modal_bg_opacity'] : '100';
+		$val = isset( $this->options['styles']['modal_bg_opacity'] ) ? $this->options['styles']['modal_bg_opacity'] : '50';
 		echo '<input type="text" id="modal_bg_opacity_amount" name="custom_cookie_message[styles][modal_bg_opacity]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
 		echo '<div id="modal_bg_opacity_slider" class="slider"><div id="modal_bg_opacity_slider_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}

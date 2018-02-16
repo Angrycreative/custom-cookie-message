@@ -7,6 +7,7 @@
   align-items:     center;
   transform:       translateZ(0);
   will-change:     transform;
+  z-index:         99;
 }
 .custom-cookie-message-banner--bottom-fixed {
   bottom: 0;
@@ -135,4 +136,9 @@
 .custom-cookie-message-modal__actions {
   flex:       1 0 100%;
   text-align: right;
+}
+
+
+.custom-cookie-message-modal__content div.hide {
+  display: none;
 }
