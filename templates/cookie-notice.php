@@ -5,7 +5,7 @@
  * @package CustomCookieMessage.
  */
 
-include_once ABSPATH . 'wp-admin/includes/plugin.php';
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 $options = get_option( 'custom_cookie_message' );
 
@@ -22,11 +22,11 @@ if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-
 
 list( $r, $g, $b ) = sscanf( $options['styles']['message_color_picker'], '#%02x%02x%02x' );
 
-$background_opacity  = $options['styles']['opacity_slider_amount'] / 100;
-$style_notice_banner = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
+$background_opacity   = $options['styles']['opacity_slider_amount'] / 100;
+$style_notice_banner  = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
 $style_notice_banner .= ' padding: ' . $options['styles']['message_height_slider_amount'] . 'px 0;';
 
-$style_message = 'color: ' . $options['styles']['text_color_picker'] . ';';
+$style_message  = 'color: ' . $options['styles']['text_color_picker'] . ';';
 $style_message .= empty( $options['styles']['text_font'] ) ? '' : 'font-family: ' . $options['styles']['text_font'] . ';';
 
 $style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';

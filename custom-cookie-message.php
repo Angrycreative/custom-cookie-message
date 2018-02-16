@@ -36,6 +36,6 @@ define( 'CUSTOM_COOKIE_MESSAGE_FILE', __FILE__ );
 define( 'CUSTOM_COOKIE_MESSAGE_BASENAME', plugin_basename( CUSTOM_COOKIE_MESSAGE_FILE ) );
 define( 'CUSTOM_COOKIE_MESSAGE_DIR', dirname( CUSTOM_COOKIE_MESSAGE_FILE ) );
 
-include_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/class-main.php';
+require_once CUSTOM_COOKIE_MESSAGE_DIR . '/src/class-main.php';
 
 Main::single();

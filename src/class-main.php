@@ -70,7 +70,7 @@ class Main {
 		if ( file_exists( CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path ) ) {
 			include CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path;
 		} else {
-			wp_die( 'File does not exists ' . CUSTOM_COOKIE_MESSAGE_DIR . '/src/' . $file_path );
+			wp_die( 'File does not exists ' . esc_url( CUSTOM_COOKIE_MESSAGE_DIR ) . '/src/' . esc_url( $file_path ) );
 		}
 	}
 
@@ -213,13 +213,17 @@ class Main {
 			return '';
 		}
 
-		$patter_array = array_filter( $patter_array, function ( $value ) {
-			return '' !== trim( $value );
-		} );
+		$patter_array = array_filter(
+			$patter_array, function ( $value ) {
+				return '' !== trim( $value );
+			}
+		);
 
-		$patter_array = array_map( function ( $pattern ) {
-			return '(' . trim( $pattern ) . ')';
-		}, $patter_array );
+		$patter_array = array_map(
+			function ( $pattern ) {
+					return '(' . trim( $pattern ) . ')';
+			}, $patter_array
+		);
 
 		return implode( '|', $patter_array );
 
@@ -259,12 +263,14 @@ class Main {
 		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
 
 		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
-		wp_localize_script( 'custom-cookie-message-popup', 'customCookieMessageLocalize', [
-			'options'             => get_option( 'custom_cookie_message' ),
-			'wp_rest'             => wp_create_nonce( 'wp_rest' ),
-			'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
-			'rest_url_preference' => rest_url( 'custom-cm/cookie-preference' ),
-		] );
+		wp_localize_script(
+			'custom-cookie-message-popup', 'customCookieMessageLocalize', [
+				'options'             => get_option( 'custom_cookie_message' ),
+				'wp_rest'             => wp_create_nonce( 'wp_rest' ),
+				'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
+				'rest_url_preference' => rest_url( 'custom-cm/cookie-preference' ),
+			]
+		);
 
 	}
 
@@ -298,10 +304,12 @@ class Main {
 
 		$default_path = CUSTOM_COOKIE_MESSAGE_PLUGIN_PATH . '/templates';
 
-		$template = locate_template( [
-			trailingslashit( $template_path ) . $template_name,
-			$template_name,
-		] );
+		$template = locate_template(
+			[
+				trailingslashit( $template_path ) . $template_name,
+				$template_name,
+			]
+		);
 
 		if ( ! $template ) {
 			$template = $default_path . '/' . $template_name;

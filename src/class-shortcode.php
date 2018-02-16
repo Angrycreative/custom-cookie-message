@@ -22,9 +22,11 @@ class Shortcode {
 	 * @return string
 	 */
 	public static function ccm_shortcode_preferences( $atts ) {
-		$atts = shortcode_atts( [
-			'style' => 'link',
-		], $atts );
+		$atts = shortcode_atts(
+			[
+				'style' => 'link',
+			], $atts
+		);
 
 		$class  = '';
 		$option = get_option( 'custom_cookie_message', [] );

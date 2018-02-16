@@ -58,29 +58,39 @@ class Controller {
 	public function custom_cookie_message_routes() {
 		$namespace_route = apply_filters( 'custom_cookie_message_route_register', 'custom-cm' );
 
-		register_rest_route( $namespace_route, '/upgrade', [
-			[
-				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => [ $this, 'upgrade' ],
-				'permission_callback' => [ $this, 'upgrade_permissions' ],
-			],
-		] );
-		register_rest_route( $namespace_route, '/cookie_list/(?P<category>.+)', [
-			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'readeable_cookie_list' ],
-		] );
-		register_rest_route( $namespace_route, '/post_link', [
-			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'readeable_post_link' ],
-		] );
-		register_rest_route( $namespace_route, '/banner', [
-			'methods'  => \WP_REST_Server::READABLE,
-			'callback' => [ $this, 'readeable_popup_banner' ],
-		] );
-		register_rest_route( $namespace_route, '/cookie-preference', [
-			'methods'  => \WP_REST_Server::CREATABLE,
-			'callback' => [ $this, 'creatable_cookie_preference' ],
-		] );
+		register_rest_route(
+			$namespace_route, '/upgrade', [
+				[
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'callback'            => [ $this, 'upgrade' ],
+					'permission_callback' => [ $this, 'upgrade_permissions' ],
+				],
+			]
+		);
+		register_rest_route(
+			$namespace_route, '/cookie_list/(?P<category>.+)', [
+				'methods'  => \WP_REST_Server::READABLE,
+				'callback' => [ $this, 'readeable_cookie_list' ],
+			]
+		);
+		register_rest_route(
+			$namespace_route, '/post_link', [
+				'methods'  => \WP_REST_Server::READABLE,
+				'callback' => [ $this, 'readeable_post_link' ],
+			]
+		);
+		register_rest_route(
+			$namespace_route, '/banner', [
+				'methods'  => \WP_REST_Server::READABLE,
+				'callback' => [ $this, 'readeable_popup_banner' ],
+			]
+		);
+		register_rest_route(
+			$namespace_route, '/cookie-preference', [
+				'methods'  => \WP_REST_Server::CREATABLE,
+				'callback' => [ $this, 'creatable_cookie_preference' ],
+			]
+		);
 	}
 
 	/**
@@ -91,9 +101,11 @@ class Controller {
 	 * @return \WP_Error|bool
 	 */
 	public function upgrade_permissions( \WP_REST_Request $request ) {
-		return $this->user->has_cap( 'update_plugins' ) ?: new \WP_Error( 'ccm_upgrade_permissions', esc_html__( 'What it is? No, thanks.', 'custom-cookie-message' ), [
-			'status' => 403,
-		] );
+		return $this->user->has_cap( 'update_plugins' ) ?: new \WP_Error(
+			'ccm_upgrade_permissions', esc_html__( 'What it is? No, thanks.', 'custom-cookie-message' ), [
+				'status' => 403,
+			]
+		);
 	}
 
 	/**
@@ -129,9 +141,11 @@ class Controller {
 			return new \WP_REST_Response( esc_html__( 'Please double check your template files.' ), 404 );
 		}
 
-		return new \WP_REST_Response( [
-			'template' => $template_content,
-		], 200 );
+		return new \WP_REST_Response(
+			[
+				'template' => $template_content,
+			], 200
+		);
 	}
 
 	/**
@@ -148,14 +162,16 @@ class Controller {
 		$settings['functional']  = $request->get_param( 'functional' );
 		$settings['advertising'] = $request->get_param( 'adsvertising' );
 		$cookie_value            = html_entity_decode( wp_json_encode( $settings, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK ) );
-		$expire = 0 === (int) $options['general']['life_time'] ? 0 : time() + (int) $options['general']['life_time'];
+		$expire                  = 0 === (int) $options['general']['life_time'] ? 0 : time() + (int) $options['general']['life_time'];
 
 		if ( setcookie( 'custom_cookie_message', $cookie_value, $expire, '/', $url['host'], is_ssl() ) ) {
 			wp_cache_flush();
 
-			return new \WP_REST_Response( [
-				'success' => 200,
-			], 200 );
+			return new \WP_REST_Response(
+				[
+					'success' => 200,
+				], 200
+			);
 		}
 
 		return new \WP_REST_Response( [], 500 );
@@ -174,10 +190,12 @@ class Controller {
 			return new \WP_REST_Response( [], 404 );
 		}
 
-		$query = new \WP_Query( [
-			's'              => trim( $request->get_param( 'q' ) ),
-			'posts_per_page' => 5,
-		] );
+		$query = new \WP_Query(
+			[
+				's'              => trim( $request->get_param( 'q' ) ),
+				'posts_per_page' => 5,
+			]
+		);
 
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
