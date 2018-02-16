@@ -1,10 +1,10 @@
 === Custom Cookie Message ===
-Contributors: johansylvan, angrycreative, kylegard, luigi guevara
+Contributors: johansylvan, angrycreative, kylegard, killua99
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
-Requires at least: 4.8
+Requires at least: 4.9
 Tested up to: 4.9.1
-Stable tag: 2.0.0
-Requires PHP: 5.6
+Stable tag: 2.0.3
+Requires PHP: 5.6+
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
