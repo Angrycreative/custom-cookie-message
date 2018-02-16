@@ -1,5 +1,9 @@
 == changelog ==
 
+= 2.0.3 =
+* Swedish translation.
+* Improve default settings values.
+
 = 2.0.0 =
 * New Cookie structure
 * Support for Polylang
