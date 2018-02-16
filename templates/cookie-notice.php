@@ -55,7 +55,9 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 	<div class="custom-cookie-message-banner__content">
 		<div class="warning-text" style="<?php echo esc_attr( $style_message ); ?>">
 			<p><?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
-				<?php if ( $options['general']['cookies_page_link'] ): ?><a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a> <?php endif; ?>
+				<?php if ( $options['general']['cookies_page_link'] ) : ?>
+					<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+					<?php endif; ?>
 				<button id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
 					<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
 				</button>
