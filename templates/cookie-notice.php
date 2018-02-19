@@ -20,24 +20,6 @@ if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-
 	$esc_html = 'pll_e';
 }
 
-list( $r, $g, $b ) = sscanf( $options['styles']['message_color_picker'], '#%02x%02x%02x' );
-
-$background_opacity   = $options['styles']['opacity_slider_amount'] / 100;
-$style_notice_banner  = "background-color: rgba({$r}, {$g}, {$b}, {$background_opacity});";
-$style_notice_banner .= ' padding: ' . $options['styles']['message_height_slider_amount'] . 'px 0;';
-
-$style_message  = 'color: ' . $options['styles']['text_color_picker'] . ';';
-$style_message .= empty( $options['styles']['text_font'] ) ? '' : 'font-family: ' . $options['styles']['text_font'] . ';';
-
-$style_link = 'color: ' . $options['styles']['link_color_picker'] . ';';
-
-$style_button_class = $options['styles']['add_button_class'];
-
-list( $r, $g, $b ) = sscanf( $options['styles']['modal_bg'], '#%02x%02x%02x' );
-
-$modal_background_opacity = $options['styles']['modal_bg_opacity'] / 100;
-$modal_style              = "background-color: rgba({$r}, {$g}, {$b}, {$modal_background_opacity});";
-
 $functional_check  = 'checked';
 $advertising_check = 'checked';
 
@@ -51,24 +33,34 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 }
 
 ?>
-<div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>" style="<?php echo esc_attr( $style_notice_banner ); ?>">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-cancel-circle" viewBox="0 0 32 32">
+<title>cancel-circle</title>
+<path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z"></path>
+<path d="M21 8l-5 5-5-5-3 3 5 5-5 5 3 3 5-5 5 5 3-3-5-5 5-5z"></path>
+</symbol>
+</defs>
+</svg>
+<div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>">
 	<div class="custom-cookie-message-banner__content">
-		<div class="warning-text" style="<?php echo esc_attr( $style_message ); ?>">
+		<div class="custom-cookie-message-banner__text">
 			<p><?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
 				<?php if ( $options['general']['cookies_page_link'] ) : ?>
-					<a style="<?php echo esc_attr( $style_link ); ?>" href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+					<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
 					<?php endif; ?>
-				<button id="custom-cookie-message-preference" class="btn btn-default <?php echo esc_attr( $style_button_class ); ?>">
+				<button id="custom-cookie-message-preference" class=".custom-cookie-message-banner__button">
 					<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
 				</button>
 			</p>
 		</div>
-		<div class="custom-cookie-message-banner__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
+		<div class="custom-cookie-message-banner__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?>                <svg class="icon icon-cancel-circle"><use xlink:href="#icon-cancel-circle"></use></svg></div>
 	</div>
 </div>
-<div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off" style="<?php echo esc_attr( $modal_style ); ?>">
+
+<div id="custom-cookie-message-modal" class="custom-cookie-message-modal custom-cookie-message-modal--off">
 	<div class="custom-cookie-message-modal__box">
-		<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></div>
+		<div class="custom-cookie-message-modal__close"><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?><svg class="icon icon-cancel-circle"><use xlink:href="#icon-cancel-circle"></use></svg></div>
 		<h2 class="custom-cookie-message-modal__title"><?php $esc_html( $options['cookie_granularity_settings']['headline'], 'custom-cookie-message' ); ?></h2>
 		<div class="custom-cookie-message-modal__tabs">
 			<ul class="custom-cookie-message-modal__list">
@@ -97,7 +89,7 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			</div>
 		</div>
 		<div class="custom-cookie-message-modal__actions">
-			<a id="cmm-save-preference" class="btn btn-default"><?php $esc_html( $options['content']['save_settings_button'], 'custom-cookie-message' ); ?></a>
+			<button id="ccm-save-preference" class=".custom-cookie-message-popup__button"><?php $esc_html( $options['content']['save_settings_button'], 'custom-cookie-message' ); ?></button>
 		</div>
 	</div>
 </div>
