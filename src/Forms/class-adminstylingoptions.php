@@ -68,11 +68,11 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'text_font', esc_html__( 'Text font', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
 
+		add_settings_field( 'text_size', esc_html__( 'Text size', 'custom-cookie-message' ), [ $this, 'cookies_text_size_callback' ], $this->section_page, 'styling' );
+
 		add_settings_field( 'text_color_picker', esc_html__( 'Text Color', 'custom-cookie-message' ), [ $this, 'cookies_text_color_picker_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'link_color_picker', esc_html__( 'Link Color', 'custom-cookie-message' ), [ $this, 'cookies_link_color_picker_callback' ], $this->section_page, 'styling' );
-
-		add_settings_field( 'add_button_class', esc_html__( 'Button classes', 'custom-cookie-message' ), [ $this, 'cookies_add_button_class_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'button_color_picker', esc_html__( 'Button Color', 'custom-cookie-message' ), [ $this, 'cookies_button_color_picker_callback' ], $this->section_page, 'styling' );
 
@@ -132,6 +132,15 @@ class AdminStylingOptions extends AdminBase {
 	}
 
 	/**
+	 * Text size family.
+	 */
+	public function cookies_text_size_callback() {
+		$val = isset( $this->options['styles']['text_size'] ) ? $this->options['styles']['text_font'] : '';
+		echo '<input type="text" id="text_size" name="custom_cookie_message[styles][text_size]" value="' . $val . '" class="regular-text ltr" />'; // WPCS: XSS ok.
+		echo '<div><p>Size of the text in the banner and modal</p></div>';
+	}
+
+	/**
 	 * Color Text.
 	 */
 	public function cookies_text_color_picker_callback() {
@@ -145,15 +154,6 @@ class AdminStylingOptions extends AdminBase {
 	public function cookies_link_color_picker_callback() {
 		$val = isset( $this->options['styles']['link_color_picker'] ) ? $this->options['styles']['link_color_picker'] : '';
 		echo '<input type="text" id="link_color_picker" name="custom_cookie_message[styles][link_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
-	}
-
-	/**
-	 * Button Class.
-	 */
-	public function cookies_add_button_class_callback() {
-		$val = isset( $this->options['styles']['add_button_class'] ) ? $this->options['styles']['add_button_class'] : '';
-		echo '<input type="text" id="add_button_class" name="custom_cookie_message[styles][add_button_class]" value="' . $val . '" class="regular-text ltr" />'; // WPCS: XSS ok.
-		echo '<div><p>Replace the standard styling of the button by specifying your own class. If several classes, separate with space. Leave empty to keep the standard styling.</p></div>';
 	}
 
 	/**
@@ -199,15 +199,15 @@ class AdminStylingOptions extends AdminBase {
 	}
 
 	/**
-	 * Button hover color.
+	 * Modal background.
 	 */
 	public function cookies_modal_background_callback() {
 		$val = isset( $this->options['styles']['modal_bg'] ) ? $this->options['styles']['modal_bg'] : '#3d3d3d';
-		echo '<input type="text" id="button_hover_color_picker" name="custom_cookie_message[styles][modal_bg]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+		echo '<input type="text" id="modal_bg" name="custom_cookie_message[styles][modal_bg]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	/**
-	 * Button width.
+	 * Modal opacity.
 	 */
 	public function cookies_modal_background_opacity_callback() {
 		$val = isset( $this->options['styles']['modal_bg_opacity'] ) ? $this->options['styles']['modal_bg_opacity'] : '50';
