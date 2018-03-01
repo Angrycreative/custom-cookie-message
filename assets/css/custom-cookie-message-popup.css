@@ -115,7 +115,8 @@
 }
 
 .custom-cookie-message-modal__box {
-	width: 50%;
+	width: 90%;
+	max-width: 680px;
 	background: white;
 	border-radius: 5px;
 	position: relative;
