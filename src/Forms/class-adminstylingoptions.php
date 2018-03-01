@@ -74,19 +74,29 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'link_color_picker', esc_html__( 'Link Color', 'custom-cookie-message' ), [ $this, 'cookies_link_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'button_color_picker', esc_html__( 'Button Color', 'custom-cookie-message' ), [ $this, 'cookies_button_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'Close_color_picker', esc_html__( 'Close icon color', 'custom-cookie-message' ), [ $this, 'cookies_close_color_picker_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'button_hover_color_picker', esc_html__( 'Button Hover Color', 'custom-cookie-message' ), [ $this, 'cookies_button_hover_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_section( 'modal', esc_html__( 'Modal Options', 'custom-cookie-message' ), [ $this, 'cookies_modal_options_callback' ], $this->section_page );
 
-		add_settings_field( 'button_text_color_picker', esc_html__( 'Button Text Color', 'custom-cookie-message' ), [ $this, 'cookies_button_text_color_picker_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'modal_overlay', esc_html__( 'Modal Overlay', 'custom-cookie-message' ), [ $this, 'cookies_modal_overlay_callback' ], $this->section_page, 'modal' );
 
-		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Height', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'modal_overlay_opacity', esc_html__( 'Modal Overlay Opacity', 'custom-cookie-message' ), [ $this, 'cookies_modal_overlay_opacity_callback' ], $this->section_page, 'modal' );
 
-		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Width', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'styling' );
+		add_settings_section( 'button', esc_html__( 'Button Options', 'custom-cookie-message' ), [ $this, 'cookies_button_options_callback' ], $this->section_page );
 
-		add_settings_field( 'modal_background', esc_html__( 'Modal Background', 'custom-cookie-message' ), [ $this, 'cookies_modal_background_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'button_custom_class', esc_html__( 'Button Custom Class', 'custom-cookie-message' ), [ $this, 'cookies_button_custom_class_callback' ], $this->section_page, 'button' );
 
-		add_settings_field( 'modal_background_opacity', esc_html__( 'Modal Background Opacity', 'custom-cookie-message' ), [ $this, 'cookies_modal_background_opacity_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'button_styling', esc_html__( 'Button Styling', 'custom-cookie-message' ), [ $this, 'cookies_button_styling_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_color_picker', esc_html__( 'Button Color', 'custom-cookie-message' ), [ $this, 'cookies_button_color_picker_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_hover_color_picker', esc_html__( 'Button Hover Color', 'custom-cookie-message' ), [ $this, 'cookies_button_hover_color_picker_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_text_color_picker', esc_html__( 'Button Text Color', 'custom-cookie-message' ), [ $this, 'cookies_button_text_color_picker_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Height', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Width', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
 	}
 
 	/**
@@ -157,6 +167,65 @@ class AdminStylingOptions extends AdminBase {
 	}
 
 	/**
+	 * Color close.
+	 */
+	public function cookies_close_color_picker_callback() {
+		$val = isset( $this->options['styles']['close_color_picker'] ) ? $this->options['styles']['close_color_picker'] : '';
+		echo '<input type="text" id="close_color_picker" name="custom_cookie_message[styles][close_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Description Styles Options.
+	 */
+	public function cookies_modal_options_callback() {
+		echo '<p>' . esc_html_e( 'Select the styling for the modal overlay.', 'cookie-message' ) . '</p>';
+	}
+
+	/**
+	 * Modal background.
+	 */
+	public function cookies_modal_overlay_callback() {
+		$val = isset( $this->options['styles']['modal_overlay'] ) ? $this->options['styles']['modal_overlay'] : '#3d3d3d';
+		echo '<input type="text" id="modal_overlay" name="custom_cookie_message[styles][modal_overlay]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Modal opacity.
+	 */
+	public function cookies_modal_overlay_opacity_callback() {
+		$val = isset( $this->options['styles']['modal_overlay_opacity'] ) ? $this->options['styles']['modal_overlay_opacity'] : '50';
+		echo '<input type="text" id="modal_overlay_opacity_amount" name="custom_cookie_message[styles][modal_overlay_opacity]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
+		echo '<div id="modal_overlay_opacity_slider" class="slider"><div id="modal_overlay_opacity_slider_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
+	}
+
+	/**
+	 * Description Styles Options.
+	 */
+	public function cookies_button_options_callback() {
+		echo '<p>' . esc_html_e( 'Select the styling for the buttons.', 'cookie-message' ) . '</p>';
+	}
+
+	/**
+	 * Button Class field.
+	 */
+	public function cookies_button_custom_class_callback() {
+		$val = isset( $this->options['styles']['button_custom_class'] ) ? $this->options['styles']['button_custom_class'] : '';
+		echo '<input type="text" id="button_custom_class" name="custom_cookie_message[styles][button_custom_class]" value="' . $val . '" class="regular-text ltr" >'; // WPCS: XSS ok.
+		echo '<div><p>If you wish to add more then one class seperate them with a blank space</p></div>';
+	}
+
+	/**
+	 * Button Css checkbox
+	 */
+	public function cookies_button_styling_callback() {
+		$checked = isset( $this->options['styles']['button_styling'] ) ? 'checked="checked"' : '';
+		echo '<input type="checkbox" id="button_styling" name="custom_cookie_message[styles][button_styling]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
+		echo '<label for="button_styling">Yes, use the Custom Cookie Message button styling</label>';
+		echo '<div><br><p>If this option is set it\'s likely that any theme button styling used on the page will be overwritten</p></div>';
+	}
+
+
+	/**
 	 * Button color.
 	 */
 	public function cookies_button_color_picker_callback() {
@@ -196,23 +265,6 @@ class AdminStylingOptions extends AdminBase {
 		$val = isset( $this->options['styles']['button_width_slider_amount'] ) ? $this->options['styles']['button_width_slider_amount'] : '10';
 		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styles][button_width_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
 		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
-	}
-
-	/**
-	 * Modal background.
-	 */
-	public function cookies_modal_background_callback() {
-		$val = isset( $this->options['styles']['modal_bg'] ) ? $this->options['styles']['modal_bg'] : '#3d3d3d';
-		echo '<input type="text" id="modal_bg" name="custom_cookie_message[styles][modal_bg]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
-	}
-
-	/**
-	 * Modal opacity.
-	 */
-	public function cookies_modal_background_opacity_callback() {
-		$val = isset( $this->options['styles']['modal_bg_opacity'] ) ? $this->options['styles']['modal_bg_opacity'] : '50';
-		echo '<input type="text" id="modal_bg_opacity_amount" name="custom_cookie_message[styles][modal_bg_opacity]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
-		echo '<div id="modal_bg_opacity_slider" class="slider"><div id="modal_bg_opacity_slider_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
 }

@@ -158,7 +158,10 @@ class Main {
 		while ( $current_version > $current_installed_version ) {
 			++ $current_installed_version;
 			if ( method_exists( '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ) ) {
-				$update_queue[] = [ '\CustomCookieMessage\Update', 'custom_cookie_message_' . $current_installed_version ];
+				$update_queue[] = [
+					'\CustomCookieMessage\Update',
+					'custom_cookie_message_' . $current_installed_version
+				];
 			}
 		}
 
@@ -215,13 +218,13 @@ class Main {
 
 		$patter_array = array_filter(
 			$patter_array, function ( $value ) {
-				return '' !== trim( $value );
-			}
+			return '' !== trim( $value );
+		}
 		);
 
 		$patter_array = array_map(
 			function ( $pattern ) {
-					return '(' . trim( $pattern ) . ')';
+				return '(' . trim( $pattern ) . ')';
 			}, $patter_array
 		);
 
@@ -263,7 +266,6 @@ class Main {
 		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
 		wp_add_inline_style( 'custom-cookie-message-popup-styles', $this->custom_css() );
 		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
-		wp_enqueue_script( 'custom-cookie-message-svg', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/svgxuse.js', [], $this->version, true );
 		wp_localize_script(
 			'custom-cookie-message-popup', 'customCookieMessageLocalize', [
 				'options'             => get_option( 'custom_cookie_message' ),
@@ -275,11 +277,11 @@ class Main {
 
 	}
 
-	protected function parse_to_rgba( $colour, $opacity = 1) {
+	protected function parse_to_rgba( $colour, $opacity = 1 ) {
 		list( $r, $g, $b ) = sscanf( $colour, '#%02x%02x%02x' );
 
-		$opacity   = $opacity / 100;
-		$rgba = sprintf('rgba(%s, %s, %s, %s)', $r, $g, $b, $opacity);
+		$opacity = $opacity / 100;
+		$rgba    = sprintf( 'rgba(%s, %s, %s, %s)', $r, $g, $b, $opacity );
 
 		return $rgba;
 	}
@@ -289,44 +291,52 @@ class Main {
 	 */
 	protected function custom_css() {
 		$options = get_option( 'custom_cookie_message' );
-		$styles = $options['styles'];
+		$styles  = $options['styles'];
+		$button_styles = $styles['button_styling'];
 
 		$banner_background = $this->parse_to_rgba( $styles['message_color_picker'], $styles['opacity_slider_amount'] );
 
-		$modal_background = $this->parse_to_rgba( $styles['modal_bg'], $styles['modal_bg_opacity'] );
+		$modal_overlay = $this->parse_to_rgba( $styles['modal_overlay'], $styles['modal_overlay_opacity'] );
 
 		$css = '';
 		$css .= '.custom-cookie-message-banner {';
-			$css .= sprintf('background-color: %s;', $banner_background );
-			$css .= sprintf('padding: %spx 0;', $styles['message_height_slider_amount'] );
+		$css .= sprintf( 'background-color: %s;', $banner_background );
+		$css .= sprintf( 'padding: %spx 0;', $styles['message_height_slider_amount'] );
 		$css .= '}';
 
-		$css .= '.custom-cookie-message-banner__text,';
-		$css .= '.custom-cookie-message-modal__box {';
-			$css .= sprintf('color: %s;', $styles['text_color_picker'] );
-			if (! empty( $styles['text_font'] ) ) {
-				$css .= sprintf('font-family: %s;', $styles['text_font']);
-			}
-			$css .= sprintf('font-size: %s;', $styles['text_size'] );
+		$css .= '.custom-cookie-message-banner__text {';
+		$css .= sprintf( 'color: %s;', $styles['text_color_picker'] );
+		if ( ! empty( $styles['text_font'] ) ) {
+			$css .= sprintf( 'font-family: %s;', $styles['text_font'] );
+		}
+		if ( ! empty( $styles['text_size'] ) ) {
+			$css .= sprintf( 'font-size: %s;', $styles['text_size'] );
+		}
 		$css .= '}';
 
 		$css .= '.custom-cookie-message-banner a {';
-			$css .= sprintf('color: %s;', $styles['link_color_picker']);
+		$css .= sprintf( 'color: %s;', $styles['link_color_picker'] );
+		$css .= '}';
+
+		$css .= '.custom-cookie-message-banner__close svg {';
+		$css .= sprintf( 'fill: %s;', $styles['close_color_picker'] );
 		$css .= '}';
 
 		$css .= '.custom-cookie-message-modal {';
-			$css .= sprintf('background-color: %s;', $modal_background);
+		$css .= sprintf( 'background-color: %s;', $modal_overlay );
 		$css .= '}';
 
-		$css .= '.custom-cookie-message-banner__button,';
-		$css .= '.custom-cookie-message-popup__button {';
-			$css .= sprintf('background-color: %s;', $styles['button_color_picker']);
-			$css .= sprintf('color: %s;', $styles['button_text_color_picker']);
+		if ( isset( $button_styles ) ) :
+			$css .= '.custom-cookie-message-banner__button,';
+			$css .= '.custom-cookie-message-popup__button {';
+			$css .= sprintf( 'background-color: %s;', $styles['button_color_picker'] );
+			$css .= sprintf( 'color: %s;', $styles['button_text_color_picker'] );
 			$css .= sprintf(
 				'padding: %spx %spx;', $styles['button_height_slider_amount'],
 				$styles['button_width_slider_amount']
 			);
-		$css .= '}';
+			$css .= '}';
+		endif;
 
 		return $css;
 	}
@@ -408,17 +418,19 @@ class Main {
 				'message_color_picker'         => '#3E3E3B',
 				'message_height_slider_amount' => '10',
 				'opacity_slider_amount'        => '100',
-				'button_color_picker'          => '#EBECED',
-				'button_hover_color_picker'    => '#CBC5C1',
+				'button_color_picker'          => '#F0F0F0',
+				'button_hover_color_picker'    => '#E0E0E0',
 				'button_text_color_picker'     => '#3E3E3B',
-				'button_height_slider_amount'  => '15',
+				'button_height_slider_amount'  => '10',
 				'button_width_slider_amount'   => '10',
+				'button_custom_class'          => '',
 				'text_color_picker'            => '#c0c0c0',
-				'text_size'                    => '16px',
+				'text_size'                    => '',
 				'text_font'                    => '',
 				'link_color_picker'            => '#CBC5C1',
-				'modal_bg'                     => '#3d3d3d',
-				'modal_bg_opacity'             => '50',
+				'close_color_picker'            => '#FFFFFF',
+				'modal_overlay'                => '#3d3d3d',
+				'modal_overlay_opacity'        => '50',
 
 			],
 			'cookie_granularity_settings' => [
