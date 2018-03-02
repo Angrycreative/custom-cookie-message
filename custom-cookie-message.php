@@ -17,7 +17,7 @@
  * Tested up to:      4.9
  * Requires PHP:      5.6
  * Author:            Angry Creative AB
- * Contributors:      Johan Sylvan, kylegard, Luigi Guevara @killua99
+ * Contributors:      Johan Sylvan, kylegard, Luigi Guevara @killua99, Victor Camnerin
  * Author URI:        https://angrycreative.se/
  * License:           GPL-2.0+
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
