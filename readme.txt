@@ -1,5 +1,5 @@
 === Custom Cookie Message ===
-Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea
+Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorcamnerin
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 4.9.4
