@@ -1,5 +1,10 @@
 == changelog ==
 
+= 2.1.0 =
+* Updated styling to better work on older browsers.
+* Improve default styling settings.
+* Improve user styling options for buttons.
+
 = 2.0.3 =
 * Swedish translation.
 * Improve default settings values.
