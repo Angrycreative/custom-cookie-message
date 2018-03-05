@@ -292,7 +292,7 @@ class Main {
 	protected function custom_css() {
 		$options = get_option( 'custom_cookie_message' );
 		$styles  = $options['styles'];
-		$button_styles = $styles['button_styling'];
+		$button_styles = ! empty( $styles['button_styling'] ) ? $styles['button_styling'] : '';
 
 		$banner_background = $this->parse_to_rgba( $styles['message_color_picker'], $styles['opacity_slider_amount'] );
 
