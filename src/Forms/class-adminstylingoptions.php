@@ -218,7 +218,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Button Css checkbox
 	 */
 	public function cookies_button_styling_callback() {
-		$checked = isset( $this->options['styles']['button_styling'] ) ? 'checked="checked"' : '';
+		$checked = empty( $this->options['styles']['button_styling'] ) ? 'checked="checked"' : '';
 		echo '<input type="checkbox" id="button_styling" name="custom_cookie_message[styles][button_styling]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
 		echo '<label for="button_styling">Yes, use the Custom Cookie Message button styling</label>';
 		echo '<div><br><p>If this option is set it\'s likely that any theme button styling used on the page will be overwritten</p></div>';
