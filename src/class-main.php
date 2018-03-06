@@ -301,7 +301,8 @@ class Main {
 		$css = '';
 		$css .= '.custom-cookie-message-banner {';
 		$css .= sprintf( 'background-color: %s;', $banner_background );
-		$css .= sprintf( 'padding: %spx 0;', $styles['message_height_slider_amount'] );
+		$css .= sprintf( 'padding-top: %spx;', $styles['message_height_slider_amount'] );
+		$css .= sprintf( 'padding-bottom: %spx;', $styles['message_height_slider_amount'] );
 		$css .= '}';
 
 		$css .= '.custom-cookie-message-banner__text {';
@@ -335,6 +336,12 @@ class Main {
 				'padding: %spx %spx;', $styles['button_height_slider_amount'],
 				$styles['button_width_slider_amount']
 			);
+			$css .= '}';
+
+			$css .= '.custom-cookie-message-banner__button:hover,';
+			$css .= '.custom-cookie-message-popup__button:hover {';
+			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
+			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
 		endif;
 
@@ -415,22 +422,23 @@ class Main {
 				'shortcode_text'        => 'Cookie Preferences',
 			],
 			'styles'                      => [
-				'message_color_picker'         => '#3E3E3B',
-				'message_height_slider_amount' => '10',
-				'opacity_slider_amount'        => '100',
-				'button_color_picker'          => '#F0F0F0',
-				'button_hover_color_picker'    => '#E0E0E0',
-				'button_text_color_picker'     => '#3E3E3B',
-				'button_height_slider_amount'  => '10',
-				'button_width_slider_amount'   => '10',
-				'button_custom_class'          => '',
-				'text_color_picker'            => '#c0c0c0',
-				'text_size'                    => '',
-				'text_font'                    => '',
-				'link_color_picker'            => '#CBC5C1',
-				'close_color_picker'            => '#FFFFFF',
-				'modal_overlay'                => '#3d3d3d',
-				'modal_overlay_opacity'        => '50',
+				'message_color_picker'           => '#3E3E3B',
+				'message_height_slider_amount'   => '20',
+				'opacity_slider_amount'          => '100',
+				'button_color_picker'            => '#F0F0F0',
+				'button_hover_color_picker'      => '#E0E0E0',
+				'button_text_color_picker'       => '#3E3E3B',
+				'button_hover_text_color_picker' => '#EBEBEB',
+				'button_height_slider_amount'    => '10',
+				'button_width_slider_amount'     => '10',
+				'button_custom_class'            => '',
+				'text_color_picker'              => '#c0c0c0',
+				'text_size'                      => '',
+				'text_font'                      => '',
+				'link_color_picker'              => '#CBC5C1',
+				'close_color_picker'             => '#FFFFFF',
+				'modal_overlay'                  => '#3d3d3d',
+				'modal_overlay_opacity'          => '50',
 
 			],
 			'cookie_granularity_settings' => [
