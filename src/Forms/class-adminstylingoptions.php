@@ -94,9 +94,11 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'button_text_color_picker', esc_html__( 'Button Text Color', 'custom-cookie-message' ), [ $this, 'cookies_button_text_color_picker_callback' ], $this->section_page, 'button' );
 
-		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Height', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
+		add_settings_field( 'button_hover_text_color_picker', esc_html__( 'Button Hover Text Color', 'custom-cookie-message' ), [ $this, 'cookies_button_hover_text_color_picker_callback' ], $this->section_page, 'button' );
 
-		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Width', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
+		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Top and Bottom Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
+
+		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Left and Right Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
 	}
 
 	/**
@@ -218,7 +220,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Button Css checkbox
 	 */
 	public function cookies_button_styling_callback() {
-		$checked = empty( $this->options['styles']['button_styling'] ) ? 'checked="checked"' : '';
+		$checked = isset( $this->options['styles']['button_styling'] ) ? 'checked="checked"' : '';
 		echo '<input type="checkbox" id="button_styling" name="custom_cookie_message[styles][button_styling]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
 		echo '<label for="button_styling">Yes, use the Custom Cookie Message button styling</label>';
 		echo '<div><br><p>If this option is set it\'s likely that any theme button styling used on the page will be overwritten</p></div>';
@@ -247,6 +249,14 @@ class AdminStylingOptions extends AdminBase {
 	public function cookies_button_text_color_picker_callback() {
 		$val = $this->options['styles']['button_text_color_picker'];
 		echo '<input type="text" id="button_text_color_picker" name="custom_cookie_message[styles][button_text_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Button hover text color.
+	 */
+	public function cookies_button_hover_text_color_picker_callback() {
+		$val = $this->options['styles']['button_hover_text_color_picker'];
+		echo '<input type="text" id="button_hover_text_color_picker" name="custom_cookie_message[styles][button_hover_text_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
 	}
 
 	/**
