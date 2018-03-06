@@ -1,0 +1,327 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Cookie Message\n"
+"POT-Creation-Date: 2018-03-06 10:00+0100\n"
+"PO-Revision-Date: 2018-03-06 10:22+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: custom-cookie-message.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: src/Controller/class-controller.php:105
+msgid "What it is? No, thanks."
+msgstr ""
+
+#: src/Controller/class-controller.php:122
+msgid "Sorry, who are you?"
+msgstr ""
+
+#: src/Controller/class-controller.php:141
+msgid "Please double check your template files."
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:61 src/Forms/class-adminform.php:162
+msgid "Content Options"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:63
+msgid "Enter warning text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:65
+msgid "Enter link text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:67
+msgid "Enter button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:69
+msgid "Save Settings button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:71
+msgid "Shortcode Text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:73
+msgid "Shortcode:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:81
+msgid "Enter the content in the cookie message."
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:61
+msgid "Cookie Granilarity Options"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:63
+msgid "Head Line Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:65
+msgid "Required Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:67
+msgid "Functional Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:69
+msgid "Advertising Cookies Message:"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:76
+msgid "Activate Cookies and granilarity."
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:91
+msgid ""
+"These cookies are required to enable core site functionality, we can not "
+"disable anything here."
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:108
+msgid ""
+"These cookies allow us to analyze site usage so we can measure and improve "
+"performance. Example, hotjar"
+msgstr ""
+
+#: src/Forms/class-admincookiesettings.php:126
+msgid ""
+"These cookies are used by advertising companies to serve ads that are "
+"relevant to your interests. Example, Doubleclick"
+msgstr ""
+
+#: src/Forms/class-adminform.php:131
+msgid "Until session expires (closing browser)"
+msgstr ""
+
+#: src/Forms/class-adminform.php:132
+msgid "Weekly"
+msgstr "Veckovis"
+
+#: src/Forms/class-adminform.php:133
+msgid "Montly"
+msgstr "Månatlig"
+
+#: src/Forms/class-adminform.php:134
+msgid "Yearly"
+msgstr "Årlig"
+
+#: src/Forms/class-adminform.php:135
+msgid "Until end of times"
+msgstr ""
+
+#: src/Forms/class-adminform.php:162 src/Forms/class-admingeneraloptions.php:61
+msgid "General Options"
+msgstr "Generella inställningar"
+
+#: src/Forms/class-adminform.php:164 src/Forms/class-adminstylingoptions.php:61
+msgid "Styling Options"
+msgstr "Utseendeinställningar"
+
+#: src/Forms/class-adminform.php:164
+msgid "Cookie Settings"
+msgstr "Cookie-inställningar"
+
+#: src/Forms/class-admingeneraloptions.php:63
+msgid "Life Time Cookie:"
+msgstr "Cookie-livstid:"
+
+#: src/Forms/class-admingeneraloptions.php:65
+msgid "Select location of message:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:67
+msgid "Enter url to the page about cookies:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:75
+msgid ""
+"Select where the cookie message should be displayed and enter the URL to the "
+"page about cookies."
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:93
+msgid "Top as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:94
+msgid "Bottom as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:104
+msgid "Paste URL or type to search"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:63
+msgid "Message container background"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:65
+msgid "Message container padding top and bottom"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:67
+msgid "Message container opacity"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:69
+msgid "Text font"
+msgstr "Textfont"
+
+#: src/Forms/class-adminstylingoptions.php:71
+msgid "Text size"
+msgstr "Textstorlek"
+
+#: src/Forms/class-adminstylingoptions.php:73
+msgid "Text Color"
+msgstr "Textfärg"
+
+#: src/Forms/class-adminstylingoptions.php:75
+msgid "Link Color"
+msgstr "Länkfärg"
+
+#: src/Forms/class-adminstylingoptions.php:77
+msgid "Close icon color"
+msgstr "Färg på stäng ikon"
+
+#: src/Forms/class-adminstylingoptions.php:79
+msgid "Modal Options"
+msgstr "Inställningar, modalens overlay"
+
+#: src/Forms/class-adminstylingoptions.php:81
+msgid "Modal Overlay"
+msgstr "Overlayfärg"
+
+#: src/Forms/class-adminstylingoptions.php:83
+msgid "Modal Overlay Opacity"
+msgstr "Opacitet, overlay"
+
+#: src/Forms/class-adminstylingoptions.php:85
+msgid "Button Options"
+msgstr "Inställningar, knappar"
+
+#: src/Forms/class-adminstylingoptions.php:87
+msgid "Button Custom Class"
+msgstr "Egna CSS-klasser för knappar"
+
+#: src/Forms/class-adminstylingoptions.php:89
+msgid "Button Styling"
+msgstr "Utseende knappar"
+
+#: src/Forms/class-adminstylingoptions.php:91
+msgid "Button Color"
+msgstr "Knappfärg"
+
+#: src/Forms/class-adminstylingoptions.php:93
+msgid "Button Hover Color"
+msgstr "Knappfärg, hover"
+
+#: src/Forms/class-adminstylingoptions.php:95
+msgid "Button Text Color"
+msgstr "Knapp-textfärg"
+
+#: src/Forms/class-adminstylingoptions.php:97
+msgid "Button Hover Text Color"
+msgstr "Knapp-textfärg, hover"
+
+#: src/Forms/class-adminstylingoptions.php:99
+msgid "Button Top and Bottom Padding"
+msgstr "Knapp-padding, över och under"
+
+#: src/Forms/class-adminstylingoptions.php:101
+msgid "Button Left and Right Padding"
+msgstr "Knapp-padding, höger och vänster"
+
+#: src/Forms/class-adminstylingoptions.php:108
+msgid "Select the styling for the cookie message."
+msgstr "Redigera utseendet för cookie meddelandet."
+
+#: src/Forms/class-adminstylingoptions.php:183
+msgid "Select the styling for the modal overlay."
+msgstr "Redigera utseendet för modalens overlay."
+
+#: src/Forms/class-adminstylingoptions.php:207
+msgid "Select the styling for the buttons."
+msgstr "Redigera utseendet för knapparna."
+
+#: src/class-main.php:196
+msgid "An update is available."
+msgstr "En uppdatering är tillgänglig."
+
+#: src/class-main.php:197
+msgid "Upgrade now"
+msgstr "Uppgradera nu"
+
+#: templates/cookie-notice.php:58 templates/cookie-notice.php:70
+msgid "Close"
+msgstr "Stäng"
+
+#: templates/cookie-notice.php:80
+msgid "Required Cookies"
+msgstr "Nödvändiga kakor"
+
+#: templates/cookie-notice.php:81
+msgid "Functional Cookies"
+msgstr "Funktionella kakor"
+
+#: templates/cookie-notice.php:82
+msgid "Advertising Cookies"
+msgstr "Annonskakor"
+
+#: templates/cookie-notice.php:92 templates/cookie-notice.php:99
+msgid "Active"
+msgstr "Aktiv"
+
+#: tests/test-custom-cookie-message.php:63
+msgid "I understand"
+msgstr "Jag förstår"
+
+#: tests/test-custom-cookie-message.php:64
+msgid "Updated Read more"
+msgstr "Uppdaterade Läs Mer"
+
+#: tests/test-custom-cookie-message.php:65
+msgid ""
+"This website uses cookies . By using our website you accept our use of "
+"cookies . "
+msgstr ""
+"Den här sidan använder cookies (kakor). Genom att du använder vår webbsida "
+"accepterar du användandet av kakor. "
+
+#. Plugin Name of the plugin/theme
+msgid "Custom Cookie Message"
+msgstr "Custom Cookie Message"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/Angrycreative/custom-cookie-message"
+msgstr "https://github.com/Angrycreative/custom-cookie-message"
+
+#. Description of the plugin/theme
+msgid "A customizable cookie message, compatible with GDPR compliance."
+msgstr ""
+"Ett redigerbart cookie meddelande, kompatibelt med GDPR-överensstämmelser."
+
+#. Author of the plugin/theme
+msgid "Angry Creative AB"
+msgstr "Angry Creative AB"
+
+#. Author URI of the plugin/theme
+msgid "https://angrycreative.se/"
+msgstr "https://angrycreative.se/"

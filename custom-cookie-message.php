@@ -13,7 +13,7 @@
  * Description:       A customizable cookie message, compatible with GDPR compliance.
  * Text Domain:       custom-cookie-message
  * Domain Path:       /languages/
- * Version:           2.1.2
+ * Version:           2.1.3
  * Tested up to:      4.9
  * Requires PHP:      5.6
  * Author:            Angry Creative AB
