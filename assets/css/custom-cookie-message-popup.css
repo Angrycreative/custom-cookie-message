@@ -16,6 +16,7 @@
 
 .custom-cookie-message-banner__text {
 	margin: 0;
+	padding: 0;
 }
 
 .custom-cookie-message-banner--bottom-fixed {
@@ -117,14 +118,18 @@
 	max-width: 750px;
 	background: white;
 	border-radius: 5px;
+	border: 1px solid transparent;
 	position: relative;
 	margin-top: 15vh;
 	-webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,.15);
 	box-shadow: 0 2px 6px 0 rgba(0,0,0,.15);
 }
 
-.custom-cookie-message-modal__header {
-	background-color: #f8f8f8;
+.custom-cookie-message-modal__header,
+.custom-cookie-message-modal__item,
+.custom-cookie-message-modal__close,
+.custom-cookie-message-modal__actions {
+	background-color: #f9f9f9;
 }
 
 .custom-cookie-message-modal__title {
@@ -155,7 +160,6 @@
 	width: 40px;
 	height: 40px;
 	border-radius: 20px;
-	background: white;
 	cursor: pointer;
 	font-size: 0;
 	line-height: 0;
@@ -171,34 +175,33 @@
 
 .custom-cookie-message-modal__body {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .custom-cookie-message-modal__tabs {
-	width: 8em;
-}
-
-@media screen and ( min-width: 992px ) {
-	.custom-cookie-message-modal__tabs {
-		width: 14em;
-	}
+	flex: 0 0 100%;
 }
 
 .custom-cookie-message-modal__list {
+	display: flex;
 	padding: 0;
 	margin: 0;
 }
 
 .custom-cookie-message-modal__item {
-	display: block;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: auto;
-	margin: auto;
-	background-color: #f8f8f8;
-	border-bottom: 2px solid white;
+	border-top: 3px solid white;
+	border-right: 3px solid white;
 	cursor: pointer;
+	text-align: center;
 }
 
 .custom-cookie-message-modal__item:first-of-type {
-	border-top: 2px solid white;
+	border-left: 3px solid white;
 }
 
 .custom-cookie-message-modal__item:hover {
@@ -218,8 +221,17 @@
 	height: 100%;
 }
 
+.custom-cookie-message-modal__functional_message,
+.custom-cookie-message-modal__advertising_message {
+	padding-bottom: 2.5em;
+}
+
 .custom-cookie-message-modal__content p {
-	padding: 0 0 0 1em;
+	margin: 0 0 1em 0;
+}
+
+.custom-cookie-message-modal__content p:last-of-type {
+	margin-bottom: 0;
 }
 
 .custom-cookie-message-modal__checkbox {
@@ -251,20 +263,26 @@
 	padding: 0 1em;
 }
 
+.custom-cookie-message-modal__content {
+	padding: 1em 1em 1.5em;
+}
+
 .custom-cookie-message-modal__item,
-.custom-cookie-message-modal__content,
 .custom-cookie-message-modal__actions {
 	padding: 1em;
 }
 
-@media screen and ( min-width: 992px ) {
+@media screen and ( min-width: 480px ) {
 	.custom-cookie-message-banner,
 	.custom-cookie-message-modal__header  {
 		padding: 0 1.5em;
 	}
 
+	.custom-cookie-message-modal__content {
+		padding: 1.5em 1.5em 2em;
+	}
+
 	.custom-cookie-message-modal__item,
-	.custom-cookie-message-modal__content,
 	.custom-cookie-message-modal__actions {
 		padding: 1.5em;
 	}

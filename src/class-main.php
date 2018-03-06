@@ -112,7 +112,7 @@ class Main {
 
 		Controller::single();
 
-		load_plugin_textdomain( 'custom-cookie-message' );
+		load_plugin_textdomain( 'custom-cookie-message', false, basename( dirname( __DIR__ ) ) . '/languages' );
 
 		add_shortcode( 'ccm_preferences', [ '\CustomCookieMessage\Shortcode', 'ccm_shortcode_preferences' ] );
 
