@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.1.0';
+	protected $version = '2.1.4';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -269,7 +269,7 @@ class Main {
 		wp_localize_script(
 			'custom-cookie-message-popup', 'customCookieMessageLocalize', [
 				'options'             => get_option( 'custom_cookie_message' ),
-				'wp_rest'             => wp_create_nonce( 'wp_rest' ),
+				'wp_rest_nonce'       => wp_create_nonce( 'wp_rest' ),
 				'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
 				'rest_url_preference' => rest_url( 'custom-cm/cookie-preference' ),
 			]
