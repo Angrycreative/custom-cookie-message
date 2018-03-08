@@ -109,13 +109,17 @@ jQuery( function ( $ ) {
         },
       } )
        .done( function ( response ) {
-         if ( null !== response.template &&
-              'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
-           $( 'body' ).append( response.template ).fadeIn();
-         }
-         else if ( null !== response.template ) {
-           $( 'body' ).prepend( response.template ).fadeIn();
-         }
+          if ( null !== response.template && '' !== customCookieMessageLocalize.options ) {
+            if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+               $( 'body' ).append( response.template ).fadeIn();
+             }
+             else {
+               $( 'body' ).prepend( response.template ).fadeIn();
+             }
+          }
+          else {
+            console.warn( 'Custom Cookie Message options are not set' );
+          }
        } );
     },
   };
