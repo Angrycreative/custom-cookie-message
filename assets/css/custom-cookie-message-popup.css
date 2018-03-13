@@ -10,13 +10,30 @@
 
 .custom-cookie-message-banner__content {
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
 }
 
 .custom-cookie-message-banner__text {
 	margin: 0;
 	padding: 0;
+	flex: 0 0 100%;
+	margin-bottom: 1.5em;
+	font-size: 90%;
+}
+
+@media (min-width: 768px) {
+	.custom-cookie-message-banner__content {
+		flex-wrap: initial;
+		justify-content: center;
+	}
+
+	.custom-cookie-message-banner__text {
+		flex: initial;
+		margin-bottom: 0;
+		font-size: 100%;
+	}
 }
 
 .custom-cookie-message-banner--bottom-fixed {
@@ -63,8 +80,16 @@
 	border-style: none;
 }
 
-.custom-cookie-message-banner__content button {
-	margin: 0 1.5em;
+.custom-cookie-message-banner__button {
+	margin: 0;
+	font-size: 90%;
+}
+
+@media (min-width: 768px) {
+	.custom-cookie-message-banner__button {
+		font-size: 100%;
+		margin: 0 1.5em;
+	}
 }
 
 .custom-cookie-message-banner__close {
