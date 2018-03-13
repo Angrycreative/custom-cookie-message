@@ -31,6 +31,9 @@ trait AdminTrait {
 	 */
 	public function ccm_validate_options( array $input ) {
 
+		if ( ! empty( $input['import'] ) ) {
+			$input = unserialize( $input['import'] );
+		}
 		if ( empty( $input['cookie_granularity_settings'] ) ) {
 			array_walk_recursive(
 				$input, function ( &$item, $key ) {
