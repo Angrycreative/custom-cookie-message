@@ -54,6 +54,12 @@ class AdminForm extends AdminBase {
 	private $cookie_settings;
 
 	/**
+	 * Export / Import Settings
+	 *
+	 * @var AdminExportSettings
+	 */
+	private $export_import;
+	/**
 	 * AdminBase constructor.
 	 */
 	public function __construct() {
@@ -64,6 +70,7 @@ class AdminForm extends AdminBase {
 		$this->content_options = AdminContentOptions::single();
 		$this->styling_options = AdminStylingOptions::single();
 		$this->cookie_settings = AdminCookieSettings::single();
+		$this->export_import   = AdminExportSettings::single();
 
 		register_setting( 'custom_cookie_message_options', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 
@@ -163,6 +170,7 @@ class AdminForm extends AdminBase {
 				<?php if ( $allow_edition ) : ?>
 					<a href="?page=custom_cookie_message_options&tab=styling_options" class="nav-tab <?php echo 'styling_options' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Styling Options', 'custom-cookie-message' ); ?></a>                    <a href="?page=custom_cookie_message_options&tab=cookie_settings" class="nav-tab <?php echo 'cookie_settings' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Cookie Settings', 'custom-cookie-message' ); ?></a>
 				<?php endif; ?>
+				<a href="?page=custom_cookie_message_options&tab=export_import" class="nav-tab <?php echo 'export_import' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Export/Import', 'custom-cookie-message' ); ?></a>
 			</h2>
 
 			<form method="post" action="options.php">
