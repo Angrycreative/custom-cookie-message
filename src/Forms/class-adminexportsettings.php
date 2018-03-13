@@ -70,7 +70,7 @@ class AdminExportSettings extends AdminBase {
 	 * Description Page
 	 */
 	public function cookies_export_settings_callback() {
-		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'custom-cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Here you can export and/or import your settings.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
