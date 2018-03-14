@@ -147,7 +147,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Text size family.
 	 */
 	public function cookies_text_size_callback() {
-		$val = isset( $this->options['styles']['text_size'] ) ? $this->options['styles']['text_font'] : '';
+		$val = isset( $this->options['styles']['text_size'] ) ? $this->options['styles']['text_size'] : '';
 		echo '<input type="text" id="text_size" name="custom_cookie_message[styles][text_size]" value="' . $val . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 		echo '<div><p>Size of the text in the banner and modal</p></div>';
 	}
