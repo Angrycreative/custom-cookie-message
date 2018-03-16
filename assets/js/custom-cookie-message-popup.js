@@ -27,7 +27,8 @@ jQuery( function ( $ ) {
 
       setTimeout( function () {
         customCookieMessage.changeSettings();
-        $( '#custom-cookie-message-banner' ).remove();
+        $( '#custom-cookie-message-banner' ).slideUp().remove();
+        $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
       }, 350 );
 
     },
@@ -93,7 +94,8 @@ jQuery( function ( $ ) {
       } )
        .done( function () {
          $( '#custom-cookie-message-modal' ).remove();
-         $( '#custom-cookie-message-banner' ).remove();
+         $( '#custom-cookie-message-banner' ).slideUp().remove();
+         $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
        } );
     },
 
