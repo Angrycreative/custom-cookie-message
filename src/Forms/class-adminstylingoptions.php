@@ -66,6 +66,9 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'opacity_slider_amount', esc_html__( 'Message container opacity', 'custom-cookie-message' ), [ $this, 'cookies_opacity_slider_callback' ], $this->section_page, 'styling' );
 
+		add_settings_field( 'scroll_content_container', esc_html__( 'Scroll content', 'custom-cookie-message' ), [ $this, 'cookies_scroll_body_callback' ], $this->section_page, 'styling' );
+
+		add_settings_field( 'cookie_banner_animation', esc_html__( 'Banner Animation', 'custom-cookie-message' ), [ $this, 'cookies_banner_animation_callback' ], $this->section_page, 'styling' );
 		add_settings_field( 'text_font', esc_html__( 'Text font', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'text_size', esc_html__( 'Text size', 'custom-cookie-message' ), [ $this, 'cookies_text_size_callback' ], $this->section_page, 'styling' );
@@ -99,6 +102,7 @@ class AdminStylingOptions extends AdminBase {
 		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Top and Bottom Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
 
 		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Left and Right Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
+		add_settings_field( 'button_custom_css', esc_html__( 'Custom styles for buttons', 'custom-cookie-message' ), [ $this, 'cookies_btn_custom_styling_callback' ], $this->section_page, 'button' );
 	}
 
 	/**
@@ -277,4 +281,33 @@ class AdminStylingOptions extends AdminBase {
 		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
+	/**
+	 * Scroll content
+	 */
+	public function cookies_scroll_body_callback() {
+		$checked = isset( $this->options['styles']['scroll_body'] ) ? 'checked="checked"' : '';
+		echo '<input type="checkbox" id="scroll_body" name="custom_cookie_message[styles][scroll_body]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
+		echo '<label for="scroll_body">Yes, Scroll the content down/up.</label>';
+	}
+
+	/**
+	 * Banner Animation.
+	 */
+	public function cookies_banner_animation_callback() {
+
+		$html  = '<select id="banner_animation" name="custom_cookie_message[styles][banner_animation]">';
+		$html .= '<option value="none"' . selected( $this->options['styles']['banner_animation'], 'none', false ) . '>' . __( 'None', 'cookie-message' ) . '</option>';
+		$html .= '<option value="scroll"' . selected( $this->options['styles']['banner_animation'], 'scroll', false ) . '>' . __( 'Scroll up/down', 'cookie-message' ) . '</option>';
+		$html .= '<option value="fade"' . selected( $this->options['styles']['banner_animation'], 'fade', false ) . '>' . __( 'Fade', 'cookie-message' ) . '</option>';
+		$html .= '</select>';
+
+		echo $html; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Btn custom styling.
+	 */
+	public function cookies_btn_custom_styling_callback() {
+		echo '<textarea id="textarea_btn_custom_styling" name="custom_cookie_message[styles][textarea_btn_custom_styling]" rows="5" cols="50">' . $this->options['styles']['textarea_btn_custom_styling'] . '</textarea>'; // WPCS: XSS ok.
+	}
 }
