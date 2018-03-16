@@ -99,6 +99,7 @@ class AdminStylingOptions extends AdminBase {
 		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Top and Bottom Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
 
 		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Left and Right Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
+		add_settings_field( 'button_custom_css', esc_html__( 'Custom styles for buttons', 'custom-cookie-message' ), [ $this, 'cookies_btn_custom_styling_callback' ], $this->section_page, 'button' );
 	}
 
 	/**
@@ -277,4 +278,11 @@ class AdminStylingOptions extends AdminBase {
 		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
 	}
 
+
+	/**
+	 * Btn custom styling.
+	 */
+	public function cookies_btn_custom_styling_callback() {
+		echo '<textarea id="textarea_btn_custom_styling" name="custom_cookie_message[styles][textarea_btn_custom_styling]" rows="5" cols="50">' . $this->options['styles']['textarea_btn_custom_styling'] . '</textarea>'; // WPCS: XSS ok.
+	}
 }

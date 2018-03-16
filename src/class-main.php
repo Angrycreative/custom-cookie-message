@@ -343,6 +343,7 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
+			$css .= $styles['textarea_btn_custom_styling'];
 		endif;
 
 		return $css;
@@ -439,6 +440,14 @@ class Main {
 				'close_color_picker'             => '#FFFFFF',
 				'modal_overlay'                  => '#3d3d3d',
 				'modal_overlay_opacity'          => '50',
+				'button_custom_css'              => '/* Settings button */
+																						#custom-cookie-message-preference {
+
+																						}
+																						/* Save settings button */
+																						#ccm-save-preference {
+
+																						}',
 
 			],
 			'cookie_granularity_settings' => [
