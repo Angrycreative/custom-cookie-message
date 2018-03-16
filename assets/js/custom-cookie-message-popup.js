@@ -27,7 +27,8 @@ jQuery( function ( $ ) {
 
       setTimeout( function () {
         customCookieMessage.changeSettings();
-        $( '#custom-cookie-message-banner' ).remove();
+        $( '#custom-cookie-message-banner' ).slideUp().remove();
+        $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
       }, 350 );
 
     },
@@ -93,7 +94,8 @@ jQuery( function ( $ ) {
       } )
        .done( function () {
          $( '#custom-cookie-message-modal' ).remove();
-         $( '#custom-cookie-message-banner' ).remove();
+         $( '#custom-cookie-message-banner' ).slideUp().remove();
+         $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
        } );
     },
 
@@ -111,11 +113,37 @@ jQuery( function ( $ ) {
        .done( function ( response ) {
           if ( null !== response.template && '' !== customCookieMessageLocalize.options ) {
             if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
-               $( 'body' ).append( response.template ).fadeIn();
-             }
-             else {
-               $( 'body' ).prepend( response.template ).fadeIn();
-             }
+              $( 'body' ).append( response.template );
+            }
+            else {
+              $( 'body' ).prepend( response.template );
+            }
+              /* Get height of the banner before showing it */
+                var get_height = $( '#custom-cookie-message-banner' ).clone().attr("id", false).css({display:"block", position:"absolute"});
+                $( 'body' ).append(get_height);
+                var scroll_height = get_height.outerHeight();
+                console.log(scroll_height);
+                get_height.remove();
+
+                /* banner animation */
+                  if ( 'scroll' === customCookieMessageLocalize.options.styles.banner_animation ) {
+                    $( '#custom-cookie-message-banner' ).slideDown();
+                  } else
+                  if ( 'fade' === customCookieMessageLocalize.options.styles.banner_animation ) {
+                    $( '#custom-cookie-message-banner' ).fadeIn();
+                  }
+                  else {
+                    $( '#custom-cookie-message-banner' ).show();
+                  }
+                  /* Scroll content container */
+                  if ( 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
+                    if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+                      $( 'body' ).animate({marginBottom: scroll_height});
+                    }
+                    else {
+                      $( 'body' ).animate({marginTop: scroll_height});
+                    }
+                  }
           }
           else {
             console.warn( 'Custom Cookie Message options are not set' );
