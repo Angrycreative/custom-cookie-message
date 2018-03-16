@@ -116,6 +116,22 @@ jQuery( function ( $ ) {
              else {
                $( 'body' ).prepend( response.template ).fadeIn();
              }
+              /* Get height of the banner before showing it */
+                var get_height = $( '#custom-cookie-message-banner' ).clone().attr("id", false).css({display:"block", position:"absolute"});
+                $( 'body' ).append(get_height);
+                var scroll_height = get_height.outerHeight();
+                console.log(scroll_height);
+                get_height.remove();
+
+                  /* Scroll content container */
+                  if ( 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
+                    if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+                      $( 'body' ).animate({marginBottom: scroll_height});
+                    }
+                    else {
+                      $( 'body' ).animate({marginTop: scroll_height});
+                    }
+                  }
           }
           else {
             console.warn( 'Custom Cookie Message options are not set' );

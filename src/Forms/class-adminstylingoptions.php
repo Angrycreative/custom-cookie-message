@@ -66,6 +66,8 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'opacity_slider_amount', esc_html__( 'Message container opacity', 'custom-cookie-message' ), [ $this, 'cookies_opacity_slider_callback' ], $this->section_page, 'styling' );
 
+		add_settings_field( 'scroll_content_container', esc_html__( 'Scroll content', 'custom-cookie-message' ), [ $this, 'cookies_scroll_body_callback' ], $this->section_page, 'styling' );
+
 		add_settings_field( 'text_font', esc_html__( 'Text font', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'text_size', esc_html__( 'Text size', 'custom-cookie-message' ), [ $this, 'cookies_text_size_callback' ], $this->section_page, 'styling' );
@@ -276,6 +278,15 @@ class AdminStylingOptions extends AdminBase {
 		$val = isset( $this->options['styles']['button_width_slider_amount'] ) ? $this->options['styles']['button_width_slider_amount'] : '10';
 		echo '<input type="text" id="button_width_slider_amount" name="custom_cookie_message[styles][button_width_slider_amount]" value="' . $val . '" readonly class="hidden">'; // WPCS: XSS ok.
 		echo '<div id="button_width_slider" class="slider"><div id="button_width_handle" class="ui-slider-handle ui-slider-handle-custom"></div></div>';
+	}
+
+	/**
+	 * Scroll content
+	 */
+	public function cookies_scroll_body_callback() {
+		$checked = isset( $this->options['styles']['scroll_body'] ) ? 'checked="checked"' : '';
+		echo '<input type="checkbox" id="scroll_body" name="custom_cookie_message[styles][scroll_body]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
+		echo '<label for="scroll_body">Yes, Scroll the content down/up.</label>';
 	}
 
 
