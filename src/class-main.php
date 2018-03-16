@@ -300,6 +300,7 @@ class Main {
 
 		$css = '';
 		$css .= '.custom-cookie-message-banner {';
+		$css .= 'display: none;';
 		$css .= sprintf( 'background-color: %s;', $banner_background );
 		$css .= sprintf( 'padding-top: %spx;', $styles['message_height_slider_amount'] );
 		$css .= sprintf( 'padding-bottom: %spx;', $styles['message_height_slider_amount'] );
