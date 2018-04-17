@@ -1,4 +1,7 @@
 == changelog ==
+= 2.1.8 =
+* Added more support to Polylang (strings translations).
+
 = 2.1.7 =
 * Banner animation options.
 * Custom CSS field for buttons and other elements.
