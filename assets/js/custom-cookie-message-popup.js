@@ -106,6 +106,7 @@ jQuery( function ( $ ) {
         cache: false,
         contentType: false,
         processData: false,
+        data: 'lang=' + customCookieMessageLocalize.lang,
         beforeSend: function ( xhr ) {
           xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
         },
