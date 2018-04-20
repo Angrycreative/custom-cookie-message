@@ -78,6 +78,8 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_field( 'button_options', esc_html__( 'Close button type:', 'custom-cookie-message' ), [ $this, 'cookies_close_button_callback' ], $this->section_page, 'general' );
 
+		add_settings_field( 'cookies_about_page', esc_html__( 'About cookies page:', 'custom-cookie-message' ), [ $this, 'cookies_about_page_callback' ], $this->section_page, 'general' );
+
 	}
 
 	/**
