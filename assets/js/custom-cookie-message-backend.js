@@ -112,7 +112,7 @@ jQuery( function ( $ ) {
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.year_life_time );
 				break;
 			case 5:
-				$( '#life_time_slider_amount' ).val( 5 );
+				$( '#life_time_slider_amount' ).val( 9999 * customCookieMessageAdminLocalize.life_time.year_seconds );
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.end_less_life_time );
 				break;
 			}
