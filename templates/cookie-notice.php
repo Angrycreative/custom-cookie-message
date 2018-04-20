@@ -47,19 +47,34 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 	<div class="custom-cookie-message-banner__content">
 		<p class="custom-cookie-message-banner__text">
 			<?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
-			<?php if ( $options['general']['cookies_page_link'] ) : ?>
+			<?php if ( $options['general']['cookies_page_link'] ) { ?>
 				<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
-			<?php endif; ?>
+			<?php } else { ?>
+				<?php
+				if ( $options['general']['cookies_about_page'] ) {
+						$page_id = icl_object_id( $options['general']['cookies_about_page'], 'page', true );
+					?>
+					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+				<?php
+				}
+}
+			?>
+			eller
+			<a id="custom-cookie-message-preference" href="#" title="<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
 		</p>
-		<button id="custom-cookie-message-preference" class="<?php echo isset( $options['styles']['button_styling'] ) ? 'custom-cookie-message-banner__button' : ''; ?> <?php echo esc_attr( $options['styles']['button_custom_class'] ); ?>">
-			<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>
+		<?php if ( 'textvalue' === $options['general']['close_button'] ) : ?>
+		<button id="custom-cookie-message-accept_button_text" class="custom-cookie-message-banner__accept <?php echo isset( $options['styles']['button_styling'] ) ? 'custom-cookie-message-banner__button' : ''; ?> <?php echo esc_attr( $options['styles']['button_custom_class'] ); ?>">
+			<?php $esc_html( $options['content']['accept_button_text'], 'custom-cookie-message' ); ?>
 		</button>
-		<div class="custom-cookie-message-banner__close">
+		<?php endif; ?>
+		<?php if ( 'xbutton' === $options['general']['close_button'] ) : ?>
+		<div class="custom-cookie-message-banner__close <?php echo isset( $options['styles']['xclose_styling'] ) ? 'custom-cookie-message-banner__button' : ''; ?> <?php echo esc_attr( $options['styles']['button_custom_class'] ); ?>">
 			<span><?php esc_html_e( 'Close', 'custom-cookie-message' ); ?></span>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 				<path d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"/>
 			</svg>
 		</div>
+	<?php endif; ?>
 	</div>
 </div>
 
