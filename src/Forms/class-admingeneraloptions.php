@@ -80,6 +80,8 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_field( 'cookies_about_page', esc_html__( 'About cookies page:', 'custom-cookie-message' ), [ $this, 'cookies_about_page_callback' ], $this->section_page, 'general' );
 
+		add_settings_field( 'cookies_page_link', esc_html__( 'About cookies Link (overrides the page):', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
+
 	}
 
 	/**
