@@ -164,7 +164,7 @@ jQuery( function ( $ ) {
 	$( '#button_height_slider' ).slider({
 		range: 'min',
 		value: parseInt( $( '#button_height_slider_amount' ).val() ),
-		min: 5,
+		min: 0,
 		max: 40,
 		create: function () {
 			$( '#button_height_handle' ).text( $( '#button_height_slider_amount' ).val() + ' px' );
