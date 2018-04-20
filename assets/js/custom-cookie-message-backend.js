@@ -249,9 +249,11 @@ jQuery( function ( $ ) {
 		if ( !checkbox.is( ':checked' ) ) {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', .5 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', .5 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', .5 );
 		} else {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', 1 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', 1 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', 1 );
 		}
 	}
 
