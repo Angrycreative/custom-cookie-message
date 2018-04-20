@@ -16,7 +16,7 @@ $options = get_option( 'custom_cookie_message' );
  */
 $esc_html = 'esc_html_e';
 
-if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' ) ) {
+if ( ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' ) ) && function_exists( 'pll_e' ) ) {
 	$esc_html = 'pll_e';
 }
 
