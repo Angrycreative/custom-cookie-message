@@ -17,7 +17,7 @@ jQuery( function ( $ ) {
         .on( 'click', '#custom-cookie-message-modal', this.actionModal )
         .on( 'click', '.custom-cookie-message-modal__item', this.actionTab )
         .on( 'click', '#ccm_cookie_preferences', this.cookiePreferences )
-        .on( 'click', '#ccm-save-preference,.custom-cookie-message-banner__close', this.savePreferences );
+        .on( 'click', '#ccm-save-preference,.custom-cookie-message-banner__close,.custom-cookie-message-banner__accept', this.savePreferences );
     },
 
     cookiePreferences: function ( event ) {
