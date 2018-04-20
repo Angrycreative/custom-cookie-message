@@ -127,6 +127,20 @@ class AdminGeneralOptions extends AdminBase {
 	}
 
 	/**
+	 * About cookies page field.
+	 */
+	public function cookies_about_page_callback() {
+		$html = '<select id="cookies_about_page" class="regular-text" name="custom_cookie_message[general][cookies_about_page]">';
+		if ( $pages = get_pages() ) {
+			foreach ( $pages as $page ) {
+				$html .= '<option value="' . $page->ID . '" ' . selected( $page->ID, $this->options['general']['cookies_about_page'], false ) . '>' . $page->post_title . '</option>';
+			}
+		}
+		$html .= '</select>';
+		echo $html; // WPCS: XSS ok.
+	}
+
+	/**
 	 * Link page field.
 	 */
 	public function cookies_page_link_callback() {
