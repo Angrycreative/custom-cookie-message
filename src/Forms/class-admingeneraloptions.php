@@ -76,6 +76,7 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
 
+		add_settings_field( 'button_options', esc_html__( 'Close button type:', 'custom-cookie-message' ), [ $this, 'cookies_close_button_callback' ], $this->section_page, 'general' );
 
 	}
 
