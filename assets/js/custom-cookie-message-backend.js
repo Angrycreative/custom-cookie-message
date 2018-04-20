@@ -112,7 +112,7 @@ jQuery( function ( $ ) {
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.year_life_time );
 				break;
 			case 5:
-				$( '#life_time_slider_amount' ).val( 5 );
+				$( '#life_time_slider_amount' ).val( 9999 * customCookieMessageAdminLocalize.life_time.year_seconds );
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.end_less_life_time );
 				break;
 			}
@@ -164,7 +164,7 @@ jQuery( function ( $ ) {
 	$( '#button_height_slider' ).slider({
 		range: 'min',
 		value: parseInt( $( '#button_height_slider_amount' ).val() ),
-		min: 5,
+		min: 0,
 		max: 40,
 		create: function () {
 			$( '#button_height_handle' ).text( $( '#button_height_slider_amount' ).val() + ' px' );
@@ -249,9 +249,11 @@ jQuery( function ( $ ) {
 		if ( !checkbox.is( ':checked' ) ) {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', .5 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', .5 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', .5 );
 		} else {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', 1 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', 1 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', 1 );
 		}
 	}
 

@@ -1,4 +1,14 @@
 == changelog ==
+= 2.2.0 =
+* Changed banner layout for better user experience.
+* Option to choose type of close button (close or accept).
+* More options for better button styling.
+* Option to select internal page for (about cookies page).
+* Internal page is ready for multilingual sites.
+* Internal about cookies page can be overwritten by external link field.
+* Fixed error 500 bug.
+* Added select2 for admin forms select tags.
+
 = 2.1.8 =
 * Added more support to Polylang (strings translations).
 
