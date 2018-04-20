@@ -102,6 +102,7 @@ class AdminStylingOptions extends AdminBase {
 		add_settings_field( 'button_height_slider_amount', esc_html__( 'Button Top and Bottom Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_height_slider_callback' ], $this->section_page, 'button' );
 
 		add_settings_field( 'button_width_slider_amount', esc_html__( 'Button Left and Right Padding', 'custom-cookie-message' ), [ $this, 'cookies_button_width_slider_callback' ], $this->section_page, 'button' );
+		add_settings_field( 'xbutton_styling', esc_html__( '[X] Button Styling', 'custom-cookie-message' ), [ $this, 'same_styles_to_close_button_callback' ], $this->section_page, 'button' );
 		add_settings_field( 'button_custom_css', esc_html__( 'Custom styles for buttons', 'custom-cookie-message' ), [ $this, 'cookies_btn_custom_styling_callback' ], $this->section_page, 'button' );
 	}
 
@@ -230,6 +231,14 @@ class AdminStylingOptions extends AdminBase {
 		echo '<div><br><p>If this option is set it\'s likely that any theme button styling used on the page will be overwritten</p></div>';
 	}
 
+	/**
+	 * Apply same styles to close button
+	 */
+	public function same_styles_to_close_button_callback() {
+		$checked = isset( $this->options['styles']['xclose_styling'] ) ? 'checked="checked"' : '';
+		echo '<input type="checkbox" id="xclose_styling" name="custom_cookie_message[styles][xclose_styling]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
+		echo '<label for="xclose_styling">Yes, use the same styles to [X] close button.</label>';
+	}
 
 	/**
 	 * Button color.
