@@ -36,6 +36,7 @@ class AdminGeneralOptions extends AdminBase {
 	public function __construct() {
 		parent::__construct();
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enhanced_select_field' ] );
 	}
 
 	/**
@@ -53,6 +54,17 @@ class AdminGeneralOptions extends AdminBase {
 		return self::$single;
 	}
 
+	/**
+	 * Add select2 scripts
+	 */
+	public function enhanced_select_field() {
+		wp_register_style( 'select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all' );
+		wp_register_script( 'select2js', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_style( 'select2css' );
+		wp_enqueue_script( 'select2js' );
+		$inline_js = 'jQuery(function($){ $("select").select2(); });';
+		wp_add_inline_script( 'select2js', $inline_js );
+	}
 	/**
 	 * Define settings.
 	 */
