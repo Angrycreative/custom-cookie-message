@@ -114,6 +114,19 @@ class AdminGeneralOptions extends AdminBase {
 	}
 
 	/**
+	 * Close Button Type.
+	 */
+	public function cookies_close_button_callback() {
+
+		$html  = '<select id="close_button" class="regular-text" name="custom_cookie_message[general][close_button]">';
+		$html .= '<option value="xbutton"' . selected( $this->options['general']['close_button'], 'xbutton', false ) . '>' . __( 'Use X', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="textvalue"' . selected( $this->options['general']['close_button'], 'textvalue', false ) . '>' . __( 'Use custom text', 'custom-cookie-message' ) . '</option>';
+		$html .= '</select>';
+
+		echo $html; // WPCS: XSS ok.
+	}
+
+	/**
 	 * Link page field.
 	 */
 	public function cookies_page_link_callback() {
