@@ -67,14 +67,14 @@ class AdminExportSettings extends AdminBase {
 	}
 
 	/**
-	 * Description Page
+	 * Description.
 	 */
 	public function cookies_export_settings_callback() {
 		echo '<p>' . esc_html_e( 'Here you can export and/or import your settings.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
-	 * Life Time Cookie.
+	 * Export settings.
 	 */
 	public function cookies_export_value_callback() {
 		echo '<h1>Export settings</h1><textarea id="textarea_warning_text" name="custom_cookie_message[export]" rows="10" cols="150">' . serialize( $this->options ) . '</textarea>'; // WPCS: XSS ok.
@@ -82,7 +82,7 @@ class AdminExportSettings extends AdminBase {
 
 
 	/**
-	 * Link page field.
+	 * Import settings.
 	 */
 	public function cookies_import_value_callback() {
 		echo '<h1>Import settings</h1><textarea id="textarea_warning_text" name="custom_cookie_message[import]" rows="10" cols="150"></textarea>'; // WPCS: XSS ok.
