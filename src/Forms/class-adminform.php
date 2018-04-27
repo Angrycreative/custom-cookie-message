@@ -65,16 +65,15 @@ class AdminForm extends AdminBase {
 	public function __construct() {
 		parent::__construct();
 		add_action( 'admin_menu', [ $this, 'cookies_menu' ] );
-
+		register_setting( 'custom_cookie_message_options', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 		global $pagenow;
-		if ( ( $pagenow === 'options-general.php' ) && ('custom_cookie_message_options' === $_GET['page'] ) ) {
+		if ( ( 'options-general.php' === $pagenow ) && ( 'custom_cookie_message_options' === $_GET['page'] ) ) {
 			$this->general_options = AdminGeneralOptions::single();
 			$this->content_options = AdminContentOptions::single();
 			$this->styling_options = AdminStylingOptions::single();
 			$this->cookie_settings = AdminCookieSettings::single();
 			$this->export_import   = AdminExportSettings::single();
 
-			register_setting( 'custom_cookie_message_options', 'custom_cookie_message', [ $this, 'ccm_validate_options' ] );
 
 			add_action( 'admin_enqueue_scripts', [ $this, 'ccm_admin_enqueue_scripts' ] );
 		}
