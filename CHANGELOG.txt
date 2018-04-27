@@ -1,4 +1,7 @@
 == changelog ==
+= 2.2.2 =
+* Fixed missing options page error.
+
 = 2.2.1 =
 * Only set the options on the option page.
 * Add default values in general array.
