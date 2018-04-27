@@ -1,6 +1,6 @@
 jQuery( function ( $ ) {
 
-	'use stric';
+	'use strict';
 
 	var cookies = [];
 
@@ -20,30 +20,29 @@ jQuery( function ( $ ) {
 		return cookies;
 	}
 
-	$.get({
+	jQuery.get({
 		url: '/',
 		crossDomain: true,
 		beforeSend: function ( xhr ) {
 			xhr.setRequestHeader( 'withCredentials', true );
-		},
+		}
 	})
-		.done( function () {
-			cookies = getCookies();
-			var html;
+	.done( function () {
+		cookies = getCookies();
+		var html;
 
-			cookies.map( function ( cookie ) {
-				html = '<div class="cookie">';
-				html = html + 'Cookie machine name: ' + cookie;
-				html = html + '<label for="' + cookie + '-label">Label: ';
-				html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
-				html = html + '</label>';
-				html = html + '</div>';
+		cookies.map( function ( cookie ) {
+			html = '<div class="cookie">';
+			html = html + 'Cookie machine name: ' + cookie;
+			html = html + '<label for="' + cookie + '-label">Label: ';
+			html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
+			html = html + '</label>';
+			html = html + '</div>';
 
-				// TODO: This code should be refactored.
-				// $( '.cookie_list_wrapper' ).append( html ).fadeIn();
-			});
-
+			// TODO: This code should be refactored.
+			// $( '.cookie_list_wrapper' ).append( html ).fadeIn();
 		});
+	});
 
 	// Add Color Picker to all inputs that have 'color-field' class
 	$( '.cpa-color-picker' ).wpColorPicker();

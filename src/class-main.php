@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.2.0';
+	protected $version = '2.2.1';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -443,6 +443,8 @@ class Main {
 				'life_time'         => MONTH_IN_SECONDS,
 				'location_options'  => 'top-fixed',
 				'cookies_page_link' => '',
+				'close_button'      => 'xbutton',
+				'cookies_about_page' => '',
 			],
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',

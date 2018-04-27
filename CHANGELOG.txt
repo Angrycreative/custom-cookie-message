@@ -1,4 +1,8 @@
 == changelog ==
+= 2.2.1 =
+* Only set the options on the option page.
+* Add default values in general array.
+
 = 2.2.0 =
 * Changed banner layout for better user experience.
 * Option to choose type of close button (close or accept).
