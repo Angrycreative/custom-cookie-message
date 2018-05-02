@@ -123,7 +123,7 @@ jQuery( function ( $ ) {
                 var get_height = $( '#custom-cookie-message-banner' ).clone().attr("id", false).css({display:"block", position:"absolute"});
                 $( 'body' ).append(get_height);
                 var scroll_height = get_height.outerHeight();
-                console.log(scroll_height);
+
                 get_height.remove();
 
                 /* banner animation */
