@@ -63,7 +63,6 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 				}
 }
 			?>
-			eller
 			<a id="custom-cookie-message-preference" href="#" title="<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
 		</p>
 		<?php if ( 'textvalue' === $options['general']['close_button'] ) : ?>
