@@ -36,6 +36,7 @@ class AdminGeneralOptions extends AdminBase {
 	public function __construct() {
 		parent::__construct();
 		add_action( 'admin_init', [ $this, 'cookies_initialize_general_options' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enhanced_select_field' ] );
 	}
 
 	/**
@@ -54,6 +55,17 @@ class AdminGeneralOptions extends AdminBase {
 	}
 
 	/**
+	 * Add select2 scripts
+	 */
+	public function enhanced_select_field() {
+		wp_register_style( 'select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all' );
+		wp_register_script( 'select2js', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array( 'jquery' ), '1.0', true );
+		wp_enqueue_style( 'select2css' );
+		wp_enqueue_script( 'select2js' );
+		$inline_js = 'jQuery(function($){ $("select").select2(); });';
+		wp_add_inline_script( 'select2js', $inline_js );
+	}
+	/**
 	 * Define settings.
 	 */
 	public function cookies_initialize_general_options() {
@@ -64,7 +76,11 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
 
-		add_settings_field( 'cookies_page_link', esc_html__( 'Enter url to the page about cookies:', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
+		add_settings_field( 'button_options', esc_html__( 'Close button type:', 'custom-cookie-message' ), [ $this, 'cookies_close_button_callback' ], $this->section_page, 'general' );
+
+		add_settings_field( 'cookies_about_page', esc_html__( 'About cookies page:', 'custom-cookie-message' ), [ $this, 'cookies_about_page_callback' ], $this->section_page, 'general' );
+
+		add_settings_field( 'cookies_page_link', esc_html__( 'About cookies Link (overrides the page):', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
 
 	}
 
@@ -89,11 +105,38 @@ class AdminGeneralOptions extends AdminBase {
 	 */
 	public function cookies_select_position_callback() {
 
-		$html  = '<select id="location_options" name="custom_cookie_message[general][location_options]">';
-		$html .= '<option value="top-fixed"' . selected( $this->options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'cookie-message' ) . '</option>';
-		$html .= '<option value="bottom-fixed"' . selected( $this->options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'cookie-message' ) . '</option>';
+		$html  = '<select id="location_options" class="regular-text" name="custom_cookie_message[general][location_options]">';
+		$html .= '<option value="top-fixed"' . selected( $this->options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="bottom-fixed"' . selected( $this->options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'custom-cookie-message' ) . '</option>';
 		$html .= '</select>';
 
+		echo $html; // WPCS: XSS ok.
+	}
+
+	/**
+	 * Close Button Type.
+	 */
+	public function cookies_close_button_callback() {
+
+		$html  = '<select id="close_button" class="regular-text" name="custom_cookie_message[general][close_button]">';
+		$html .= '<option value="xbutton"' . selected( $this->options['general']['close_button'], 'xbutton', false ) . '>' . __( 'Use X', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="textvalue"' . selected( $this->options['general']['close_button'], 'textvalue', false ) . '>' . __( 'Use custom text', 'custom-cookie-message' ) . '</option>';
+		$html .= '</select>';
+
+		echo $html; // WPCS: XSS ok.
+	}
+
+	/**
+	 * About cookies page field.
+	 */
+	public function cookies_about_page_callback() {
+		$html = '<select id="cookies_about_page" class="regular-text" name="custom_cookie_message[general][cookies_about_page]">';
+		if ( $pages = get_pages() ) {
+			foreach ( $pages as $page ) {
+				$html .= '<option value="' . $page->ID . '" ' . selected( $page->ID, $this->options['general']['cookies_about_page'], false ) . '>' . $page->post_title . '</option>';
+			}
+		}
+		$html .= '</select>';
 		echo $html; // WPCS: XSS ok.
 	}
 

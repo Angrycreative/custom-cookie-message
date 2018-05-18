@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.1.8';
+	protected $version = '2.2.4';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -226,29 +226,29 @@ class Main {
 	/**
 	 * Clean pattern list.
 	 *
-	 * @param array $patter_array List cookie pattern to block.
+	 * @param array $pattern_array List cookie pattern to block.
 	 *
 	 * @return string
 	 */
-	protected function ccm_patter_list( $patter_array ) {
+	protected function ccm_patter_list( $pattern_array ) {
 
-		if ( ! is_array( $patter_array ) ) {
+		if ( ! is_array( $pattern_array ) ) {
 			return '';
 		}
 
-		$patter_array = array_filter(
-			$patter_array, function ( $value ) {
+		$pattern_array = array_filter(
+			$pattern_array, function ( $value ) {
 				return '' !== trim( $value );
 			}
 		);
 
-		$patter_array = array_map(
+		$pattern_array = array_map(
 			function ( $pattern ) {
 				return '(' . trim( $pattern ) . ')';
-			}, $patter_array
+			}, $pattern_array
 		);
 
-		return implode( '|', $patter_array );
+		return implode( '|', $pattern_array );
 
 	}
 
@@ -440,9 +440,11 @@ class Main {
 
 		$defaults = [
 			'general'                     => [
-				'life_time'         => MONTH_IN_SECONDS,
-				'location_options'  => 'top-fixed',
-				'cookies_page_link' => '',
+				'life_time'          => MONTH_IN_SECONDS,
+				'location_options'   => 'top-fixed',
+				'cookies_page_link'  => '',
+				'close_button'       => 'xbutton',
+				'cookies_about_page' => '',
 			],
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',

@@ -1,6 +1,6 @@
 jQuery( function ( $ ) {
 
-	'use stric';
+	'use strict';
 
 	var cookies = [];
 
@@ -20,30 +20,29 @@ jQuery( function ( $ ) {
 		return cookies;
 	}
 
-	$.get({
+	jQuery.get({
 		url: '/',
 		crossDomain: true,
 		beforeSend: function ( xhr ) {
 			xhr.setRequestHeader( 'withCredentials', true );
-		},
+		}
 	})
-		.done( function () {
-			cookies = getCookies();
-			var html;
+	.done( function () {
+		cookies = getCookies();
+		var html;
 
-			cookies.map( function ( cookie ) {
-				html = '<div class="cookie">';
-				html = html + 'Cookie machine name: ' + cookie;
-				html = html + '<label for="' + cookie + '-label">Label: ';
-				html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
-				html = html + '</label>';
-				html = html + '</div>';
+		cookies.map( function ( cookie ) {
+			html = '<div class="cookie">';
+			html = html + 'Cookie machine name: ' + cookie;
+			html = html + '<label for="' + cookie + '-label">Label: ';
+			html = html + '<input type="text" name="cookie_list[' + cookie.trim + '][label]" id="' + cookie + '-label">';
+			html = html + '</label>';
+			html = html + '</div>';
 
-				// TODO: This code should be refactored.
-				// $( '.cookie_list_wrapper' ).append( html ).fadeIn();
-			});
-
+			// TODO: This code should be refactored.
+			// $( '.cookie_list_wrapper' ).append( html ).fadeIn();
 		});
+	});
 
 	// Add Color Picker to all inputs that have 'color-field' class
 	$( '.cpa-color-picker' ).wpColorPicker();
@@ -112,7 +111,7 @@ jQuery( function ( $ ) {
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.year_life_time );
 				break;
 			case 5:
-				$( '#life_time_slider_amount' ).val( 5 );
+				$( '#life_time_slider_amount' ).val( 9999 * customCookieMessageAdminLocalize.life_time.year_seconds );
 				$( '.life_time_message' ).text( customCookieMessageAdminLocalize.life_time_messages.end_less_life_time );
 				break;
 			}
@@ -164,7 +163,7 @@ jQuery( function ( $ ) {
 	$( '#button_height_slider' ).slider({
 		range: 'min',
 		value: parseInt( $( '#button_height_slider_amount' ).val() ),
-		min: 5,
+		min: 0,
 		max: 40,
 		create: function () {
 			$( '#button_height_handle' ).text( $( '#button_height_slider_amount' ).val() + ' px' );
@@ -249,9 +248,11 @@ jQuery( function ( $ ) {
 		if ( !checkbox.is( ':checked' ) ) {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', .5 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', .5 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', .5 );
 		} else {
 			$( '#button_height_slider, #button_width_slider' ).css( 'opacity', 1 );
 			checkbox.parents( '.form-table' ).find( '.wp-picker-container' ).css( 'opacity', 1 );
+			checkbox.parents( '.form-table' ).find( '#xclose_styling' ).parents( 'td' ).css( 'opacity', 1 );
 		}
 	}
 
