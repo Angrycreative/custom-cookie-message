@@ -61,9 +61,9 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
 				<?php
 				}
-}
+            }
+            _ex('or', 'String between "Read more" and "Change settings" in the cookie notice.', 'custom-cookie-message' );
 			?>
-			eller
 			<a id="custom-cookie-message-preference" href="#" title="<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
 		</p>
 		<?php if ( 'textvalue' === $options['general']['close_button'] ) : ?>
