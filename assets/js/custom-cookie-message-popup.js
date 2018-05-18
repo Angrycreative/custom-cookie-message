@@ -1,7 +1,5 @@
 jQuery( function ( $ ) {
 
-  'use stric';
-
   let cookie = document.cookie.match( '(^|;) ?custom_cookie_message=([^;]*)(;|$)' );
 
   let customCookieMessage = {
@@ -80,6 +78,10 @@ jQuery( function ( $ ) {
     },
 
     savePreferences: function () {
+	    $( '#custom-cookie-message-modal' ).remove();
+	    $( '#custom-cookie-message-banner' ).slideUp().remove();
+	    $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
+
       $.ajax( {
         url: customCookieMessageLocalize.rest_url_preference,
         method: 'POST',
@@ -91,12 +93,11 @@ jQuery( function ( $ ) {
         beforeSend: function ( xhr ) {
           xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
         },
+	      error: function ( error ) {
+	        console.error( 'Custom cookie plugin: Could not save preferences' );
+	        console.error( error );
+	      }
       } )
-       .done( function () {
-         $( '#custom-cookie-message-modal' ).remove();
-         $( '#custom-cookie-message-banner' ).slideUp().remove();
-         $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
-       } );
     },
 
     showCookieNotice: function () {
