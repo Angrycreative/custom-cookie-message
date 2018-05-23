@@ -6,6 +6,8 @@
 	will-change: transform;
 	z-index: 2147483001 !important;
 	font-size: inherit;
+	left: 0;
+	right: 0;
 }
 
 .custom-cookie-message-banner__content {
