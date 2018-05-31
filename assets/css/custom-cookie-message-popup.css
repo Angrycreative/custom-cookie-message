@@ -20,7 +20,7 @@
 .custom-cookie-message-banner__text {
 	margin: 0;
 	padding: 0;
-	flex: 0 0 100%;
+	flex: initial;
 	margin-bottom: 1.5em;
 	font-size: 90%;
 }
