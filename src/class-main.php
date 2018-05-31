@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.2.4';
+	protected $version = '2.2.7';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
