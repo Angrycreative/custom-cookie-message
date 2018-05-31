@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-18 13:55+0000\n"
+"POT-Creation-Date: 2018-05-18 10:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,6 +13,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
+
+#: src/class-main.php:216
+msgid "An update is available."
+msgstr ""
+
+#: src/class-main.php:217
+msgid "Upgrade now"
+msgstr ""
+
+#: templates/cookie-notice.php:65
+msgctxt ""
+"String between \"Read more\" and \"Change settings\" in the cookie notice."
+msgid "or"
+msgstr ""
+
+#: templates/cookie-notice.php:76 templates/cookie-notice.php:89
+msgid "Close"
+msgstr ""
+
+#: templates/cookie-notice.php:99
+msgid "Required Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:100
+msgid "Functional Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:101
+msgid "Advertising Cookies"
+msgstr ""
+
+#: templates/cookie-notice.php:111 templates/cookie-notice.php:118
+msgid "Active"
+msgstr ""
 
 #: tests/test-custom-cookie-message.php:63
 msgid "I understand"
@@ -28,35 +62,57 @@ msgid ""
 "cookies . "
 msgstr ""
 
-#: templates/cookie-notice.php:62 templates/cookie-notice.php:67
-msgid "Close"
+#: src/Forms/class-admingeneraloptions.php:73 src/Forms/class-adminform.php:173
+msgid "General Options"
 msgstr ""
 
-#: templates/cookie-notice.php:71
-msgid "Required Cookies"
+#: src/Forms/class-admingeneraloptions.php:75
+msgid "Life Time Cookie:"
 msgstr ""
 
-#: templates/cookie-notice.php:72
-msgid "Functional Cookies"
+#: src/Forms/class-admingeneraloptions.php:77
+msgid "Select location of message:"
 msgstr ""
 
-#: templates/cookie-notice.php:73
-msgid "Advertising Cookies"
+#: src/Forms/class-admingeneraloptions.php:79
+msgid "Close button type:"
 msgstr ""
 
-#: templates/cookie-notice.php:83 templates/cookie-notice.php:90
-msgid "Active"
+#: src/Forms/class-admingeneraloptions.php:81
+msgid "About cookies page:"
 msgstr ""
 
-#: src/class-main.php:184
-msgid "An update is available."
+#: src/Forms/class-admingeneraloptions.php:83
+msgid "About cookies Link (overrides the page):"
 msgstr ""
 
-#: src/class-main.php:185
-msgid "Upgrade now"
+#: src/Forms/class-admingeneraloptions.php:91
+msgid ""
+"Select where the cookie message should be displayed and enter the URL to the "
+"page about cookies."
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:61 src/Forms/class-adminform.php:160
+#: src/Forms/class-admingeneraloptions.php:109
+msgid "Top as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:110
+msgid "Bottom as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:122
+msgid "Use X"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:123
+msgid "Use custom text"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:147
+msgid "Paste URL or type to search"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:61 src/Forms/class-adminform.php:175
 msgid "Styling Options"
 msgstr ""
 
@@ -73,47 +129,132 @@ msgid "Message container opacity"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:69
-msgid "Text font"
+msgid "Scroll content"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:71
+msgid "Banner Animation"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:72
+msgid "Text font"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:74
+msgid "Text size"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:76
 msgid "Text Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:73
+#: src/Forms/class-adminstylingoptions.php:78
 msgid "Link Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:75
-msgid "Button classes"
+#: src/Forms/class-adminstylingoptions.php:80
+msgid "Close icon color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:77
+#: src/Forms/class-adminstylingoptions.php:82
+msgid "Modal Options"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:84
+msgid "Modal Overlay"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:86
+msgid "Modal Overlay Opacity"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:88
+msgid "Button Options"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:90
+msgid "Button Custom Class"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:92
+msgid "Button Styling"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:94
 msgid "Button Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:79
+#: src/Forms/class-adminstylingoptions.php:96
 msgid "Button Hover Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:81
+#: src/Forms/class-adminstylingoptions.php:98
 msgid "Button Text Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:83
-msgid "Button Height"
+#: src/Forms/class-adminstylingoptions.php:100
+msgid "Button Hover Text Color"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:85
-msgid "Button Width"
+#: src/Forms/class-adminstylingoptions.php:102
+msgid "Button Top and Bottom Padding"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:87
-msgid "Modal Background"
+#: src/Forms/class-adminstylingoptions.php:104
+msgid "Button Left and Right Padding"
 msgstr ""
 
-#: src/Forms/class-adminstylingoptions.php:89
-msgid "Modal Background Opacity"
+#: src/Forms/class-adminstylingoptions.php:105
+msgid "[X] Button Styling"
+msgstr ""
+
+#: src/Forms/class-adminstylingoptions.php:106
+msgid "Custom styles for buttons"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:61 src/Forms/class-adminform.php:173
+msgid "Content Options"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:63
+msgid "Enter warning text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:65
+msgid "Enter link text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:67
+msgid "Enter button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:69
+msgid "Enter Accept button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:71
+msgid "Save Settings button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:73
+msgid "Shortcode Text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:75
+msgid "Shortcode:"
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:61
+msgid "Export/Import Settings"
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:63
+#: src/Forms/class-adminexportsettings.php:65
+msgid " "
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:73
+msgid "Here you can export and/or import your settings."
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:61
@@ -142,101 +283,51 @@ msgid ""
 "disable anything here."
 msgstr ""
 
-#: src/Forms/class-admincookiesettings.php:106
+#: src/Forms/class-admincookiesettings.php:108
 msgid ""
 "These cookies allow us to analyze site usage so we can measure and improve "
 "performance. Example, hotjar"
 msgstr ""
 
-#: src/Forms/class-admincookiesettings.php:122
+#: src/Forms/class-admincookiesettings.php:126
 msgid ""
 "These cookies are used by advertising companies to serve ads that are "
 "relevant to your interests. Example, Doubleclick"
 msgstr ""
 
-#: src/Forms/class-adminform.php:126
+#: src/Forms/class-adminform.php:142
 msgid "Until session expires (closing browser)"
 msgstr ""
 
-#: src/Forms/class-adminform.php:127
+#: src/Forms/class-adminform.php:143
 msgid "Weekly"
 msgstr ""
 
-#: src/Forms/class-adminform.php:128
+#: src/Forms/class-adminform.php:144
 msgid "Montly"
 msgstr ""
 
-#: src/Forms/class-adminform.php:129
+#: src/Forms/class-adminform.php:145
 msgid "Yearly"
 msgstr ""
 
-#: src/Forms/class-adminform.php:130
+#: src/Forms/class-adminform.php:146
 msgid "Until end of times"
 msgstr ""
 
-#: src/Forms/class-adminform.php:158 src/Forms/class-admingeneraloptions.php:61
-msgid "General Options"
-msgstr ""
-
-#: src/Forms/class-adminform.php:158 src/Forms/class-admincontentoptions.php:61
-msgid "Content Options"
-msgstr ""
-
-#: src/Forms/class-adminform.php:160
+#: src/Forms/class-adminform.php:175
 msgid "Cookie Settings"
 msgstr ""
 
-#: src/Forms/class-admingeneraloptions.php:63
-msgid "Life Time Cookie:"
+#: src/Forms/class-adminform.php:177
+msgid "Export/Import"
 msgstr ""
 
-#: src/Forms/class-admingeneraloptions.php:65
-msgid "Select location of message:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:67
-msgid "Enter url to the page about cookies:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:75
-msgid ""
-"Select where the cookie message should be displayed and enter the URL to the "
-"page about cookies."
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:104
-msgid "Paste URL or type to search"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:63
-msgid "Enter warning text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:65
-msgid "Enter link text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:67
-msgid "Enter button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:69
-msgid "Save Settings button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:71
-msgid "Shortcode Text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:73
-msgid "Shortcode:"
-msgstr ""
-
-#: src/Controller/class-controller.php:94
+#: src/Controller/class-controller.php:105
 msgid "What it is? No, thanks."
 msgstr ""
 
-#: src/Controller/class-controller.php:110
+#: src/Controller/class-controller.php:122
 msgid "Sorry, who are you?"
 msgstr ""
 

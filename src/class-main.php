@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.2.2';
+	protected $version = '2.2.4';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -226,29 +226,29 @@ class Main {
 	/**
 	 * Clean pattern list.
 	 *
-	 * @param array $patter_array List cookie pattern to block.
+	 * @param array $pattern_array List cookie pattern to block.
 	 *
 	 * @return string
 	 */
-	protected function ccm_patter_list( $patter_array ) {
+	protected function ccm_patter_list( $pattern_array ) {
 
-		if ( ! is_array( $patter_array ) ) {
+		if ( ! is_array( $pattern_array ) ) {
 			return '';
 		}
 
-		$patter_array = array_filter(
-			$patter_array, function ( $value ) {
+		$pattern_array = array_filter(
+			$pattern_array, function ( $value ) {
 				return '' !== trim( $value );
 			}
 		);
 
-		$patter_array = array_map(
+		$pattern_array = array_map(
 			function ( $pattern ) {
 				return '(' . trim( $pattern ) . ')';
-			}, $patter_array
+			}, $pattern_array
 		);
 
-		return implode( '|', $patter_array );
+		return implode( '|', $pattern_array );
 
 	}
 
