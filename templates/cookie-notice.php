@@ -15,9 +15,10 @@ $options = get_option( 'custom_cookie_message' );
  * @var esc_html_e()
  */
 $esc_html = 'esc_html_e';
-
+$echo_str = '__';
 if ( ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' ) ) && function_exists( 'pll_e' ) ) {
 	$esc_html = 'pll_e';
+	$echo_str = 'pll__';
 }
 
 $functional_check  = 'checked';
@@ -97,25 +98,25 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			<div class="custom-cookie-message-modal__tabs">
 				<ul class="custom-cookie-message-modal__list">
 					<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--required_message custom-cookie-message-modal__item--active"><?php esc_html_e( 'Required Cookies', 'custom-cookie-message' ); ?></li>
-					<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php esc_html_e( 'Functional Cookies', 'custom-cookie-message' ); ?></li>
-					<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php esc_html_e( 'Advertising Cookies', 'custom-cookie-message' ); ?></li>
+					<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--functional_message"><?php $esc_html( 'Functional Cookies', 'custom-cookie-message' ); ?></li>
+					<li class="custom-cookie-message-modal__item custom-cookie-message-modal__item--advertising_message"><?php $esc_html( 'Advertising Cookies', 'custom-cookie-message' ); ?></li>
 				</ul>
 			</div>
 			<div class="custom-cookie-message-modal__content">
 				<div class="custom-cookie-message-modal__required_message">
-					<?php echo wpautop( $options['cookie_granularity_settings']['required_cookies_message'] ); // WPCS: XSS ok. ?>
+					<?php echo wpautop( $echo_str( $options['cookie_granularity_settings']['required_cookies_message'], 'custom-cookie-message' ) ); // WPCS: XSS ok. ?>
 				</div>
 				<div class="custom-cookie-message-modal__functional_message hide">
-					<?php echo wpautop( $options['cookie_granularity_settings']['functional_cookies_message'] ); // WPCS: XSS ok. ?>
+					<?php echo wpautop( $echo_str( $options['cookie_granularity_settings']['functional_cookies_message'], 'custom-cookie-message' ) ); // WPCS: XSS ok. ?>
 					<label class="custom-cookie-message-modal__checkbox">
-						<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+						<?php $esc_html( 'Active', 'custom-cookie-message' ); ?>
 						<input type="checkbox" id="ccm-functional" <?php echo esc_attr( $functional_check ); ?>>
 					</label>
 				</div>
 				<div class="custom-cookie-message-modal__advertising_message hide">
-					<?php echo wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ); // WPCS: XSS ok. ?>
+					<?php $esc_html( wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ) ); // WPCS: XSS ok. ?>
 					<label class="custom-cookie-message-modal__checkbox">
-						<?php esc_html_e( 'Active', 'custom-cookie-message' ); ?>
+						<?php $esc_html( 'Active', 'custom-cookie-message' ); ?>
 						<input type="checkbox" id="ccm-advertising" <?php echo esc_attr( $advertising_check ); ?>>
 					</label>
 				</div>
