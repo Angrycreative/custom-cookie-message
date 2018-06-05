@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.2.7';
+	protected $version = '2.2.8';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -139,7 +139,7 @@ class Main {
 						$url .= 'index.php';
 					}
 					$path = '/' . ltrim( $path, '/' );
-					$url = add_query_arg( 'rest_route', $path, $url );
+					$url  = add_query_arg( 'rest_route', $path, $url );
 					return $url;
 				}, 4, 10
 			);
