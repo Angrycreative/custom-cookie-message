@@ -130,7 +130,20 @@ class Main {
 		if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ], 99 );
 		}
-
+		$get_options = get_option( 'custom_cookie_message', [] );
+		if ( ! isset( $get_options['general']['enable_mode_rewrite'] ) ) {
+			add_filter(
+				'rest_url', function( $url, $path, $blog_id, $scheme ) {
+					$url = trailingslashit( get_home_url( $blog_id, '', $scheme ) );
+					if ( 'index.php' !== substr( $url, 9 ) ) {
+						$url .= 'index.php';
+					}
+					$path = '/' . ltrim( $path, '/' );
+					$url = add_query_arg( 'rest_route', $path, $url );
+					return $url;
+				}, 4, 10
+			);
+		}
 	}
 	/**
 	 * Add more support for Polylang strings translations.
