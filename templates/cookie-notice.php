@@ -114,7 +114,7 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 					</label>
 				</div>
 				<div class="custom-cookie-message-modal__advertising_message hide">
-					<?php $esc_html( wpautop( $options['cookie_granularity_settings']['advertising_cookies_message'] ) ); // WPCS: XSS ok. ?>
+					<?php echo wpautop( $echo_str( $options['cookie_granularity_settings']['advertising_cookies_message'], 'custom-cookie-message' ) ); // WPCS: XSS ok. ?>
 					<label class="custom-cookie-message-modal__checkbox">
 						<?php $esc_html( 'Active', 'custom-cookie-message' ); ?>
 						<input type="checkbox" id="ccm-advertising" <?php echo esc_attr( $advertising_check ); ?>>
