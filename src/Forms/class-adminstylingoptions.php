@@ -317,6 +317,6 @@ class AdminStylingOptions extends AdminBase {
 	 * Btn custom styling.
 	 */
 	public function cookies_btn_custom_styling_callback() {
-		echo '<textarea id="textarea_btn_custom_styling" name="custom_cookie_message[styles][textarea_btn_custom_styling]" rows="5" cols="50">' . $this->options['styles']['textarea_btn_custom_styling'] . '</textarea>'; // WPCS: XSS ok.
+		echo '<textarea id="textarea_btn_custom_styling" name="custom_cookie_message[styles][textarea_btn_custom_styling]" rows="5" cols="50">' . $this->options['styles']['button_custom_css'] . '</textarea>'; // WPCS: XSS ok.
 	}
 }
