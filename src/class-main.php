@@ -440,11 +440,13 @@ class Main {
 
 		$defaults = [
 			'general'                     => [
-				'life_time'          => MONTH_IN_SECONDS,
-				'location_options'   => 'top-fixed',
-				'cookies_page_link'  => '',
-				'close_button'       => 'xbutton',
-				'cookies_about_page' => '',
+				'life_time'           => MONTH_IN_SECONDS,
+				'location_options'    => 'top-fixed',
+				'cookies_page_link'   => '',
+				'close_button'        => 'xbutton',
+				'cookies_about_page'  => '#',
+				'cookies_page_link'   => '#',
+				'enable_mode_rewrite' => 1,
 			],
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',
@@ -472,14 +474,11 @@ class Main {
 				'modal_overlay'                  => '#3d3d3d',
 				'modal_overlay_opacity'          => '50',
 				'button_custom_css'              => '/* Settings button */
-																						#custom-cookie-message-preference {
-
-																						}
-																						/* Save settings button */
-																						#ccm-save-preference {
-
-																						}',
-
+#custom-cookie-message-preference {
+}
+/* Save settings button */
+#ccm-save-preference {
+}',
 			],
 			'cookie_granularity_settings' => [
 				'headline'                    => 'Privacy Preferences',
