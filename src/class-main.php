@@ -486,12 +486,7 @@ class Main {
 				'close_color_picker'             => '#FFFFFF',
 				'modal_overlay'                  => '#3d3d3d',
 				'modal_overlay_opacity'          => '50',
-				'button_custom_css'              => '/* Settings button */
-#custom-cookie-message-preference {
-}
-/* Save settings button */
-#ccm-save-preference {
-}',
+				'button_custom_css'              => '#custom-cookie-message-preference {} #ccm-save-preference {}',
 			],
 			'cookie_granularity_settings' => [
 				'headline'                    => 'Privacy Preferences',

@@ -10,9 +10,9 @@ if [ $1 == 'before' ]; then
 	[[ ${TRAVIS_PHP_VERSION} == '5.3' ]] && exit;
 
 	if [[ ${TRAVIS_PHP_VERSION:0:2} == "5." ]]; then
-		composer global require "phpunit/phpunit=4.8.*"
+		composer global require "phpunit/phpunit=4.*"
 	else
-		composer global require "phpunit/phpunit=6.2.*"
+		composer global require "phpunit/phpunit=7.*"
 	fi
 
 fi
