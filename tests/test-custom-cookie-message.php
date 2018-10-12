@@ -23,11 +23,9 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	 * @var string
 	 */
 	protected $route = '/custom-cm';
-	function __construct() {
-		session_start();
-	}
 
 	public function setUp() {
+		@session_start();
 		parent::setUp();
 
 		/**
@@ -56,25 +54,31 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	 */
 	public function test_update_plugin_from_165_200() {
 
-		add_option( 'cookies_general_options', [
-			'location_options'  => 'top-fixed',
-			'cookies_page_link' => 'Updated link',
-		] );
+		add_option(
+			'cookies_general_options', [
+				'location_options'  => 'top-fixed',
+				'cookies_page_link' => 'Updated link',
+			]
+		);
 
-		add_option( 'cookies_content_options', [
-			'input_button_text'     => esc_html__( 'I understand', 'custom-cookie-message' ),
-			'input_link_text'       => esc_html__( 'Updated Read more', 'custom-cookie-message' ),
-			'textarea_warning_text' => esc_html__( 'This website uses cookies . By using our website you accept our use of cookies . ', 'custom-cookie-message' ),
-		] );
+		add_option(
+			'cookies_content_options', [
+				'input_button_text'     => esc_html__( 'I understand', 'custom-cookie-message' ),
+				'input_link_text'       => esc_html__( 'Updated Read more', 'custom-cookie-message' ),
+				'textarea_warning_text' => esc_html__( 'This website uses cookies . By using our website you accept our use of cookies . ', 'custom-cookie-message' ),
+			]
+		);
 
-		add_option( 'cookies_styling_options', [
-			'messages_color_picker'     => 'Updated Color Picker',
-			'button_color_picker'       => '#EBECED',
-			'button_hover_color_picker' => '#CBC5C1',
-			'button_text_color_picker'  => '#3E3E3B',
-			'text_color_picker'         => '#EBECED',
-			'link_color_picker'         => '#CBC5C1',
-		] );
+		add_option(
+			'cookies_styling_options', [
+				'messages_color_picker'     => 'Updated Color Picker',
+				'button_color_picker'       => '#EBECED',
+				'button_hover_color_picker' => '#CBC5C1',
+				'button_text_color_picker'  => '#3E3E3B',
+				'text_color_picker'         => '#EBECED',
+				'link_color_picker'         => '#CBC5C1',
+			]
+		);
 
 		// Manually trigger eventho it should be triggered during the callback.
 		\CustomCookieMessage\Main::update();
@@ -168,17 +172,21 @@ class CustomCookiesMessageTests extends WP_UnitTestCase {
 	public function test_dequeue_scripts() {
 		global $wp_scripts;
 
-		add_option( 'custom_cookie_message', [
-			'cookie_granularity_settings' => [
-				'functional_list'  => 'hotjar, google, twitter',
-				'advertising_list' => 'facebook, doubleclick',
-			],
-		] );
+		add_option(
+			'custom_cookie_message', [
+				'cookie_granularity_settings' => [
+					'functional_list'  => 'hotjar, google, twitter',
+					'advertising_list' => 'facebook, doubleclick',
+				],
+			]
+		);
 
-		$_COOKIE['custom_cookie_message'] = wp_json_encode( [
-			'functional'  => 'true',
-			'advertising' => 'false',
-		], JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+		$_COOKIE['custom_cookie_message'] = wp_json_encode(
+			[
+				'functional'  => 'true',
+				'advertising' => 'false',
+			], JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
+		);
 
 		\CustomCookieMessage\Main::single()->ccm_handle_scripts();
 
