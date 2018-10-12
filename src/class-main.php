@@ -232,7 +232,7 @@ class Main {
 			$output .= '</div>';
 		}
 
-		echo $output; // WPCS: XSS ok.
+		//echo $output; // WPCS: XSS ok.
 
 	}
 
