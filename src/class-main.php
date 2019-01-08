@@ -378,6 +378,7 @@ class Main {
 				'padding: %spx %spx;', $styles['button_height_slider_amount'],
 				$styles['button_width_slider_amount']
 			);
+			$css .= $styles['textarea_btn_custom_styling'];
 			$css .= '}';
 
 			$css .= '.custom-cookie-message-banner__button:hover,';
@@ -385,7 +386,6 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
-			$css .= $styles['textarea_btn_custom_styling'];
 		endif;
 
 		return $css;
@@ -479,6 +479,7 @@ class Main {
 				'button_height_slider_amount'    => '10',
 				'button_width_slider_amount'     => '10',
 				'button_custom_class'            => '',
+				'textarea_btn_custom_styling'   => '',
 				'text_color_picker'              => '#c0c0c0',
 				'text_size'                      => '',
 				'text_font'                      => '',
