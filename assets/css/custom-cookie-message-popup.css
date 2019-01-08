@@ -26,7 +26,7 @@
 @media (min-width: 768px) {
   .custom-cookie-message-banner__content {
     flex-wrap: initial;
-    justify-content: centdder; }
+    justify-content: center; }
   .custom-cookie-message-banner__text {
     flex: initial;
     margin-bottom: 0;
