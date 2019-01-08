@@ -1,0 +1,42 @@
+{
+  "name": "custom-cookie-message",
+  "version": "1.0.0",
+  "description": "Installing and activating the plugin will automatically make it appear with the default content and styling.",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "webpack --debug --output-pathinfo --watch --mode development",
+    "dist": "webpack -p --progress --colors --mode production",
+    "build": "npm run dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angrycreative/custom-cookie-message.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Angrycreative/custom-cookie-message/issues"
+  },
+  "homepage": "https://github.com/Angrycreative/custom-cookie-message#readme",
+  "devDependencies": {
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.4.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack-build-notifier": "^0.1.30"
+  }
+}
