@@ -20,6 +20,8 @@ if ( ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylan
 	$esc_html = 'pll_e';
 }
 
+error_log( print_r( $esc_html, true ) );
+
 $functional_check  = 'checked';
 $advertising_check = 'checked';
 
@@ -46,19 +48,19 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 <div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>">
 	<div class="custom-cookie-message-banner__content">
 		<p class="custom-cookie-message-banner__text">
-			<?php $esc_html( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
+			<?php echo esc_html( $options['content']['textarea_warning_text'] ); ?>
 			<?php if ( $options['general']['cookies_page_link'] ) { ?>
-				<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+				<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php echo esc_html( $options['content']['input_link_text'] ); ?></a>
 			<?php } else { ?>
 				<?php
 				if ( $options['general']['cookies_about_page'] ) {
-						if ( function_exists( 'icl_object_id' ) ) {
-							$page_id = icl_object_id( $options['general']['cookies_about_page'], 'page', true );
-						} else {
-							$page_id = $options['general']['cookies_about_page'];
-						}
+					if ( function_exists( 'icl_object_id' ) ) {
+						$page_id = icl_object_id( $options['general']['cookies_about_page'], 'page', true );
+					} else {
+						$page_id = $options['general']['cookies_about_page'];
+					}
 					?>
-					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php echo esc_attr( $options['content']['input_link_text'] ); ?>"><?php echo esc_html( $options['content']['input_link_text'] ); ?></a>
 				<?php
 				}
             }

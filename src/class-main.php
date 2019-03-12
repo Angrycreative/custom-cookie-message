@@ -122,7 +122,8 @@ class Main {
 
 			add_action( 'upgrader_process_complete', [ __CLASS__, 'update' ] );
 
-			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
+			// NO! We do NOT spam users with update notices! - Jonathan
+			//add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
@@ -185,7 +186,7 @@ class Main {
 			}
 		}
 
-		// Is empty, nani?
+		// Bail early if empty.
 		if ( empty( $update_queue ) ) {
 			return;
 		}
@@ -237,7 +238,8 @@ class Main {
 		}
 
 		$pattern_array = array_filter(
-			$pattern_array, function ( $value ) {
+			$pattern_array,
+			function ( $value ) {
 				return '' !== trim( $value );
 			}
 		);
@@ -245,7 +247,8 @@ class Main {
 		$pattern_array = array_map(
 			function ( $pattern ) {
 				return '(' . trim( $pattern ) . ')';
-			}, $pattern_array
+			},
+			$pattern_array
 		);
 
 		return implode( '|', $pattern_array );
@@ -288,7 +291,9 @@ class Main {
 		wp_add_inline_style( 'custom-cookie-message-popup-styles', $this->custom_css() );
 		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
 		wp_localize_script(
-			'custom-cookie-message-popup', 'customCookieMessageLocalize', [
+			'custom-cookie-message-popup',
+			'customCookieMessageLocalize',
+			[
 				'options'             => get_option( 'custom_cookie_message' ),
 				'wp_rest_nonce'       => wp_create_nonce( 'wp_rest' ),
 				'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
@@ -362,7 +367,8 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_text_color_picker'] );
 			$css .= sprintf(
-				'padding: %spx %spx;', $styles['button_height_slider_amount'],
+				'padding: %spx %spx;',
+				$styles['button_height_slider_amount'],
 				$styles['button_width_slider_amount']
 			);
 			$css .= '}';
@@ -372,7 +378,7 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
-			$css .= $styles['textarea_btn_custom_styling'];
+			$css .= ( isset( $styles['textarea_btn_custom_styling'] ) ) ? $styles['textarea_btn_custom_styling'] : '';
 		endif;
 
 		return $css;
