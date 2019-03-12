@@ -113,40 +113,40 @@ jQuery( function ( $ ) {
         },
       } )
        .done( function ( response ) {
-          if ( null !== response.template && typeof customCookieMessageLocalize.options != 'undefined' ) {
+          if ( null !== response.template && typeof customCookieMessageLocalize.options.general != 'undefined' ) {
             if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
               $( 'body' ).append( response.template );
             }
             else {
               $( 'body' ).prepend( response.template );
             }
-              /* Get height of the banner before showing it */
-                var get_height = $( '#custom-cookie-message-banner' ).clone().attr("id", false).css({display:"block", position:"absolute"});
-                $( 'body' ).append(get_height);
-                var scroll_height = get_height.outerHeight();
+            /* Get height of the banner before showing it */
+						var get_height = $( '#custom-cookie-message-banner' ).clone().attr("id", false).css({display:"block", position:"absolute"});
+						$( 'body' ).append(get_height);
+						var scroll_height = get_height.outerHeight();
 
-                get_height.remove();
+						get_height.remove();
 
-								/* banner animation */
-								if ( typeof customCookieMessageLocalize.options.styles != 'undefined' ) {
-									if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'scroll' === customCookieMessageLocalize.options.styles.banner_animation ) {
-                    $( '#custom-cookie-message-banner' ).slideDown();
-                  } else if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'fade' === customCookieMessageLocalize.options.styles.banner_animation ) {
-                    $( '#custom-cookie-message-banner' ).fadeIn();
-                  }
-								} else {
-									$( '#custom-cookie-message-banner' ).show();
-								}
+						/* banner animation */
+						if ( typeof customCookieMessageLocalize.options.styles != 'undefined' ) {
+							if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'scroll' === customCookieMessageLocalize.options.styles.banner_animation ) {
+								$( '#custom-cookie-message-banner' ).slideDown();
+							} else if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'fade' === customCookieMessageLocalize.options.styles.banner_animation ) {
+								$( '#custom-cookie-message-banner' ).fadeIn();
+							}
+						} else {
+							$( '#custom-cookie-message-banner' ).show();
+						}
 
-								/* Scroll content container */
-								if ( typeof customCookieMessageLocalize.options.styles != 'undefined' && 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
-									if ( typeof customCookieMessageLocalize.options.general.location_options != 'undefined' && 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
-										$( 'body' ).animate({marginBottom: scroll_height});
-									}
-									else {
-										$( 'body' ).animate({marginTop: scroll_height});
-									}
-								}
+						/* Scroll content container */
+						if ( typeof customCookieMessageLocalize.options.styles != 'undefined' && 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
+							if ( typeof customCookieMessageLocalize.options.general.location_options != 'undefined' && 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+								$( 'body' ).animate({marginBottom: scroll_height});
+							}
+							else {
+								$( 'body' ).animate({marginTop: scroll_height});
+							}
+						}
           }
           else {
             console.warn( 'Custom Cookie Message options are not set' );
