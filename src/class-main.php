@@ -378,7 +378,7 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
-			$css .= $styles['textarea_btn_custom_styling'];
+			$css .= ( isset( $styles['textarea_btn_custom_styling'] ) ) ? $styles['textarea_btn_custom_styling'] : '';
 		endif;
 
 		return $css;

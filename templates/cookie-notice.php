@@ -48,9 +48,9 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 <div id="custom-cookie-message-banner" class="custom-cookie-message-banner custom-cookie-message-banner--<?php echo esc_attr( $options['general']['location_options'] ); ?>">
 	<div class="custom-cookie-message-banner__content">
 		<p class="custom-cookie-message-banner__text">
-			<?php esc_html_e( $options['content']['textarea_warning_text'], 'custom-cookie-message' ); ?>
+			<?php echo esc_html( $options['content']['textarea_warning_text'] ); ?>
 			<?php if ( $options['general']['cookies_page_link'] ) { ?>
-				<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php esc_html_e( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+				<a href="<?php echo esc_url( $options['general']['cookies_page_link'] ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php echo esc_html( $options['content']['input_link_text'] ); ?></a>
 			<?php } else { ?>
 				<?php
 				if ( $options['general']['cookies_about_page'] ) {
