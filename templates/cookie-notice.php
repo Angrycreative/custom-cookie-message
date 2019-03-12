@@ -54,13 +54,13 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			<?php } else { ?>
 				<?php
 				if ( $options['general']['cookies_about_page'] ) {
-						if ( function_exists( 'icl_object_id' ) ) {
-							$page_id = icl_object_id( $options['general']['cookies_about_page'], 'page', true );
-						} else {
-							$page_id = $options['general']['cookies_about_page'];
-						}
+					if ( function_exists( 'icl_object_id' ) ) {
+						$page_id = icl_object_id( $options['general']['cookies_about_page'], 'page', true );
+					} else {
+						$page_id = $options['general']['cookies_about_page'];
+					}
 					?>
-					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_link_text'], 'custom-cookie-message' ); ?></a>
+					<a href="<?php echo get_permalink( $page_id ); ?>" title="<?php echo esc_attr( $options['content']['input_link_text'] ); ?>"><?php echo esc_html( $options['content']['input_link_text'] ); ?></a>
 				<?php
 				}
             }
