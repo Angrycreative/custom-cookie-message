@@ -113,7 +113,7 @@ jQuery( function ( $ ) {
         },
       } )
        .done( function ( response ) {
-          if ( null !== response.template && '' !== customCookieMessageLocalize.options ) {
+          if ( null !== response.template && typeof customCookieMessageLocalize.options != 'undefined' ) {
             if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
               $( 'body' ).append( response.template );
             }

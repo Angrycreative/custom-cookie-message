@@ -122,7 +122,8 @@ class Main {
 
 			add_action( 'upgrader_process_complete', [ __CLASS__, 'update' ] );
 
-			add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
+			// NO! We do NOT spam users with update notices! - Jonathan
+			//add_action( 'admin_notices', [ __CLASS__, 'admin_notices' ] );
 		}
 
 		add_action( 'wp_footer', [ $this, 'display_frontend_notice' ] );
