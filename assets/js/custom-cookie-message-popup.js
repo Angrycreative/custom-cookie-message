@@ -127,19 +127,20 @@ jQuery( function ( $ ) {
 
                 get_height.remove();
 
-                /* banner animation */
-                  if ( 'scroll' === customCookieMessageLocalize.options.styles.banner_animation ) {
+								/* banner animation */
+								/* First make sure we even have these settings. */
+                  if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'scroll' === customCookieMessageLocalize.options.styles.banner_animation ) {
                     $( '#custom-cookie-message-banner' ).slideDown();
                   } else
-                  if ( 'fade' === customCookieMessageLocalize.options.styles.banner_animation ) {
+                  if ( typeof customCookieMessageLocalize.options.styles.banner_animation != 'undefined' && 'fade' === customCookieMessageLocalize.options.styles.banner_animation ) {
                     $( '#custom-cookie-message-banner' ).fadeIn();
                   }
                   else {
                     $( '#custom-cookie-message-banner' ).show();
                   }
                   /* Scroll content container */
-                  if ( 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
-                    if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
+                  if ( typeof customCookieMessageLocalize.options.styles.scroll_body != 'undefined' && 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
+                    if ( typeof customCookieMessageLocalize.options.general.location_options != 'undefined' && 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
                       $( 'body' ).animate({marginBottom: scroll_height});
                     }
                     else {
