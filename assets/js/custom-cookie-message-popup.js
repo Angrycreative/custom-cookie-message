@@ -139,7 +139,7 @@ jQuery( function ( $ ) {
 								}
 
 								/* Scroll content container */
-								if ( typeof customCookieMessageLocalize.options.styles.scroll_body != 'undefined' && 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
+								if ( typeof customCookieMessageLocalize.options.styles != 'undefined' && 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
 									if ( typeof customCookieMessageLocalize.options.general.location_options != 'undefined' && 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
 										$( 'body' ).animate({marginBottom: scroll_height});
 									}
