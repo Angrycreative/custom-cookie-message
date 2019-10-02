@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-18 10:41+0000\n"
+"POT-Creation-Date: 2018-08-28 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,102 +14,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: src/class-main.php:216
-msgid "An update is available."
-msgstr ""
-
-#: src/class-main.php:217
-msgid "Upgrade now"
-msgstr ""
-
-#: templates/cookie-notice.php:65
+#: templates/cookie-notice.php:66
 msgctxt ""
 "String between \"Read more\" and \"Change settings\" in the cookie notice."
 msgid "or"
 msgstr ""
 
-#: templates/cookie-notice.php:76 templates/cookie-notice.php:89
+#: templates/cookie-notice.php:77 templates/cookie-notice.php:90
 msgid "Close"
 msgstr ""
 
-#: templates/cookie-notice.php:99
+#: templates/cookie-notice.php:100
 msgid "Required Cookies"
 msgstr ""
 
-#: templates/cookie-notice.php:100
+#: templates/cookie-notice.php:101
 msgid "Functional Cookies"
 msgstr ""
 
-#: templates/cookie-notice.php:101
+#: templates/cookie-notice.php:102
 msgid "Advertising Cookies"
 msgstr ""
 
-#: templates/cookie-notice.php:111 templates/cookie-notice.php:118
+#: templates/cookie-notice.php:112 templates/cookie-notice.php:119
 msgid "Active"
 msgstr ""
 
-#: tests/test-custom-cookie-message.php:63
-msgid "I understand"
+#: src/class-main.php:229
+msgid "An update is available."
 msgstr ""
 
-#: tests/test-custom-cookie-message.php:64
-msgid "Updated Read more"
-msgstr ""
-
-#: tests/test-custom-cookie-message.php:65
-msgid ""
-"This website uses cookies . By using our website you accept our use of "
-"cookies . "
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:73 src/Forms/class-adminform.php:173
-msgid "General Options"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:75
-msgid "Life Time Cookie:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:77
-msgid "Select location of message:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:79
-msgid "Close button type:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:81
-msgid "About cookies page:"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:83
-msgid "About cookies Link (overrides the page):"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:91
-msgid ""
-"Select where the cookie message should be displayed and enter the URL to the "
-"page about cookies."
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:109
-msgid "Top as overlay"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:110
-msgid "Bottom as overlay"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:122
-msgid "Use X"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:123
-msgid "Use custom text"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:147
-msgid "Paste URL or type to search"
+#: src/class-main.php:230
+msgid "Upgrade now"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:61 src/Forms/class-adminform.php:175
@@ -212,51 +148,6 @@ msgstr ""
 msgid "Custom styles for buttons"
 msgstr ""
 
-#: src/Forms/class-admincontentoptions.php:61 src/Forms/class-adminform.php:173
-msgid "Content Options"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:63
-msgid "Enter warning text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:65
-msgid "Enter link text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:67
-msgid "Enter button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:69
-msgid "Enter Accept button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:71
-msgid "Save Settings button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:73
-msgid "Shortcode Text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:75
-msgid "Shortcode:"
-msgstr ""
-
-#: src/Forms/class-adminexportsettings.php:61
-msgid "Export/Import Settings"
-msgstr ""
-
-#: src/Forms/class-adminexportsettings.php:63
-#: src/Forms/class-adminexportsettings.php:65
-msgid " "
-msgstr ""
-
-#: src/Forms/class-adminexportsettings.php:73
-msgid "Here you can export and/or import your settings."
-msgstr ""
-
 #: src/Forms/class-admincookiesettings.php:61
 msgid "Cookie Granilarity Options"
 msgstr ""
@@ -315,12 +206,111 @@ msgstr ""
 msgid "Until end of times"
 msgstr ""
 
+#: src/Forms/class-adminform.php:173 src/Forms/class-admingeneraloptions.php:73
+msgid "General Options"
+msgstr ""
+
+#: src/Forms/class-adminform.php:173 src/Forms/class-admincontentoptions.php:61
+msgid "Content Options"
+msgstr ""
+
 #: src/Forms/class-adminform.php:175
 msgid "Cookie Settings"
 msgstr ""
 
 #: src/Forms/class-adminform.php:177
 msgid "Export/Import"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:75
+msgid "Enable Mode Rewrite"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:77
+msgid "Life Time Cookie:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:79
+msgid "Select location of message:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:81
+msgid "Close button type:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:83
+msgid "About cookies page:"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:85
+msgid "About cookies Link (overrides the page):"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:93
+msgid ""
+"Select where the cookie message should be displayed and enter the URL to the "
+"page about cookies."
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:111
+msgid "Top as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:112
+msgid "Bottom as overlay"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:124
+msgid "Use X"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:125
+msgid "Use custom text"
+msgstr ""
+
+#: src/Forms/class-admingeneraloptions.php:149
+msgid "Paste URL or type to search"
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:61
+msgid "Export/Import Settings"
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:63
+#: src/Forms/class-adminexportsettings.php:65
+msgid " "
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:73
+msgid "Here you can export and/or import your settings."
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:63
+msgid "Enter warning text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:65
+msgid "Enter link text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:67
+msgid "Enter button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:69
+msgid "Enter Accept button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:71
+msgid "Save Settings button text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:73
+msgid "Shortcode Text:"
+msgstr ""
+
+#: src/Forms/class-admincontentoptions.php:75
+msgid "Shortcode:"
 msgstr ""
 
 #: src/Controller/class-controller.php:105

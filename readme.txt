@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorc
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 4.9.5
-Stable tag: 2.2.6
+Stable tag: 2.2.9
 Requires PHP: 5.6+
 
 License: GPLv2 or later
@@ -22,3 +22,120 @@ Custom cookie message is also compatible with multisites. The location of the me
 1. Add the plugin custom cookie message to your plugins map
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
+
+== Changelog ==
+= 2.2.9 =
+* Improved polylang translations.
+
+= 2.2.8 =
+* Fixed error 401 when using mode rewrite.
+* Added option to enable/disable mode rewrite for the plugin rest-api endpoints.
+
+= 2.2.7 =
+* Added polylang translation support for modal content.
+* Fixed display on IE11.
+
+= 2.2.4 =
+* Only use the translation function if it exists.
+
+= 2.2.2 =
+* Fixed missing options page error.
+
+= 2.2.1 =
+* Only set the options on the option page.
+* Add default values in general array.
+
+= 2.2.0 =
+* Changed banner layout for better user experience.
+* Option to choose type of close button (close or accept).
+* More options for better button styling.
+* Option to select internal page for (about cookies page).
+* Internal page is ready for multilingual sites.
+* Internal about cookies page can be overwritten by external link field.
+* Fixed error 500 bug.
+* Added select2 for admin forms select tags.
+
+= 2.1.8 =
+* Added more support to Polylang (strings translations).
+
+= 2.1.7 =
+* Banner animation options.
+* Custom CSS field for buttons and other elements.
+* Scroll content container down/up (optional).
+
+= 2.1.6 =
+* Export and import settings.
+
+= 2.1.4 =
+* Solved bug with wp_nonce
+* Warn if the options are not set
+
+= 2.1.3 =
+* Translations folder path updated to load the correct translations
+* Responsive styling updates
+
+= 2.1.2 =
+* Z-index updated
+* Button hover text color settings added
+* Responsive styling updates
+* Minor styling fixes
+
+= 2.1.1 =
+* Undefined variables fixes
+
+= 2.1.0 =
+* Updated styling to better work on older browsers.
+* Improve default styling settings.
+* Improve user styling options for buttons.
+
+= 2.0.3 =
+* Swedish translation.
+* Improve default settings values.
+
+= 2.0.0 =
+* New Cookie structure
+* Support for Polylang
+* Support for GDPR
+* Better cookie life time spam (LTS)
+
+= 1.6.4 =
+* Changed on scroll behavior and added roles restriction to change styles in settings
+
+= 1.6.3 =
+* Fixed margin bug
+
+= 1.6.2 =
+* Update readme
+
+= 1.6.1 =
+* Add check to see if opacity is set.
+
+= 1.6 =
+* Add more styling options.
+
+= 1.5.3 =
+* Small css change to link.
+
+= 1.5.2 =
+* Look over code to work for older versions of php.
+
+= 1.5.1 =
+* Add minor styling fix.
+
+= 1.5 =
+* Improved the functionality of adding styling from theme.
+
+= 1.4 =
+* Redefine styling.
+
+= 1.3 =
+* Add possibility to use styling from theme.
+
+= 1.2 =
+* Add localstorage.
+
+= 1.1 =
+* Add debounce for scroll events.
+
+= 1.0 =
+* Initial commit.

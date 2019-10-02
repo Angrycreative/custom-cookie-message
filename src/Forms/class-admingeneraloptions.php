@@ -72,6 +72,8 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_section( 'general', esc_html__( 'General Options', 'custom-cookie-message' ), [ $this, 'cookies_general_options_callback' ], $this->section_page );
 
+		add_settings_field( 'enable_mode_rewrite', esc_html__( 'Enable Mode Rewrite', 'custom-cookie-message' ), [ $this, 'enable_mode_rewrite_callback' ], $this->section_page, 'general' );
+
 		add_settings_field( 'life_time', esc_html__( 'Life Time Cookie:', 'custom-cookie-message' ), [ $this, 'cookies_life_time_callback' ], $this->section_page, 'general' );
 
 		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
@@ -147,4 +149,12 @@ class AdminGeneralOptions extends AdminBase {
 		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" placeholder="' . esc_html__( 'Paste URL or type to search', 'custom-cookie-message' ) . '" class="form-input-tip ui-autocomplete-input regular-text ltr" role="combobox" aria-autocomplete="list" aria-expanded="false" />'; // WPCS: XSS ok.
 	}
 
+	/**
+	 * Scroll content
+	 */
+	public function enable_mode_rewrite_callback() {
+		$checked = isset( $this->options['general']['enable_mode_rewrite'] ) ? 'checked="checked"' : '';
+		echo '<input type="checkbox" id="enable_mode_rewrite" name="custom_cookie_message[general][enable_mode_rewrite]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
+		echo '<label for="enable_mode_rewrite">Yes, Enable mode rewrite (Disable if you have problems with mode rewrite or nginx).</label>';
+	}
 }

@@ -22,7 +22,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.2.4';
+	protected $version = '2.2.9';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -130,7 +130,20 @@ class Main {
 		if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'ccm_handle_scripts' ], 99 );
 		}
-
+		$get_options = get_option( 'custom_cookie_message', [] );
+		if ( ! isset( $get_options['general']['enable_mode_rewrite'] ) ) {
+			add_filter(
+				'rest_url', function( $url, $path, $blog_id, $scheme ) {
+					$url = trailingslashit( get_home_url( $blog_id, '', $scheme ) );
+					if ( 'index.php' !== substr( $url, 9 ) ) {
+						$url .= 'index.php';
+					}
+					$path = '/' . ltrim( $path, '/' );
+					$url  = add_query_arg( 'rest_route', $path, $url );
+					return $url;
+				}, 4, 10
+			);
+		}
 	}
 	/**
 	 * Add more support for Polylang strings translations.
@@ -219,7 +232,7 @@ class Main {
 			$output .= '</div>';
 		}
 
-		echo $output; // WPCS: XSS ok.
+		//echo $output; // WPCS: XSS ok.
 
 	}
 
@@ -365,6 +378,7 @@ class Main {
 				'padding: %spx %spx;', $styles['button_height_slider_amount'],
 				$styles['button_width_slider_amount']
 			);
+			$css .= $styles['textarea_btn_custom_styling'];
 			$css .= '}';
 
 			$css .= '.custom-cookie-message-banner__button:hover,';
@@ -372,7 +386,6 @@ class Main {
 			$css .= sprintf( 'background-color: %s;', $styles['button_hover_color_picker'] );
 			$css .= sprintf( 'color: %s;', $styles['button_hover_text_color_picker'] );
 			$css .= '}';
-			$css .= $styles['textarea_btn_custom_styling'];
 		endif;
 
 		return $css;
@@ -440,11 +453,13 @@ class Main {
 
 		$defaults = [
 			'general'                     => [
-				'life_time'          => MONTH_IN_SECONDS,
-				'location_options'   => 'top-fixed',
-				'cookies_page_link'  => '',
-				'close_button'       => 'xbutton',
-				'cookies_about_page' => '',
+				'life_time'           => MONTH_IN_SECONDS,
+				'location_options'    => 'top-fixed',
+				'cookies_page_link'   => '',
+				'close_button'        => 'xbutton',
+				'cookies_about_page'  => '#',
+				'cookies_page_link'   => '#',
+				'enable_mode_rewrite' => 1,
 			],
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',
@@ -464,6 +479,7 @@ class Main {
 				'button_height_slider_amount'    => '10',
 				'button_width_slider_amount'     => '10',
 				'button_custom_class'            => '',
+				'textarea_btn_custom_styling'   => '',
 				'text_color_picker'              => '#c0c0c0',
 				'text_size'                      => '',
 				'text_font'                      => '',
@@ -471,15 +487,7 @@ class Main {
 				'close_color_picker'             => '#FFFFFF',
 				'modal_overlay'                  => '#3d3d3d',
 				'modal_overlay_opacity'          => '50',
-				'button_custom_css'              => '/* Settings button */
-																						#custom-cookie-message-preference {
-
-																						}
-																						/* Save settings button */
-																						#ccm-save-preference {
-
-																						}',
-
+				'button_custom_css'              => '#custom-cookie-message-preference {} #ccm-save-preference {}',
 			],
 			'cookie_granularity_settings' => [
 				'headline'                    => 'Privacy Preferences',
