@@ -80,7 +80,6 @@ jQuery( function ( $ ) {
     savePreferences: function () {
 	    $( '#custom-cookie-message-modal' ).remove();
 	    $( '#custom-cookie-message-banner' ).slideUp().remove();
-	    $( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
 
       $.ajax( {
         url: customCookieMessageLocalize.rest_url_preference,
