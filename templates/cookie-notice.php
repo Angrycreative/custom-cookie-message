@@ -123,7 +123,7 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 			</div>
 		</div>
 		<div class="custom-cookie-message-modal__actions">
-			<button id="ccm-save-preference" class="<?php echo $options['styles']['button_styling'] ? 'custom-cookie-message-popup__button' : ''; ?> <?php echo esc_attr( $options['styles']['button_custom_class'] ); ?>">
+			<button id="ccm-save-preference" class="<?php echo ! empty( $options['styles']['button_styling'] ) ? 'custom-cookie-message-popup__button' : ''; ?> <?php echo esc_attr( $options['styles']['button_custom_class'] ); ?>">
 				<?php $esc_html( $options['content']['save_settings_button'], 'custom-cookie-message' ); ?>
 			</button>
 		</div>
