@@ -36,7 +36,8 @@ class Controller {
 	 */
 	public function __construct() {
 		$this->user = wp_get_current_user();
-		add_action( 'rest_api_init', [ $this, 'custom_cookie_message_routes' ] );
+		add_action( 'rest_api_init', array( $this, 'custom_cookie_message_routes' ) );
+		add_filter( 'plugin_action_links', array( $this, 'ac_add_actions_plugin' ), 10, 5 );
 	}
 
 	/**
@@ -255,6 +256,22 @@ class Controller {
 		}
 
 		return new \WP_REST_Response( [], 404 );
+	}
+
+	/**
+	 * @param $actions
+	 * @param $plugin_file
+	 * Add settings and support links to the plugin
+	 * @return array
+	 */
+	public function ac_add_actions_plugin( $actions, $plugin_file ) {
+		$settings  = array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=custom_cookie_message_options' ) . '">' . __( 'Settings', 'custom-cookie-message' ) . '</a>' );
+		$site_link = array( 'support' => '<a href="https://angrycreative.se" target="_blank">' . __( 'Support', 'custom-cookie-message' ) . '</a>' );
+
+		$actions = array_merge( $settings, $actions );
+		$actions = array_merge( $site_link, $actions );
+
+		return $actions;
 	}
 
 }
