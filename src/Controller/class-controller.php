@@ -36,8 +36,8 @@ class Controller {
 	 */
 	public function __construct() {
 		$this->user = wp_get_current_user();
-		add_action( 'rest_api_init', [ $this, 'custom_cookie_message_routes' ] );
-		add_filter( 'plugin_action_links', [ $this, 'ac_add_actions_plugin' ], 10, 5 );
+		add_action( 'rest_api_init', array( $this, 'custom_cookie_message_routes' ) );
+		add_filter( 'plugin_action_links', array( $this, 'ac_add_actions_plugin' ), 10, 5 );
 	}
 
 	/**
