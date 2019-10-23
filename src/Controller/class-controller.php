@@ -265,11 +265,15 @@ class Controller {
 	 * @return array
 	 */
 	public function ac_add_actions_plugin( $actions, $plugin_file ) {
-		$settings  = array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=custom_cookie_message_options' ) . '">' . __( 'Settings', 'custom-cookie-message' ) . '</a>' );
-		$site_link = array( 'support' => '<a href="https://angrycreative.se" target="_blank">' . __( 'Support', 'custom-cookie-message' ) . '</a>' );
+		error_log( print_r( CUSTOM_COOKIE_MESSAGE_PLUGIN_BASENAME, true ) );
+		error_log( print_r( '78444554555', true ) );
+		if ( CUSTOM_COOKIE_MESSAGE_PLUGIN_BASENAME == $plugin_file ) {
+			$settings  = array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=custom_cookie_message_options' ) . '">' . __( 'Settings', 'custom-cookie-message' ) . '</a>' );
+			$site_link = array( 'support' => '<a href="https://angrycreative.se" target="_blank">' . __( 'Support', 'custom-cookie-message' ) . '</a>' );
 
-		$actions = array_merge( $settings, $actions );
-		$actions = array_merge( $site_link, $actions );
+			$actions = array_merge( $settings, $actions );
+			$actions = array_merge( $site_link, $actions );
+		}
 
 		return $actions;
 	}
