@@ -103,7 +103,7 @@ jQuery( function ( $ ) {
       $.ajax( {
         url: customCookieMessageLocalize.rest_url_banner,
         method: 'GET',
-        cache: false,
+        cache: true,
         contentType: false,
         processData: false,
         data: 'lang=' + customCookieMessageLocalize.lang,
