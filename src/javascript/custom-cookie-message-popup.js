@@ -105,13 +105,10 @@ jQuery( function ( $ ) {
 			$.ajax( {
 				url: customCookieMessageLocalize.rest_url_banner,
 				method: 'GET',
-				cache: false,
+				cache: true,
 				contentType: false,
 				processData: false,
 				data: 'lang=' + customCookieMessageLocalize.lang,
-				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
-				},
 			} )
 			 .done( function ( response ) {
 				 if ( null !== response.template && '' !== customCookieMessageLocalize.options ) {
