@@ -16,8 +16,15 @@ module.exports={
 	module: {
 		rules: [
 			{
-				loader: "babel-loader",
-				test  : "/\.js/"
+				test: /.jsx?$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [ '@babel/preset-env' ],
+						cacheDirectory: true,
+					},
+				},
 			},
 			// compile all .scss files to plain old css
 			{

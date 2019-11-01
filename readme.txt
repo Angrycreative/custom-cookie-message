@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorc
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 5.2.3
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 Requires PHP: 5.6+
 
 License: GPLv2 or later
@@ -24,6 +24,10 @@ Custom cookie message is also compatible with multisites. The location of the me
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
+= 2.3.4 =
+* Removed API request when closing off cookie banner.
+* Fix for saving settings
+
 = 2.2.9 =
 * Improved polylang translations.
 

@@ -295,6 +295,7 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
+		$options = get_option( 'custom_cookie_message' );
 
 		$lang = defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : function_exists( 'pll_current_language' ) ? pll_current_language() : 'en';
 		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
@@ -303,10 +304,10 @@ class Main {
 		wp_localize_script(
 			'custom-cookie-message-popup', 'customCookieMessageLocalize', [
 				'options'             => get_option( 'custom_cookie_message' ),
-				'wp_rest_nonce'       => wp_create_nonce( 'wp_rest' ),
 				'rest_url_banner'     => rest_url( 'custom-cm/banner' ),
 				'lang'                => $lang,
 				'rest_url_preference' => rest_url( 'custom-cm/cookie-preference' ),
+				'cookie_life_time'      => $options['general']['life_time']
 			]
 		);
 
