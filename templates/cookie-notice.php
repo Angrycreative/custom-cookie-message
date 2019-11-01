@@ -28,9 +28,8 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 	$cookie_preferences = json_decode( stripslashes( $_COOKIE['custom_cookie_message'] ) );
 
 	// JSON Cookie values are strings.
-	$functional_check  = 'false' === $cookie_preferences->functional ? '' : $functional_check;
-	$advertising_check = 'false' === $cookie_preferences->advertising ? '' : $advertising_check;
-
+	$functional_check  = $cookie_preferences->functional ? $functional_check : "";
+	$advertising_check = $cookie_preferences->advertising ? $advertising_check : "";
 }
 
 ?>

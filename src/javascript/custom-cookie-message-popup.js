@@ -1,6 +1,7 @@
 import '../sass/style.scss';
 
 jQuery( function ( $ ) {
+
 	let cookie = document.cookie.match( '(^|;) ?custom_cookie_message=([^;]*)(;|$)' );
 
 	let customCookieMessage = {
@@ -79,26 +80,28 @@ jQuery( function ( $ ) {
 		},
 
 		savePreferences: function () {
+			let ccmFunctionalStatus = $( '#ccm-functional' ).prop( 'checked' );
+			let ccmAdvertisingStatus = $( '#ccm-advertising' ).prop( 'checked' );
+
+			let data = {
+				'functional': ccmFunctionalStatus,
+				'advertising': ccmAdvertisingStatus,
+			};
+			data = JSON.stringify( data );
+
+			let cookieLifeTime = parseInt( customCookieMessageLocalize.cookie_life_time );
+
+			let numberOfDays = cookieLifeTime / 60 / 60 / 24;
+
+			let d = new Date();
+			d.setTime( d.getTime() + (
+				numberOfDays * 24 * 60 * 60 * 1000
+			) );
+			let expires = "expires=" + d.toUTCString();
+			document.cookie = 'custom_cookie_message' + "=" + data + ";" + expires + ";path=/";
+
 			$( '#custom-cookie-message-modal' ).remove();
 			$( '#custom-cookie-message-banner' ).slideUp().remove();
-			$( 'body' ).animate({marginBottom: '0px', marginTop: '0px'});
-
-			$.ajax( {
-				url: customCookieMessageLocalize.rest_url_preference,
-				method: 'POST',
-				cache: false,
-				data: {
-					'functional': $( '#ccm-functional' ).prop( 'checked' ),
-					'adsvertising': $( '#ccm-advertising' ).prop( 'checked' ),
-				},
-				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', customCookieMessageLocalize.wp_rest_nonce );
-				},
-				error: function ( error ) {
-					console.error( 'Custom cookie plugin: Could not save preferences' );
-					console.error( error );
-				}
-			} )
 		},
 
 		showCookieNotice: function () {

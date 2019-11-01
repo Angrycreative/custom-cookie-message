@@ -86,12 +86,6 @@ class Controller {
 				'callback' => [ $this, 'readeable_popup_banner' ],
 			]
 		);
-		register_rest_route(
-			$namespace_route, '/cookie-preference', [
-				'methods'  => \WP_REST_Server::CREATABLE,
-				'callback' => [ $this, 'creatable_cookie_preference' ],
-			]
-		);
 	}
 
 	/**
@@ -147,35 +141,6 @@ class Controller {
 				'template' => $template_content,
 			], 200
 		);
-	}
-
-	/**
-	 * Save Cookie Preferences.
-	 *
-	 * @param \WP_REST_Request $request WP REST Request.
-	 *
-	 * @return \WP_REST_Response
-	 */
-	public function creatable_cookie_preference( \WP_REST_Request $request ) {
-		$options = get_option( 'custom_cookie_message' );
-		$url     = wp_parse_url( home_url() );
-
-		$settings['functional']  = $request->get_param( 'functional' );
-		$settings['advertising'] = $request->get_param( 'adsvertising' );
-		$cookie_value            = html_entity_decode( wp_json_encode( $settings, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK ) );
-		$expire                  = 0 === (int) $options['general']['life_time'] ? 0 : time() + (int) $options['general']['life_time'];
-
-		if ( setcookie( 'custom_cookie_message', $cookie_value, $expire, '/', $url['host'], is_ssl() ) ) {
-			wp_cache_flush();
-
-			return new \WP_REST_Response(
-				[
-					'success' => 200,
-				], 200
-			);
-		}
-
-		return new \WP_REST_Response( [], 500 );
 	}
 
 	/**
