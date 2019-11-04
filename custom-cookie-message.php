@@ -13,11 +13,11 @@
  * Description:       A customizable cookie message, compatible with GDPR compliance.
  * Text Domain:       custom-cookie-message
  * Domain Path:       /languages/
- * Version:           2.3.4
+ * Version:           2.3.5
  * Tested up to:      5.2.3
  * Requires PHP:      5.6
  * Author:            Angry Creative AB
- * Contributors:      Johan Sylvan, kylegard, Luigi Guevara @killua99, Victor Camnerin, Elias Chalhoub
+ * Contributors:      Johan Sylvan, kylegard, Luigi Guevara @killua99, Victor Camnerin, Elias Chalhoub, Hosam Alnajar
  * Author URI:        https://angrycreative.se/
  * License:           GPL-2.0+
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt

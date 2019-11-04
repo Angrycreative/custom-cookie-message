@@ -297,7 +297,18 @@ class Main {
 	public function display_frontend_notice() {
 		$options = get_option( 'custom_cookie_message' );
 
-		$lang = defined( 'ICL_LANGUAGE_CODE' ) ? ICL_LANGUAGE_CODE : function_exists( 'pll_current_language' ) ? pll_current_language() : 'en';
+		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+			$lang = ICL_LANGUAGE_CODE;
+
+		} elseif ( function_exists( 'pll_current_language' ) ) {
+			$lang = pll_current_language();
+
+		} elseif ( function_exists( 'get_bloginfo' ) ) {
+			$lang = get_bloginfo( 'language' );
+		} else {
+			$lang = 'en';
+		}
+
 		wp_enqueue_style( 'custom-cookie-message-popup-styles', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/css/custom-cookie-message-popup.css', [], $this->version, 'screen' );
 		wp_add_inline_style( 'custom-cookie-message-popup-styles', $this->custom_css() );
 		wp_enqueue_script( 'custom-cookie-message-popup', CUSTOM_COOKIE_MESSAGE_PLUGIN_URL . '/assets/js/custom-cookie-message-popup.js', [ 'jquery' ], $this->version, true );
