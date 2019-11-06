@@ -138,15 +138,6 @@ jQuery( function ( $ ) {
 					 else {
 						 $( '#custom-cookie-message-banner' ).show();
 					 }
-					 /* Scroll content container */
-					 if ( 'yes' === customCookieMessageLocalize.options.styles.scroll_body ) {
-						 if ( 'bottom-fixed' === customCookieMessageLocalize.options.general.location_options ) {
-							 $( 'body' ).animate({marginBottom: scroll_height});
-						 }
-						 else {
-							 $( 'body' ).animate({marginTop: scroll_height});
-						 }
-					 }
 				 }
 				 else {
 					 console.warn( 'Custom Cookie Message options are not set' );

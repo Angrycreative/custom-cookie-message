@@ -81,7 +81,7 @@ msgid "Banner Animation"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:72
-msgid "Text font"
+msgid "Text font family"
 msgstr "Textfont"
 
 #: src/Forms/class-adminstylingoptions.php:74
@@ -157,7 +157,7 @@ msgid "Custom styles for buttons"
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:61
-msgid "Cookie Granilarity Options"
+msgid "Cookie Settings"
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:63
@@ -294,11 +294,11 @@ msgid "Here you can export and/or import your settings."
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:63
-msgid "Enter warning text:"
+msgid "Notification Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:65
-msgid "Enter link text:"
+msgid "More Info Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:67

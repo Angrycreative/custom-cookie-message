@@ -73,7 +73,7 @@ msgid "Banner Animation"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:72
-msgid "Text font"
+msgid "Text font family"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:74
@@ -149,7 +149,7 @@ msgid "Custom styles for buttons"
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:61
-msgid "Cookie Granilarity Options"
+msgid "Cookie Settings"
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:63
@@ -227,7 +227,7 @@ msgid "Enable Mode Rewrite"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:77
-msgid "Life Time Cookie:"
+msgid "Cookie Expiry:"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:79
@@ -261,11 +261,11 @@ msgid "Bottom as overlay"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:124
-msgid "Use X"
+msgid "Use X Close"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:125
-msgid "Use custom text"
+msgid "Accept button"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:149
@@ -286,11 +286,11 @@ msgid "Here you can export and/or import your settings."
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:63
-msgid "Enter warning text:"
+msgid "Notification Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:65
-msgid "Enter link text:"
+msgid "More Info Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:67

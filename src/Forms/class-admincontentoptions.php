@@ -60,9 +60,9 @@ class AdminContentOptions extends AdminBase {
 
 		add_settings_section( 'content', esc_html__( 'Content Options', 'custom-cookie-message' ), [ $this, 'cookies_content_options_callback' ], $this->section_page );
 
-		add_settings_field( 'textarea_warning_text', esc_html__( 'Enter warning text:', 'custom-cookie-message' ), [ $this, 'cookies_textarea_warning_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'textarea_warning_text', esc_html__( 'Notification Text:', 'custom-cookie-message' ), [ $this, 'cookies_textarea_warning_text_callback' ], $this->section_page, 'content' );
 
-		add_settings_field( 'input_link_text', esc_html__( 'Enter link text:', 'custom-cookie-message' ), [ $this, 'cookies_input_link_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'input_link_text', esc_html__( 'More Info Text:', 'custom-cookie-message' ), [ $this, 'cookies_input_link_text_callback' ], $this->section_page, 'content' );
 
 		add_settings_field( 'input_button_text', esc_html__( 'Enter button text:', 'custom-cookie-message' ), [ $this, 'cookies_input_button_text_callback' ], $this->section_page, 'content' );
 
@@ -80,7 +80,7 @@ class AdminContentOptions extends AdminBase {
 	 * Description.
 	 */
 	public function cookies_content_options_callback() {
-		echo '<p>' . esc_html_e( 'Enter the content in the cookie message.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Update the content displayed to the user. ', 'cookie-message' ) . '</p><br>';
 	}
 
 	/**
@@ -108,7 +108,8 @@ class AdminContentOptions extends AdminBase {
 	 * Accept Button text.
 	 */
 	public function cookies_accept_button_text_callback() {
-		echo '<input type="text" id="accept_button_text" name="custom_cookie_message[content][accept_button_text]" value="' . $this->options['content']['accept_button_text'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="accept_button_text" name="custom_cookie_message[content][accept_button_text]" value="' . $this->options['content']['accept_button_text'] . '" class="regular-text ltr" />
+		<p class="description">'. esc_html__( 'The default text to dismiss the notification.', 'custom-cookie-message' ) . '</p>'; // WPCS: XSS ok.
 	}
 
 	/**
