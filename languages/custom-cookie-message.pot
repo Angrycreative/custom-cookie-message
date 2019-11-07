@@ -1,24 +1,23 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-28 08:17+0000\n"
+"POT-Creation-Date: 2019-11-07 08:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
-"Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 2.2.4\n"
 
 #: templates/cookie-notice.php:66
 msgctxt ""
 "String between \"Read more\" and \"Change settings\" in the cookie notice."
 msgid "or"
-msgstr ""
+msgstr "or"
 
 #: templates/cookie-notice.php:77 templates/cookie-notice.php:90
 msgid "Close"
@@ -73,7 +72,7 @@ msgid "Banner Animation"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:72
-msgid "Text font"
+msgid "Text font family"
 msgstr ""
 
 #: src/Forms/class-adminstylingoptions.php:74
@@ -148,8 +147,8 @@ msgstr ""
 msgid "Custom styles for buttons"
 msgstr ""
 
-#: src/Forms/class-admincookiesettings.php:61
-msgid "Cookie Granilarity Options"
+#: src/Forms/class-admincookiesettings.php:61 src/Forms/class-adminform.php:175
+msgid "Cookie Settings"
 msgstr ""
 
 #: src/Forms/class-admincookiesettings.php:63
@@ -214,10 +213,6 @@ msgstr ""
 msgid "Content Options"
 msgstr ""
 
-#: src/Forms/class-adminform.php:175
-msgid "Cookie Settings"
-msgstr ""
-
 #: src/Forms/class-adminform.php:177
 msgid "Export/Import"
 msgstr ""
@@ -227,7 +222,7 @@ msgid "Enable Mode Rewrite"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:77
-msgid "Life Time Cookie:"
+msgid "Cookie Expiry:"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:79
@@ -261,11 +256,11 @@ msgid "Bottom as overlay"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:124
-msgid "Use X"
+msgid "Use X Close"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:125
-msgid "Use custom text"
+msgid "Accept button"
 msgstr ""
 
 #: src/Forms/class-admingeneraloptions.php:149
@@ -286,11 +281,11 @@ msgid "Here you can export and/or import your settings."
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:63
-msgid "Enter warning text:"
+msgid "Notification Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:65
-msgid "Enter link text:"
+msgid "More Info Text:"
 msgstr ""
 
 #: src/Forms/class-admincontentoptions.php:67

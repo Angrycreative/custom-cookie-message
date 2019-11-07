@@ -74,15 +74,15 @@ class AdminGeneralOptions extends AdminBase {
 
 		add_settings_field( 'enable_mode_rewrite', esc_html__( 'Enable Mode Rewrite', 'custom-cookie-message' ), [ $this, 'enable_mode_rewrite_callback' ], $this->section_page, 'general' );
 
-		add_settings_field( 'life_time', esc_html__( 'Life Time Cookie:', 'custom-cookie-message' ), [ $this, 'cookies_life_time_callback' ], $this->section_page, 'general' );
+		add_settings_field( 'life_time', esc_html__( 'Cookie Expiry:', 'custom-cookie-message' ), [ $this, 'cookies_life_time_callback' ], $this->section_page, 'general' );
 
 		add_settings_field( 'location_options', esc_html__( 'Select location of message:', 'custom-cookie-message' ), [ $this, 'cookies_select_position_callback' ], $this->section_page, 'general' );
 
 		add_settings_field( 'button_options', esc_html__( 'Close button type:', 'custom-cookie-message' ), [ $this, 'cookies_close_button_callback' ], $this->section_page, 'general' );
 
-		add_settings_field( 'cookies_about_page', esc_html__( 'About cookies page:', 'custom-cookie-message' ), [ $this, 'cookies_about_page_callback' ], $this->section_page, 'general' );
+		add_settings_field( 'cookies_about_page', esc_html__( 'Choose cookies page:', 'custom-cookie-message' ), [ $this, 'cookies_about_page_callback' ], $this->section_page, 'general' );
 
-		add_settings_field( 'cookies_page_link', esc_html__( 'About cookies Link (overrides the page):', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
+		add_settings_field( 'cookies_page_link', esc_html__( 'About cookies Link:', 'custom-cookie-message' ), [ $this, 'cookies_page_link_callback' ], $this->section_page, 'general' );
 
 	}
 
@@ -90,7 +90,7 @@ class AdminGeneralOptions extends AdminBase {
 	 * Description Page
 	 */
 	public function cookies_general_options_callback() {
-		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'custom-cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Select where the cookie message should be displayed and enter the URL to the page about cookies.', 'custom-cookie-message' ) . '</p><br>';
 	}
 
 	/**
@@ -99,7 +99,8 @@ class AdminGeneralOptions extends AdminBase {
 	public function cookies_life_time_callback() {
 		$val = isset( $this->options['general']['life_time'] ) ? $this->options['general']['life_time'] : '0';
 		echo '<input type="text" id="life_time_slider_amount" name="custom_cookie_message[general][life_time]" value="' . $val . '" readonly class="hidden regular-text ltr">'; // WPCS: XSS ok.
-		echo '<span class="life_time_message"></span><div id="life_time_slider" class="slider"></div>';
+		echo '<span class="life_time_message"></span><div id="life_time_slider" class="slider"></div>
+		<p class="description"> ' . __( 'The period that the cookie is set for', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
@@ -110,7 +111,8 @@ class AdminGeneralOptions extends AdminBase {
 		$html  = '<select id="location_options" class="regular-text" name="custom_cookie_message[general][location_options]">';
 		$html .= '<option value="top-fixed"' . selected( $this->options['general']['location_options'], 'top-fixed', false ) . '>' . __( 'Top as overlay', 'custom-cookie-message' ) . '</option>';
 		$html .= '<option value="bottom-fixed"' . selected( $this->options['general']['location_options'], 'bottom-fixed', false ) . '>' . __( 'Bottom as overlay', 'custom-cookie-message' ) . '</option>';
-		$html .= '</select>';
+		$html .= '</select>
+		<p class="description"> ' . __( 'Where the notification should appear', 'custom-cookie-message' ) . ' </p>';
 
 		echo $html; // WPCS: XSS ok.
 	}
@@ -121,9 +123,10 @@ class AdminGeneralOptions extends AdminBase {
 	public function cookies_close_button_callback() {
 
 		$html  = '<select id="close_button" class="regular-text" name="custom_cookie_message[general][close_button]">';
-		$html .= '<option value="xbutton"' . selected( $this->options['general']['close_button'], 'xbutton', false ) . '>' . __( 'Use X', 'custom-cookie-message' ) . '</option>';
-		$html .= '<option value="textvalue"' . selected( $this->options['general']['close_button'], 'textvalue', false ) . '>' . __( 'Use custom text', 'custom-cookie-message' ) . '</option>';
-		$html .= '</select>';
+		$html .= '<option value="xbutton"' . selected( $this->options['general']['close_button'], 'xbutton', false ) . '>' . __( 'Use X Close', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="textvalue"' . selected( $this->options['general']['close_button'], 'textvalue', false ) . '>' . __( 'accept button', 'custom-cookie-message' ) . '</option>';
+		$html .= '</select>
+		<p class="description">'. __( 'Select accept button or X icon instead (for client to be able to remove the cookie message)', 'custom-cookie-message' ) .'</p>';
 
 		echo $html; // WPCS: XSS ok.
 	}
@@ -138,7 +141,8 @@ class AdminGeneralOptions extends AdminBase {
 				$html .= '<option value="' . $page->ID . '" ' . selected( $page->ID, $this->options['general']['cookies_about_page'], false ) . '>' . $page->post_title . '</option>';
 			}
 		}
-		$html .= '</select>';
+		$html .= '</select>
+		<p class="description"> ' . __( 'The page containing further information about your cookie policy','custom-cookie-message' ) . '</p>';
 		echo $html; // WPCS: XSS ok.
 	}
 
@@ -146,7 +150,8 @@ class AdminGeneralOptions extends AdminBase {
 	 * Link page field.
 	 */
 	public function cookies_page_link_callback() {
-		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" placeholder="' . esc_html__( 'Paste URL or type to search', 'custom-cookie-message' ) . '" class="form-input-tip ui-autocomplete-input regular-text ltr" role="combobox" aria-autocomplete="list" aria-expanded="false" />'; // WPCS: XSS ok.
+		echo '<input type="text" id="cookies_page_link" name="custom_cookie_message[general][cookies_page_link]" value="' . $this->options['general']['cookies_page_link'] . '" placeholder="' . esc_html__( 'Paste URL or type to search', 'custom-cookie-message' ) . '" class="form-input-tip ui-autocomplete-input regular-text ltr" role="combobox" aria-autocomplete="list" aria-expanded="false" />
+		<p class="description"> ' . __( 'This link will override the cookie page link above', 'custom-cookie-message' ) . '</p>'; // WPCS: XSS ok.
 	}
 
 	/**
@@ -155,6 +160,6 @@ class AdminGeneralOptions extends AdminBase {
 	public function enable_mode_rewrite_callback() {
 		$checked = isset( $this->options['general']['enable_mode_rewrite'] ) ? 'checked="checked"' : '';
 		echo '<input type="checkbox" id="enable_mode_rewrite" name="custom_cookie_message[general][enable_mode_rewrite]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
-		echo '<label for="enable_mode_rewrite">Yes, Enable mode rewrite (Disable if you have problems with mode rewrite or nginx).</label>';
+		echo '<label for="enable_mode_rewrite">'. esc_html__( 'Select this if you have wordpress multisite network.', 'custom-cookie-message' ) . '</label>';
 	}
 }

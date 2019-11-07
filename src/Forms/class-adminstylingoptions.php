@@ -66,10 +66,9 @@ class AdminStylingOptions extends AdminBase {
 
 		add_settings_field( 'opacity_slider_amount', esc_html__( 'Message container opacity', 'custom-cookie-message' ), [ $this, 'cookies_opacity_slider_callback' ], $this->section_page, 'styling' );
 
-		add_settings_field( 'scroll_content_container', esc_html__( 'Scroll content', 'custom-cookie-message' ), [ $this, 'cookies_scroll_body_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'cookie_banner_animation', esc_html__( 'Banner Animation', 'custom-cookie-message' ), [ $this, 'cookies_banner_animation_callback' ], $this->section_page, 'styling' );
-		add_settings_field( 'text_font', esc_html__( 'Text font', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
+		add_settings_field( 'text_font', esc_html__( 'Text font family', 'custom-cookie-message' ), [ $this, 'cookies_text_font_callback' ], $this->section_page, 'styling' );
 
 		add_settings_field( 'text_size', esc_html__( 'Text size', 'custom-cookie-message' ), [ $this, 'cookies_text_size_callback' ], $this->section_page, 'styling' );
 
@@ -110,7 +109,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Description Styles Options.
 	 */
 	public function cookies_styling_options_callback() {
-		echo '<p>' . esc_html_e( 'Select the styling for the cookie message.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Select the styling for the cookie message.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
@@ -118,7 +117,8 @@ class AdminStylingOptions extends AdminBase {
 	 */
 	public function cookies_message_color_picker_callback() {
 		$val = isset( $this->options['styles']['message_color_picker'] ) ? $this->options['styles']['message_color_picker'] : '#3d3d3d';
-		echo '<input type="text" id="message_color_picker" name="custom_cookie_message[styles][message_color_picker]" value="' . $val . '" class="cpa-color-picker" >'; // WPCS: XSS ok.
+		echo '<input type="text" id="message_color_picker" name="custom_cookie_message[styles][message_color_picker]" value="' . $val . '" class="cpa-color-picker" >
+		<p class="description"> ' . __( 'The background color for the notification', 'custom-cookie-message' ) . '</p>'; // WPCS: XSS ok.
 	}
 
 	/**
@@ -185,7 +185,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Description Styles Options.
 	 */
 	public function cookies_modal_options_callback() {
-		echo '<p>' . esc_html_e( 'Select the styling for the modal overlay.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Select the styling for the modal overlay.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
@@ -209,7 +209,7 @@ class AdminStylingOptions extends AdminBase {
 	 * Description Styles Options.
 	 */
 	public function cookies_button_options_callback() {
-		echo '<p>' . esc_html_e( 'Select the styling for the buttons.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Select the styling for the buttons.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
@@ -291,24 +291,16 @@ class AdminStylingOptions extends AdminBase {
 	}
 
 	/**
-	 * Scroll content
-	 */
-	public function cookies_scroll_body_callback() {
-		$checked = isset( $this->options['styles']['scroll_body'] ) ? 'checked="checked"' : '';
-		echo '<input type="checkbox" id="scroll_body" name="custom_cookie_message[styles][scroll_body]" value="yes"' . $checked . ' class="checkbox" >'; // WPCS: XSS ok.
-		echo '<label for="scroll_body">Yes, Scroll the content down/up.</label>';
-	}
-
-	/**
 	 * Banner Animation.
 	 */
 	public function cookies_banner_animation_callback() {
 
 		$html  = '<select id="banner_animation" name="custom_cookie_message[styles][banner_animation]">';
-		$html .= '<option value="none"' . selected( $this->options['styles']['banner_animation'], 'none', false ) . '>' . __( 'None', 'cookie-message' ) . '</option>';
-		$html .= '<option value="scroll"' . selected( $this->options['styles']['banner_animation'], 'scroll', false ) . '>' . __( 'Scroll up/down', 'cookie-message' ) . '</option>';
-		$html .= '<option value="fade"' . selected( $this->options['styles']['banner_animation'], 'fade', false ) . '>' . __( 'Fade', 'cookie-message' ) . '</option>';
-		$html .= '</select>';
+		$html .= '<option value="none"' . selected( $this->options['styles']['banner_animation'], 'none', false ) . '>' . __( 'None', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="scroll"' . selected( $this->options['styles']['banner_animation'], 'scroll', false ) . '>' . __( 'Scroll up/down', 'custom-cookie-message' ) . '</option>';
+		$html .= '<option value="fade"' . selected( $this->options['styles']['banner_animation'], 'fade', false ) . '>' . __( 'Fade', 'custom-cookie-message' ) . '</option>';
+		$html .= '</select>
+		<p class="description">' . __( 'Select the animation about how the message should appear: None - Scroll up/down - Fade','custom-cookie-message' ) . '</p>';
 
 		echo $html; // WPCS: XSS ok.
 	}

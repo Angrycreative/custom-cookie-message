@@ -77,7 +77,7 @@ class AdminExportSettings extends AdminBase {
 	 * Export settings.
 	 */
 	public function cookies_export_value_callback() {
-		echo '<h1>Export settings</h1><textarea id="textarea_warning_text" name="custom_cookie_message[export]" rows="10" cols="150">' . serialize( $this->options ) . '</textarea>'; // WPCS: XSS ok.
+		echo '<h1>' . esc_html_e( 'Export settings', 'custom-cookie-message' ) . '</h1><textarea id="textarea_warning_text" name="custom_cookie_message[export]" rows="10" cols="150">' . serialize( $this->options ) . '</textarea>'; // WPCS: XSS ok.
 	}
 
 
@@ -85,7 +85,7 @@ class AdminExportSettings extends AdminBase {
 	 * Import settings.
 	 */
 	public function cookies_import_value_callback() {
-		echo '<h1>Import settings</h1><textarea id="textarea_warning_text" name="custom_cookie_message[import]" rows="10" cols="150"></textarea>'; // WPCS: XSS ok.
+		echo '<h1>' . esc_html_e( 'Import settings', 'custom-cookie-message' ) . '</h1><textarea id="textarea_warning_text" name="custom_cookie_message[import]" rows="10" cols="150"></textarea>'; // WPCS: XSS ok.
 	}
 
 }

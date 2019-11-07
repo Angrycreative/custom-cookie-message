@@ -58,7 +58,7 @@ class AdminCookieSettings extends AdminBase {
 	 */
 	public function cookies_initialize_cookie_options() {
 
-		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Granilarity Options', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
+		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Settings', 'custom-cookie-message' ), [ $this, 'cookie_list_options_callback' ], $this->section_page );
 
 		add_settings_field( 'headline', esc_html__( 'Head Line Message:', 'custom-cookie-message' ), [ $this, 'cookie_headline_callback' ], $this->section_page, 'cookie_settings_section' );
 
@@ -73,7 +73,7 @@ class AdminCookieSettings extends AdminBase {
 	 * List options.
 	 */
 	public function cookie_list_options_callback() {
-		echo '<p>' . esc_html_e( 'Activate Cookies and granilarity.', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Update the content displayed to the user when the user click Change "Settings button" ', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**

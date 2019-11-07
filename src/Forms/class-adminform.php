@@ -99,7 +99,7 @@ class AdminForm extends AdminBase {
 	 */
 	public function cookies_menu() {
 		add_options_page(
-			'Custom Cookie Message', 'Custom Cookie Message', 'administrator', 'custom_cookie_message_options', [
+			esc_html( 'Custom Cookie Message', 'custom-cookie-message' ), 'Custom Cookie Message', 'administrator', 'custom_cookie_message_options', [
 				$this,
 				'cookies_options_display',
 			]
