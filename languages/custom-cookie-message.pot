@@ -1,24 +1,23 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-28 08:17+0000\n"
+"POT-Creation-Date: 2019-11-07 08:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
-"Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Poedit 2.2.4\n"
 
 #: templates/cookie-notice.php:66
 msgctxt ""
 "String between \"Read more\" and \"Change settings\" in the cookie notice."
 msgid "or"
-msgstr ""
+msgstr "or"
 
 #: templates/cookie-notice.php:77 templates/cookie-notice.php:90
 msgid "Close"
@@ -148,7 +147,7 @@ msgstr ""
 msgid "Custom styles for buttons"
 msgstr ""
 
-#: src/Forms/class-admincookiesettings.php:61
+#: src/Forms/class-admincookiesettings.php:61 src/Forms/class-adminform.php:175
 msgid "Cookie Settings"
 msgstr ""
 
@@ -212,10 +211,6 @@ msgstr ""
 
 #: src/Forms/class-adminform.php:173 src/Forms/class-admincontentoptions.php:61
 msgid "Content Options"
-msgstr ""
-
-#: src/Forms/class-adminform.php:175
-msgid "Cookie Settings"
 msgstr ""
 
 #: src/Forms/class-adminform.php:177

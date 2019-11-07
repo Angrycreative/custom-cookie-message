@@ -223,7 +223,7 @@ class Main {
 		if ( $current_installed_version < $current_version ) {
 			$output .= '<div class="notice notice-info">';
 			$output .= '<h2 class="notice-title">';
-			$output .= esc_html( 'Custom Cookie Message' );
+			$output .= esc_html( 'Custom Cookie Message', 'custom-cookie-message' );
 			$output .= '</h2>';
 			$output .= '<p>';
 			$output .= esc_html__( 'An update is available.', 'custom-cookie-message' );

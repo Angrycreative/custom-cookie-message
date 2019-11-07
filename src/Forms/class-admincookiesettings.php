@@ -73,7 +73,7 @@ class AdminCookieSettings extends AdminBase {
 	 * List options.
 	 */
 	public function cookie_list_options_callback() {
-		echo '<p>' . esc_html_e( 'Update the content displayed to the user when the user click Change "Settings button" ', 'cookie-message' ) . '</p>';
+		echo '<p>' . esc_html_e( 'Update the content displayed to the user when the user click Change "Settings button" ', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**

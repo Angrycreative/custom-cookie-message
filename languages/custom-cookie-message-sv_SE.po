@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Cookie Message\n"
-"POT-Creation-Date: 2018-08-28 08:17+0000\n"
-"PO-Revision-Date: 2018-08-28 08:18+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-07 10:37+0100\n"
+"PO-Revision-Date: 2019-11-07 10:38+0100\n"
 "Last-Translator: angrycreative <hej@angrycreative.com>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -17,186 +18,151 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2;esc_html\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Report-Msgid-Bugs-To: "
 
-#: templates/cookie-notice.php:66
-msgctxt ""
-"String between \"Read more\" and \"Change settings\" in the cookie notice."
-msgid "or"
-msgstr "eller"
+#: src/Controller/class-controller.php:100
+msgid "What it is? No, thanks."
+msgstr "Vad är det? Nej tack."
 
-#: templates/cookie-notice.php:77 templates/cookie-notice.php:90
-msgid "Close"
-msgstr "Stäng"
+#: src/Controller/class-controller.php:117
+msgid "Sorry, who are you?"
+msgstr "Förlåt vem är du?"
 
-#: templates/cookie-notice.php:100
-msgid "Required Cookies"
-msgstr "Nödvändiga kakor"
+#: src/Controller/class-controller.php:136
+msgid "Please double check your template files."
+msgstr "Dubbelkontrollera dina mallfiler."
 
-#: templates/cookie-notice.php:101
-msgid "Functional Cookies"
-msgstr "Funktionella kakor"
+#: src/Controller/class-controller.php:234
+msgid "Settings"
+msgstr "Inställningar"
 
-#: templates/cookie-notice.php:102
-msgid "Advertising Cookies"
-msgstr "Annonskakor"
+#: src/Controller/class-controller.php:235
+msgid "Support"
+msgstr "Stöd"
 
-#: templates/cookie-notice.php:112 templates/cookie-notice.php:119
-msgid "Active"
-msgstr "Aktiv"
+#: src/Forms/class-admincontentoptions.php:61 src/Forms/class-adminform.php:173
+msgid "Content Options"
+msgstr "Innehållsalternativ"
 
-#: src/class-main.php:229
-msgid "An update is available."
-msgstr "En uppdatering är tillgänglig."
+#: src/Forms/class-admincontentoptions.php:63
+msgid "Notification Text:"
+msgstr "Meddelande text:"
 
-#: src/class-main.php:230
-msgid "Upgrade now"
-msgstr "Uppgradera nu"
+#: src/Forms/class-admincontentoptions.php:65
+msgid "More Info Text:"
+msgstr "Mer information Text:"
 
-#: src/Forms/class-adminstylingoptions.php:61 src/Forms/class-adminform.php:175
-msgid "Styling Options"
-msgstr "Utseendeinställningar"
+#: src/Forms/class-admincontentoptions.php:67
+msgid "Enter button text:"
+msgstr "Ange knapptext:"
 
-#: src/Forms/class-adminstylingoptions.php:63
-msgid "Message container background"
-msgstr ""
+#: src/Forms/class-admincontentoptions.php:69
+msgid "Enter Accept button text:"
+msgstr "Ange Acceptera knapptext:"
 
-#: src/Forms/class-adminstylingoptions.php:65
-msgid "Message container padding top and bottom"
-msgstr ""
+#: src/Forms/class-admincontentoptions.php:71
+msgid "Save Settings button text:"
+msgstr "Spara inställnings knapp text:"
 
-#: src/Forms/class-adminstylingoptions.php:67
-msgid "Message container opacity"
-msgstr ""
+#: src/Forms/class-admincontentoptions.php:73
+msgid "Shortcode Text:"
+msgstr "Kortkodstext:"
 
-#: src/Forms/class-adminstylingoptions.php:69
-msgid "Scroll content"
-msgstr ""
+#: src/Forms/class-admincontentoptions.php:75
+msgid "Shortcode:"
+msgstr "Kortkod:"
 
-#: src/Forms/class-adminstylingoptions.php:71
-msgid "Banner Animation"
-msgstr ""
+#: src/Forms/class-admincontentoptions.php:83
+msgid "Update the content displayed to the user. "
+msgstr "Uppdatera innehållet som visas för användaren "
 
-#: src/Forms/class-adminstylingoptions.php:72
-msgid "Text font family"
-msgstr "Textfont"
+#: src/Forms/class-admincontentoptions.php:112
+msgid "The default text to dismiss the notification."
+msgstr "Standardtexten för att avvisa meddelandet."
 
-#: src/Forms/class-adminstylingoptions.php:74
-msgid "Text size"
-msgstr "Textstorlek"
-
-#: src/Forms/class-adminstylingoptions.php:76
-msgid "Text Color"
-msgstr "Textfärg"
-
-#: src/Forms/class-adminstylingoptions.php:78
-msgid "Link Color"
-msgstr "Länkfärg"
-
-#: src/Forms/class-adminstylingoptions.php:80
-msgid "Close icon color"
-msgstr "Färg på stäng ikon"
-
-#: src/Forms/class-adminstylingoptions.php:82
-msgid "Modal Options"
-msgstr "Inställningar, modalens overlay"
-
-#: src/Forms/class-adminstylingoptions.php:84
-msgid "Modal Overlay"
-msgstr "Overlayfärg"
-
-#: src/Forms/class-adminstylingoptions.php:86
-msgid "Modal Overlay Opacity"
-msgstr "Opacitet, overlay"
-
-#: src/Forms/class-adminstylingoptions.php:88
-msgid "Button Options"
-msgstr "Inställningar, knappar"
-
-#: src/Forms/class-adminstylingoptions.php:90
-msgid "Button Custom Class"
-msgstr "Egna CSS-klasser för knappar"
-
-#: src/Forms/class-adminstylingoptions.php:92
-msgid "Button Styling"
-msgstr "Utseende knappar"
-
-#: src/Forms/class-adminstylingoptions.php:94
-msgid "Button Color"
-msgstr "Knappfärg"
-
-#: src/Forms/class-adminstylingoptions.php:96
-msgid "Button Hover Color"
-msgstr "Knappfärg, hover"
-
-#: src/Forms/class-adminstylingoptions.php:98
-msgid "Button Text Color"
-msgstr "Knapp-textfärg"
-
-#: src/Forms/class-adminstylingoptions.php:100
-msgid "Button Hover Text Color"
-msgstr "Knapp-textfärg, hover"
-
-#: src/Forms/class-adminstylingoptions.php:102
-msgid "Button Top and Bottom Padding"
-msgstr "Knapp-padding, över och under"
-
-#: src/Forms/class-adminstylingoptions.php:104
-msgid "Button Left and Right Padding"
-msgstr "Knapp-padding, höger och vänster"
-
-#: src/Forms/class-adminstylingoptions.php:105
-msgid "[X] Button Styling"
-msgstr ""
-
-#: src/Forms/class-adminstylingoptions.php:106
-msgid "Custom styles for buttons"
-msgstr ""
-
-#: src/Forms/class-admincookiesettings.php:61
+#: src/Forms/class-admincookiesettings.php:61 src/Forms/class-adminform.php:175
 msgid "Cookie Settings"
-msgstr ""
+msgstr "Cookie-inställningar"
 
 #: src/Forms/class-admincookiesettings.php:63
 msgid "Head Line Message:"
-msgstr ""
+msgstr "Head Line Meddelande:"
 
 #: src/Forms/class-admincookiesettings.php:65
 msgid "Required Cookies Message:"
-msgstr ""
+msgstr "Obligatoriskt cookie-meddelande:"
 
 #: src/Forms/class-admincookiesettings.php:67
 msgid "Functional Cookies Message:"
-msgstr ""
+msgstr "Funktionellt cookie-meddelande:"
 
 #: src/Forms/class-admincookiesettings.php:69
 msgid "Advertising Cookies Message:"
+msgstr "Reklam Cookies Meddelande:"
+
+#: src/Forms/class-admincookiesettings.php:76
+msgid ""
+"Update the content displayed to the user when the user click Change "
+"\"Settings button\" "
 msgstr ""
+"Uppdatera innehållet som visas för användaren när användaren klickar på "
+"Ändra “Inställningsknapp”  "
 
 #: src/Forms/class-admincookiesettings.php:91
 msgid ""
 "These cookies are required to enable core site functionality, we can not "
 "disable anything here."
 msgstr ""
+"Dessa cookies krävs för att möjliggöra kärnfunktionens webbplats, vi kan "
+"inte inaktivera någonting här."
 
 #: src/Forms/class-admincookiesettings.php:108
 msgid ""
 "These cookies allow us to analyze site usage so we can measure and improve "
 "performance. Example, hotjar"
 msgstr ""
+"Dessa cookies tillåter oss att analysera webbplatsanvändning så att vi kan "
+"mäta och förbättra prestanda. Exempel, hotjar"
 
 #: src/Forms/class-admincookiesettings.php:126
 msgid ""
 "These cookies are used by advertising companies to serve ads that are "
 "relevant to your interests. Example, Doubleclick"
 msgstr ""
+"Dessa cookies används av reklamföretag för att visa annonser som är "
+"relevanta för dina intressen. Exempel, dubbelklick"
+
+#: src/Forms/class-adminexportsettings.php:61
+msgid "Export/Import Settings"
+msgstr "Exportera / importera inställningar"
+
+#: src/Forms/class-adminexportsettings.php:63
+#: src/Forms/class-adminexportsettings.php:65
+msgid " "
+msgstr ""
+
+#: src/Forms/class-adminexportsettings.php:73
+msgid "Here you can export and/or import your settings."
+msgstr "Här kan du exportera och / eller importera dina inställningar."
+
+#: src/Forms/class-adminexportsettings.php:80
+msgid "Export settings"
+msgstr "Exportera inställningar"
+
+#: src/Forms/class-adminexportsettings.php:88
+msgid "Import settings"
+msgstr "Importera inställningar"
+
+#. Plugin Name of the plugin/theme
+#: src/Forms/class-adminform.php:102 src/class-main.php:226
+msgid "Custom Cookie Message"
+msgstr "Anpassat cookie-meddelande"
 
 #: src/Forms/class-adminform.php:142
 msgid "Until session expires (closing browser)"
-msgstr ""
+msgstr "Tills sessionen går ut (stängning av webbläsaren)"
 
 #: src/Forms/class-adminform.php:143
 msgid "Weekly"
@@ -212,135 +178,286 @@ msgstr "Årlig"
 
 #: src/Forms/class-adminform.php:146
 msgid "Until end of times"
-msgstr ""
+msgstr "För alltid"
 
 #: src/Forms/class-adminform.php:173 src/Forms/class-admingeneraloptions.php:73
 msgid "General Options"
 msgstr "Generella inställningar"
 
-#: src/Forms/class-adminform.php:173 src/Forms/class-admincontentoptions.php:61
-msgid "Content Options"
-msgstr ""
-
-#: src/Forms/class-adminform.php:175
-msgid "Cookie Settings"
-msgstr "Cookie-inställningar"
+#: src/Forms/class-adminform.php:175 src/Forms/class-adminstylingoptions.php:61
+msgid "Styling Options"
+msgstr "Utseendeinställningar"
 
 #: src/Forms/class-adminform.php:177
 msgid "Export/Import"
-msgstr ""
+msgstr "Exportera / importera"
 
 #: src/Forms/class-admingeneraloptions.php:75
 msgid "Enable Mode Rewrite"
-msgstr ""
+msgstr "Aktivera Mod_rewrite"
 
 #: src/Forms/class-admingeneraloptions.php:77
-msgid "Life Time Cookie:"
-msgstr "Cookie-livstid:"
+msgid "Cookie Expiry:"
+msgstr "Cookie-utgång:"
 
 #: src/Forms/class-admingeneraloptions.php:79
 msgid "Select location of message:"
-msgstr ""
+msgstr "Välj plats för meddelandet:"
 
 #: src/Forms/class-admingeneraloptions.php:81
 msgid "Close button type:"
-msgstr ""
+msgstr "Stäng knapptyp:"
 
 #: src/Forms/class-admingeneraloptions.php:83
-msgid "About cookies page:"
-msgstr ""
+msgid "Choose cookies page:"
+msgstr "Välj cookies-sida:"
 
 #: src/Forms/class-admingeneraloptions.php:85
-msgid "About cookies Link (overrides the page):"
-msgstr ""
+msgid "About cookies Link:"
+msgstr "Om cookies Länk:"
 
 #: src/Forms/class-admingeneraloptions.php:93
 msgid ""
 "Select where the cookie message should be displayed and enter the URL to the "
 "page about cookies."
 msgstr ""
+"Välj var cookie-meddelandet ska visas och ange webbadressen till sidan om "
+"cookies."
 
-#: src/Forms/class-admingeneraloptions.php:111
-msgid "Top as overlay"
-msgstr ""
+#: src/Forms/class-admingeneraloptions.php:103
+msgid "The period that the cookie is set for"
+msgstr "Den period som cookien är inställd på"
 
 #: src/Forms/class-admingeneraloptions.php:112
+msgid "Top as overlay"
+msgstr "Topp som överlägg"
+
+#: src/Forms/class-admingeneraloptions.php:113
 msgid "Bottom as overlay"
+msgstr "Botten som överlägg"
+
+#: src/Forms/class-admingeneraloptions.php:115
+msgid "Where the notification should appear"
+msgstr "Där meddelande ska visas"
+
+#: src/Forms/class-admingeneraloptions.php:126
+msgid "Use X Close"
+msgstr "Använd X Stäng"
+
+#: src/Forms/class-admingeneraloptions.php:127
+msgid "accept button"
+msgstr "acceptera knappen"
+
+#: src/Forms/class-admingeneraloptions.php:129
+msgid ""
+"Select accept button or X icon instead (for client to be able to remove the "
+"cookie message)"
 msgstr ""
+"Välj accept-knapp eller X-ikon istället (för att klienten ska kunna ta bort "
+"cookie-meddelandet)"
 
-#: src/Forms/class-admingeneraloptions.php:124
-msgid "Use X"
-msgstr " "
+#: src/Forms/class-admingeneraloptions.php:145
+msgid "The page containing further information about your cookie policy"
+msgstr "Sidan som innehåller ytterligare information om din cookie-policy"
 
-#: src/Forms/class-admingeneraloptions.php:125
-msgid "Use custom text"
-msgstr ""
-
-#: src/Forms/class-admingeneraloptions.php:149
+#: src/Forms/class-admingeneraloptions.php:153
 msgid "Paste URL or type to search"
+msgstr "Klistra in URL eller typ för att söka"
+
+#: src/Forms/class-admingeneraloptions.php:154
+msgid "This link will override the cookie page link above"
+msgstr "Den här länken åsidosätter länken till cookie-sidan ovan"
+
+#: src/Forms/class-admingeneraloptions.php:163
+msgid "Select this if you have wordpress multisite network."
+msgstr "Välj det här om du har wordpress multisite nätverk."
+
+#: src/Forms/class-adminstylingoptions.php:63
+msgid "Message container background"
+msgstr "Bakgrund för meddelandebehållare"
+
+#: src/Forms/class-adminstylingoptions.php:65
+msgid "Message container padding top and bottom"
+msgstr "Meddelandebehållarens padding topp och botten"
+
+#: src/Forms/class-adminstylingoptions.php:67
+msgid "Message container opacity"
+msgstr "Meddelandebehållarens opacitet"
+
+#: src/Forms/class-adminstylingoptions.php:70
+msgid "Banner Animation"
+msgstr "Banneranimering"
+
+#: src/Forms/class-adminstylingoptions.php:71
+msgid "Text font family"
+msgstr "Textfont"
+
+#: src/Forms/class-adminstylingoptions.php:73
+msgid "Text size"
+msgstr "Textstorlek"
+
+#: src/Forms/class-adminstylingoptions.php:75
+msgid "Text Color"
+msgstr "Textfärg"
+
+#: src/Forms/class-adminstylingoptions.php:77
+msgid "Link Color"
+msgstr "Länkfärg"
+
+#: src/Forms/class-adminstylingoptions.php:79
+msgid "Close icon color"
+msgstr "Färg på stäng ikon"
+
+#: src/Forms/class-adminstylingoptions.php:81
+msgid "Modal Options"
+msgstr "Inställningar, modalens overlay"
+
+#: src/Forms/class-adminstylingoptions.php:83
+msgid "Modal Overlay"
+msgstr "Overlayfärg"
+
+#: src/Forms/class-adminstylingoptions.php:85
+msgid "Modal Overlay Opacity"
+msgstr "Opacitet, overlay"
+
+#: src/Forms/class-adminstylingoptions.php:87
+msgid "Button Options"
+msgstr "Inställningar, knappar"
+
+#: src/Forms/class-adminstylingoptions.php:89
+msgid "Button Custom Class"
+msgstr "Egna CSS-klasser för knappar"
+
+#: src/Forms/class-adminstylingoptions.php:91
+msgid "Button Styling"
+msgstr "Utseende knappar"
+
+#: src/Forms/class-adminstylingoptions.php:93
+msgid "Button Color"
+msgstr "Knappfärg"
+
+#: src/Forms/class-adminstylingoptions.php:95
+msgid "Button Hover Color"
+msgstr "Knappfärg, hover"
+
+#: src/Forms/class-adminstylingoptions.php:97
+msgid "Button Text Color"
+msgstr "Knapp-textfärg"
+
+#: src/Forms/class-adminstylingoptions.php:99
+msgid "Button Hover Text Color"
+msgstr "Knapp-textfärg, hover"
+
+#: src/Forms/class-adminstylingoptions.php:101
+msgid "Button Top and Bottom Padding"
+msgstr "Knapp-padding, över och under"
+
+#: src/Forms/class-adminstylingoptions.php:103
+msgid "Button Left and Right Padding"
+msgstr "Knapp-padding, höger och vänster"
+
+#: src/Forms/class-adminstylingoptions.php:104
+msgid "[X] Button Styling"
+msgstr "[X] Knapp Styling"
+
+#: src/Forms/class-adminstylingoptions.php:105
+msgid "Custom styles for buttons"
+msgstr "Anpassade stilar för knappar"
+
+#: src/Forms/class-adminstylingoptions.php:112
+msgid "Select the styling for the cookie message."
+msgstr "Välj styling för cookie-meddelandet."
+
+#: src/Forms/class-adminstylingoptions.php:121
+msgid "The background color for the notification"
+msgstr "Bakgrundsfärgen för meddelandet"
+
+#: src/Forms/class-adminstylingoptions.php:188
+msgid "Select the styling for the modal overlay."
+msgstr "Välj styling för det modala overlay."
+
+#: src/Forms/class-adminstylingoptions.php:212
+msgid "Select the styling for the buttons."
+msgstr "Välj styling för knapparna."
+
+#: src/Forms/class-adminstylingoptions.php:299
+msgid "None"
+msgstr "Ingen"
+
+#: src/Forms/class-adminstylingoptions.php:300
+msgid "Scroll up/down"
+msgstr "Skrolla upp / ner"
+
+#: src/Forms/class-adminstylingoptions.php:301
+msgid "Fade"
 msgstr ""
 
-#: src/Forms/class-adminexportsettings.php:61
-msgid "Export/Import Settings"
+#: src/Forms/class-adminstylingoptions.php:303
+msgid ""
+"Select the animation about how the message should appear: None - Scroll up/"
+"down - Fade"
 msgstr ""
+"Välj animationen om hur meddelandet ska visas:  ingen - Skrolla upp / ner - "
+"Fade"
 
-#: src/Forms/class-adminexportsettings.php:63
-#: src/Forms/class-adminexportsettings.php:65
-msgid " "
+#: src/class-main.php:229
+msgid "An update is available."
+msgstr "En uppdatering är tillgänglig."
+
+#: src/class-main.php:230
+msgid "Upgrade now"
+msgstr "Uppgradera nu"
+
+#: templates/cookie-notice.php:65
+msgctxt ""
+"String between \"Read more\" and \"Change settings\" in the cookie notice."
+msgid "or"
+msgstr "eller"
+
+#: templates/cookie-notice.php:76 templates/cookie-notice.php:89
+msgid "Close"
+msgstr "Stäng"
+
+#: templates/cookie-notice.php:99
+msgid "Required Cookies"
+msgstr "Nödvändiga kakor"
+
+#: templates/cookie-notice.php:100
+msgid "Functional Cookies"
+msgstr "Funktionella kakor"
+
+#: templates/cookie-notice.php:101
+msgid "Advertising Cookies"
+msgstr "Annonskakor"
+
+#: templates/cookie-notice.php:111 templates/cookie-notice.php:118
+msgid "Active"
+msgstr "Aktiv"
+
+#: tests/test-custom-cookie-message.php:66
+msgid "I understand"
+msgstr "Jag förstår"
+
+#: tests/test-custom-cookie-message.php:67
+msgid "Updated Read more"
+msgstr "Uppdaterad Läs mer"
+
+#: tests/test-custom-cookie-message.php:68
+msgid ""
+"This website uses cookies . By using our website you accept our use of "
+"cookies . "
 msgstr ""
+"Denna webbplats använder cookies. Genom att använda vår webbplats accepterar "
+"du vår användning av cookies. "
 
-#: src/Forms/class-adminexportsettings.php:73
-msgid "Here you can export and/or import your settings."
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:63
-msgid "Notification Text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:65
-msgid "More Info Text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:67
-msgid "Enter button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:69
-msgid "Enter Accept button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:71
-msgid "Save Settings button text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:73
-msgid "Shortcode Text:"
-msgstr ""
-
-#: src/Forms/class-admincontentoptions.php:75
-msgid "Shortcode:"
-msgstr ""
-
-#: src/Controller/class-controller.php:105
-msgid "What it is? No, thanks."
-msgstr "Vad?"
-
-#: src/Controller/class-controller.php:122
-msgid "Sorry, who are you?"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Custom Cookie Message"
-msgstr "Custom Cookie Message"
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/Angrycreative/custom-cookie-message"
+msgstr "https://github.com/Angrycreative/custom-cookie-message"
 
 #. Description of the plugin/theme
 msgid "A customizable cookie message, compatible with GDPR compliance."
 msgstr ""
 "Ett redigerbart cookie meddelande, kompatibelt med GDPR-överensstämmelser."
-
-#. Plugin URI of the plugin/theme
-msgid "https://github.com/Angrycreative/custom-cookie-message"
-msgstr "https://github.com/Angrycreative/custom-cookie-message"
 
 #. Author of the plugin/theme
 msgid "Angry Creative AB"
@@ -349,3 +466,9 @@ msgstr "Angry Creative AB"
 #. Author URI of the plugin/theme
 msgid "https://angrycreative.se/"
 msgstr "https://angrycreative.se/"
+
+#~ msgid "Life Time Cookie:"
+#~ msgstr "Cookie-livstid:"
+
+#~ msgid "Use X"
+#~ msgstr " "
