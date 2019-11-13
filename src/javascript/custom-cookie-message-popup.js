@@ -111,7 +111,6 @@ jQuery( function ( $ ) {
 				cache: true,
 				contentType: false,
 				processData: false,
-				data: 'lang=' + customCookieMessageLocalize.lang,
 			} )
 			 .done( function ( response ) {
 				 if ( null !== response.template && '' !== customCookieMessageLocalize.options ) {
