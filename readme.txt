@@ -24,13 +24,11 @@ Custom cookie message is also compatible with multisites. The location of the me
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
-<<<<<<< HEAD
-= 2.3.7 =
-* Removed lang parameter from ajax request.
-=======
 = 2.3.8 =
 * Adding ability to remove the cookies.
->>>>>>> version 2.3.8
+
+= 2.3.7 =
+* Removed lang parameter from ajax request.
 
 = 2.3.6 =
 * Fix the translation.
