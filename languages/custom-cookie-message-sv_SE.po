@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Cookie Message\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-07 10:37+0100\n"
-"PO-Revision-Date: 2019-11-07 10:38+0100\n"
+"POT-Creation-Date: 2019-11-19 14:10+0100\n"
+"PO-Revision-Date: 2019-11-19 14:12+0100\n"
 "Last-Translator: angrycreative <hej@angrycreative.com>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -134,6 +134,16 @@ msgstr ""
 "Dessa cookies används av reklamföretag för att visa annonser som är "
 "relevanta för dina intressen. Exempel, dubbelklick"
 
+#: src/Forms/class-admincookiesettings.php:129
+msgid ""
+"We have this cookies list by default: _ga,_gid,_hjIncludedInSample,"
+"_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,"
+"UULE"
+msgstr ""
+"Vi har denna kakellista som standard: _ga,_gid,_hjIncludedInSample,"
+"_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,"
+"UULE"
+
 #: src/Forms/class-adminexportsettings.php:61
 msgid "Export/Import Settings"
 msgstr "Exportera / importera inställningar"
@@ -156,7 +166,7 @@ msgid "Import settings"
 msgstr "Importera inställningar"
 
 #. Plugin Name of the plugin/theme
-#: src/Forms/class-adminform.php:102 src/class-main.php:226
+#: src/Forms/class-adminform.php:102 src/class-main.php:228
 msgid "Custom Cookie Message"
 msgstr "Anpassat cookie-meddelande"
 
@@ -400,11 +410,11 @@ msgstr ""
 "Välj animationen om hur meddelandet ska visas:  ingen - Skrolla upp / ner - "
 "Fade"
 
-#: src/class-main.php:229
+#: src/class-main.php:231
 msgid "An update is available."
 msgstr "En uppdatering är tillgänglig."
 
-#: src/class-main.php:230
+#: src/class-main.php:232
 msgid "Upgrade now"
 msgstr "Uppgradera nu"
 
@@ -430,9 +440,13 @@ msgstr "Funktionella kakor"
 msgid "Advertising Cookies"
 msgstr "Annonskakor"
 
-#: templates/cookie-notice.php:111 templates/cookie-notice.php:118
-msgid "Active"
-msgstr "Aktiv"
+#: templates/cookie-notice.php:112 templates/cookie-notice.php:119
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: templates/cookie-notice.php:112 templates/cookie-notice.php:119
+msgid "Disabled"
+msgstr "Inaktiverad"
 
 #: tests/test-custom-cookie-message.php:66
 msgid "I understand"
@@ -466,6 +480,9 @@ msgstr "Angry Creative AB"
 #. Author URI of the plugin/theme
 msgid "https://angrycreative.se/"
 msgstr "https://angrycreative.se/"
+
+#~ msgid "Active"
+#~ msgstr "Aktiv"
 
 #~ msgid "Life Time Cookie:"
 #~ msgstr "Cookie-livstid:"
