@@ -46,6 +46,9 @@ _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
+= 2.4.0 =
+* Changed checkbox design.
+
 = 2.3.9 =
 * Adding default cookies list.
 
