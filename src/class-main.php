@@ -8,6 +8,7 @@
 namespace CustomCookieMessage;
 
 use CustomCookieMessage\Controller\Controller;
+use CustomCookieMessage\Controller\RemoveCookie;
 use CustomCookieMessage\Forms\AdminForm;
 
 /**
@@ -111,6 +112,7 @@ class Main {
 	public function init() {
 
 		Controller::single();
+		RemoveCookie::single();
 
 		load_plugin_textdomain( 'custom-cookie-message', false, basename( dirname( __DIR__ ) ) . '/languages' );
 

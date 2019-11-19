@@ -64,6 +64,27 @@ class RemoveCookie {
 	public function __construct() {
 		$this->cc_get_client_cookie_settings_from_browser();
 
+		$default_advertising_list = apply_filters(
+			'default_advertising_list_filters',
+			[
+				'_ga',
+				'_gid',
+				'_hjIncludedInSample',
+				'_hjid',
+				'1P_JAR',
+				'APISID',
+				'CONSENT',
+				'HSID',
+				'NID',
+				'SAPISID',
+				'SEARCH_SAMESITE',
+				'SID',
+				'SIDCC',
+				'SSID',
+				'UULE',
+			]
+		);
+
 		$this->options          = get_option( 'custom_cookie_message' );
 		$this->functional_list  = (
 		$this->options['cookie_granularity_settings']['functional_list'] )
@@ -74,15 +95,18 @@ class RemoveCookie {
 			)
 			: '';
 		$this->advertising_list = (
-			$this->options['cookie_granularity_settings']['advertising_list'] )
+		$this->options['cookie_granularity_settings']['advertising_list'] )
 			?
-			explode(
-				',',
-				$this->options['cookie_granularity_settings']['advertising_list']
+			array_merge(
+				$default_advertising_list,
+				explode(
+					',',
+					$this->options['cookie_granularity_settings']['advertising_list']
+				)
 			)
-			: '';
+			: $default_advertising_list;
 
-		if ( ! empty( $this->functional_list ) && ! empty( $this->advertising_list ) ) {
+		if ( ! empty( $this->functional_list ) ) {
 			$this->all_cookies_to_be_removed = array_merge( $this->functional_list, $this->advertising_list );
 		}
 		add_action( 'init', [ $this, 'cc_check_the_cookies_to_be_deleted' ], 100 );
@@ -105,14 +129,10 @@ class RemoveCookie {
 	 * Check which cookies needed to delete.
 	 */
 	public function cc_check_the_cookies_to_be_deleted() {
-		if ( ! $this->functional_list && ! $this->advertising_list ) {
-			return;
-		}
-		if ( ! empty( $this->all_cookies_to_be_removed ) && empty( $this->is_functional_cookes ) && isset( $this->is_functional_cookes ) && empty( $this->is_advertising_cookies ) ) {
+		if ( ! empty( $this->all_cookies_to_be_removed ) && empty( $this->is_functional_cookes ) && empty( $this->is_advertising_cookies )  && isset( $this->is_functional_cookes ) ) {
 			$this->cc_remove_all_cookies( $this->all_cookies_to_be_removed );
-		} elseif ( empty( $this->advertising_list ) && ! empty( $this->functional_list ) && isset( $this->is_functional_cookes ) && empty( $this->is_functional_cookes ) ) {
-			$this->cc_remove_functional_cookies( $this->functional_list );
-		} elseif ( ! empty( $this->advertising_list ) && empty( $this->functional_list ) && isset( $this->is_advertising_cookies ) && empty( $this->is_advertising_cookies ) ) {
+
+		} elseif ( ! empty( $this->advertising_list ) && isset( $this->is_advertising_cookies ) && empty( $this->is_advertising_cookies ) ) {
 			$this->cc_remove_advertising_cookies( $this->advertising_list );
 		}
 	}
