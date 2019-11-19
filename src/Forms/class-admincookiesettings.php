@@ -126,6 +126,7 @@ class AdminCookieSettings extends AdminBase {
 		$html .= esc_html__( 'These cookies are used by advertising companies to serve ads that are relevant to your interests. Example, Doubleclick', 'custom-cookie-message' ) . '<br>';
 		$html .= '<input id="advertising_cookies_ban" placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
+		$html .= '<p class="description"> ' . __( 'We have this cookies list by default: _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,UULE', 'custom-cookie-message' ) . '</p>';
 
 		wp_editor(
 			$this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [

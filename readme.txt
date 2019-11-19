@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorc
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 5.2.3
-Stable tag: 2.3.7
+Stable tag: 2.3.9
 Requires PHP: 5.6+
 
 License: GPLv2 or later
@@ -17,6 +17,28 @@ Installing and activating the plugin will automatically make it appear with the 
 Custom cookie message is compatible with multilanguages where all you have to do is translate the strings of the cookie message as you would with any other strings. In plugins such as WPML or Polylang the cookie message strings show up just as other strings and are ready to be translated.
 Custom cookie message is also compatible with multisites. The location of the message is customizable as well as the content and styling. The settings can be found under settings -> cookies.
 
+= Features =
+We have a list of cookies by default so the customers can delete them if they want to, and you can expand this list using this filter:
+`
+add_filter( 'default_advertising_list_filters', 'add_som_cookies_name_to_default_list' );
+
+/**
+ * To expand advertising cookies list
+ * @param $default_cookies
+ *
+ * @return array
+ */
+function add_som_cookies_name_to_default_list( $default_cookies ){
+	$default_cookies[] = 'cookie_name';
+
+	return $default_cookies;
+}
+`
+Default cookies list:
+`
+_ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,UULE
+`
+
 == Installation ==
 
 1. Add the plugin custom cookie message to your plugins map
@@ -24,6 +46,9 @@ Custom cookie message is also compatible with multisites. The location of the me
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
+= 2.3.9 =
+* Adding default cookies list.
+
 = 2.3.8 =
 * Adding ability to remove the cookies.
 
