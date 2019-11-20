@@ -58,10 +58,15 @@ class AdminCookieSettings extends AdminBase {
 	 */
 	public function cookies_initialize_cookie_options() {
 
-		add_settings_section( 'cookie_settings_section', esc_html__( 'Cookie Settings', 'custom-cookie-message' ), [
-			$this,
-			'cookie_list_options_callback'
-		], $this->section_page );
+		add_settings_section(
+			'cookie_settings_section',
+			esc_html__( 'Cookie Settings', 'custom-cookie-message' ),
+			[
+				$this,
+				'cookie_list_options_callback',
+			],
+			$this->section_page
+		);
 
 		add_settings_field(
 			'opt_in_opt_out',
@@ -75,25 +80,49 @@ class AdminCookieSettings extends AdminBase {
 		);
 
 
-		add_settings_field( 'headline', esc_html__( 'Head Line Message:', 'custom-cookie-message' ), [
-			$this,
-			'cookie_headline_callback'
-		], $this->section_page, 'cookie_settings_section' );
+		add_settings_field(
+			'headline',
+			esc_html__( 'Head Line Message:', 'custom-cookie-message' ),
+			[
+				$this,
+				'cookie_headline_callback',
+			],
+			$this->section_page,
+			'cookie_settings_section'
+		);
 
-		add_settings_field( 'required_cookies', esc_html__( 'Required Cookies Message:', 'custom-cookie-message' ), [
-			$this,
-			'cookie_required_callback'
-		], $this->section_page, 'cookie_settings_section' );
+		add_settings_field(
+			'required_cookies',
+			esc_html__( 'Required Cookies Message:', 'custom-cookie-message' ),
+			[
+				$this,
+				'cookie_required_callback',
+			],
+			$this->section_page,
+			'cookie_settings_section'
+		);
 
-		add_settings_field( 'functional_cookies', esc_html__( 'Functional Cookies Message:', 'custom-cookie-message' ), [
-			$this,
-			'cookie_functional_callback'
-		], $this->section_page, 'cookie_settings_section' );
+		add_settings_field(
+			'functional_cookies',
+			esc_html__( 'Functional Cookies Message:', 'custom-cookie-message' ),
+			[
+				$this,
+				'cookie_functional_callback',
+			],
+			$this->section_page,
+			'cookie_settings_section'
+		);
 
-		add_settings_field( 'advertising_cookies', esc_html__( 'Advertising Cookies Message:', 'custom-cookie-message' ), [
-			$this,
-			'cookie_advertising_callback'
-		], $this->section_page, 'cookie_settings_section' );
+		add_settings_field(
+			'advertising_cookies',
+			esc_html__( 'Advertising Cookies Message:', 'custom-cookie-message' ),
+			[
+				$this,
+				'cookie_advertising_callback',
+			],
+			$this->section_page,
+			'cookie_settings_section'
+		);
 	}
 
 	/**
@@ -127,12 +156,14 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_required_callback() {
-		$html = '<br><label>';
+		$html  = '<br><label>';
 		$html .= esc_html__( 'These cookies are required to enable core site functionality, we can not disable anything here.', 'custom-cookie-message' );
 		$html .= '</label>';
 
 		wp_editor(
-			$this->options['cookie_granularity_settings']['required_cookies_message'], 'required_cookies_message', [
+			$this->options['cookie_granularity_settings']['required_cookies_message'],
+			'required_cookies_message',
+			[
 				'teeny'         => true,
 				'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][required_cookies_message]',
 			]
@@ -144,13 +175,15 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_functional_callback() {
-		$html = '<br><label>';
+		$html  = '<br><label>';
 		$html .= esc_html__( 'These cookies allow us to analyze site usage so we can measure and improve performance. Example, hotjar', 'custom-cookie-message' ) . '<br>';
 		$html .= '<input id="functional_cookies_ban" placeholder="hotjar, analytics" name="custom_cookie_message[cookie_granularity_settings][functional_list]" value="' . $this->options['cookie_granularity_settings']['functional_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
 
 		wp_editor(
-			$this->options['cookie_granularity_settings']['functional_cookies_message'], 'functional_cookies_message', [
+			$this->options['cookie_granularity_settings']['functional_cookies_message'],
+			'functional_cookies_message',
+			[
 				'teeny'         => true,
 				'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][functional_cookies_message]',
 			]
@@ -162,14 +195,16 @@ class AdminCookieSettings extends AdminBase {
 	 * Required Cookies Message.
 	 */
 	public function cookie_advertising_callback() {
-		$html = '<br><label>';
+		$html  = '<br><label>';
 		$html .= esc_html__( 'These cookies are used by advertising companies to serve ads that are relevant to your interests. Example, Doubleclick', 'custom-cookie-message' ) . '<br>';
 		$html .= '<input id="advertising_cookies_ban" placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
 		$html .= '<p class="description"> ' . __( 'We have these cookies in our default list: _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,UULE', 'custom-cookie-message' ) . '</p>';
 
 		wp_editor(
-			$this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [
+			$this->options['cookie_granularity_settings']['advertising_cookies_message'],
+			'advertising_cookies_message',
+			[
 				'teeny'         => true,
 				'textarea_name' => 'custom_cookie_message[cookie_granularity_settings][advertising_cookies_message]',
 			]
