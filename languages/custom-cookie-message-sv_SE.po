@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Cookie Message\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-20 10:23+0100\n"
-"PO-Revision-Date: 2019-11-20 10:31+0100\n"
+"POT-Creation-Date: 2019-11-20 11:33+0100\n"
+"PO-Revision-Date: 2019-11-20 11:33+0100\n"
 "Last-Translator: angrycreative <hej@angrycreative.com>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -86,27 +86,27 @@ msgstr "Standardtexten för att avvisa meddelandet."
 msgid "Cookie Settings"
 msgstr "Cookie-inställningar"
 
-#: src/Forms/class-admincookiesettings.php:66
-msgid "Opt-in Opt-out"
-msgstr ""
+#: src/Forms/class-admincookiesettings.php:68
+msgid "Opt-in by default"
+msgstr "Opt-in Som standard"
 
-#: src/Forms/class-admincookiesettings.php:72
+#: src/Forms/class-admincookiesettings.php:78
 msgid "Head Line Message:"
 msgstr "Head Line Meddelande:"
 
-#: src/Forms/class-admincookiesettings.php:77
+#: src/Forms/class-admincookiesettings.php:83
 msgid "Required Cookies Message:"
 msgstr "Obligatoriskt cookie-meddelande:"
 
-#: src/Forms/class-admincookiesettings.php:82
+#: src/Forms/class-admincookiesettings.php:88
 msgid "Functional Cookies Message:"
 msgstr "Funktionellt cookie-meddelande:"
 
-#: src/Forms/class-admincookiesettings.php:87
+#: src/Forms/class-admincookiesettings.php:93
 msgid "Advertising Cookies Message:"
 msgstr "Reklam Cookies Meddelande:"
 
-#: src/Forms/class-admincookiesettings.php:97
+#: src/Forms/class-admincookiesettings.php:103
 msgid ""
 "Update the content displayed to the user when the user click Change "
 "\"Settings button\" "
@@ -114,25 +114,28 @@ msgstr ""
 "Uppdatera innehållet som visas för användaren när användaren klickar på "
 "Ändra “Inställningsknapp”  "
 
-#: src/Forms/class-admincookiesettings.php:106 templates/cookie-notice.php:112
+#: src/Forms/class-admincookiesettings.php:112 templates/cookie-notice.php:112
 #: templates/cookie-notice.php:119
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: src/Forms/class-admincookiesettings.php:106 templates/cookie-notice.php:112
+#: src/Forms/class-admincookiesettings.php:112 templates/cookie-notice.php:112
 #: templates/cookie-notice.php:119
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: src/Forms/class-admincookiesettings.php:110
+#: src/Forms/class-admincookiesettings.php:116
 msgid ""
-"If this is enabled, no default cookies will be saved until the user agrees "
-"to save them"
+"If this is enabled, non-functional cookies will not be saved until the user "
+"agrees to it. This may cause the site to break, if you rely on cookies that "
+"are used for advertising/marketing/tracking etc."
 msgstr ""
-"Om detta är aktiverat kommer inga standardcookies sparas innan besökare "
-"tillåter att de sparas."
+"Om det här är aktiverat, så kommer icke-funktionella kakor inte att sparas "
+"förrän användaren godkänner/väljer att göra så. Tänk på att det här kan "
+"skapa problem med funktionalitet på din webbplats, om den är beroende av "
+"icke-funktionella kakor."
 
-#: src/Forms/class-admincookiesettings.php:125
+#: src/Forms/class-admincookiesettings.php:131
 msgid ""
 "These cookies are required to enable core site functionality, we can not "
 "disable anything here."
@@ -140,7 +143,7 @@ msgstr ""
 "Dessa cookies krävs för att möjliggöra kärnfunktionens webbplats, vi kan "
 "inte inaktivera någonting här."
 
-#: src/Forms/class-admincookiesettings.php:142
+#: src/Forms/class-admincookiesettings.php:148
 msgid ""
 "These cookies allow us to analyze site usage so we can measure and improve "
 "performance. Example, hotjar"
@@ -148,7 +151,7 @@ msgstr ""
 "Dessa cookies tillåter oss att analysera webbplatsanvändning så att vi kan "
 "mäta och förbättra prestanda. Exempel, hotjar"
 
-#: src/Forms/class-admincookiesettings.php:160
+#: src/Forms/class-admincookiesettings.php:166
 msgid ""
 "These cookies are used by advertising companies to serve ads that are "
 "relevant to your interests. Example, Doubleclick"
@@ -156,13 +159,13 @@ msgstr ""
 "Dessa cookies används av reklamföretag för att visa annonser som är "
 "relevanta för dina intressen. Exempel, dubbelklick"
 
-#: src/Forms/class-admincookiesettings.php:163
+#: src/Forms/class-admincookiesettings.php:169
 msgid ""
-"We have this cookies list by default: _ga,_gid,_hjIncludedInSample,"
+"We have these cookies in our default list: _ga,_gid,_hjIncludedInSample,"
 "_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,"
 "UULE"
 msgstr ""
-"Vi har denna kakellista som standard: _ga,_gid,_hjIncludedInSample,"
+"Vi har dessa kakor i vår standardlista: _ga,_gid,_hjIncludedInSample,"
 "_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,"
 "UULE"
 
@@ -494,6 +497,13 @@ msgstr "Angry Creative AB"
 #. Author URI of the plugin/theme
 msgid "https://angrycreative.se/"
 msgstr "https://angrycreative.se/"
+
+#~ msgid ""
+#~ "If this is enabled, no default cookies will be saved until the user "
+#~ "agrees to save them"
+#~ msgstr ""
+#~ "Om detta är aktiverat kommer inga standardcookies sparas innan besökare "
+#~ "tillåter att de sparas."
 
 #~ msgid "Active"
 #~ msgstr "Aktiv"

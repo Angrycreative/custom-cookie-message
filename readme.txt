@@ -47,7 +47,7 @@ _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH
 
 == Changelog ==
 = 2.4.1 =
-* opt-in opt-out default cookies.
+* Support for a opt-in method, instead of the previous opt-out method. Use with caution and make sure to test the site functionality, before activating on a live environment.
 
 = 2.4.0 =
 * Changed checkbox design.

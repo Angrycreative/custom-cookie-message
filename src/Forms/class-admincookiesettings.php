@@ -63,10 +63,16 @@ class AdminCookieSettings extends AdminBase {
 			'cookie_list_options_callback'
 		], $this->section_page );
 
-		add_settings_field( 'opt_in_opt_out', esc_html__( 'Opt-in Opt-out', 'custom-cookie-message' ), [
-			$this,
-			'opt_in_opt_out_callback'
-		], $this->section_page, 'cookie_settings_section' );
+		add_settings_field(
+			'opt_in_opt_out',
+			esc_html__( 'Opt-in by default', 'custom-cookie-message' ),
+			[
+				$this,
+				'opt_in_opt_out_callback',
+			],
+			$this->section_page,
+			'cookie_settings_section'
+		);
 
 
 		add_settings_field( 'headline', esc_html__( 'Head Line Message:', 'custom-cookie-message' ), [
@@ -107,7 +113,7 @@ class AdminCookieSettings extends AdminBase {
 		echo '<label class="opt-in_opt-out__checkbox switch">' . esc_attr( $lable ) . '<input type="checkbox" id="opt-in_opt-out" ' . esc_attr( $checked ) . ' name="custom_cookie_message[cookie_granularity_settings][opt_in_opt_out]">
 						<span></span>
 					</label>
-					<p class="description">' . esc_html__( 'If this is enabled, no default cookies will be saved until the user agrees to save them', 'custom-cookie-message' ) . '</p>';
+					<p class="description">' . esc_html__( 'If this is enabled, non-functional cookies will not be saved until the user agrees to it. This may cause the site to break, if you rely on cookies that are used for advertising/marketing/tracking etc.', 'custom-cookie-message' ) . '</p>';
 	}
 
 	/**
@@ -160,7 +166,7 @@ class AdminCookieSettings extends AdminBase {
 		$html .= esc_html__( 'These cookies are used by advertising companies to serve ads that are relevant to your interests. Example, Doubleclick', 'custom-cookie-message' ) . '<br>';
 		$html .= '<input id="advertising_cookies_ban" placeholder="doubleclick, adsense" name="custom_cookie_message[cookie_granularity_settings][advertising_list]" value="' . $this->options['cookie_granularity_settings']['advertising_list'] . '" class="large-text ltr">';
 		$html .= '</label>';
-		$html .= '<p class="description"> ' . __( 'We have this cookies list by default: _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,UULE', 'custom-cookie-message' ) . '</p>';
+		$html .= '<p class="description"> ' . __( 'We have these cookies in our default list: _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH_SAMESITE,SID,SIDCC,SSID,UULE', 'custom-cookie-message' ) . '</p>';
 
 		wp_editor(
 			$this->options['cookie_granularity_settings']['advertising_cookies_message'], 'advertising_cookies_message', [
