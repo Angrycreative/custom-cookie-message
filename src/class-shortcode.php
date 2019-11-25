@@ -25,14 +25,15 @@ class Shortcode {
 		$atts = shortcode_atts(
 			[
 				'style' => 'link',
-			], $atts
+			],
+			$atts
 		);
 
 		$class  = '';
 		$option = get_option( 'custom_cookie_message', [] );
 
 		if ( 'button' === $atts['style'] ) {
-			$class = apply_filters( 'ccm_shortcode_preferences_class', 'btn btn-default' );
+			$class = apply_filters( 'ccm_shortcode_preferences_class', 'btn btn-default custom-cookie-message-banner__button' );
 		}
 
 		ob_start();

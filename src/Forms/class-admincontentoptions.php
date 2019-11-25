@@ -58,21 +58,45 @@ class AdminContentOptions extends AdminBase {
 	 */
 	public function cookies_initialize_content_options() {
 
-		add_settings_section( 'content', esc_html__( 'Content Options', 'custom-cookie-message' ), [ $this, 'cookies_content_options_callback' ], $this->section_page );
+		add_settings_section( 'content', esc_html__( 'Content Options', 'custom-cookie-message' ), [
+			$this,
+			'cookies_content_options_callback'
+		], $this->section_page );
 
-		add_settings_field( 'textarea_warning_text', esc_html__( 'Notification Text:', 'custom-cookie-message' ), [ $this, 'cookies_textarea_warning_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'textarea_warning_text', esc_html__( 'Notification Text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_textarea_warning_text_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'input_link_text', esc_html__( 'More Info Text:', 'custom-cookie-message' ), [ $this, 'cookies_input_link_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'input_link_text', esc_html__( 'More Info Text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_input_link_text_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'input_button_text', esc_html__( 'Enter button text:', 'custom-cookie-message' ), [ $this, 'cookies_input_button_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'input_button_text', esc_html__( 'Enter button text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_input_button_text_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'accept_button_text', esc_html__( 'Enter Accept button text:', 'custom-cookie-message' ), [ $this, 'cookies_accept_button_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'accept_button_text', esc_html__( 'Enter Accept button text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_accept_button_text_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'save_settings_button', esc_html__( 'Save Settings button text:', 'custom-cookie-message' ), [ $this, 'cookies_save_settings_button_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'save_settings_button', esc_html__( 'Save Settings button text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_save_settings_button_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'shortcode_text', esc_html__( 'Shortcode Text:', 'custom-cookie-message' ), [ $this, 'cookies_shortcode_text_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'shortcode_text', esc_html__( 'Shortcode Text:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_shortcode_text_callback'
+		], $this->section_page, 'content' );
 
-		add_settings_field( 'cookies_shortcode', esc_html__( 'Shortcode:', 'custom-cookie-message' ), [ $this, 'cookies_shortcode_callback' ], $this->section_page, 'content' );
+		add_settings_field( 'cookies_shortcode', esc_html__( 'Shortcode:', 'custom-cookie-message' ), [
+			$this,
+			'cookies_shortcode_callback'
+		], $this->section_page, 'content' );
 
 	}
 
@@ -109,7 +133,7 @@ class AdminContentOptions extends AdminBase {
 	 */
 	public function cookies_accept_button_text_callback() {
 		echo '<input type="text" id="accept_button_text" name="custom_cookie_message[content][accept_button_text]" value="' . $this->options['content']['accept_button_text'] . '" class="regular-text ltr" />
-		<p class="description">'. esc_html__( 'The default text to dismiss the notification.', 'custom-cookie-message' ) . '</p>'; // WPCS: XSS ok.
+		<p class="description">' . esc_html__( 'The default text to dismiss the notification.', 'custom-cookie-message' ) . '</p>'; // WPCS: XSS ok.
 	}
 
 	/**
@@ -130,13 +154,15 @@ class AdminContentOptions extends AdminBase {
 	 * Shortcode
 	 */
 	public function cookies_shortcode_callback() {
+		echo '<div class="cc-admin-shortcode">';
 		echo '<div>';
-		echo do_shortcode( '[ccm_preferences]' );
-		echo '<input value="[ccm_preferences]">'; // WPCS: XSS ok.
+		echo '<input type="text" id="cc-admin-shortcode-link" class="regular-text cc-shortcode" onfocus="this.select();" readonly="readonly" value="[ccm_preferences]" />';
+		echo '<p class="description">' . esc_html__( 'Show a LINK for your customers to change their cookie settings', 'custom-cookie-message' ) . '</p>';
 		echo '</div>';
 		echo '<div>';
-		echo do_shortcode( '[ccm_preferences style="button"]' );
-		echo '<input value=\'[ccm_preferences style="button"]\'>'; // WPCS: XSS ok.
+		echo '<input type="text" id="cc-admin-shortcode-button" class="regular-text cc-shortcode" onfocus="this.select();" readonly="readonly" value=\'[ccm_preferences style="button"]\' />';
+		echo '<p class="description">' . esc_html__( 'Show a BUTTON for your customers to change their cookie settings', 'custom-cookie-message' ) . '</p>';
+		echo '</div>';
 		echo '</div>';
 	}
 

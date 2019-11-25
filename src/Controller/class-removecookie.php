@@ -92,7 +92,7 @@ class RemoveCookie {
 
 		$this->options = get_option( 'custom_cookie_message' );
 
-		$this->opt_in_opt_out_status = $this->options['cookie_granularity_settings']['opt_in_opt_out'];
+		$this->opt_in_opt_out_status = ! empty( $this->options['cookie_granularity_settings']['opt_in_opt_out'] ) ? empty( $this->options['cookie_granularity_settings']['opt_in_opt_out'] ) : '';
 
 		$this->functional_list  = (
 		$this->options['cookie_granularity_settings']['functional_list'] )

@@ -9,7 +9,7 @@ div.ui-slider-handle-custom {
     min-width: 1.5em;
 }
 
-/* --- SWITCH --- */
+/* --- SWITCH Checkbox --- */
 .switch * {
     cursor: pointer;
 }
@@ -46,27 +46,24 @@ div.ui-slider-handle-custom {
     -webkit-transition: all .2s;
 }
 
-/*.switch span:before {*/
-    /*content: attr(data-cc-status-disable);*/
-    /*position: absolute;*/
-    /*top: -2px;*/
-    /*right: 50px;*/
-    /*color: #000;*/
-    /*font-size: 13px;*/
-    /*text-align: right;*/
-
-/*}*/
-
 .switch input:checked + span {
     background-color: #28a745;
     border-color: #28a745;
     transition: all .5s;
 }
 
-
 .switch input:checked + span:after {
     left: 50%;
     transition: all .2s;
 }
 
+/* --- shortcode style --- */
+.cc-admin-shortcode div{
+    margin-bottom: 12px;
+}
+.cc-admin-shortcode .cc-shortcode{
+    height: 40px;
+    border: 1px dashed #28a745;
+    font-size: 17px;
+}
 
