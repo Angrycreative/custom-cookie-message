@@ -137,18 +137,19 @@ class RemoveCookie {
 	 * Check which cookies needed to delete.
 	 */
 	public function cc_check_the_cookies_to_be_deleted() {
-		$cc_remove_advertising_cookies = ( ! isset( $this->is_functional_cookes ) && $this->opt_in_opt_out_status ) ||
-		                                 ( ! empty( $this->advertising_list ) && isset( $this->is_advertising_cookies ) && empty( $this->is_advertising_cookies ) );
+		$cc_remove_advertising_cookies = ( ! isset( $this->is_functional_cookes ) && $this->opt_in_opt_out_status ) || ( ! empty( $this->advertising_list ) && isset( $this->is_advertising_cookies ) && empty( $this->is_advertising_cookies ) );
 
-		$cc_remove_all_cookies = ( ! empty( $this->all_cookies_to_be_removed ) &&
-		                           empty( $this->is_functional_cookes ) &&
-		                           empty( $this->is_advertising_cookies ) &&
-		                           isset( $this->is_functional_cookes ) );
+		$cc_remove_all_cookies = (
+			! empty( $this->all_cookies_to_be_removed ) &&
+			empty( $this->is_functional_cookes ) &&
+			empty( $this->is_advertising_cookies ) &&
+			isset( $this->is_functional_cookes )
+		);
 
 		if ( $cc_remove_advertising_cookies ) {
-			$this->cc_remove_all_cookies( $this->all_cookies_to_be_removed );
-		} elseif ( $cc_remove_all_cookies ) {
 			$this->cc_remove_advertising_cookies( $this->advertising_list );
+		} elseif ( $cc_remove_all_cookies ) {
+			$this->cc_remove_all_cookies( $this->all_cookies_to_be_removed );
 		}
 
 	}
@@ -181,9 +182,14 @@ class RemoveCookie {
 	 */
 	public function cc_remove_advertising_cookies( $cookie_names_list ) {
 		add_action( 'wp_print_scripts', array( $this, 'deregister_ads_scripts' ) );
-		remove_action( "wp_enqueue_scripts", "gtm4wp_enqueue_scripts" );
-		remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
+
+		if ( function_exists( 'gtm4wp_init' ) ) {
+			remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
+		}
+		remove_action( 'wp_enqueue_scripts', 'gtm4wp_enqueue_scripts' );
+
 		$this->cc_remove_cookie( $cookie_names_list );
+
 	}
 
 	/**
@@ -192,8 +198,12 @@ class RemoveCookie {
 	 */
 	public function cc_remove_all_cookies( $cookie_names_list ) {
 		add_action( 'wp_print_scripts', array( $this, 'deregister_ads_scripts' ) );
-		remove_action( "wp_enqueue_scripts", "gtm4wp_enqueue_scripts" );
-		remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
+
+		if ( function_exists( 'gtm4wp_init' ) ) {
+			remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
+		}
+		remove_action( 'wp_enqueue_scripts', 'gtm4wp_enqueue_scripts' );
+
 		$this->cc_remove_cookie( $cookie_names_list );
 	}
 
