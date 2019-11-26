@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorc
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 5.2.3
-Stable tag: 2.4.5
+Stable tag: 2.4.6
 Requires PHP: 5.6+
 
 License: GPLv2 or later
@@ -46,12 +46,15 @@ _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
+= 2.4.6 =
+* Fix - Fixed the empty array in class-removecookie.php
+
 = 2.4.5 =
-Fix - Fixed a js bug with duracelltomi-google-tag-manager plugin
+* Fix - Fixed a js bug with duracelltomi-google-tag-manager plugin
 
 = 2.4.4 =
-Fix - Fixed shortcodes functionality in Content Options.
-Fix - Fixed ["opt_in_opt_out"] warning empty value.
+* Fix - Fixed shortcodes functionality in Content Options.
+* Fix - Fixed ["opt_in_opt_out"] warning empty value.
 
 = 2.4.1 =
 * Support for a opt-in method, instead of the previous opt-out method. Use with caution and make sure to test the site functionality, before activating on a live environment.
