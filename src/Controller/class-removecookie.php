@@ -92,7 +92,7 @@ class RemoveCookie {
 
 		$this->options = get_option( 'custom_cookie_message' );
 
-		$this->opt_in_opt_out_status = ! empty( $this->options['cookie_granularity_settings']['opt_in_opt_out'] ) ? empty( $this->options['cookie_granularity_settings']['opt_in_opt_out'] ) : '';
+		$this->opt_in_opt_out_status = ( ! empty( $this->options['cookie_granularity_settings']['opt_in_opt_out'] ) ) ? $this->options['cookie_granularity_settings']['opt_in_opt_out'] : '';
 
 		$this->functional_list  = (
 		$this->options['cookie_granularity_settings']['functional_list'] )
@@ -139,8 +139,7 @@ class RemoveCookie {
 	public function cc_check_the_cookies_to_be_deleted() {
 		if ( ! isset( $this->is_functional_cookes ) && ! empty( $this->opt_in_opt_out_status ) ) {
 			$this->cc_remove_advertising_cookies( $this->advertising_list );
-		}
-		if ( ! empty( $this->all_cookies_to_be_removed ) && empty( $this->is_functional_cookes ) && empty( $this->is_advertising_cookies ) && isset( $this->is_functional_cookes ) ) {
+		} elseif ( ! empty( $this->all_cookies_to_be_removed ) && empty( $this->is_functional_cookes ) && empty( $this->is_advertising_cookies ) && isset( $this->is_functional_cookes ) ) {
 			$this->cc_remove_all_cookies( $this->all_cookies_to_be_removed );
 
 		} elseif ( ! empty( $this->advertising_list ) && isset( $this->is_advertising_cookies ) && empty( $this->is_advertising_cookies ) ) {
@@ -175,6 +174,8 @@ class RemoveCookie {
 	 * Remove Advertising Cookies
 	 */
 	public function cc_remove_advertising_cookies( $cookie_names_list ) {
+		add_action( 'wp_print_scripts', array( $this, 'deregister_ads_scripts' ) );
+		remove_action( "wp_enqueue_scripts", "gtm4wp_enqueue_scripts" );
 		remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
 		$this->cc_remove_cookie( $cookie_names_list );
 	}
@@ -184,6 +185,8 @@ class RemoveCookie {
 	 * Remove All Cookies
 	 */
 	public function cc_remove_all_cookies( $cookie_names_list ) {
+		add_action( 'wp_print_scripts', array( $this, 'deregister_ads_scripts' ) );
+		remove_action( "wp_enqueue_scripts", "gtm4wp_enqueue_scripts" );
 		remove_action( 'wp_head', 'gtm4wp_wp_header_begin' );
 		$this->cc_remove_cookie( $cookie_names_list );
 	}
@@ -206,5 +209,10 @@ class RemoveCookie {
 				setcookie( $item, '', time() - 3600, '/' ); // empty value and old timestamp
 			}
 		}
+	}
+
+	public function deregister_ads_scripts() {
+		wp_dequeue_script( 'gtm4wp-woocommerce-enhanced' );
+		wp_deregister_script( 'gtm4wp-woocommerce-enhanced' );
 	}
 }
