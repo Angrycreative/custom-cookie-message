@@ -3,7 +3,7 @@ Contributors: johansylvan, angrycreative, kylegard, killua99, melindrea, victorc
 Tags:  custom, cookie, message, consent, cookie bar, cookie compliance, cookie law, cookie notice, cookie notification, cookie notification bar, cookie notify, cookies, eu, eu cookie, eu cookie law, notice, notification, notify, custom cookie message, WPML, Polylang, Multisite, multisites, local storage
 Requires at least: 4.9
 Tested up to: 5.2.3
-Stable tag: 2.4.7
+Stable tag: 2.4.8
 Requires PHP: 5.6+
 
 License: GPLv2 or later
@@ -46,6 +46,9 @@ _ga,_gid,_hjIncludedInSample,_hjid,1P_JAR,APISID,CONSENT,HSID,NID,SAPISID,SEARCH
 1. Locate the options in settings -> Cookies. Default location, content and styling is set but can be customized.
 
 == Changelog ==
+= 2.4.7 =
+* Update - updated webpack package
+
 = 2.4.7 =
 * Fix - new version added.
 
