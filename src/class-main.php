@@ -23,7 +23,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.4.8';
+	protected $version = '2.4.9';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -300,6 +300,10 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
+		if ( is_admin() ) {
+			return;
+		}
+
 		$options = get_option( 'custom_cookie_message' );
 
 		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
