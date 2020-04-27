@@ -300,6 +300,10 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
+		if ( is_admin() ) {
+			return;
+		}
+
 		$options = get_option( 'custom_cookie_message' );
 
 		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
