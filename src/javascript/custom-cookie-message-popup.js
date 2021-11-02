@@ -106,7 +106,8 @@ jQuery( function ( $ ) {
 				'advertising': ccmAdvertisingStatus,
 			};
 			data = JSON.stringify( data );
-			let cookieLifeTime = ( parseInt( customCookieMessageLocalize.cookie_life_time ) ) ?  parseInt( customCookieMessageLocalize.cookie_life_time ) : 604800;  //If cookie_life_time is empty, it is used for a week 604800
+
+			let cookieLifeTime = parseInt( customCookieMessageLocalize.cookie_life_time );
 
 			let numberOfDays = cookieLifeTime / 60 / 60 / 24;
 
@@ -120,14 +121,14 @@ jQuery( function ( $ ) {
 			$( '#custom-cookie-message-modal' ).remove();
 			$( '#custom-cookie-message-banner' ).slideUp().remove();
 
-			if ( 'ccm-save-preference' === e.target.id ) {
+			if ( 'ccm-save-preference' === e.srcElement.id ) {
 				location.reload();
 			}
 		},
 
 		showCookieNotice: function () {
 			$.ajax( {
-				url: customCookieMessageLocalize.rest_url_banner,
+				url: customCookieMessageLocalize.rest_url_banner + '?cache_request=true',
 				method: 'GET',
 				cache: true,
 				contentType: false,

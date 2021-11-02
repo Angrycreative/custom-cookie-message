@@ -62,7 +62,7 @@ if ( ! empty( $_COOKIE['custom_cookie_message'] ) ) {
 				<?php
 				}
 }
-			echo $echo_str( $options['content']['or_text_settings'], 'custom-cookie-message' ); // WPCS: XSS ok.
+			_ex( 'or', 'String between "Read more" and "Change settings" in the cookie notice.', 'custom-cookie-message' );  // WPCS: XSS ok.
 			?>
 			<a id="custom-cookie-message-preference" href="#" title="<?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?>"><?php $esc_html( $options['content']['input_button_text'], 'custom-cookie-message' ); ?></a>
 		</p>

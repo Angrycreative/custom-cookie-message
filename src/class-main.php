@@ -23,7 +23,7 @@ class Main {
 	 *
 	 * @var string
 	 */
-	protected $version = '2.4.10';
+	protected $version = '2.4.7';
 
 	/**
 	 * Store singlenton CustomCookieMessage\Main.
@@ -300,10 +300,6 @@ class Main {
 	 * Template notice.
 	 */
 	public function display_frontend_notice() {
-		if ( is_admin() ) {
-			return;
-		}
-
 		$options = get_option( 'custom_cookie_message' );
 
 		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
@@ -476,6 +472,7 @@ class Main {
 			'general'                     => [
 				'life_time'           => MONTH_IN_SECONDS,
 				'location_options'    => 'top-fixed',
+				'cookies_page_link'   => '',
 				'close_button'        => 'xbutton',
 				'cookies_about_page'  => '#',
 				'cookies_page_link'   => '#',
@@ -484,7 +481,6 @@ class Main {
 			'content'                     => [
 				'input_button_text'     => 'Change Settings',
 				'save_settings_button'  => 'Save Settings',
-				'or_text_settings'      => 'OR',
 				'input_link_text'       => 'Read more',
 				'textarea_warning_text' => 'This website uses cookies. By using our website you accept our use of cookies.',
 				'shortcode_text'        => 'Cookie Preferences',
@@ -500,7 +496,7 @@ class Main {
 				'button_height_slider_amount'    => '10',
 				'button_width_slider_amount'     => '10',
 				'button_custom_class'            => '',
-				'textarea_btn_custom_styling'    => '',
+				'textarea_btn_custom_styling'   => '',
 				'text_color_picker'              => '#c0c0c0',
 				'text_size'                      => '',
 				'text_font'                      => '',

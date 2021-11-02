@@ -73,12 +73,6 @@ class AdminContentOptions extends AdminBase {
 			'cookies_input_link_text_callback'
 		], $this->section_page, 'content' );
 
-		add_settings_field( 'or_text_settings', esc_html__( 'Here you can change the word "OR"', 'custom-cookie-message' ), [
-			$this,
-			'cookies_or_text_settings_callback'
-		], $this->section_page, 'content' );
-
-
 		add_settings_field( 'input_button_text', esc_html__( 'Enter button text:', 'custom-cookie-message' ), [
 			$this,
 			'cookies_input_button_text_callback'
@@ -125,13 +119,6 @@ class AdminContentOptions extends AdminBase {
 	 */
 	public function cookies_input_link_text_callback() {
 		echo '<input type="text" id="input_link_text" name="custom_cookie_message[content][input_link_text]" value="' . $this->options['content']['input_link_text'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
-	}
-
-	/**
-	 * OR Text.
-	 */
-	public function cookies_or_text_settings_callback() {
-		echo '<input type="text" id="or_text_settings" name="custom_cookie_message[content][or_text_settings]" value="' . $this->options['content']['or_text_settings'] . '" class="regular-text ltr" />'; // WPCS: XSS ok.
 	}
 
 	/**
