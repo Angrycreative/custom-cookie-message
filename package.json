@@ -1,45 +1,37 @@
 {
   "name": "custom-cookie-message",
   "version": "1.0.0",
-  "description": "Installing and activating the plugin will automatically make it appear with the default content and styling.",
-  "main": "webpack.config.js",
+  "description": "Angry Creatives buildjob for plugins",
+  "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "webpack --debug --output-pathinfo --watch --mode development",
-    "dist": "webpack -p --progress --colors --mode production",
-    "build": "npm run dist"
+    "dev": "npm run development",
+    "start": "mix watch",
+    "development": "mix",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "dist": "npm run production",
+    "build": "npm run production",
+    "production": "mix --production",
+    "lint:css": "stylelint ./src/sass/* --config ./.stylelintrc --max-warnings 0",
+    "lint:js": "eslint ./src/javascript/* --config ./.eslintrc --max-warnings 0",
+    "fix:css": "stylelint ./src/sass/* --config ./.stylelintrc --fix",
+    "fix:js": "eslint ./src/javascript/* --config ./.eslintrc --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Angrycreative/custom-cookie-message.git"
+    "url": "https://git.synotio.se/qala/ac-plugin-boilerplate.git"
   },
-  "author": "",
+  "author": "Angry Creative",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Angrycreative/custom-cookie-message/issues"
-  },
-  "homepage": "https://github.com/Angrycreative/custom-cookie-message#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
-    "gulp-babel": "^8.0.0",
-    "webpack": "*",
-    "webpack-cli": "*"
-  },
-  "dependencies": {
-    "autoprefixer": "*",
-    "babel-core": "*",
-    "babel-loader": "*",
-    "babel-preset-env": "*",
-    "css-loader": "*",
-    "mini-css-extract-plugin": "*",
-    "node-sass": "*",
-    "path": "*",
-    "postcss-loader": "*",
-    "sass-loader": "*",
-    "style-loader": "*",
-    "webpack-build-notifier": "*"
+    "cross-env": "^7.0.3",
+    "laravel-mix": "^6.0.28",
+    "resolve-url-loader": "^3.1.2",
+    "sass": "^1.32.8",
+    "sass-loader": "^12.0.0",
+    "vue-template-compiler": "^2.6.12"
   }
 }
